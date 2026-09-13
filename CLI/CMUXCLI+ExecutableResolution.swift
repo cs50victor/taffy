@@ -6,7 +6,7 @@ extension CMUXCLI {
     func managedTerminalRequiredMessage(displayName: String) -> String {
         let format = String(
             localized: "cli.tmux-compat.error.managedTerminalRequired",
-            defaultValue: "%@ must be launched from a cmux-managed terminal surface. Open a terminal surface in cmux and run this command there."
+            defaultValue: "%@ must be launched from a Taffy-managed terminal surface. Open a terminal surface in Taffy and run this command there."
         )
         return String(format: format, displayName)
     }
@@ -279,7 +279,7 @@ extension CMUXCLI {
     /// their own system prompt.
     var claudeTeamsTeamSpawnGuidance: String {
         """
-        You are Claude Code running inside cmux, started with `cmux claude-teams`. \
+        You are Claude Code running inside taffy, started with `taffy claude-teams`. \
         Agent teams are enabled and every NAMED teammate opens in its own split \
         pane. When the user asks you to start a team, demo teams, or run several \
         subagents/teammates in parallel, spawn them as named teammates: make one \

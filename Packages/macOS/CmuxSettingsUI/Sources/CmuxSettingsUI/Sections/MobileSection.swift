@@ -120,7 +120,7 @@ public struct MobileSection: View {
                     }
                     SettingsCardNote(String(
                         localized: "settings.mobile.port.note",
-                        defaultValue: "Click Apply to change the port. cmux checks the port is free first: if it's in use, the current listener keeps running untouched; if it's free, the pairing listener rebinds now and connected devices reconnect. The Iroh endpoint adopts the new port the next time cmux starts."
+                        defaultValue: "Click Apply to change the port. Taffy checks the port is free first: if it's in use, the current listener keeps running untouched; if it's free, the pairing listener rebinds now and connected devices reconnect. The Iroh endpoint adopts the new port the next time Taffy starts."
                     ))
                 }
                 .disabled(remoteControlManagedByPolicy)
@@ -158,7 +158,7 @@ public struct MobileSection: View {
             subtitle: phonePush.current.forwardingEnabled
                 ? String(
                     localized: "settings.mobile.phonePush.forwarding.subtitleOn",
-                    defaultValue: "Sends local agent alerts from this Mac to cmux on your iPhone and iPad."
+                    defaultValue: "Sends local agent alerts from this Mac to Taffy on your iPhone and iPad."
                 )
                 : String(
                     localized: "settings.mobile.phonePush.forwarding.subtitleOff",
@@ -499,7 +499,7 @@ public struct MobileSection: View {
             if snapshot.routes.isEmpty {
                 SettingsCardNote(String(
                     localized: "settings.mobile.routes.empty",
-                    defaultValue: "No reachable addresses yet. Iroh routes need this Mac signed in to your cmux account; Tailscale routes need Tailscale running on this Mac."
+                    defaultValue: "No reachable addresses yet. Iroh routes need this Mac signed in to your Taffy account; Tailscale routes need Tailscale running on this Mac."
                 ))
             } else {
                 VStack(alignment: .leading, spacing: 4) {

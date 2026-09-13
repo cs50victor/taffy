@@ -271,7 +271,7 @@ enum FeedPreviewFixtures {
             3. Call ExitPlanMode with allowedPrompts entries so the user sees the Bash permission-request UI.
 
             **Requested permissions:**
-            - Bash: run ./scripts/reload.sh --tag <tag> for tagged macOS cmux dev builds
+            - Bash: run ./scripts/reload.sh --tag <tag> for tagged macOS Taffy dev builds
             """
             return (.exitPlan, .exitPlan(
                 requestId: "preview-plan",

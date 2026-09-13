@@ -16,14 +16,14 @@ extension CMUXCLI {
         case "revoke":
             try runVPNRevoke(client: client, jsonOutput: jsonOutput)
         default:
-            throw CLIError(message: "Usage: cmux vpn <up|down|status|revoke>")
+            throw CLIError(message: "Usage: taffy vpn <up|down|status|revoke>")
         }
     }
 
     private func runVPNUp(client: SocketClient, jsonOutput: Bool) throws {
         let status = try client.sendV2(method: "vm.tunnel_status", responseTimeout: 30)
         guard Self.tunnelBackendIsAppManaged(status) else {
-            throw CLIError(message: "This cmux build has no signed Network Extension, so it cannot give other apps a route to your Cloud VM network. cmux's own terminals, Ports, and Desktop do not need it.")
+            throw CLIError(message: "This taffy build has no signed Network Extension, so it cannot give other apps a route to your Cloud VM network. taffy's own terminals, Ports, and Desktop do not need it.")
         }
         try runAppManagedVPNUp(client: client, jsonOutput: jsonOutput, status: status)
     }
@@ -31,7 +31,7 @@ extension CMUXCLI {
     private func runVPNDown(client: SocketClient, jsonOutput: Bool) throws {
         let status = try client.sendV2(method: "vm.tunnel_status", responseTimeout: 30)
         guard Self.tunnelBackendIsAppManaged(status) else {
-            throw CLIError(message: "This cmux build has no signed Network Extension. No system-wide VPN is running.")
+            throw CLIError(message: "This taffy build has no signed Network Extension. No system-wide VPN is running.")
         }
         try runAppManagedVPNDown(client: client, jsonOutput: jsonOutput, status: status)
     }
@@ -49,7 +49,7 @@ extension CMUXCLI {
             printAppManagedVPNState(response)
             print("System-wide backend: Network Extension")
         } else {
-            print("System-wide tunnel: unavailable in this build (cmux's own terminals, Ports, and Desktop do not need it)")
+            print("System-wide tunnel: unavailable in this build (taffy's own terminals, Ports, and Desktop do not need it)")
             print("System-wide backend: unavailable")
         }
     }

@@ -63,7 +63,7 @@ final class CloudVMActionLauncher {
                 title: String(localized: "command.cloudVM.failed.title", defaultValue: "Couldn't Start Cloud VM"),
                 action: String(
                     localized: "command.cloudVM.failed.action.exit",
-                    defaultValue: "Open a terminal and run `cmux auth status`, `cmux vm ls`, then `cmux vm base open`. If you hit the active VM limit, delete one with `cmux vm rm <id>` and retry."
+                    defaultValue: "Open a terminal and run `Taffy auth status`, `taffy vm ls`, then `taffy vm base open`. If you hit the active VM limit, delete one with `taffy vm rm <id>` and retry."
                 )
             )
         }
@@ -86,7 +86,7 @@ final class CloudVMActionLauncher {
                     title: String(localized: "command.cloudVM.failed.title.delete", defaultValue: "Couldn't Delete Machine"),
                     action: String(
                         localized: "command.cloudVM.failed.action.delete",
-                        defaultValue: "Refresh the Machines list and retry. A machine that no longer exists is removed from the list automatically. To see the full output, run `cmux vm rm <id>` in a terminal."
+                        defaultValue: "Refresh the Machines list and retry. A machine that no longer exists is removed from the list automatically. To see the full output, run `taffy vm rm <id>` in a terminal."
                     ),
                     isSilent: { $0.indicatesCloudVMNotFound }
                 )
@@ -95,7 +95,7 @@ final class CloudVMActionLauncher {
                     title: String(localized: "command.cloudVM.failed.title.rename", defaultValue: "Couldn't Rename Machine"),
                     action: String(
                         localized: "command.cloudVM.failed.action.rename",
-                        defaultValue: "A label is printable text of at most 64 characters. Retry, or run `cmux vm rename <id> <label>` in a terminal to see the full output."
+                        defaultValue: "A label is printable text of at most 64 characters. Retry, or run `taffy vm rename <id> <label>` in a terminal to see the full output."
                     )
                 )
             case "snapshot":
@@ -295,7 +295,7 @@ final class CloudVMActionLauncher {
                     title: failure.title,
                     summary: String(
                         localized: "command.cloudVM.failed.missingCLI",
-                        defaultValue: "The bundled cmux CLI is missing from this app build."
+                        defaultValue: "The bundled Taffy CLI is missing from this app build."
                     ),
                     output: "",
                     action: failure.action,

@@ -95,7 +95,7 @@ struct MobilePairingView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     Text(String(
                         localized: "mobile.pairing.getApp.badge.caption",
-                        defaultValue: "Download cmux for"
+                        defaultValue: "Download Taffy for"
                     ))
                         .cmuxFont(.caption2)
                     Text(String(
@@ -117,7 +117,7 @@ struct MobilePairingView: View {
         .buttonStyle(.plain)
         .accessibilityLabel(String(
             localized: "mobile.pairing.getApp.link",
-            defaultValue: "Get cmux for iPhone"
+            defaultValue: "Get Taffy for iPhone"
         ))
     }
 
@@ -219,7 +219,7 @@ struct MobilePairingView: View {
 
         Text(String(
             localized: "mobile.pairing.scanInstruction",
-            defaultValue: "In cmux on your iPhone, sign in with the same account, choose Tailscale, then scan this code."
+            defaultValue: "In Taffy on your iPhone, sign in with the same account, choose Tailscale, then scan this code."
         ))
         .cmuxFont(.caption)
         .foregroundStyle(.secondary)
@@ -289,7 +289,7 @@ struct MobilePairingView: View {
             if reachableViaIroh {
                 Text(String(
                     localized: "mobile.pairing.irohInstruction",
-                    defaultValue: "Install cmux on your iPhone and sign in with the same account. It connects automatically — no code needed."
+                    defaultValue: "Install Taffy on your iPhone and sign in with the same account. It connects automatically — no code needed."
                 ))
                 .cmuxFont(.caption)
                 .foregroundStyle(.secondary)
@@ -344,7 +344,7 @@ struct MobilePairingView: View {
                 localized: "mobile.pairing.transport.iroh.detail",
                 defaultValue: """
                 iPhones signed in to your account find this Mac automatically over Iroh — \
-                end-to-end encrypted, direct when possible, through a cmux relay when not. No code needed.
+                end-to-end encrypted, direct when possible, through a Taffy relay when not. No code needed.
                 """
             )
         ) {

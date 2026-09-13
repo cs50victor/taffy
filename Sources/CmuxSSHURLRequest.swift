@@ -56,7 +56,7 @@ struct CmuxSSHURLRequest: Equatable {
     }
 
     func cliPreview(socketPath: String?) -> String {
-        var parts = ["cmux"]
+        var parts = ["taffy"]
         if let socketPath, !socketPath.isEmpty {
             parts += ["--socket", socketPath]
         }

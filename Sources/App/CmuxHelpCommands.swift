@@ -26,9 +26,8 @@ extension cmuxApp {
             Divider()
 
             helpResourceButton(.githubIssues)
-            helpResourceButton(.discord)
             if CmuxFeatureFlags.shared.isProUpgradeUIEnabled {
-                Button(String(localized: "menu.help.upgradeToPro", defaultValue: "Upgrade to cmux Pro…")) {
+                Button(String(localized: "menu.help.upgradeToPro", defaultValue: "Upgrade to Taffy Pro…")) {
                     ProUpgradePresenter.present(source: .helpMenu)
                 }
                 #if DEBUG
@@ -110,13 +109,6 @@ extension cmuxApp {
     }
 
     private func presentFeedbackFromHelpMenu() {
-        if let targetWindow = NSApp.keyWindow ?? NSApp.mainWindow {
-            FeedbackComposerBridge().openComposer(in: targetWindow)
-            return
-        }
-
-        if let targetWindow = AppDelegate.shared?.showMainWindowFromMenuBar() {
-            FeedbackComposerBridge().openComposer(in: targetWindow)
-        }
+        NSWorkspace.shared.open(URL(string: "https://github.com/cs50victor/taffy/issues/new")!)
     }
 }

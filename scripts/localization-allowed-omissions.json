@@ -1,11 +1,11 @@
 {
   "CFBundleDisplayName": {
-    "source": "cmux Cloud Tunnel",
+    "source": "Taffy Cloud Tunnel",
     "class": "brand"
   },
   "about.appName": {
     "class": "brand",
-    "source": "cmux"
+    "source": "Taffy"
   },
   "about.commit": {
     "source": "Commit",
@@ -429,7 +429,7 @@
     }
   },
   "cloudTunnel.vpnConfiguration.name": {
-    "source": "cmux Cloud",
+    "source": "Taffy Cloud",
     "class": "brand"
   },
   "command.applyUpdateIfAvailable.subtitle": {
@@ -512,7 +512,7 @@
   },
   "command.cmuxConfig.builtInSubtitle": {
     "class": "brand",
-    "source": "cmux"
+    "source": "Taffy"
   },
   "command.cmuxConfig.defaultClaudeCodeTitle": {
     "class": "brand",
@@ -536,7 +536,7 @@
   },
   "command.cmuxConfig.subtitle": {
     "class": "syntax",
-    "source": "cmux.json"
+    "source": "taffy.json"
   },
   "command.installCLI.subtitle": {
     "class": "technical",
@@ -706,7 +706,7 @@
   },
   "computerUse.menu.title": {
     "class": "brand",
-    "source": "cmux Computer Use"
+    "source": "Taffy Computer Use"
   },
   "computerUse.menu.unknownTarget": {
     "source": "App",
@@ -1611,23 +1611,23 @@
   },
   "mobile.pairing.target.appStore": {
     "class": "brand",
-    "source": "cmux"
+    "source": "Taffy"
   },
   "mobile.pairing.target.beta": {
     "class": "brand",
-    "source": "cmux BETA"
+    "source": "Taffy BETA"
   },
   "mobile.pairing.target.demo": {
     "class": "brand",
-    "source": "cmux DEMO"
+    "source": "Taffy DEMO"
   },
   "mobile.pairing.target.dev": {
     "class": "brand",
-    "source": "cmux DEV %@"
+    "source": "Taffy DEV %@"
   },
   "mobile.pairing.target.internal": {
     "class": "brand",
-    "source": "cmux INTERNAL"
+    "source": "Taffy INTERNAL"
   },
   "mode.compact": {
     "source": "Compact",
@@ -1705,7 +1705,7 @@
   },
   "pricing.native.eyebrow": {
     "class": "brand",
-    "source": "cmux Pro"
+    "source": "Taffy Pro"
   },
   "pricing.native.free.price": {
     "class": "price",
@@ -1753,11 +1753,11 @@
   },
   "pricing.pro.name": {
     "class": "brand",
-    "source": "cmux Pro"
+    "source": "Taffy Pro"
   },
   "pricing.pro.workspace.title": {
     "class": "brand",
-    "source": "cmux Pro"
+    "source": "Taffy Pro"
   },
   "pricing.team.name": {
     "source": "Team",
@@ -1767,7 +1767,7 @@
   },
   "pricing.window.title": {
     "class": "brand",
-    "source": "cmux Pro"
+    "source": "Taffy Pro"
   },
   "projectSchemes.badge.personal": {
     "source": "personal",
@@ -1931,7 +1931,7 @@
   },
   "settings.account.pro.title": {
     "class": "brand",
-    "source": "cmux Pro"
+    "source": "Taffy Pro"
   },
   "settings.app.markdownFontFamily.placeholder": {
     "source": "System",
@@ -2121,7 +2121,7 @@
   },
   "settings.config.source.cmux": {
     "class": "brand",
-    "source": "cmux"
+    "source": "Taffy"
   },
   "settings.customSidebars.renderer": {
     "source": "Renderer",
@@ -2330,7 +2330,7 @@
   },
   "settings.section.settingsJSON": {
     "class": "technical",
-    "source": "cmux.json"
+    "source": "taffy.json"
   },
   "settings.section.terminal": {
     "source": "Terminal",
@@ -2513,7 +2513,7 @@
   },
   "sidebar.provider.default.subtitle": {
     "class": "brand",
-    "source": "cmux"
+    "source": "Taffy"
   },
   "sidebar.remote.badge": {
     "class": "technical",
@@ -2773,11 +2773,11 @@
   },
   "sleepyMode.glow.cmux": {
     "class": "brand",
-    "source": "cmux"
+    "source": "Taffy"
   },
   "sleepyMode.theme.cmux": {
     "class": "brand",
-    "source": "cmux"
+    "source": "Taffy"
   },
   "sleepyMode.theme.mono": {
     "source": "Mono",

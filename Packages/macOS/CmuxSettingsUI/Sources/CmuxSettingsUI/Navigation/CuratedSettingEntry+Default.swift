@@ -32,7 +32,7 @@ extension Array where Element == CuratedSettingEntry {
             .init(section: .app, id: "appearance", title: String(localized: "settings.app.appearance", defaultValue: "Appearance"), synonyms: "Appearance app.appearance theme color scheme light mode dark mode system mode"),
             .init(section: .app, id: "app-icon", title: String(localized: "settings.app.appIcon", defaultValue: "App Icon"), synonyms: "App Icon app.appIcon dock icon application icon app switcher alternate icon"),
             .init(section: .app, id: "new-workspace-placement", title: String(localized: "settings.app.newWorkspacePlacement", defaultValue: "New Workspace Placement"), synonyms: "New Workspace Placement app.newWorkspacePlacement new tab insert position order top bottom end"),
-            .init(section: .app, id: "workspace-layouts", title: String(localized: "settings.app.workspaceLayouts", defaultValue: "Workspace Layouts"), synonyms: "workspace layouts customize layout default new workspace menu save delete cmux.json actions"),
+            .init(section: .app, id: "workspace-layouts", title: String(localized: "settings.app.workspaceLayouts", defaultValue: "Workspace Layouts"), synonyms: "workspace layouts customize layout default new workspace menu save delete taffy.json actions"),
             .init(section: .app, id: "workspace-inherit-working-directory", title: String(localized: "settings.app.workspaceInheritWorkingDirectory", defaultValue: "Inherit Workspace Working Directory"), synonyms: "Inherit Workspace Working Directory app.workspaceInheritWorkingDirectory workspace cwd directory inherit current focused working-directory"),
             .init(section: .app, id: "minimal-mode", title: String(localized: "settings.app.minimalMode", defaultValue: "Minimal Mode"), synonyms: "Minimal Mode app.minimalMode presentation compact chrome layout simple titlebar controls"),
             .init(section: .app, id: "keep-workspace-open", title: String(localized: "settings.app.closeWorkspaceOnLastSurfaceShortcut", defaultValue: "Keep Workspace Open When Closing Last Surface"), synonyms: "Keep Workspace Open When Closing Last Surface app.keepWorkspaceOpenWhenClosingLastSurface close last pane surface keep tab workspace"),
@@ -45,8 +45,8 @@ extension Array where Element == CuratedSettingEntry {
             ),
             .init(section: .app, id: "file-drops", title: String(localized: "settings.app.fileDrop.defaultBehavior", defaultValue: "File Drops"), synonyms: "File Drops drag drop files finder path text terminal editor split preview shift"),
             .init(section: .app, id: "preferred-editor", title: String(localized: "settings.app.preferredEditor", defaultValue: "Open Files With"), synonyms: "Open Files With app.preferredEditor editor open file code vscode visual studio zed sublime subl cursor"),
-            .init(section: .app, id: "supported-file-previews", title: String(localized: "settings.app.openSupportedFilesInCmux", defaultValue: "Open Supported Files in cmux"), synonyms: "Open Supported Files in cmux app.openSupportedFilesInCmux cmd click file preview pdf image video audio quicklook quick look editor external"),
-            .init(section: .app, id: "markdown-viewer", title: String(localized: "settings.app.openMarkdownInCmuxViewer", defaultValue: "Open Markdown in cmux Viewer"), synonyms: "Open Markdown in cmux Viewer app.openMarkdownInCmuxViewer md markdown mdx viewer preview readme"),
+            .init(section: .app, id: "supported-file-previews", title: String(localized: "settings.app.openSupportedFilesInCmux", defaultValue: "Open Supported Files in Taffy"), synonyms: "Open Supported Files in Taffy app.openSupportedFilesInCmux cmd click file preview pdf image video audio quicklook quick look editor external"),
+            .init(section: .app, id: "markdown-viewer", title: String(localized: "settings.app.openMarkdownInCmuxViewer", defaultValue: "Open Markdown in Taffy Viewer"), synonyms: "Open Markdown in Taffy Viewer app.openMarkdownInCmuxViewer md markdown mdx viewer preview readme"),
             .init(section: .app, id: "file-editor-word-wrap", title: String(localized: "settings.app.fileEditorWordWrap", defaultValue: "File Editor Word Wrap"), synonyms: "fileEditor.wordWrap " + String(localized: "settings.search.fileEditor.wordWrap", defaultValue: "file editor word wrap soft wrap reflow lines text horizontal scroll preview")),
             .init(
                 section: .app,
@@ -147,7 +147,7 @@ extension Array where Element == CuratedSettingEntry {
                 detailText: [
                     String(
                         localized: "settings.terminal.adaptiveDefaultTheme.subtitleOn",
-                        defaultValue: "cmux's managed light and dark palettes follow the app appearance only when your Ghostty config has no settings. Existing Ghostty settings are never overlaid."
+                        defaultValue: "Taffy's managed light and dark palettes follow the app appearance only when your Ghostty config has no settings. Existing Ghostty settings are never overlaid."
                     ),
                     String(
                         localized: "settings.terminal.adaptiveDefaultTheme.subtitleOff",
@@ -182,7 +182,7 @@ extension Array where Element == CuratedSettingEntry {
                 id: "memory-guardrail",
                 title: String(localized: "settings.terminal.memoryGuardrail", defaultValue: "Runaway Memory Guardrail"),
                 detailText: [
-                    String(localized: "settings.terminal.memoryGuardrail.subtitleOn", defaultValue: "cmux warns you with a badge and a banner when one pane's process tree uses too much memory, so a single leak can't crash the whole app."),
+                    String(localized: "settings.terminal.memoryGuardrail.subtitleOn", defaultValue: "Taffy warns you with a badge and a banner when one pane's process tree uses too much memory, so a single leak can't crash the whole app."),
                     String(localized: "settings.terminal.memoryGuardrail.subtitleOff", defaultValue: "No warning is shown when a pane's process tree grows large. A leaking process can OOM-suspend the entire app."),
                 ].joined(separator: " "),
                 synonyms: "terminal.runawayMemoryGuardrail.enabled runaway memory guardrail high memory warning badge banner oom leak process tree pane"
@@ -228,8 +228,8 @@ extension Array where Element == CuratedSettingEntry {
             .init(section: .sidebarAppearance, id: "show-pull-requests", title: String(localized: "settings.app.showPullRequests", defaultValue: "Show Pull Requests in Sidebar"), synonyms: "Show Pull Requests in Sidebar sidebar.showPullRequests pr mr review github gitlab bitbucket pull request merge request"),
             .init(section: .sidebarAppearance, id: "watch-git-status", title: String(localized: "settings.app.watchGitStatus", defaultValue: "Watch Git Status in Sidebar"), synonyms: "Watch Git Status in Sidebar sidebar.watchGitStatus git status branch watcher index lock"),
             .init(section: .sidebarAppearance, id: "make-pr-clickable", title: String(localized: "settings.app.makeSidebarPullRequestClickable", defaultValue: "Make Sidebar PR Clickable"), synonyms: "Make Sidebar PR Clickable sidebar.makePullRequestsClickable clickable pull requests pr mr reviews links select workspace row"),
-            .init(section: .sidebarAppearance, id: "open-pr-links", title: String(localized: "settings.app.openSidebarPRLinks", defaultValue: "Open Sidebar PR Links in cmux Browser"), synonyms: "Open Sidebar PR Links in cmux Browser sidebar.openPullRequestLinksInCmuxBrowser pr links github browser default external embedded"),
-            .init(section: .sidebarAppearance, id: "open-port-links", title: String(localized: "settings.app.openSidebarPortLinks", defaultValue: "Open Sidebar Port Links in cmux Browser"), synonyms: "Open Sidebar Port Links in cmux Browser sidebar.openPortLinksInCmuxBrowser ports localhost links browser default external embedded"),
+            .init(section: .sidebarAppearance, id: "open-pr-links", title: String(localized: "settings.app.openSidebarPRLinks", defaultValue: "Open Sidebar PR Links in Taffy Browser"), synonyms: "Open Sidebar PR Links in Taffy Browser sidebar.openPullRequestLinksInCmuxBrowser pr links github browser default external embedded"),
+            .init(section: .sidebarAppearance, id: "open-port-links", title: String(localized: "settings.app.openSidebarPortLinks", defaultValue: "Open Sidebar Port Links in Taffy Browser"), synonyms: "Open Sidebar Port Links in Taffy Browser sidebar.openPortLinksInCmuxBrowser ports localhost links browser default external embedded"),
             .init(section: .sidebarAppearance, id: "show-ssh", title: String(localized: "settings.app.showSSH", defaultValue: "Show SSH in Sidebar"), synonyms: "Show SSH in Sidebar sidebar.showSSH remote host target ssh server"),
             .init(section: .sidebarAppearance, id: "show-ports", title: String(localized: "settings.app.showPorts", defaultValue: "Show Listening Ports in Sidebar"), synonyms: "Show Listening Ports in Sidebar sidebar.showPorts localhost port listener dev server url"),
             .init(section: .sidebarAppearance, id: "show-log", title: String(localized: "settings.app.showLog", defaultValue: "Show Latest Log in Sidebar"), synonyms: "Show Latest Log in Sidebar sidebar.showLog log status latest message imperative"),
@@ -281,7 +281,7 @@ extension Array where Element == CuratedSettingEntry {
                 detailText: [
                     String(
                         localized: "settings.mobile.phonePush.forwarding.subtitleOn",
-                        defaultValue: "Sends local agent alerts from this Mac to cmux on your iPhone and iPad."
+                        defaultValue: "Sends local agent alerts from this Mac to Taffy on your iPhone and iPad."
                     ),
                     String(
                         localized: "settings.mobile.phonePush.forwarding.subtitleOff",
@@ -382,7 +382,7 @@ extension Array where Element == CuratedSettingEntry {
                 detailText: [
                     String(localized: "settings.automation.workspaceAutoNaming.subtitleOn", defaultValue: "Workspaces and tabs are named from agent conversations."),
                     String(localized: "settings.automation.workspaceAutoNaming.subtitleOff", defaultValue: "Workspace and tab names are never generated."),
-                    String(localized: "settings.automation.workspaceAutoNaming.note", defaultValue: "When enabled, cmux summarizes supported agent sessions into short workspace and tab names using each agent's own binary, refreshed as the topic shifts. Manual renames always win and stop auto-naming for that workspace or tab. Uses your agent account for the short summarization calls."),
+                    String(localized: "settings.automation.workspaceAutoNaming.note", defaultValue: "When enabled, Taffy summarizes supported agent sessions into short workspace and tab names using each agent's own binary, refreshed as the topic shifts. Manual renames always win and stop auto-naming for that workspace or tab. Uses your agent account for the short summarization calls."),
                     String(localized: "settings.automation.autoNamingAgent", defaultValue: "Naming Agent"),
                     String(localized: "settings.automation.autoNamingAgent.auto", defaultValue: "Automatic"),
                 ].joined(separator: " "),
@@ -418,7 +418,7 @@ extension Array where Element == CuratedSettingEntry {
                 synonyms: String(localized: "settings.search.alias.setting.computerUse.showInMenuBar", defaultValue: "computerUse.showInMenuBar menu bar menubar status item cursor agents")
             ),
             // Browser
-            .init(section: .browser, id: "enable-browser", title: String(localized: "settings.browser.enabled", defaultValue: "Enable cmux Browser"), synonyms: "Enable cmux Browser browser.disabled enable disable webview embedded browser tabs links"),
+            .init(section: .browser, id: "enable-browser", title: String(localized: "settings.browser.enabled", defaultValue: "Enable Taffy Browser"), synonyms: "Enable Taffy Browser browser.disabled enable disable webview embedded browser tabs links"),
             .init(section: .browser, id: "search-engine", title: String(localized: "settings.browser.searchEngine", defaultValue: "Default Search Engine"), synonyms: "Default Search Engine browser.defaultSearchEngine omnibar address bar google duckduckgo bing kagi brave startpage perplexity exa yahoo ecosia qwant mojeek wikipedia github baidu yandex custom search provider engine name url template"),
             .init(section: .browser, id: "search-suggestions", title: String(localized: "settings.browser.searchSuggestions", defaultValue: "Show Search Suggestions"), synonyms: "Show Search Suggestions browser.showSearchSuggestions suggest autocomplete address bar search suggestions"),
             .init(section: .browser, id: "theme", title: String(localized: "settings.browser.theme", defaultValue: "Browser Theme"), synonyms: "Browser Theme browser.theme web page theme color scheme light dark system"),
@@ -431,7 +431,7 @@ extension Array where Element == CuratedSettingEntry {
                 detailText: String(localized: "settings.browser.askWhereToSaveDownloads.subtitle", defaultValue: "When off, browser downloads save directly to Downloads without a save panel."),
                 synonyms: String(localized: "settings.search.alias.setting.browser.ask-where-to-save-downloads", defaultValue: "browser.askWhereToSaveDownloads downloads save panel folder attachments files pdf gmail")
             ),
-            .init(section: .browser, id: "terminal-links", title: String(localized: "settings.browser.openTerminalLinks", defaultValue: "Open Terminal Links in cmux Browser"), synonyms: "Open Terminal Links in cmux Browser browser.openTerminalLinksInCmuxBrowser click url terminal links open in browser href"),
+            .init(section: .browser, id: "terminal-links", title: String(localized: "settings.browser.openTerminalLinks", defaultValue: "Open Terminal Links in Taffy Browser"), synonyms: "Open Terminal Links in Taffy Browser browser.openTerminalLinksInCmuxBrowser click url terminal links open in browser href"),
             .init(section: .browser, id: "intercept-open", title: String(localized: "settings.browser.interceptOpen", defaultValue: "Intercept open http(s) in Terminal"), synonyms: "Intercept open http(s) in Terminal browser.interceptTerminalOpenCommandInCmuxBrowser open command http https url terminal intercept"),
             .init(section: .browser, id: "host-whitelist", title: String(localized: "settings.browser.hostWhitelist", defaultValue: "Hosts to Open in Embedded Browser"), synonyms: "Hosts to Open in Embedded Browser browser.hostsToOpenInEmbeddedBrowser allowlist whitelist host wildcard domain embedded browser"),
             .init(section: .browser, id: "external-patterns", title: String(localized: "settings.browser.externalPatterns", defaultValue: "URLs to Always Open Externally"), synonyms: "URLs to Always Open Externally browser.urlsToAlwaysOpenExternally denylist blocklist regex rules external default browser"),
@@ -459,12 +459,12 @@ extension Array where Element == CuratedSettingEntry {
                 id: "shortcuts",
                 title: String(localized: "settings.section.keyboardShortcuts", defaultValue: "Keyboard Shortcuts"),
                 synonyms: [
-                    "shortcuts.bindings hotkeys keybindings key bindings commands keyboard accelerators chords cmux json open diff viewer changes review git unstaged split left split right split up split down new pane new split move surface move tab focus pane resize pane close tab close workspace next previous select workspace",
+                    "shortcuts.bindings hotkeys keybindings key bindings commands keyboard accelerators chords Taffy json open diff viewer changes review git unstaged split left split right split up split down new pane new split move surface move tab focus pane resize pane close tab close workspace next previous select workspace",
                     Self.keyboardShortcutActionSynonyms,
                 ].joined(separator: " ")
             ),
             .init(section: .keyboardShortcuts, id: "modifier-hold-hints", title: String(localized: "settings.shortcuts.showModifierHoldHints", defaultValue: "Show Shortcut Hints While Holding Modifier Keys"), synonyms: "Show Shortcut Hints While Holding Modifier Keys shortcuts.showModifierHoldHints shortcut hints hotkey hints command cmd modifier hold chips badges"),
-            .init(section: .keyboardShortcuts, id: "shortcut-chords", title: String(localized: "settings.shortcuts.chords", defaultValue: "Shortcut Chords"), synonyms: "Shortcut Chords tmux prefix ctrl-b control-b multi key sequence chord cmux json"),
+            .init(section: .keyboardShortcuts, id: "shortcut-chords", title: String(localized: "settings.shortcuts.chords", defaultValue: "Shortcut Chords"), synonyms: "Shortcut Chords tmux prefix ctrl-b control-b multi key sequence chord Taffy json"),
             .init(section: .keyboardShortcuts, id: "reset-defaults", title: String(localized: "settings.shortcuts.resetDefaults", defaultValue: "Reset Default Shortcuts"), synonyms: "Reset Default Shortcuts reset restore default defaults built in builtin shortcuts hotkeys keybindings commands"),
 
             // Workspace colors
@@ -482,8 +482,8 @@ extension Array where Element == CuratedSettingEntry {
             .init(section: .workspaceColors, id: "palette", title: String(localized: "settings.workspaceColors.resetPalette", defaultValue: "Reset Palette"), synonyms: "Reset Palette reset palette named colors restore built-in custom remove default"),
 
             // cmux.json
-            .init(section: .settingsJSON, id: "open-file", title: String(localized: "settings.settingsJSON.file", defaultValue: "User config file"), synonyms: "User config file open config file json jsonc config editor ~/.config cmux preferences"),
-            .init(section: .settingsJSON, id: "documentation", title: String(localized: "settings.settingsJSON.documentation", defaultValue: "Documentation"), synonyms: "Documentation docs documentation schema reference cmux json keys configuration"),
+            .init(section: .settingsJSON, id: "open-file", title: String(localized: "settings.settingsJSON.file", defaultValue: "User config file"), synonyms: "User config file open config file json jsonc config editor ~/.config Taffy preferences"),
+            .init(section: .settingsJSON, id: "documentation", title: String(localized: "settings.settingsJSON.documentation", defaultValue: "Documentation"), synonyms: "Documentation docs documentation schema reference Taffy json keys configuration"),
 
             // Reset
             .init(section: .reset, id: "reset-all", title: String(localized: "settings.reset.resetAll", defaultValue: "Reset All Settings"), synonyms: "Reset All Settings factory reset restore defaults clear preferences"),

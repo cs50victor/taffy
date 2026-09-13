@@ -15,7 +15,7 @@ struct VMTunnelEnroller: CloudTunnelEnrolling {
         if let config = manager.writtenConfig() {
             return CloudTunnelEnrollment(
                 wgQuickConfig: config,
-                serverAddress: "cmux Cloud"
+                serverAddress: "Taffy Cloud"
             )
         }
         let client: VMClient? = await MainActor.run { VMClient.shared }
@@ -33,7 +33,7 @@ struct VMTunnelEnroller: CloudTunnelEnrolling {
 
     /// `host:port` for System Settings' server address column.
     static func serverAddress(for endpoint: VMTunnelEndpoint) -> String {
-        guard let host = endpoint.endpointHost, !host.isEmpty else { return "cmux Cloud" }
+        guard let host = endpoint.endpointHost, !host.isEmpty else { return "Taffy Cloud" }
         return "\(host):\(endpoint.endpointPort)"
     }
 }

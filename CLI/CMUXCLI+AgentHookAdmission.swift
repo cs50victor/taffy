@@ -246,7 +246,7 @@ extension CMUXCLI {
         guard commandArgs.count == 2 else {
             throw CLIError(message: String(
                 localized: "cli.hooks.enqueue.usage",
-                defaultValue: "Usage: cmux hooks enqueue <agent> <subcommand>"
+                defaultValue: "Usage: taffy hooks enqueue <agent> <subcommand>"
             ))
         }
         let agent = commandArgs[0].lowercased()

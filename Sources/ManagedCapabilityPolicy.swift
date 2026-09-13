@@ -4,7 +4,7 @@ import Foundation
 
 /// MDM master switches for the capabilities that reach off this Mac.
 ///
-/// Each type is the single authoritative answer to "may cmux do this at all",
+/// Each type is the single authoritative answer to "may Taffy do this at all",
 /// so every entry point (UI, command palette, menus, CLI, socket, session
 /// restore, automation) composes the same check instead of repeating the
 /// resolver lookup. All of them default to *allowed*: an unmanaged Mac, and a
@@ -76,7 +76,7 @@ enum ManagedFileTransferPolicy {
         let message = disabledMessage
         let detail = String(
             localized: "managedPolicy.fileTransfer.refusalDetail",
-            defaultValue: "cmux did not upload the file. Your organization's device policy disables file transfer through cmux."
+            defaultValue: "Taffy did not upload the file. Your organization's device policy disables file transfer through Taffy."
         )
         let present: @MainActor () -> Void = {
             let alert = NSAlert()
@@ -168,7 +168,7 @@ enum ManagedIrohNetworkingPolicy {
     static var disabledMessage: String {
         String(
             localized: "managedPolicy.irohNetworking.disabled",
-            defaultValue: "cmux relay networking is disabled by your organization."
+            defaultValue: "Taffy relay networking is disabled by your organization."
         )
     }
 }

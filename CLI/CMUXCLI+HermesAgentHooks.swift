@@ -219,14 +219,14 @@ extension CMUXCLI {
         let configDirectoryFileError = String.localizedStringWithFormat(
             String(
                 localized: "cli.hooks.error.configDirectoryIsFile",
-                defaultValue: "cmux could not create the hooks directory: a file exists at %@. Remove or rename the conflicting file, then run `cmux hooks setup` again."
+                defaultValue: "Taffy could not create the hooks directory: a file exists at %@. Remove or rename the conflicting file, then run `taffy hooks setup` again."
             ),
             configDir
         )
         let configDirectoryCreateError = String.localizedStringWithFormat(
             String(
                 localized: "cli.hooks.error.configDirectoryCreateFailed",
-                defaultValue: "cmux could not create the hooks directory at %@. Check the parent directory permissions and try again."
+                defaultValue: "Taffy could not create the hooks directory at %@. Check the parent directory permissions and try again."
             ),
             configDir
         )
@@ -271,7 +271,7 @@ extension CMUXCLI {
             try HermesAgentHookAllowlist.installing(events: events, in: oldAllowlist)
         }
         if updatedAllowlist {
-            print("Approved \(def.displayName) cmux shell hooks in \(allowlistPath)")
+            print("Approved \(def.displayName) taffy shell hooks in \(allowlistPath)")
         }
     }
 
@@ -287,9 +287,9 @@ extension CMUXCLI {
             let newString = HermesAgentHookConfig.uninstalling(from: oldString)
             if oldString != newString {
                 try newString.write(toFile: filePath, atomically: true, encoding: .utf8)
-                print("Removed Hermes Agent cmux hooks from \(filePath)")
+                print("Removed Hermes Agent taffy hooks from \(filePath)")
             } else {
-                print("Removed 0 cmux hook(s) from \(filePath)")
+                print("Removed 0 taffy hook(s) from \(filePath)")
             }
         } else {
             print("No \(def.configFile) found at \(filePath)")
@@ -300,7 +300,7 @@ extension CMUXCLI {
             try HermesAgentHookAllowlist.uninstalling(events: events, from: oldAllowlist)
         }
         if updatedAllowlist {
-            print("Removed Hermes Agent cmux shell hook approvals from \(allowlistPath)")
+            print("Removed Hermes Agent taffy shell hook approvals from \(allowlistPath)")
         }
     }
 }

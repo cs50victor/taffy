@@ -114,7 +114,7 @@ final class CmuxEventLogWriter: @unchecked Sendable {
                 droppedLineCount = 0
                 lock.unlock()
                 if droppedCount > 0 {
-                    cmuxEventLogLogger.warning("Dropped \(droppedCount, privacy: .public) cmux event log line(s) under disk backpressure")
+                    cmuxEventLogLogger.warning("Dropped \(droppedCount, privacy: .public) Taffy event log line(s) under disk backpressure")
                 }
                 return
             }
@@ -152,7 +152,7 @@ final class CmuxEventLogWriter: @unchecked Sendable {
                 currentSize += UInt64(data.count)
             }
         } catch {
-            cmuxEventLogLogger.error("Failed to append cmux event log: \(String(describing: error), privacy: .private)")
+            cmuxEventLogLogger.error("Failed to append Taffy event log: \(String(describing: error), privacy: .private)")
         }
     }
 

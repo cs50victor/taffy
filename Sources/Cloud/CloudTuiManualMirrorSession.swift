@@ -761,7 +761,7 @@ final class CloudTuiManualMirrorSession {
         pendingRequests[requestID] = .clientInfo
         connection.send(
             commandBuilder.setClientInfo(
-                name: "cmux cloud terminal",
+                name: "taffy cloud terminal",
                 kind: "native-mirror",
                 requestID: requestID
             )

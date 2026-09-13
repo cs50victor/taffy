@@ -19,7 +19,7 @@ final class CloudVPNSetupModel {
 
     var unavailableMessage: String? {
         guard coordinator?.backend.isNetworkExtension == true else {
-            return String(localized: "cloud.vpn.setup.unavailable", defaultValue: "This copy of cmux does not include a signed VPN extension. Use a cmux release with Cloud VPN support. Cloud terminals, Ports, and Desktop remain available without the VPN.")
+            return String(localized: "cloud.vpn.setup.unavailable", defaultValue: "This copy of Taffy does not include a signed VPN extension. Use a Taffy release with Cloud VPN support. Cloud terminals, Ports, and Desktop remain available without the VPN.")
         }
         return nil
     }

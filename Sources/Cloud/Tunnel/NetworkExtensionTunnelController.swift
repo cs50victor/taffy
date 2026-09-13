@@ -6,7 +6,7 @@ nonisolated private let logger = Logger(subsystem: "com.cmuxterm.app", category:
 
 /// The real ``CloudTunnelControlling``: the bundled network system extension
 /// plus one `NETunnelProviderManager` (the VPN configuration macOS shows as
-/// "cmux Cloud" in System Settings).
+/// "Taffy Cloud" in System Settings).
 ///
 /// Main-actor isolated because `applicationWillTerminate` needs a synchronous
 /// stop on the already-loaded manager, and NetworkExtension's own callbacks

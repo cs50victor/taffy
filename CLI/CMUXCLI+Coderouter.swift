@@ -11,61 +11,61 @@ import Foundation
 // (CMUXCLI+CoderouterPassthrough.swift, which also installs it when missing).
 extension CMUXCLI {
     static let coderouterUsage = """
-        Usage: cmux coderouter <status|machines|claude|agent> [options]
+        Usage: taffy coderouter <status|machines|claude|agent> [options]
 
-        Team settings for the cmux coderouter model plane that Cloud machines
+        Team settings for the taffy coderouter model plane that Cloud machines
         route codex, claude, pi, and opencode through. Any other verb, and every
-        `cmux cr ...`, runs the CodeRouter CLI unchanged, offering to install it
+        `taffy cr ...`, runs the CodeRouter CLI unchanged, offering to install it
         first when this machine has none.
 
-          cmux coderouter status [--team <id>] [--json]
+          taffy coderouter status [--team <id>] [--json]
               Sign-in state, selected team, and the team's Claude upstream accounts.
 
-          cmux coderouter machines [--team <id>] [--json]
+          taffy coderouter machines [--team <id>] [--json]
               30-day coderouter usage per Cloud machine (tokens, API-equivalent USD).
 
-          cmux coderouter agent <claude|codex|opencode|pi> [vm-agent-options] -- <prompt or args...>
+          taffy coderouter agent <claude|codex|opencode|pi> [vm-agent-options] -- <prompt or args...>
               Start an agent on a routed Cloud machine. This is the same path as
-              `cmux vm agent`; the `agent` form keeps CodeRouter and compute in
+              `taffy vm agent`; the `agent` form keeps CodeRouter and compute in
               one command family.
 
-          cmux coderouter claude list [--team <id>] [--json]
+          taffy coderouter claude list [--team <id>] [--json]
               Every Claude upstream account of the team: id, kind, masked
               identifier, label, health. Secrets are never printed. Alias: show.
 
-          cmux coderouter claude add oauth-token [--label <s>] [--stdin] [--team <id>] [--json]
+          taffy coderouter claude add oauth-token [--label <s>] [--stdin] [--team <id>] [--json]
               Add a Claude Code OAuth token (sk-ant-oat01-...). Run
               `claude setup-token` to mint one automatically, or provide it in
               CLAUDE_CODE_OAUTH_TOKEN, or pipe it in with --stdin. Never pass
               a token as an argument. Alias: set.
 
-          cmux coderouter claude add api-key [--label <s>] [--stdin] [--team <id>] [--json]
+          taffy coderouter claude add api-key [--label <s>] [--stdin] [--team <id>] [--json]
               Add an Anthropic API key (sk-ant-...) from ANTHROPIC_API_KEY,
               --stdin, or a hidden prompt.
 
-          cmux coderouter claude add bedrock [--label <s>] [--region <r>] [--model <claude-id>=<bedrock-id>]... [--team <id>] [--json]
+          taffy coderouter claude add bedrock [--label <s>] [--region <r>] [--model <claude-id>=<bedrock-id>]... [--team <id>] [--json]
               Add Amazon Bedrock credentials from AWS_ACCESS_KEY_ID,
               AWS_SECRET_ACCESS_KEY, and optional AWS_SESSION_TOKEN in your
               shell environment. --region defaults to AWS_REGION or
               AWS_DEFAULT_REGION.
 
-          cmux coderouter claude remove <account> [--team <id>] [--json]
+          taffy coderouter claude remove <account> [--team <id>] [--json]
               Remove one account by id, label, or masked identifier.
 
-          cmux coderouter claude disable <account> | enable <account> [--team <id>] [--json]
+          taffy coderouter claude disable <account> | enable <account> [--team <id>] [--json]
               Take an account out of rotation, or put it back.
 
-          cmux coderouter claude clear [--team <id>] [--json]
+          taffy coderouter claude clear [--team <id>] [--json]
               Remove every Claude upstream account of the team.
 
         A team routes each Cloud machine to one of its accounts and moves it to
         another when that account is rate limited, rejected, or unavailable.
-        Requires `cmux auth login` and a team where you can manage coderouter.
+        Requires `taffy auth login` and a team where you can manage coderouter.
 
         Examples:
-          cmux coderouter claude add oauth-token --label work
-          cmux coderouter claude list
-          cmux coderouter machines --json
+          taffy coderouter claude add oauth-token --label work
+          taffy coderouter claude list
+          taffy coderouter machines --json
         """
 
     /// The first-argument verbs cmux owns under `cmux coderouter`. Everything
@@ -114,7 +114,7 @@ extension CMUXCLI {
                 return
             }
             guard signedIn else {
-                print("Not signed in. Run `cmux auth login`, then retry.")
+                print("Not signed in. Run `taffy auth login`, then retry.")
                 return
             }
             let user = auth["user"] as? [String: Any]
@@ -160,7 +160,7 @@ extension CMUXCLI {
     /// reattach output have one owner.
     private func runCoderouterAgentCommand(commandArgs: [String], client: SocketClient, jsonOutput: Bool) throws {
         if CmuxTuiRemoteRouting.vmAgentRequestsHelp(commandArgs) {
-            print(Self.vmAgentUsage.replacingOccurrences(of: "cmux vm agent", with: "cmux coderouter agent"))
+            print(Self.vmAgentUsage.replacingOccurrences(of: "taffy vm agent", with: "taffy coderouter agent"))
             return
         }
         try runVMAgentCommand(rest: Self.vmAgentAliasArgs(commandArgs), client: client, jsonOutput: jsonOutput)
@@ -269,7 +269,7 @@ extension CMUXCLI {
                 hint: "Run `claude setup-token` to mint one."
             )
             guard token.hasPrefix("sk-ant-oat01-") else {
-                throw CLIError(message: "That is not a Claude Code OAuth token (expected sk-ant-oat01-...). For an Anthropic API key use `cmux coderouter claude add api-key`.")
+                throw CLIError(message: "That is not a Claude Code OAuth token (expected sk-ant-oat01-...). For an Anthropic API key use `taffy coderouter claude add api-key`.")
             }
             params["kind"] = "anthropic_oauth"
             params["token"] = token
@@ -284,7 +284,7 @@ extension CMUXCLI {
                 hint: "Create one in the Anthropic console."
             )
             guard apiKey.hasPrefix("sk-ant-"), !apiKey.hasPrefix("sk-ant-oat") else {
-                throw CLIError(message: "That is not an Anthropic API key (expected sk-ant-...). For a Claude Code OAuth token use `cmux coderouter claude add oauth-token`.")
+                throw CLIError(message: "That is not an Anthropic API key (expected sk-ant-...). For a Claude Code OAuth token use `taffy coderouter claude add oauth-token`.")
             }
             params["kind"] = "anthropic_api_key"
             params["apiKey"] = apiKey
@@ -489,9 +489,9 @@ extension CMUXCLI {
         }
         guard matches.count == 1, let match = matches.first, let id = match["id"] as? String else {
             if matches.isEmpty {
-                throw CLIError(message: "No Claude upstream account matches '\(Self.sanitizeForTerminal(selector))'. Run `cmux coderouter claude list` and use the id, label, or identifier.")
+                throw CLIError(message: "No Claude upstream account matches '\(Self.sanitizeForTerminal(selector))'. Run `taffy coderouter claude list` and use the id, label, or identifier.")
             }
-            throw CLIError(message: "'\(Self.sanitizeForTerminal(selector))' matches \(matches.count) Claude upstream accounts. Use the id from `cmux coderouter claude list`.")
+            throw CLIError(message: "'\(Self.sanitizeForTerminal(selector))' matches \(matches.count) Claude upstream accounts. Use the id from `taffy coderouter claude list`.")
         }
         return ClaudeAccountRef(id: id, summary: Self.claudeAccountSummary(match))
     }
@@ -501,7 +501,7 @@ extension CMUXCLI {
             throw CLIError(message: "\(command): unknown flag '\(Self.sanitizeForTerminal(unknown))'.\n\n\(Self.coderouterUsage)")
         }
         guard let selector = args.first, !selector.isEmpty else {
-            throw CLIError(message: "\(command) requires an account id, label, or identifier. Run `cmux coderouter claude list`.")
+            throw CLIError(message: "\(command) requires an account id, label, or identifier. Run `taffy coderouter claude list`.")
         }
         if args.count > 1 {
             throw CLIError(message: "\(command): unexpected argument '\(Self.sanitizeForTerminal(args[1]))'.")
@@ -520,7 +520,7 @@ extension CMUXCLI {
         let accounts = (response["accounts"] as? [[String: Any]]) ?? []
         guard !accounts.isEmpty else {
             print("Claude upstream accounts: none. Cloud machines cannot run `claude` until one is added:")
-            print("  claude setup-token && cmux coderouter claude add oauth-token")
+            print("  claude setup-token && taffy coderouter claude add oauth-token")
             return
         }
         print("Claude upstream accounts (\(accounts.count)):")

@@ -60,7 +60,7 @@ extension CMUXCLI {
             return
         }
         if !existing.isEmpty, !existing.contains(Self.ampExtensionMarker) {
-            throw CLIError(message: "\(extensionURL.path) exists and is not a cmux plugin; leaving it alone")
+            throw CLIError(message: "\(extensionURL.path) exists and is not a taffy plugin; leaving it alone")
         }
         if !skipConfirm {
             Self.printInstallPreview(
@@ -87,15 +87,15 @@ extension CMUXCLI {
         let extensionURL = ampExtensionURL(for: def)
         let fileManager = FileManager.default
         guard fileManager.fileExists(atPath: extensionURL.path) else {
-            print("No Amp cmux plugin found at \(extensionURL.path)")
+            print("No Amp taffy plugin found at \(extensionURL.path)")
             return
         }
         let existing = (try? String(contentsOf: extensionURL, encoding: .utf8)) ?? ""
         guard existing.contains(Self.ampExtensionMarker) else {
-            print("Refusing to remove \(extensionURL.path): missing cmux marker")
+            print("Refusing to remove \(extensionURL.path): missing taffy marker")
             return
         }
         try fileManager.removeItem(at: extensionURL)
-        print("Removed Amp cmux plugin from \(extensionURL.path)")
+        print("Removed Amp taffy plugin from \(extensionURL.path)")
     }
 }

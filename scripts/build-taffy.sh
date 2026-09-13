@@ -31,6 +31,9 @@ xcodebuild -project cmux.xcodeproj -scheme cmux -configuration Release \
   CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
   MARKETING_VERSION="$VERSION" build
 
+# Remove the old helper left behind by an incremental build of version 0.1.0.
+rm -rf "$APP/Contents/Library/cmux Computer Use.app"
+
 install -m 755 scripts/taffy-cli.sh "$APP/Contents/Resources/bin/taffy"
 CMUX_TIMESTAMP=none ./scripts/sign-cmux-bundle.sh "$APP" Resources/taffy.entitlements -
 "$APP/Contents/Resources/bin/cmux" --version

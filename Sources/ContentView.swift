@@ -7364,7 +7364,7 @@ struct ContentView: View {
         contributions.append(
             CommandPaletteCommandContribution(
                 commandId: "palette.installCLI",
-                title: constant(String(localized: "command.installCLI.title", defaultValue: "Shell Command: Install 'cmux' in PATH")),
+                title: constant(String(localized: "command.installCLI.title", defaultValue: "Shell Command: Install 'taffy' in PATH")),
                 subtitle: constant(String(localized: "command.installCLI.subtitle", defaultValue: "CLI")),
                 keywords: ["install", "cli", "path", "shell", "command", "symlink"],
                 when: { !$0.bool(CommandPaletteContextKeys.cliInstalledInPATH) }
@@ -7373,7 +7373,7 @@ struct ContentView: View {
         contributions.append(
             CommandPaletteCommandContribution(
                 commandId: "palette.uninstallCLI",
-                title: constant(String(localized: "command.uninstallCLI.title", defaultValue: "Shell Command: Uninstall 'cmux' from PATH")),
+                title: constant(String(localized: "command.uninstallCLI.title", defaultValue: "Shell Command: Uninstall 'taffy' from PATH")),
                 subtitle: constant(String(localized: "command.uninstallCLI.subtitle", defaultValue: "CLI")),
                 keywords: ["uninstall", "remove", "cli", "path", "shell", "command", "symlink"],
                 when: { $0.bool(CommandPaletteContextKeys.cliInstalledInPATH) }
@@ -7594,8 +7594,8 @@ struct ContentView: View {
         contributions.append(
             CommandPaletteCommandContribution(
                 commandId: "palette.openCmuxSettingsFile",
-                title: constant(String(localized: "settings.settingsJSON.openFile", defaultValue: "Open cmux.json")),
-                subtitle: constant(String(localized: "command.cmuxConfig.subtitle", defaultValue: "cmux.json")),
+                title: constant(String(localized: "settings.settingsJSON.openFile", defaultValue: "Open taffy.json")),
+                subtitle: constant(String(localized: "command.cmuxConfig.subtitle", defaultValue: "taffy.json")),
                 keywords: ["open", "cmux", "json", "config", "configuration", "settings", "file", "editor", "dotfile"]
             )
         )
@@ -7639,7 +7639,7 @@ struct ContentView: View {
                 title: constant(
                     String(
                         localized: "command.makeDefaultTerminal.title",
-                        defaultValue: "Make cmux the Default Terminal"
+                        defaultValue: "Make Taffy the Default Terminal"
                     )
                 ),
                 subtitle: constant(
@@ -7691,7 +7691,7 @@ struct ContentView: View {
         contributions.append(
             CommandPaletteCommandContribution(
                 commandId: "palette.disableBrowser",
-                title: constant(String(localized: "command.disableBrowser.title", defaultValue: "Disable cmux Browser")),
+                title: constant(String(localized: "command.disableBrowser.title", defaultValue: "Disable Taffy Browser")),
                 subtitle: constant(String(localized: "command.browserAvailability.subtitle", defaultValue: "Browser")),
                 keywords: ["browser", "disable", "external", "default", "open", "auth"],
                 when: {
@@ -7703,7 +7703,7 @@ struct ContentView: View {
         contributions.append(
             CommandPaletteCommandContribution(
                 commandId: "palette.enableBrowser",
-                title: constant(String(localized: "command.enableBrowser.title", defaultValue: "Enable cmux Browser")),
+                title: constant(String(localized: "command.enableBrowser.title", defaultValue: "Enable Taffy Browser")),
                 subtitle: constant(String(localized: "command.browserAvailability.subtitle", defaultValue: "Browser")),
                 keywords: ["browser", "enable", "embedded", "open"],
                 when: {
@@ -8450,7 +8450,7 @@ struct ContentView: View {
             )
         )
 
-        let cmuxConfigDefaultSubtitle = String(localized: "command.cmuxConfig.subtitle", defaultValue: "cmux.json")
+        let cmuxConfigDefaultSubtitle = String(localized: "command.cmuxConfig.subtitle", defaultValue: "taffy.json")
         for issue in cmuxConfigStore.configurationIssues {
             contributions.append(
                 CommandPaletteCommandContribution(
@@ -8523,12 +8523,12 @@ struct ContentView: View {
         case .schemaError:
             return String(
                 localized: "command.cmuxConfig.issue.schemaError.title",
-                defaultValue: "cmux.json Schema Error"
+                defaultValue: "taffy.json Schema Error"
             )
         default:
             return String(
                 localized: "command.cmuxConfig.issue.warning.title",
-                defaultValue: "cmux.json Configuration Warning"
+                defaultValue: "taffy.json Configuration Warning"
             )
         }
     }
@@ -8556,7 +8556,7 @@ struct ContentView: View {
             )
             let fallback = String(
                 localized: "command.cmuxConfig.issue.schemaError.fallback",
-                defaultValue: "Invalid cmux.json"
+                defaultValue: "Invalid taffy.json"
             )
             return String(format: format, issue.message ?? fallback)
         case .newWorkspaceActionNotFound:
@@ -9820,9 +9820,7 @@ struct ContentView: View {
     }
 
     private func presentFeedbackComposer() {
-        DispatchQueue.main.async {
-            isFeedbackComposerPresented = true
-        }
+        NSWorkspace.shared.open(URL(string: "https://github.com/cs50victor/taffy/issues/new")!)
     }
 
     static func shouldHandleCommandPaletteRequest(
@@ -15405,11 +15403,11 @@ private enum SidebarHelpMenuAction {
 }
 
 private struct SidebarHelpMenuButton: View {
-    private let docsURL = URL(string: "https://cmux.com/docs")
-    private let changelogURL = URL(string: "https://cmux.com/docs/changelog")
-    private let githubURL = URL(string: "https://github.com/manaflow-ai/cmux")
-    private let githubIssuesURL = URL(string: "https://github.com/manaflow-ai/cmux/issues")
-    private let discordURL = URL(string: "https://discord.gg/xsgFEVrWCZ")
+    private let docsURL = URL(string: "https://github.com/cs50victor/taffy/blob/main/docs/usage.md")
+    private let changelogURL = URL(string: "https://github.com/cs50victor/taffy/releases")
+    private let githubURL = URL(string: "https://github.com/cs50victor/taffy")
+    private let githubIssuesURL = URL(string: "https://github.com/cs50victor/taffy/issues")
+    private let discordURL: URL? = nil
     private let helpTitle = String(localized: "sidebar.help.button", defaultValue: "Help")
     private let buttonSize = SidebarFooterButtonMetrics.buttonSize
 #if DEBUG
@@ -15471,14 +15469,14 @@ private struct SidebarHelpMenuButton: View {
     private var helpPopover: some View {
         VStack(alignment: .leading, spacing: 2) {
             helpOptionButton(
-                title: String(localized: "sidebar.help.welcome", defaultValue: "Welcome to cmux!"),
+                title: String(localized: "sidebar.help.welcome", defaultValue: "Welcome to Taffy!"),
                 action: .welcome,
                 accessibilityIdentifier: "SidebarHelpMenuOptionWelcome",
                 isExternalLink: false
             )
             if CmuxFeatureFlags.shared.isProUpgradeUIEnabled {
                 helpOptionButton(
-                    title: String(localized: "menu.help.upgradeToPro", defaultValue: "Upgrade to cmux Pro…"),
+                    title: String(localized: "menu.help.upgradeToPro", defaultValue: "Upgrade to Taffy Pro…"),
                     action: .upgrade,
                     accessibilityIdentifier: "SidebarHelpMenuOptionUpgrade",
                     isExternalLink: false,

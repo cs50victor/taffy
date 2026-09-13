@@ -16,11 +16,11 @@ import Foundation
 extension CMUXCLI {
     static var vmDevUsage: String {
         """
-        Usage: cmux vm dev <machine> [<local-dir>] [--name <workspace>] [--layout <file>] [--command "<dev command>"] [--port <n>] [--remote <path>] [--sync|--no-sync] [--no-open] [--dry-run] [--json]
+        Usage: taffy vm dev <machine> [<local-dir>] [--name <workspace>] [--layout <file>] [--command "<dev command>"] [--port <n>] [--remote <path>] [--sync|--no-sync] [--no-open] [--dry-run] [--json]
 
         From a folder to a running dev layout on a cloud machine, in one command:
           1. route     confirm the machine (`vm.status`) and bind this folder to it, so
-                       `cmux vm run --sync` / `cmux vm agent --sync` from here land on the same machine
+                       `taffy vm run --sync` / `taffy vm agent --sync` from here land on the same machine
           2. sync      push the folder to <remote> (default work/<basename>; the `vm push` defaults
                        skip .git, node_modules, .venv, __pycache__, .DS_Store)
           3. detect    pick the dev command and port from the project (or take --command / --port)
@@ -28,7 +28,7 @@ extension CMUXCLI {
                        and build the layout in it: a `dev` pane running the command on the left,
                        a `shell` pane (focused) on the right with a browser tab on the port
           5. open      open that workspace here with the same geometry (unless --no-open) and mint
-                       the port's public URL (`cmux vm open <machine> <port>`)
+                       the port's public URL (`taffy vm open <machine> <port>`)
 
         Detection, first match wins (the command is typed into a login shell in <remote>):
           package.json     <pm> install && <pm> run dev   (pm: bun, pnpm, yarn, or npm by lockfile;
@@ -45,7 +45,7 @@ extension CMUXCLI {
           <local-dir>          The project folder (default: the current directory).
           --name <workspace>   Machine workspace to create or reuse (default: the folder's basename).
           --layout <file>      Use this layout document instead of the built-in dev layout (same format
-                               as `cmux vm layout apply`; validated here first, exit 2 when invalid).
+                               as `taffy vm layout apply`; validated here first, exit 2 when invalid).
           --command "<cmd>"    Run this instead of the detected dev command.
           --port <n>           The port the dev server listens on (browser tab + public URL).
           --remote <path>      Where the folder lives on the machine (default work/<basename>).
@@ -57,12 +57,12 @@ extension CMUXCLI {
                                 remote, synced, command, port, url, terminals: {dev, shell}, layout_applied, opened}
 
         Examples:
-          cmux vm dev brave-otter                      # this folder → brave-otter, layout opened here
-          cmux vm dev brave-otter ./web --name web     # a subfolder, workspace named web
-          cmux vm dev brave-otter --command "bun run dev --host" --port 5173
-          cmux vm dev brave-otter --dry-run --json     # what would happen, no socket traffic
-        Afterwards: `cmux vm terminal output <machine> <dev-terminal>` reads the server log;
-        `cmux vm terminal send <machine> <shell-terminal> 'bun test' --keys enter` runs a command.
+          taffy vm dev brave-otter                      # this folder → brave-otter, layout opened here
+          taffy vm dev brave-otter ./web --name web     # a subfolder, workspace named web
+          taffy vm dev brave-otter --command "bun run dev --host" --port 5173
+          taffy vm dev brave-otter --dry-run --json     # what would happen, no socket traffic
+        Afterwards: `taffy vm terminal output <machine> <dev-terminal>` reads the server log;
+        `taffy vm terminal send <machine> <shell-terminal> 'bun test' --keys enter` runs a command.
         """
     }
 
@@ -518,7 +518,7 @@ extension CMUXCLI {
         let statusResponse = try client.sendV2(method: "vm.status", params: ["id": machine], responseTimeout: 60)
         let status = ((statusResponse["status"] as? String) ?? "unknown").lowercased()
         guard !["destroyed", "deleted", "failed", "error"].contains(status) else {
-            throw CLIError(message: "vm dev: \(machine) is \(status); pick a live machine (cmux vm ls)")
+            throw CLIError(message: "vm dev: \(machine) is \(status); pick a live machine (taffy vm ls)")
         }
         Self.saveVMRunBinding(workKey: Self.vmRunWorkKey(forDirectory: localURL.path), machine: machine)
         var lines: [String] = ["route ok: \(machine) status=\(status) (bound to \(localURL.path))"]
@@ -584,7 +584,7 @@ extension CMUXCLI {
         let alreadyBuilt = existingInfo?.hasPanes == true
         if alreadyBuilt {
             terminals = existingInfo?.terminalIDs ?? [:]
-            lines.append("layout kept: \(remoteWorkspace ?? "?") already has panes (close it with `cmux vm workspace rm \(machine) \(remoteWorkspace ?? "?")` to rebuild)")
+            lines.append("layout kept: \(remoteWorkspace ?? "?") already has panes (close it with `taffy vm workspace rm \(machine) \(remoteWorkspace ?? "?")` to rebuild)")
         } else {
             let result = try vmDevRunShim(
                 Self.vmLayoutApplyCommand(
@@ -632,7 +632,7 @@ extension CMUXCLI {
             guard let remoteWorkspace else {
                 throw CLIError(message: "vm dev: no remote workspace id is available to stage")
             }
-            lines.append("staged: cmux vm workspace open \(machine) \(remoteWorkspace)")
+            lines.append("staged: taffy vm workspace open \(machine) \(remoteWorkspace)")
         }
         var publicURL: String?
         if let port {
@@ -645,7 +645,7 @@ extension CMUXCLI {
             if let publicURL {
                 lines.append("url: \(publicURL)")
             } else {
-                lines.append("preview: cmux vm open \(machine) \(port)   (the URL is minted once the machine answers)")
+                lines.append("preview: taffy vm open \(machine) \(port)   (the URL is minted once the machine answers)")
             }
         }
 
@@ -674,13 +674,13 @@ extension CMUXCLI {
         }
         Self.vmDevFlush(&lines)
         if let dev = terminals["dev"] {
-            print("next: cmux vm terminal output \(machine) \(dev)      # the dev server's log so far")
+            print("next: taffy vm terminal output \(machine) \(dev)      # the dev server's log so far")
         }
         if let shell = terminals["shell"] {
-            print("next: cmux vm terminal send \(machine) \(shell) 'ls' --keys enter      # run something in the shell pane")
+            print("next: taffy vm terminal send \(machine) \(shell) 'ls' --keys enter      # run something in the shell pane")
         }
         if terminals.isEmpty {
-            print("next: cmux vm tree \(machine)      # terminal ids for `cmux vm terminal output|send`")
+            print("next: taffy vm tree \(machine)      # terminal ids for `taffy vm terminal output|send`")
         }
     }
 
@@ -776,7 +776,7 @@ extension CMUXCLI {
         if exitCode != 0 {
             let detail = stderr.trimmingCharacters(in: .whitespacesAndNewlines)
             let fallback = stdout.trimmingCharacters(in: .whitespacesAndNewlines)
-            let text = detail.isEmpty ? (fallback.isEmpty ? "cmux layout apply failed on \(machine) (exit \(exitCode))" : fallback) : detail
+            let text = detail.isEmpty ? (fallback.isEmpty ? "taffy layout apply failed on \(machine) (exit \(exitCode))" : fallback) : detail
             let passthrough: Int32 = (1...3).contains(exitCode) ? Int32(exitCode) : 1
             throw CLIError(message: "vm dev: \(text)", exitCode: passthrough)
         }
@@ -812,6 +812,6 @@ extension CMUXCLI {
                 Thread.sleep(forTimeInterval: Self.vmLayoutOpenRetryDelay)
             }
         }
-        throw CLIError(message: "vm dev: the layout is built in workspace \(remoteWorkspace) on \(machine), but it could not be opened here yet (\(lastFailure)). Open it with: cmux vm workspace open \(machine) \(remoteWorkspace)")
+        throw CLIError(message: "vm dev: the layout is built in workspace \(remoteWorkspace) on \(machine), but it could not be opened here yet (\(lastFailure)). Open it with: taffy vm workspace open \(machine) \(remoteWorkspace)")
     }
 }

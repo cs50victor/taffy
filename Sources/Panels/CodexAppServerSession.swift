@@ -56,7 +56,7 @@ final class CodexAppServerSession {
             params: [
                 "clientInfo": [
                     "name": "cmux",
-                    "title": "cmux",
+                    "title": "Taffy",
                     "version": Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0"
                 ],
                 "capabilities": [
@@ -124,7 +124,7 @@ final class CodexAppServerSession {
         guard let data = line.data(using: .utf8),
               let decoded = try? JSONSerialization.jsonObject(with: data),
               let object = decoded as? [String: Any] else {
-            outputSink("stderr", String(localized: "agentSession.codex.error.invalidJSON", defaultValue: "cmux could not read the response from Codex. Try again."))
+            outputSink("stderr", String(localized: "agentSession.codex.error.invalidJSON", defaultValue: "Taffy could not read the response from Codex. Try again."))
             return
         }
 

@@ -6,7 +6,7 @@ struct AboutLicenseContent {
 
     init(
         bundle: Bundle,
-        repositoryURL: URL = URL(string: "https://github.com/manaflow-ai/cmux")!
+        repositoryURL: URL = URL(string: "https://github.com/cs50victor/taffy")!
     ) {
         self.bundle = bundle
         self.repositoryURL = repositoryURL
@@ -30,7 +30,7 @@ struct AboutLicenseContent {
         ) ?? missingMessage
         let projectHeading = String(
             localized: "about.licenses.projectHeading",
-            defaultValue: "cmux Project License",
+            defaultValue: "Taffy Project License",
             bundle: bundle
         )
         let projectSourceLabel = String(
@@ -71,7 +71,7 @@ struct AboutLicenseContent {
         bundleIdentifier: String?,
         commit: String?
     ) -> URL {
-        if bundleIdentifier == "com.cmuxterm.app", let version = normalized(version) {
+        if bundleIdentifier == "com.cs50victor.taffy", let version = normalized(version) {
             return repositoryURL
                 .appendingPathComponent("tree", isDirectory: true)
                 .appendingPathComponent("v\(version)")

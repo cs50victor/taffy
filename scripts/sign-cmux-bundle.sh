@@ -87,7 +87,7 @@ fi
 # its own signing argument set so the extension has runtime without those keys.
 COMMON=(--force --options runtime "${TS_FLAG[@]}" --sign "$IDENTITY")
 SYSTEM_EXTENSION_COMMON=(--force --options runtime "${TS_FLAG[@]}" --sign "$IDENTITY")
-COMPUTER_USE_HELPER="$APP_PATH/Contents/Library/cmux Computer Use.app"
+COMPUTER_USE_HELPER="$APP_PATH/Contents/Library/Taffy Computer Use.app"
 SYSTEM_EXTENSIONS_DIR="$APP_PATH/Contents/Library/SystemExtensions"
 
 case "$(basename "$APP_ENTITLEMENTS")" in

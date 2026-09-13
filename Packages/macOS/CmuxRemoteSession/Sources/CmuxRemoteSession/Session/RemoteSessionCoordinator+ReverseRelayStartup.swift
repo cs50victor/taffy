@@ -96,7 +96,7 @@ extension RemoteSessionCoordinator {
                     self?.finishInheritedControlMasterReapLocked(
                         token: token,
                         outcome: .deferred(
-                            "could not resolve the cmux SSH ControlPath"
+                            "could not resolve the Taffy SSH ControlPath"
                         ),
                         remotePath: remotePath,
                         relayPort: relayPort

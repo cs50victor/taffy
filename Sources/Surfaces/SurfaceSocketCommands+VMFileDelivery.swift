@@ -11,7 +11,7 @@ extension TerminalController {
             return v2Error(id: id, code: "file_transfer_disabled", message: ManagedFileTransferPolicy.disabledMessage)
         }
         guard let vmId = Self.surfaceString(params["id"]), !vmId.isEmpty else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.file_put requires `id`. Run `cmux vm ls` to find one.")
+            return v2Error(id: id, code: "invalid_params", message: "vm.file_put requires `id`. Run `taffy vm ls` to find one.")
         }
         guard let path = Self.surfaceString(params["path"]), !path.isEmpty else {
             return v2Error(id: id, code: "invalid_params", message: "vm.file_put requires `path`: where the file lands on the machine (relative paths resolve against its home).")
@@ -27,7 +27,7 @@ extension TerminalController {
             return v2Error(id: id, code: "invalid_params", message: "vm.file_put: the file is empty; nothing to deliver.")
         }
         guard data.count <= CloudFileDelivery.maxPayloadBytes else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.file_put: \(data.count) bytes exceeds the \(CloudFileDelivery.maxPayloadBytes)-byte limit for link delivery; use `cmux vm push` without --secret for large, non-secret files.")
+            return v2Error(id: id, code: "invalid_params", message: "vm.file_put: \(data.count) bytes exceeds the \(CloudFileDelivery.maxPayloadBytes)-byte limit for link delivery; use `taffy vm push` without --secret for large, non-secret files.")
         }
         let request = CloudFileDelivery.Request(path: path, mode: mode, data: data)
         return v2VmCall(id: id, timeoutSeconds: 240) {

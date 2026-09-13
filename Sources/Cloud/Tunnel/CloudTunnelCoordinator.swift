@@ -374,7 +374,7 @@ actor CloudTunnelCoordinator: CloudPrivateNetworkGate {
             let configuration = CloudTunnelProviderConfiguration(
                 wgQuickConfig: enrollment.wgQuickConfig,
                 serverAddress: enrollment.serverAddress,
-                localizedDescription: String(localized: "cloudTunnel.vpnConfiguration.name", defaultValue: "cmux Cloud")
+                localizedDescription: String(localized: "cloudTunnel.vpnConfiguration.name", defaultValue: "Taffy Cloud")
             )
             try await controller.install(configuration) { [weak self] in
                 Task { await self?.noteAwaitingApproval(generation: generation) }

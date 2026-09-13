@@ -27,7 +27,7 @@ public struct CloudMachinesSection: View {
                     Divider().padding(.horizontal, 14)
                     panelRow
                     Divider().padding(.horizontal, 14)
-                    Button(String(localized: "machines.menu.setupVPN", defaultValue: "Set Up cmux VPN…")) {
+                    Button(String(localized: "machines.menu.setupVPN", defaultValue: "Set Up Taffy VPN…")) {
                         hostActions.openCloudVPNSetup()
                     }
                     .buttonStyle(.bordered)

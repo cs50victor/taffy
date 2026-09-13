@@ -95,7 +95,7 @@ enum AuthEnvironment {
         appWebOrigin(environment: ProcessInfo.processInfo.environment)
     }
 
-    /// Pricing page used by every "Upgrade to cmux Pro" entrypoint
+    /// Pricing page used by every "Upgrade to Taffy Pro" entrypoint
     /// (Settings, command palette, Help menu). Resolution order mirrors
     /// ``vmAPIBaseURL``: process env `CMUX_WWW_ORIGIN`, then the DEBUG-only
     /// `~/.cmux-dev.env` file (so a deeplink-launched dev build can point at

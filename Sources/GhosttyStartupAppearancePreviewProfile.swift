@@ -45,12 +45,12 @@ enum GhosttyStartupAppearancePreviewProfile: String, CaseIterable, Identifiable 
         case .realUserConfig:
             return String(
                 localized: "debug.startupAppearance.profile.realUserConfig.detail",
-                defaultValue: "Loads your actual Ghostty and cmux config files."
+                defaultValue: "Loads your actual Ghostty and taffy config files."
             )
         case .freshInstall:
             return String(
                 localized: "debug.startupAppearance.profile.freshInstall.detail",
-                defaultValue: "No user Ghostty settings, so cmux applies its managed default colors."
+                defaultValue: "No user Ghostty settings, so Taffy applies its managed default colors."
             )
         case .userThemePair:
             return String(

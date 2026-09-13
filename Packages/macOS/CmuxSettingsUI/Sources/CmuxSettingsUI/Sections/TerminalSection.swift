@@ -266,7 +266,7 @@ public struct TerminalSection: View {
                 subtitle: adaptiveDefaultTheme.current
                     ? String(
                         localized: "settings.terminal.adaptiveDefaultTheme.subtitleOn",
-                        defaultValue: "cmux's managed light and dark palettes follow the app appearance only when your Ghostty config has no settings. Existing Ghostty settings are never overlaid."
+                        defaultValue: "Taffy's managed light and dark palettes follow the app appearance only when your Ghostty config has no settings. Existing Ghostty settings are never overlaid."
                     )
                     : String(
                         localized: "settings.terminal.adaptiveDefaultTheme.subtitleOff",
@@ -388,7 +388,7 @@ public struct TerminalSection: View {
                 configurationReview: .json("terminal.showScrollBar"),
                 String(localized: "settings.terminal.scrollBar", defaultValue: "Show Terminal Scroll Bar"),
                 subtitle: scrollBar.current
-                    ? String(localized: "settings.terminal.scrollBar.subtitleOn", defaultValue: "Shows the right-edge terminal scroll bar in shell scrollback. cmux hides it automatically for alternate-screen style TUI surfaces.")
+                    ? String(localized: "settings.terminal.scrollBar.subtitleOn", defaultValue: "Shows the right-edge terminal scroll bar in shell scrollback. Taffy hides it automatically for alternate-screen style TUI surfaces.")
                     : String(localized: "settings.terminal.scrollBar.subtitleOff", defaultValue: "Hides the right-edge terminal scroll bar everywhere. Changes apply immediately and persist across relaunches.")
             ) {
                 Toggle("", isOn: Binding(get: { scrollBar.current }, set: { scrollBar.set($0) }))
@@ -402,7 +402,7 @@ public struct TerminalSection: View {
                 String(localized: "settings.terminal.copyOnSelect", defaultValue: "Copy on Selection"),
                 subtitle: copyOnSelect.current
                     ? String(localized: "settings.terminal.copyOnSelect.subtitleOn", defaultValue: "Selected terminal text is also copied to the system clipboard when the selection is committed.")
-                    : String(localized: "settings.terminal.copyOnSelect.subtitleOff", defaultValue: "cmux does not add system-clipboard copy on selection. Ghostty config still controls Paste Selection.")
+                    : String(localized: "settings.terminal.copyOnSelect.subtitleOff", defaultValue: "Taffy does not add system-clipboard copy on selection. Ghostty config still controls Paste Selection.")
             ) {
                 Toggle("", isOn: Binding(get: { copyOnSelect.current }, set: { copyOnSelect.set($0) }))
                     .labelsHidden()
@@ -414,8 +414,8 @@ public struct TerminalSection: View {
                 configurationReview: .json("terminal.autoResumeAgentSessions"),
                 String(localized: "settings.terminal.agentAutoResume", defaultValue: "Resume Agent Sessions on Reopen"),
                 subtitle: autoResume.current
-                    ? String(localized: "settings.terminal.agentAutoResume.subtitleOn", defaultValue: "When cmux reopens after quit, restored agent terminals automatically run their resume command.")
-                    : String(localized: "settings.terminal.agentAutoResume.subtitleOff", defaultValue: "When cmux reopens after quit, restored agent terminals stay idle until you resume them manually.")
+                    ? String(localized: "settings.terminal.agentAutoResume.subtitleOn", defaultValue: "When Taffy reopens after quit, restored agent terminals automatically run their resume command.")
+                    : String(localized: "settings.terminal.agentAutoResume.subtitleOff", defaultValue: "When Taffy reopens after quit, restored agent terminals stay idle until you resume them manually.")
             ) {
                 Toggle("", isOn: Binding(get: { autoResume.current }, set: { autoResume.set($0) }))
                     .labelsHidden()
@@ -428,7 +428,7 @@ public struct TerminalSection: View {
                 String(localized: "settings.terminal.agentHibernation", defaultValue: "Agent Hibernation"),
                 subtitle: hibernation.current
                     ? String(localized: "settings.terminal.agentHibernation.subtitleOn", defaultValue: "Idle background agent terminals can be suspended when the live-terminal limit is exceeded.")
-                    : String(localized: "settings.terminal.agentHibernation.subtitleOff", defaultValue: "Scheduled hibernation is off. During critical memory pressure, cmux may still hibernate safe idle background agents.")
+                    : String(localized: "settings.terminal.agentHibernation.subtitleOff", defaultValue: "Scheduled hibernation is off. During critical memory pressure, Taffy may still hibernate safe idle background agents.")
             ) {
                 Toggle("", isOn: Binding(get: { hibernation.current }, set: { hibernation.set($0) }))
                     .labelsHidden()
@@ -514,7 +514,7 @@ public struct TerminalSection: View {
                 searchAnchorID: "setting:terminal:memory-guardrail",
                 String(localized: "settings.terminal.memoryGuardrail", defaultValue: "Runaway Memory Guardrail"),
                 subtitle: memGuardrailEnabled.current
-                    ? String(localized: "settings.terminal.memoryGuardrail.subtitleOn", defaultValue: "cmux warns you with a badge and a banner when one pane's process tree uses too much memory, so a single leak can't crash the whole app.")
+                    ? String(localized: "settings.terminal.memoryGuardrail.subtitleOn", defaultValue: "Taffy warns you with a badge and a banner when one pane's process tree uses too much memory, so a single leak can't crash the whole app.")
                     : String(localized: "settings.terminal.memoryGuardrail.subtitleOff", defaultValue: "No warning is shown when a pane's process tree grows large. A leaking process can OOM-suspend the entire app.")
             ) {
                 Toggle("", isOn: Binding(get: { memGuardrailEnabled.current }, set: { memGuardrailEnabled.set($0) }))

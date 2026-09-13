@@ -53,7 +53,7 @@ enum StartupBreadcrumbLog {
             try handle.write(contentsOf: line)
             try handle.write(contentsOf: Data([0x0A]))
         } catch {
-            logger.fault("cmux startup breadcrumb failed: \(String(describing: error), privacy: .public)")
+            logger.fault("Taffy startup breadcrumb failed: \(String(describing: error), privacy: .public)")
         }
     }
 

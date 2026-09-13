@@ -18,7 +18,7 @@ write_agent_session_html() {
     printf '  <head>\n'
     printf '    <meta charset="UTF-8" />\n'
     printf '    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n'
-    printf '    <title>cmux Agent Session</title>\n'
+    printf '    <title>Taffy Agent Session</title>\n'
     printf '  </head>\n'
     printf '  <body data-cmux-webview-kind="agent-session" data-codex-window-type="electron">\n'
     printf '    <main id="root"></main>\n'

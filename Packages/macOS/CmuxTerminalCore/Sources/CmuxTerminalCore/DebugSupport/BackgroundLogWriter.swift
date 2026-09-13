@@ -141,7 +141,7 @@ private func consumeBackgroundLog(
         let frame60 = Int((entry.mediaTime * 60.0).rounded(.down))
         let frame120 = Int((entry.mediaTime * 120.0).rounded(.down))
         let line =
-            "\(formatter.string(from: entry.date)) seq=\(sequence) t+\(String(format: "%.3f", entry.uptimeMs))ms thread=\(entry.threadLabel) frame60=\(frame60) frame120=\(frame120) cmux bg: \(entry.message)\n"
+            "\(formatter.string(from: entry.date)) seq=\(sequence) t+\(String(format: "%.3f", entry.uptimeMs))ms thread=\(entry.threadLabel) frame60=\(frame60) frame120=\(frame120) Taffy bg: \(entry.message)\n"
         await sink.write(line)
     }
 }

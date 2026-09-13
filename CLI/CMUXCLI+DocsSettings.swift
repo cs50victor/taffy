@@ -1,11 +1,11 @@
 import Foundation
 
 extension CMUXCLI {
-    static let settingsDocsURL = "https://cmux.com/docs/configuration#cmux-json"
-    static let settingsSchemaURL = "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux.schema.json"
-    static let primarySettingsDisplayPath = "~/.config/cmux/cmux.json"
-    static let legacySettingsDisplayPath = "~/.config/cmux/settings.json"
-    static let fallbackSettingsDisplayPath = "~/Library/Application Support/com.cmuxterm.app/settings.json"
+    static let settingsDocsURL = "https://github.com/cs50victor/taffy/blob/main/docs/usage.md"
+    static let settingsSchemaURL = "https://raw.githubusercontent.com/cs50victor/taffy/main/web/data/cmux.schema.json"
+    static let primarySettingsDisplayPath = "~/.config/taffy/taffy.json"
+    static let legacySettingsDisplayPath = "~/.config/taffy/cmux.json"
+    static let fallbackSettingsDisplayPath = "~/Library/Application Support/com.cs50victor.taffy/settings.json"
     static let ghosttyConfigDisplayPath = "~/.config/ghostty/config"
 
     private struct DocsResource {
@@ -26,104 +26,104 @@ extension CMUXCLI {
         DocsReference(
             topic: "settings",
             aliases: ["configuration", "config", "cmux-json", "settings-json", "settingsjson", "schema"],
-            summary: "cmux-owned settings, cmux.json locations, schema, and reload flow.",
+            summary: "Taffy-owned settings, taffy.json locations, schema, and reload flow.",
             webURL: settingsDocsURL,
             rawResources: [
                 DocsResource(label: "settings schema", url: settingsSchemaURL),
-                DocsResource(label: "cmux skill", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/skills/cmux/SKILL.md"),
+                DocsResource(label: "taffy skill", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/skills/cmux/SKILL.md"),
             ],
             commands: [
-                "cmux settings path",
-                "cmux settings cmux-json",
-                "cmux config doctor",
-                "cmux reload-config",
+                "taffy settings path",
+                "taffy settings cmux-json",
+                "taffy config doctor",
+                "taffy reload-config",
             ]
         ),
         DocsReference(
             topic: "managed-policies",
             aliases: ["mdm", "managed", "policy", "policies", "enterprise", "managed-device-policies"],
             summary: "MDM-enforceable managed policies: disable the embedded browser, iOS remote control, and Cloud on managed Macs.",
-            webURL: "https://cmux.com/docs/managed-policies",
+            webURL: "https://github.com/cs50victor/taffy/blob/main/docs/usage.md",
             rawResources: [
-                DocsResource(label: "managed device policies", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/docs/managed-device-policies.md"),
+                DocsResource(label: "managed device policies", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/docs/managed-device-policies.md"),
             ],
             commands: [
-                "cmux browser status --json",
+                "taffy browser status --json",
             ]
         ),
         DocsReference(
             topic: "shortcuts",
             aliases: ["keyboard", "keybindings", "keys"],
-            summary: "cmux-owned keyboard shortcuts and two-step chord syntax.",
-            webURL: "https://cmux.com/docs/keyboard-shortcuts",
+            summary: "Taffy-owned keyboard shortcuts and two-step chord syntax.",
+            webURL: "https://github.com/cs50victor/taffy/blob/main/docs/usage.md",
             rawResources: [
-                DocsResource(label: "shortcut data", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/data/cmux-shortcuts.ts"),
+                DocsResource(label: "shortcut data", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/web/data/cmux-shortcuts.ts"),
                 DocsResource(label: "settings schema", url: settingsSchemaURL),
             ],
             commands: [
-                "cmux shortcuts",
-                "cmux settings shortcuts",
-                "cmux docs settings",
+                "taffy shortcuts",
+                "taffy settings shortcuts",
+                "taffy docs settings",
             ]
         ),
         DocsReference(
             topic: "api",
             aliases: ["cli", "socket", "automation", "handles"],
             summary: "CLI/socket API, handle model, windows, workspaces, panes, and surfaces.",
-            webURL: "https://cmux.com/docs/api",
+            webURL: "https://github.com/cs50victor/taffy/blob/main/docs/usage.md",
             rawResources: [
-                DocsResource(label: "CLI contract", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/docs/cli-contract.md"),
-                DocsResource(label: "cmux skill", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/skills/cmux/SKILL.md"),
+                DocsResource(label: "CLI contract", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/docs/cli-contract.md"),
+                DocsResource(label: "taffy skill", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/skills/cmux/SKILL.md"),
             ],
             commands: [
-                "cmux identify --json",
-                "cmux tree --all",
+                "taffy identify --json",
+                "taffy tree --all",
             ]
         ),
         DocsReference(
             topic: "browser",
             aliases: ["browser-automation", "webview"],
             summary: "Browser panel automation commands and snapshot-driven web interaction.",
-            webURL: "https://cmux.com/docs/browser-automation",
+            webURL: "https://github.com/cs50victor/taffy/blob/main/docs/usage.md",
             rawResources: [
-                DocsResource(label: "browser skill", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/skills/cmux-browser/SKILL.md"),
-                DocsResource(label: "browser commands", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/skills/cmux-browser/references/commands.md"),
+                DocsResource(label: "browser skill", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/skills/cmux-browser/SKILL.md"),
+                DocsResource(label: "browser commands", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/skills/cmux-browser/references/commands.md"),
             ],
             commands: [
-                "cmux browser --help",
-                "cmux browser snapshot",
+                "taffy browser --help",
+                "taffy browser snapshot",
             ]
         ),
         DocsReference(
             topic: "agents",
             aliases: ["integrations", "agent-integrations"],
             summary: "Agent hook integrations, Feed approvals, notifications, and session restore.",
-            webURL: "https://cmux.com/docs/agent-integrations/oh-my-codex",
+            webURL: "https://github.com/cs50victor/taffy/blob/main/docs/usage.md",
             rawResources: [
-                DocsResource(label: "agent hook docs", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/docs/agent-hooks.md"),
-                DocsResource(label: "feed docs", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/docs/feed.md"),
-                DocsResource(label: "notifications docs", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/docs/notifications.md"),
+                DocsResource(label: "agent hook docs", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/docs/agent-hooks.md"),
+                DocsResource(label: "feed docs", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/docs/feed.md"),
+                DocsResource(label: "notifications docs", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/docs/notifications.md"),
             ],
             commands: [
-                "cmux hooks setup",
-                "cmux hooks setup <agent>",
-                "cmux hooks hermes-agent install",
-                "cmux hooks hermes-agent uninstall",
-                "cmux hooks <agent> uninstall",
+                "taffy hooks setup",
+                "taffy hooks setup <agent>",
+                "taffy hooks hermes-agent install",
+                "taffy hooks hermes-agent uninstall",
+                "taffy hooks <agent> uninstall",
             ]
         ),
         DocsReference(
             topic: "dock",
             aliases: ["doc", "controls", "right-sidebar", "dock-json"],
             summary: "Custom right-sidebar terminal controls from .cmux/dock.json or ~/.config/cmux/dock.json.",
-            webURL: "https://cmux.com/docs/dock",
+            webURL: "https://github.com/cs50victor/taffy/blob/main/docs/usage.md",
             rawResources: [
-                DocsResource(label: "dock docs", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/docs/dock.md"),
-                DocsResource(label: "dock web copy", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/web/messages/en.json"),
+                DocsResource(label: "dock docs", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/docs/dock.md"),
+                DocsResource(label: "dock web copy", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/web/messages/en.json"),
             ],
             commands: [
-                "cmux docs dock",
-                "cmux docs dock --json",
+                "taffy docs dock",
+                "taffy docs dock --json",
                 "python3 -m json.tool .cmux/dock.json",
             ]
         ),
@@ -131,14 +131,14 @@ extension CMUXCLI {
             topic: "sidebars",
             aliases: ["sidebar", "custom-sidebar", "custom-sidebars", "vibe-sidebar"],
             summary: "Vibe-code a custom sidebar: a runtime-interpreted SwiftUI-style file in ~/.config/cmux/sidebars/ (beta).",
-            webURL: "https://cmux.com/docs/custom-sidebars",
+            webURL: "https://github.com/cs50victor/taffy/blob/main/docs/usage.md",
             rawResources: [
-                DocsResource(label: "custom sidebar authoring guide", url: "https://raw.githubusercontent.com/manaflow-ai/cmux/main/docs/custom-sidebars.md"),
+                DocsResource(label: "custom sidebar authoring guide", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/docs/custom-sidebars.md"),
             ],
             commands: [
                 "mkdir -p ~/.config/cmux/sidebars",
                 "cat > ~/.config/cmux/sidebars/mine.swift   # write a SwiftUI-style view, then right-click the sidebar button to pick it",
-                "cmux docs api   # discover cmux() action methods/params",
+                "taffy docs api   # discover taffy() action methods/params",
             ]
         ),
     ]
@@ -163,7 +163,7 @@ extension CMUXCLI {
         }
 
         guard args.count == 1 else {
-            throw CLIError(message: "Usage: cmux docs [settings|shortcuts|api|browser|agents|dock|managed-policies]")
+            throw CLIError(message: "Usage: taffy docs [settings|shortcuts|api|browser|agents|dock|managed-policies]")
         }
 
         if topic == "list" || topic == "all" {
@@ -176,7 +176,7 @@ extension CMUXCLI {
         }
 
         guard let reference = docsReference(for: topic) else {
-            throw CLIError(message: "Unknown docs topic '\(topic)'. Run 'cmux docs' for topics.")
+            throw CLIError(message: "Unknown docs topic '\(topic)'. Run 'taffy docs' for topics.")
         }
 
         if wantsJSON {
@@ -188,15 +188,15 @@ extension CMUXCLI {
 
     func docsUsage() -> String {
         return """
-        Usage: cmux docs [settings|shortcuts|api|browser|agents|dock|managed-policies]
+        Usage: taffy docs [settings|shortcuts|api|browser|agents|dock|managed-policies]
 
-        Print the canonical docs URL, raw GitHub resources, and useful commands for a cmux topic.
-        This command does not require a running cmux app or socket.
+        Print the canonical docs URL, raw GitHub resources, and useful commands for a taffy topic.
+        This command does not require a running taffy app or socket.
 
         Agents:
-          Use `cmux docs settings` before editing ~/.config/cmux/cmux.json.
-          Use `cmux docs dock` before creating or editing .cmux/dock.json.
-          Back up any existing cmux.json file to a timestamped .bak copy before editing so the user can revert.
+          Use `taffy docs settings` before editing ~/.config/taffy/taffy.json.
+          Use `taffy docs dock` before creating or editing .cmux/dock.json.
+          Back up any existing taffy.json file to a timestamped .bak copy before editing so the user can revert.
           Fetch raw resources with the printed curl commands when you need the latest schema.
         """
     }
@@ -231,24 +231,24 @@ extension CMUXCLI {
             ]
             payload["ghostty_config"] = [
                 "path": Self.ghosttyConfigDisplayPath,
-                "note": "Not cmux-owned, but cmux reads it. Use for terminal transparency (background-opacity), blur, font, theme, etc.",
+                "note": "Not Taffy-owned, but taffy reads it. Use for terminal transparency (background-opacity), blur, font, theme, etc.",
             ]
-            payload["backup"] = "Back up any existing cmux.json file to a timestamped .bak copy before editing so the user can revert."
-            payload["reload_command"] = "cmux reload-config"
-            payload["reload_scope"] = "Reloads Ghostty config + cmux.json and refreshes terminals in place. No app restart needed."
+            payload["backup"] = "Back up any existing taffy.json file to a timestamped .bak copy before editing so the user can revert."
+            payload["reload_command"] = "taffy reload-config"
+            payload["reload_scope"] = "Reloads Ghostty config + taffy.json and refreshes terminals in place. No app restart needed."
         }
         return payload
     }
 
     private func printDocsIndex() {
-        print("cmux docs")
+        print("taffy docs")
         print()
         print("Topics:")
         for reference in Self.docsReferences {
             print("  \(reference.topic.padding(toLength: 10, withPad: " ", startingAt: 0)) \(reference.summary)")
         }
         print()
-        print("Run `cmux docs <topic>` for URLs, raw resources, and next commands.")
+        print("Run `taffy docs <topic>` for URLs, raw resources, and next commands.")
     }
 
     private func printDocsReference(_ reference: DocsReference) {
@@ -282,15 +282,15 @@ extension CMUXCLI {
             print("  legacy config: \(Self.legacySettingsDisplayPath)")
             print("  legacy app support: \(Self.fallbackSettingsDisplayPath)")
             print()
-            print("Related (not cmux-owned, but cmux reads it for terminal behavior):")
+            print("Related (not Taffy-owned, but taffy reads it for terminal behavior):")
             print("  \(Self.ghosttyConfigDisplayPath)")
             print("  Use this for terminal transparency (background-opacity), blur, font, theme, etc.")
             print()
-            print("Before editing cmux.json:")
-            print("  Back up any existing cmux.json file to a timestamped .bak copy so the user can revert.")
+            print("Before editing taffy.json:")
+            print("  Back up any existing taffy.json file to a timestamped .bak copy so the user can revert.")
             print()
-            print("Reload after editing cmux.json or Ghostty config:")
-            print("  cmux reload-config   (reloads BOTH and refreshes terminals; no app restart needed)")
+            print("Reload after editing taffy.json or Ghostty config:")
+            print("  taffy reload-config   (reloads BOTH and refreshes terminals; no app restart needed)")
         }
     }
 
@@ -313,13 +313,13 @@ extension CMUXCLI {
         switch subcommand {
         case "path", "paths":
             guard args.count == 1 else {
-                throw CLIError(message: "Usage: cmux settings path")
+                throw CLIError(message: "Usage: taffy settings path")
             }
             printSettingsPaths(jsonOutput: wantsJSON)
             return
         case "docs", "documentation":
             guard args.count == 1 else {
-                throw CLIError(message: "Usage: cmux settings docs")
+                throw CLIError(message: "Usage: taffy settings docs")
             }
             if wantsJSON, let reference = docsReference(for: "settings") {
                 print(jsonString(docsPayload(reference)))
@@ -330,10 +330,10 @@ extension CMUXCLI {
         case "open":
             let targetRaw: String?
             if args.count > 2 {
-                throw CLIError(message: "Usage: cmux settings open [target]")
+                throw CLIError(message: "Usage: taffy settings open [target]")
             } else if let rawTarget = args.dropFirst().first {
                 guard let target = settingsTargetRawValue(for: rawTarget) else {
-                    throw CLIError(message: "Unknown settings target '\(rawTarget)'. Run 'cmux settings --help'.")
+                    throw CLIError(message: "Unknown settings target '\(rawTarget)'. Run 'taffy settings --help'.")
                 }
                 targetRaw = target
             } else {
@@ -348,10 +348,10 @@ extension CMUXCLI {
             return
         default:
             guard let targetRaw = settingsTargetRawValue(for: subcommand) else {
-                throw CLIError(message: "Unknown settings subcommand '\(subcommand)'. Run 'cmux settings --help'.")
+                throw CLIError(message: "Unknown settings subcommand '\(subcommand)'. Run 'taffy settings --help'.")
             }
             guard args.count == 1 else {
-                throw CLIError(message: "Usage: cmux settings [open [target]|path|docs|<target>]")
+                throw CLIError(message: "Usage: taffy settings [open [target]|path|docs|<target>]")
             }
             try openSettingsTarget(
                 targetRaw,
@@ -371,14 +371,14 @@ extension CMUXCLI {
 
     func settingsUsage() -> String {
         return """
-        Usage: cmux settings [open [target]|path|docs|<target>]
+        Usage: taffy settings [open [target]|path|docs|<target>]
 
-        Open cmux Settings, print cmux.json paths, or show settings documentation.
+        Open taffy Settings, print taffy.json paths, or show settings documentation.
 
         Subcommands:
           open [target]       Open Settings, optionally to a target section.
-          path                Print cmux.json paths, docs URL, and schema URL.
-          docs                Print the same output as `cmux docs settings`.
+          path                Print taffy.json paths, docs URL, and schema URL.
+          docs                Print the same output as `taffy docs settings`.
 
         Targets:
           account, app, terminal, networking, sidebar-appearance,
@@ -391,14 +391,14 @@ extension CMUXCLI {
           legacy config: \(Self.legacySettingsDisplayPath)
           legacy app support: \(Self.fallbackSettingsDisplayPath)
 
-        Related (not cmux-owned, but cmux reads it for terminal behavior):
+        Related (not Taffy-owned, but taffy reads it for terminal behavior):
           \(Self.ghosttyConfigDisplayPath)
 
-        Before editing cmux.json:
-          Back up any existing cmux.json file to a timestamped .bak copy so the user can revert.
+        Before editing taffy.json:
+          Back up any existing taffy.json file to a timestamped .bak copy so the user can revert.
 
-        Reload after editing cmux.json or Ghostty config:
-          cmux reload-config   (reloads BOTH and refreshes terminals; no app restart needed)
+        Reload after editing taffy.json or Ghostty config:
+          taffy reload-config   (reloads BOTH and refreshes terminals; no app restart needed)
         """
     }
 

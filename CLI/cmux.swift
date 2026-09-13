@@ -4867,7 +4867,7 @@ struct CMUXCLI {
         } else if action == "status" || action == "browser-status" {
             print(disabled ? "disabled" : "enabled")
         } else {
-            print(disabled ? "cmux browser disabled" : "cmux browser enabled")
+            print(disabled ? "taffy browser disabled" : "taffy browser enabled")
         }
     }
 
@@ -4995,7 +4995,7 @@ struct CMUXCLI {
 
         guard index < args.count else {
             throw CLIError(
-                message: "Missing command. Usage: cmux <path>|<command> [options]. Run 'cmux --help' for the full command list.",
+                message: "Missing command. Usage: taffy <path>|<command> [options]. Run 'taffy --help' for the full command list.",
                 exitCode: 2
             )
         }
@@ -5062,6 +5062,10 @@ struct CMUXCLI {
                 return
             }
             throw unknownCommandError(command)
+        }
+
+        if ["config", "settings", "window", "diff"].contains(command) {
+            try CmuxConfigLocation().migrateLegacyUserConfigIfNeeded()
         }
 
         // Registry inspection, cleanup, and direct headless attach must keep
@@ -5386,7 +5390,7 @@ struct CMUXCLI {
                 )
                 return
             case "help", "--help", "-h":
-                print("Usage: cmux feed tui [--opentui|--legacy]\n       cmux feed clear [--yes]")
+                print("Usage: taffy feed tui [--opentui|--legacy]\n       taffy feed clear [--yes]")
                 return
             default:
                 throw CLIError(message: "Unknown feed subcommand: \(sub)")
@@ -5558,7 +5562,7 @@ struct CMUXCLI {
                 let signedIn = (response["signed_in"] as? Bool) ?? false
                 if !signedIn {
                     print("Not signed in.")
-                    print("Run: cmux auth login")
+                    print("Run: taffy auth login")
                     break
                 }
                 let user = response["user"] as? [String: Any]
@@ -5577,7 +5581,7 @@ struct CMUXCLI {
                 let statusBefore = try client.sendV2(method: "auth.status")
                 if (statusBefore["signed_in"] as? Bool) == true {
                     let email = (statusBefore["user"] as? [String: Any])?["email"] as? String
-                    print("Already signed in\(email.map { " as \($0)" } ?? ""). Use `cmux auth logout` to sign out first.")
+                    print("Already signed in\(email.map { " as \($0)" } ?? ""). Use `taffy auth logout` to sign out first.")
                     break
                 }
                 if let signInURLResponse = try? client.sendV2(method: "auth.sign_in_url"),
@@ -5586,7 +5590,7 @@ struct CMUXCLI {
                     print("Fallback sign-in URL:")
                     print(signInURL)
                 }
-                print("Opening sign-in popup on the cmux web app.")
+                print("Opening sign-in popup on the taffy web app.")
                 // auth.begin_sign_in blocks on the server side until the
                 // popup completes (or 5min timeout). The response is the
                 // callback — no polling.
@@ -5595,9 +5599,9 @@ struct CMUXCLI {
                     let email = (result["user"] as? [String: Any])?["email"] as? String
                     print("Signed in\(email.map { " as \($0)" } ?? "").")
                 } else if (result["timed_out"] as? Bool) == true {
-                    print("Timed out waiting for sign-in. Run `cmux auth status` once you've finished in the popup.")
+                    print("Timed out waiting for sign-in. Run `taffy auth status` once you've finished in the popup.")
                 } else {
-                    print("Sign-in did not complete. Run `cmux auth status` to check.")
+                    print("Sign-in did not complete. Run `taffy auth status` to check.")
                 }
 
             case "logout":
@@ -5611,11 +5615,11 @@ struct CMUXCLI {
                 if (result["signed_in"] as? Bool) != true {
                     print("Signed out.")
                 } else {
-                    print("Sign-out requested but state hasn't cleared yet. Run `cmux auth status` to confirm.")
+                    print("Sign-out requested but state hasn't cleared yet. Run `taffy auth status` to confirm.")
                 }
 
             default:
-                throw CLIError(message: "Usage: cmux auth <status|login|logout>")
+                throw CLIError(message: "Usage: taffy auth <status|login|logout>")
             }
 
         case "agent":
@@ -5640,7 +5644,7 @@ struct CMUXCLI {
                 }
                 let vms = (response["vms"] as? [[String: Any]]) ?? []
                 if vms.isEmpty {
-                    print("No cloud VMs. Try: cmux vm new")
+                    print("No cloud VMs. Try: taffy vm new")
                     break
                 }
                 var rows: [(String, String, String, String, String)] = []
@@ -5794,10 +5798,10 @@ struct CMUXCLI {
             case "status", "info":
                 guard let vmId = rest.first else {
                     throw CLIError(message: """
-                        Usage: cmux vm status <id>
+                        Usage: taffy vm status <id>
 
                         Find an id:
-                          cmux vm ls
+                          taffy vm ls
                         """)
                 }
                 let response = try client.sendV2(method: "vm.status", params: ["id": vmId], responseTimeout: 60)
@@ -5844,10 +5848,10 @@ struct CMUXCLI {
             case "stats", "top":
                 guard let vmId = rest.first else {
                     throw CLIError(message: """
-                        Usage: cmux vm stats <id>
+                        Usage: taffy vm stats <id>
 
                         Find an id:
-                          cmux vm ls
+                          taffy vm ls
                         """)
                 }
                 let response = try client.sendV2(method: "vm.stats", params: ["id": vmId], responseTimeout: 60)
@@ -5874,7 +5878,7 @@ struct CMUXCLI {
                 }
                 let status = (response["status"] as? String) ?? "?"
                 if sub == "pause" {
-                    print("OK \(vmId) paused (status=\(status)); `cmux vm resume \(vmId)` wakes it")
+                    print("OK \(vmId) paused (status=\(status)); `taffy vm resume \(vmId)` wakes it")
                 } else {
                     print("OK \(vmId) resumed (status=\(status))")
                 }
@@ -5931,7 +5935,7 @@ struct CMUXCLI {
                             vm new: unknown size '\(sizeOpt)'.
 
                             Sizes: 4g, 8g, 16g, 24g, 32g, 64g (or memory in MB).
-                            Plans cap the largest size; `cmux vm ls` shows your plan.
+                            Plans cap the largest size; `taffy vm ls` shows your plan.
                             """)
                     }
                     memoryMb = parsed
@@ -5957,7 +5961,7 @@ struct CMUXCLI {
                           --detach, -d
 
                         Try:
-                          cmux vm new
+                          taffy vm new
                         """)
                 }
                 // Stray positional args (e.g. a typo like `cmux vm new myvm`) previously fell
@@ -5968,11 +5972,11 @@ struct CMUXCLI {
                         message: """
                             vm new: unexpected argument '\(extra)'.
 
-                            `cmux vm new` does not take a VM name or positional arguments.
+                            `taffy vm new` does not take a VM name or positional arguments.
 
                             Try:
-                              cmux vm new
-                              cmux vm new --detach
+                              taffy vm new
+                              taffy vm new --detach
                             """
                     )
                 }
@@ -6052,10 +6056,10 @@ struct CMUXCLI {
                     )
                     print(readyMessage)
                     print("")
-                    print("  shell    cmux vm shell \(id)")
-                    print("  run      cmux vm exec \(id) -- uname -a")
-                    print("  web      cmux vm open \(id) <port>")
-                    print("  remove   cmux vm rm \(id)")
+                    print("  shell    taffy vm shell \(id)")
+                    print("  run      taffy vm exec \(id) -- uname -a")
+                    print("  web      taffy vm open \(id) <port>")
+                    print("  remove   taffy vm rm \(id)")
                     print("")
                     print("  provider \(provider) · \(image)")
                     break
@@ -6103,10 +6107,10 @@ struct CMUXCLI {
                 let (workspaceOpt, vmArgs) = parseOption(rest, name: "--workspace")
                 guard let vmId = vmArgs.first else {
                     throw CLIError(message: """
-                        Usage: cmux vm desktop <id> [--workspace <id|ref|index>]
+                        Usage: taffy vm desktop <id> [--workspace <id|ref|index>]
 
                         Find an id:
-                          cmux vm ls
+                          taffy vm ls
                         """)
                 }
                 let desktopWorkspace = workspaceOpt ?? vmAttachedWorkspaceId(vmId: vmId, client: client)
@@ -6133,12 +6137,12 @@ struct CMUXCLI {
                 let (nameOpt, snapshotArgs) = parseOption(rest, name: "--name")
                 guard let vmId = snapshotArgs.first else {
                     throw CLIError(message: """
-                        Usage: cmux vm snapshot <id> [--name <name>]
-                               cmux vm snapshot ls <id>
-                               cmux vm snapshot rm <id> <snapshot-id>
+                        Usage: taffy vm snapshot <id> [--name <name>]
+                               taffy vm snapshot ls <id>
+                               taffy vm snapshot rm <id> <snapshot-id>
 
                         Find an id:
-                          cmux vm ls
+                          taffy vm ls
                         """)
                 }
                 var params: [String: Any] = ["id": vmId]
@@ -6158,10 +6162,10 @@ struct CMUXCLI {
                 let vmArgs = rem1.filter { $0 != "--detach" && $0 != "-d" }
                 guard let vmId = vmArgs.first else {
                     throw CLIError(message: """
-                        Usage: cmux vm fork <id> [--name <name>] [--window <id|ref|index>] [--detach|-d]
+                        Usage: taffy vm fork <id> [--name <name>] [--window <id|ref|index>] [--detach|-d]
 
                         Find an id:
-                          cmux vm ls
+                          taffy vm ls
                         """)
                 }
                 let targetWindow = try validatedWindowHandle(windowOpt ?? windowId, client: client)
@@ -6206,7 +6210,7 @@ struct CMUXCLI {
                 let restoreArgs = rem1.filter { $0 != "--detach" && $0 != "-d" }
                 guard let snapshotId = restoreArgs.first else {
                     throw CLIError(message: """
-                        Usage: cmux vm restore <snapshot-id> [--provider <provider>] [--window <id|ref|index>] [--detach|-d]
+                        Usage: taffy vm restore <snapshot-id> [--provider <provider>] [--window <id|ref|index>] [--detach|-d]
                     """)
                 }
                 let normalizedProvider = try Self.normalizedVMProvider(providerOpt)
@@ -6246,10 +6250,10 @@ struct CMUXCLI {
                 let (windowOpt, vmArgs) = parseOption(rest, name: "--window")
                 guard let vmId = vmArgs.first else {
                     throw CLIError(message: """
-                        Usage: cmux \(command) shell <id>
+                        Usage: taffy \(command) shell <id>
 
                         Find an id:
-                          cmux vm ls
+                          taffy vm ls
                         """)
                 }
                 try openVMWorkspaceShell(
@@ -6270,12 +6274,12 @@ struct CMUXCLI {
                 let positional = rest.filter { !Self.isFlagToken($0) }
                 guard let vmId = positional.first, clear || positional.count >= 2 else {
                     throw CLIError(message: String(localized: "cli.vm.rename.usage", defaultValue: """
-                        Usage: cmux vm rename <id> <new-label>
-                               cmux vm rename <id> --clear
+                        Usage: taffy vm rename <id> <new-label>
+                               taffy vm rename <id> --clear
 
                         The label is display-only; the machine id stays its address.
                         Find an id:
-                          cmux vm ls
+                          taffy vm ls
                         """))
                 }
                 let label = clear ? nil : positional.dropFirst().joined(separator: " ")
@@ -6297,10 +6301,10 @@ struct CMUXCLI {
             case "rm", "destroy", "delete":
                 guard let vmId = rest.first else {
                     throw CLIError(message: """
-                        Usage: cmux vm rm <id>
+                        Usage: taffy vm rm <id>
 
                         Find an id:
-                          cmux vm ls
+                          taffy vm ls
                         """)
                 }
                 _ = try client.sendV2(method: "vm.destroy", params: ["id": vmId], responseTimeout: 60)
@@ -6314,10 +6318,10 @@ struct CMUXCLI {
                 let (windowOpt, vmArgs) = parseOption(rest, name: "--window")
                 guard let vmId = vmArgs.first else {
                     throw CLIError(message: """
-                        Usage: cmux \(command) ssh <id>
+                        Usage: taffy \(command) ssh <id>
 
                         Find an id:
-                          cmux vm ls
+                          taffy vm ls
                         """)
                 }
                 try vmOpenShell(
@@ -6334,10 +6338,10 @@ struct CMUXCLI {
             case "ssh-info":
                 guard let vmId = rest.first else {
                     throw CLIError(message: """
-                        Usage: cmux \(command) ssh-info <id>
+                        Usage: taffy \(command) ssh-info <id>
 
                         Find an id:
-                          cmux vm ls
+                          taffy vm ls
                         """)
                 }
                 try printVMSSHInfo(id: vmId, command: command, client: client, jsonOutput: jsonOutput)
@@ -6360,10 +6364,10 @@ struct CMUXCLI {
                 }
                 guard !commandArgsForVM.isEmpty else {
                     throw CLIError(message: """
-                        Usage: cmux vm exec [--timeout <seconds>] <id> -- <command...>
+                        Usage: taffy vm exec [--timeout <seconds>] <id> -- <command...>
 
                         Example:
-                          cmux vm exec \(vmId) -- uname -a
+                          taffy vm exec \(vmId) -- uname -a
                         """)
                 }
                 // Shell-quote each argv element before joining. Plain-space join previously
@@ -6441,7 +6445,7 @@ struct CMUXCLI {
 
             case "tools", "tool-inspector":
                 guard let vmId = rest.first else {
-                    throw CLIError(message: "Usage: cmux vm tools <id>")
+                    throw CLIError(message: "Usage: taffy vm tools <id>")
                 }
                 let command = [
                     "printf 'shell: '; printf '%s\\n' \"$SHELL\"",
@@ -6458,7 +6462,7 @@ struct CMUXCLI {
 
             case "ports":
                 guard let vmId = rest.first else {
-                    throw CLIError(message: "Usage: cmux vm ports <id>")
+                    throw CLIError(message: "Usage: taffy vm ports <id>")
                 }
                 let command = "if command -v ss >/dev/null 2>&1; then ss -ltnp; elif command -v netstat >/dev/null 2>&1; then netstat -ltnp; else echo 'No port inspector found'; fi"
                 let response = try client.sendV2(method: "vm.exec", params: ["id": vmId, "command": command, "timeout_ms": 30_000], responseTimeout: 35)
@@ -6470,7 +6474,7 @@ struct CMUXCLI {
 
             case "handoff":
                 guard let vmId = rest.first else {
-                    throw CLIError(message: "Usage: cmux vm handoff <id>")
+                    throw CLIError(message: "Usage: taffy vm handoff <id>")
                 }
                 let response = try client.sendV2(method: "vm.status", params: ["id": vmId], responseTimeout: 60)
                 if jsonOutput {
@@ -6479,16 +6483,16 @@ struct CMUXCLI {
                 }
                 let provider = (response["provider"] as? String) ?? "?"
                 let status = (response["status"] as? String) ?? "unknown"
-                print("cmux Cloud VM handoff")
+                print("taffy Cloud VM handoff")
                 print("id:       \(vmId)")
                 print("provider: \(provider)")
                 print("status:   \(status)")
-                print("attach:   cmux vm ssh \(vmId)")
-                print("inspect:  cmux vm tools \(vmId)")
+                print("attach:   taffy vm ssh \(vmId)")
+                print("inspect:  taffy vm tools \(vmId)")
 
             case "promote-template":
                 guard let vmId = rest.first else {
-                    throw CLIError(message: "Usage: cmux vm promote-template <id>")
+                    throw CLIError(message: "Usage: taffy vm promote-template <id>")
                 }
                 let name = "template-\(String(vmId.prefix(12)))-\(Int(Date().timeIntervalSince1970))"
                 let response = try client.sendV2(method: "vm.snapshot", params: ["id": vmId, "name": name], responseTimeout: Self.vmCreateResponseTimeoutSeconds)
@@ -6501,24 +6505,24 @@ struct CMUXCLI {
 
             default:
                 throw CLIError(message: """
-                    Usage: cmux \(command) <base|new|ls|domains|tree|self|status|stats|rename|pause|resume|snapshot|fork|restore|rm|run|route|agent|dev|prompt|exec|push|pull|wait|shell|tui|desktop|open|workspace|terminal|tab|layout|env|ports|tools|handoff|promote-template|attach|ssh|ssh-info> [args...]
+                    Usage: taffy \(command) <base|new|ls|domains|tree|self|status|stats|rename|pause|resume|snapshot|fork|restore|rm|run|route|agent|dev|prompt|exec|push|pull|wait|shell|tui|desktop|open|workspace|terminal|tab|layout|env|ports|tools|handoff|promote-template|attach|ssh|ssh-info> [args...]
 
                     Common commands:
-                      cmux vm ls
-                      cmux vm new
-                      cmux cloud domains
-                      cmux vm status <id>
-                      cmux vm tree
-                      cmux vm snapshot <id>
-                      cmux vm snapshot ls <id>
-                      cmux vm fork <id>
-                      cmux vm exec <id> -- <command...>
-                      cmux vm push <id> <local-path>
-                      cmux vm dev <id>
-                      cmux vm self <id>
-                      cmux vm ssh <id>
-                      cmux vm shell <id>
-                      cmux vm rm <id>
+                      taffy vm ls
+                      taffy vm new
+                      taffy cloud domains
+                      taffy vm status <id>
+                      taffy vm tree
+                      taffy vm snapshot <id>
+                      taffy vm snapshot ls <id>
+                      taffy vm fork <id>
+                      taffy vm exec <id> -- <command...>
+                      taffy vm push <id> <local-path>
+                      taffy vm dev <id>
+                      taffy vm self <id>
+                      taffy vm ssh <id>
+                      taffy vm shell <id>
+                      taffy vm rm <id>
                     """)
             }
 
@@ -6536,11 +6540,11 @@ struct CMUXCLI {
             let rest = Array(commandArgs.dropFirst())
             let mobileUsage = String(
                 localized: "cli.mobile.setFont.usage",
-                defaultValue: "Usage: cmux mobile set-font <points> [--surface <id>] [--workspace <id>]"
+                defaultValue: "Usage: taffy mobile set-font <points> [--surface <id>] [--workspace <id>]"
             )
             let compatibleTagsUsage = String(
                 localized: "cli.mobile.compatibleTags.usage",
-                defaultValue: "Usage: cmux mobile compatible-tags [list|set <tags...>|add <tags...>|remove <tags...>|clear]"
+                defaultValue: "Usage: taffy mobile compatible-tags [list|set <tags...>|add <tags...>|remove <tags...>|clear]"
             )
             switch sub {
             case "set-font":
@@ -6647,7 +6651,7 @@ struct CMUXCLI {
         case "rpc":
             guard let method = commandArgs.first?.trimmingCharacters(in: .whitespacesAndNewlines),
                   !method.isEmpty else {
-                throw CLIError(message: "Usage: cmux rpc <method> [json-params]")
+                throw CLIError(message: "Usage: taffy rpc <method> [json-params]")
             }
             var params = try parseRPCParams(Array(commandArgs.dropFirst()))
             if method.lowercased() == "surface.read_selection",
@@ -6871,7 +6875,7 @@ struct CMUXCLI {
             )
 
         case "list-workspaces":
-            Self.warnLegacyVerbDeprecated("list-workspaces", replacement: "cmux workspace list")
+            Self.warnLegacyVerbDeprecated("list-workspaces", replacement: "taffy workspace list")
             try runWorkspaceListCommand(
                 commandArgs: commandArgs,
                 client: client,
@@ -6923,7 +6927,7 @@ struct CMUXCLI {
                 stableAttachArgs.contains("--require-existing") {
                 let notice = String(
                     localized: "cli.sshPtyAttach.remoteSessionLostRespawn",
-                    defaultValue: "[cmux] remote session was lost; starting a new shell."
+                    defaultValue: "[Taffy] remote session was lost; starting a new shell."
                 )
                 cliWriteStderr(Data((notice + "\n").utf8))
                 try runSSHPTYAttach(
@@ -6963,7 +6967,7 @@ struct CMUXCLI {
             try runVMSSHAttach(commandArgs: commandArgs, client: client)
 
         case "new-workspace":
-            Self.warnLegacyVerbDeprecated("new-workspace", replacement: "cmux workspace create")
+            Self.warnLegacyVerbDeprecated("new-workspace", replacement: "taffy workspace create")
             try runWorkspaceCreateCommand(
                 commandName: "new-workspace",
                 commandArgs: commandArgs,
@@ -7380,7 +7384,7 @@ struct CMUXCLI {
             printV2Payload(payload, jsonOutput: jsonOutput, idFormat: idFormat, fallbackText: v2OKSummary(payload, idFormat: idFormat))
 
         case "close-workspace":
-            Self.warnLegacyVerbDeprecated("close-workspace", replacement: "cmux workspace close")
+            Self.warnLegacyVerbDeprecated("close-workspace", replacement: "taffy workspace close")
             try runWorkspaceCloseCommand(
                 commandName: "close-workspace",
                 commandArgs: commandArgs,
@@ -7392,7 +7396,7 @@ struct CMUXCLI {
             )
 
         case "select-workspace":
-            Self.warnLegacyVerbDeprecated("select-workspace", replacement: "cmux workspace select")
+            Self.warnLegacyVerbDeprecated("select-workspace", replacement: "taffy workspace select")
             try runWorkspaceSelectCommand(
                 commandName: "select-workspace",
                 commandArgs: commandArgs,
@@ -7405,7 +7409,7 @@ struct CMUXCLI {
 
         case "rename-workspace", "rename-window":
             if command == "rename-workspace" {
-                Self.warnLegacyVerbDeprecated("rename-workspace", replacement: "cmux workspace rename")
+                Self.warnLegacyVerbDeprecated("rename-workspace", replacement: "taffy workspace rename")
             }
             try runWorkspaceRenameCommand(
                 commandName: command,
@@ -8150,31 +8154,31 @@ struct CMUXCLI {
             if let first = args.first, first.hasPrefix("-") {
                 throw CLIError(
                     message:
-                        "markdown open: unknown flag '\(first)'. Usage: cmux markdown open <path> [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--direction right|down|left|up] [--focus <true|false>] [--font-size <points>]"
+                        "markdown open: unknown flag '\(first)'. Usage: taffy markdown open <path> [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--direction right|down|left|up] [--focus <true|false>] [--font-size <points>]"
                 )
             } else if let first = args.first, looksLikePath(first) || first.contains(".") {
                 subArgs = args
             } else if let first = args.first {
-                throw CLIError(message: "Unknown markdown subcommand: \(first). Usage: cmux markdown open <path>")
+                throw CLIError(message: "Unknown markdown subcommand: \(first). Usage: taffy markdown open <path>")
             } else {
                 subArgs = []
             }
         }
 
         guard let rawPath = subArgs.first, !rawPath.isEmpty else {
-            throw CLIError(message: "markdown open requires a file path. Usage: cmux markdown open <path>")
+            throw CLIError(message: "markdown open requires a file path. Usage: taffy markdown open <path>")
         }
         let trailingArgs = Array(subArgs.dropFirst())
         if let unknownFlag = trailingArgs.first(where: { $0.hasPrefix("-") }) {
             throw CLIError(
                 message:
-                    "markdown open: unknown flag '\(unknownFlag)'. Usage: cmux markdown open <path> [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--direction right|down|left|up] [--focus <true|false>] [--font-size <points>]"
+                    "markdown open: unknown flag '\(unknownFlag)'. Usage: taffy markdown open <path> [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--direction right|down|left|up] [--focus <true|false>] [--font-size <points>]"
             )
         }
         if let extraArg = trailingArgs.first {
             throw CLIError(
                 message:
-                    "markdown open: unexpected argument '\(extraArg)'. Usage: cmux markdown open <path> [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--direction right|down|left|up] [--focus <true|false>] [--font-size <points>]"
+                    "markdown open: unexpected argument '\(extraArg)'. Usage: taffy markdown open <path> [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--direction right|down|left|up] [--focus <true|false>] [--font-size <points>]"
             )
         }
 
@@ -8230,7 +8234,7 @@ struct CMUXCLI {
 
         // Treat first token as subcommand if it's "open", else require it.
         guard let first = args.first?.lowercased() else {
-            throw CLIError(message: "project requires a subcommand. Usage: cmux project open <path-to-.xcodeproj-or-.xcworkspace>")
+            throw CLIError(message: "project requires a subcommand. Usage: taffy project open <path-to-.xcodeproj-or-.xcworkspace>")
         }
         let subArgs: [String]
         if first == "open" {
@@ -8238,11 +8242,11 @@ struct CMUXCLI {
         } else if args.count == 1 {
             subArgs = args
         } else {
-            throw CLIError(message: "Unknown project subcommand: \(first). Usage: cmux project open <path>")
+            throw CLIError(message: "Unknown project subcommand: \(first). Usage: taffy project open <path>")
         }
 
         guard let rawPath = subArgs.first, !rawPath.isEmpty else {
-            throw CLIError(message: "project open requires a path. Usage: cmux project open <path-to-.xcodeproj-or-.xcworkspace>")
+            throw CLIError(message: "project open requires a path. Usage: taffy project open <path-to-.xcodeproj-or-.xcworkspace>")
         }
         let absolutePath = resolvePath(rawPath)
         var params: [String: Any] = ["path": absolutePath]
@@ -8454,7 +8458,7 @@ struct CMUXCLI {
     private func openDirectoryWithLaunchServices(_ directory: String) throws {
         try runOpenTool(
             arguments: ["-a", appLaunchTarget(), directory],
-            failureMessage: localizedFormat("cli.pathOpen.error.openFailed", defaultValue: "Failed to open %@ in cmux", directory),
+            failureMessage: localizedFormat("cli.pathOpen.error.openFailed", defaultValue: "Failed to open %@ in Taffy", directory),
             environment: launchServicesPathOpenEnvironment()
         )
     }
@@ -8581,7 +8585,7 @@ struct CMUXCLI {
     }
 
     private func appLaunchTarget() -> String {
-        CLIExecutableLocator.enclosingAppBundle()?.bundleURL.path ?? "cmux"
+        CLIExecutableLocator.enclosingAppBundle()?.bundleURL.path ?? "Taffy"
     }
 
     private func runFeedback(
@@ -8748,14 +8752,14 @@ struct CMUXCLI {
     private func launchApp() throws {
         try runOpenTool(
             arguments: ["-a", appLaunchTarget()],
-            failureMessage: String(localized: "cli.pathOpen.error.launchFailed", defaultValue: "Failed to launch cmux")
+            failureMessage: String(localized: "cli.pathOpen.error.launchFailed", defaultValue: "Failed to launch Taffy")
         )
     }
 
     private func activateApp() throws {
         try runOpenTool(
             arguments: ["-a", appLaunchTarget()],
-            failureMessage: String(localized: "cli.pathOpen.error.activateFailed", defaultValue: "Failed to activate cmux")
+            failureMessage: String(localized: "cli.pathOpen.error.activateFailed", defaultValue: "Failed to activate Taffy")
         )
     }
 
@@ -9379,7 +9383,7 @@ struct CMUXCLI {
         windowOverride: String?
     ) throws {
         guard let subcommand = commandArgs.first?.lowercased() else {
-            throw CLIError(message: "surface requires a subcommand. Try: cmux surface ls, cmux surface open <resource>, cmux surface resume show --json")
+            throw CLIError(message: "surface requires a subcommand. Try: taffy surface ls, taffy surface open <resource>, taffy surface resume show --json")
         }
         switch subcommand {
         case "resume":
@@ -10613,7 +10617,9 @@ struct CMUXCLI {
     /// dev build regardless of bundle id. No running app required: the value is
     /// read/written directly on disk via the store on this no-socket early path.
     private func runWindowDefaultDisplayCommand(commandArgs: [String], jsonOutput: Bool) throws {
-        let store = JSONConfigStore(fileURL: CmuxConfigLocation().userConfigFile)
+        let locations = CmuxConfigLocation()
+        try locations.migrateLegacyUserConfigIfNeeded()
+        let store = JSONConfigStore(fileURL: locations.userConfigFile)
         let key = SettingCatalog().app.devWindowDisplay
 
         // Bridge the actor-backed store to this synchronous CLI: run the async
@@ -10744,7 +10750,7 @@ struct CMUXCLI {
         case "mode":
             guard let mode = positionals.first?.lowercased(),
                   ["canvas", "splits", "toggle"].contains(mode) else {
-                throw CLIError(message: "Usage: cmux canvas mode <canvas|splits|toggle>")
+                throw CLIError(message: "Usage: taffy canvas mode <canvas|splits|toggle>")
             }
             params["mode"] = mode
             method = "canvas.set_mode"
@@ -10759,7 +10765,7 @@ struct CMUXCLI {
             method = "canvas.set_frame"
         case "align":
             guard let command = positionals.first?.lowercased() else {
-                throw CLIError(message: "Usage: cmux canvas align <tidy|align-left|align-right|align-top|align-bottom|equalize-widths|equalize-heights|distribute-horizontally|distribute-vertically>")
+                throw CLIError(message: "Usage: taffy canvas align <tidy|align-left|align-right|align-top|align-bottom|equalize-widths|equalize-heights|distribute-horizontally|distribute-vertically>")
             }
             params["command"] = command
             method = "canvas.align"
@@ -10771,7 +10777,7 @@ struct CMUXCLI {
         case "zoom":
             guard let direction = positionals.first?.lowercased(),
                   ["in", "out", "reset"].contains(direction) else {
-                throw CLIError(message: "Usage: cmux canvas zoom <in|out|reset>")
+                throw CLIError(message: "Usage: taffy canvas zoom <in|out|reset>")
             }
             params["direction"] = direction
             method = "canvas.zoom"
@@ -10779,7 +10785,7 @@ struct CMUXCLI {
             try surfaceParam(positional: positionals.first, required: true)
             guard let targetRaw = positionals.dropFirst().first ?? optionValue(rest, name: "--target"),
                   let targetId = try normalizeSurfaceHandle(targetRaw, client: client) else {
-                throw CLIError(message: "Usage: cmux canvas join <surface> <target-surface>")
+                throw CLIError(message: "Usage: taffy canvas join <surface> <target-surface>")
             }
             params["target_surface_id"] = targetId
             method = "canvas.join"
@@ -10806,7 +10812,7 @@ struct CMUXCLI {
         case "new-pane":
             if let type = optionValue(rest, name: "--type")?.lowercased() {
                 guard ["terminal", "browser", "simulator"].contains(type) else {
-                    throw CLIError(message: String(localized: "cli.canvas.error.newPaneTypeUsage", defaultValue: "Usage: cmux canvas new-pane [--type terminal|browser|simulator]"))
+                    throw CLIError(message: String(localized: "cli.canvas.error.newPaneTypeUsage", defaultValue: "Usage: taffy canvas new-pane [--type terminal|browser|simulator]"))
                 }
                 params["type"] = type
             }
@@ -10859,7 +10865,7 @@ struct CMUXCLI {
         }
         let positional = commandArgs.filter { !$0.hasPrefix("-") }
         guard let displayName = positional.first, !displayName.isEmpty else {
-            throw CLIError(message: "window display requires a display name. Usage: cmux window display \"LG HDR 4K\"  (list names with: cmux window displays)")
+            throw CLIError(message: "window display requires a display name. Usage: taffy window display \"LG HDR 4K\"  (list names with: taffy window displays)")
         }
         var params: [String: Any] = ["display": displayName]
         if let windowOverride {
@@ -11069,7 +11075,7 @@ struct CMUXCLI {
     static func warnLegacyVerbDeprecated(_ legacy: String, replacement: String) {
         if ProcessInfo.processInfo.environment["CMUX_QUIET"] != nil { return }
         if getenv(cliDeprecationNoticeShownKey) != nil { return }
-        cliWriteStderr("cmux: '\(legacy)' is now an alias for '\(replacement)'. The legacy form keeps working indefinitely; set CMUX_QUIET=1 to silence this notice.\n")
+        cliWriteStderr("taffy: '\(legacy)' is now an alias for '\(replacement)'. The legacy form keeps working indefinitely; set CMUX_QUIET=1 to silence this notice.\n")
         setenv(cliDeprecationNoticeShownKey, "1", 1)
     }
 
@@ -11499,7 +11505,7 @@ struct CMUXCLI {
         }
 
         guard let destination else {
-            throw CLIError(message: "ssh-tmux requires a destination (example: cmux ssh-tmux user@host)")
+            throw CLIError(message: "ssh-tmux requires a destination (example: taffy ssh-tmux user@host)")
         }
 
         var params: [String: Any] = ["host": destination]
@@ -11541,7 +11547,7 @@ struct CMUXCLI {
                 }
                 guard let sshArgv = result["ssh_argv"] as? [String], !sshArgv.isEmpty else {
                     throw CLIError(
-                        message: "ssh-tmux: cmux did not return an ssh command for authentication"
+                        message: "ssh-tmux: taffy did not return an ssh command for authentication"
                     )
                 }
                 try runInteractiveAuthSSH(sshArgv: sshArgv, destination: destination)
@@ -11552,7 +11558,7 @@ struct CMUXCLI {
                 }
                 continue
             }
-            throw CLIError(message: "ssh-tmux: unexpected response from cmux")
+            throw CLIError(message: "ssh-tmux: unexpected response from taffy")
         }
     }
 
@@ -11571,7 +11577,7 @@ struct CMUXCLI {
         // fail opaquely, so refuse early with an actionable message.
         guard isatty(STDIN_FILENO) == 1 else {
             throw CLIError(
-                message: "ssh-tmux: \(destination) needs interactive authentication, which requires a terminal. Run `cmux ssh-tmux \(destination)` directly from an interactive shell."
+                message: "ssh-tmux: \(destination) needs interactive authentication, which requires a terminal. Run `taffy ssh-tmux \(destination)` directly from an interactive shell."
             )
         }
         // The app builds this argv with a hardcoded /usr/bin/ssh; require exactly
@@ -11970,7 +11976,7 @@ struct CMUXCLI {
                         cliWriteStderr(warning)
                     }
                     throw CLIError(
-                        message: "cmux could not resolve the initial terminal surface for persistent SSH PTY startup"
+                        message: "taffy could not resolve the initial terminal surface for persistent SSH PTY startup"
                     )
                 }
             }
@@ -12357,7 +12363,7 @@ struct CMUXCLI {
         }
 
         guard let destination else {
-            throw CLIError(message: "ssh requires a destination (example: cmux ssh user@host)")
+            throw CLIError(message: "ssh requires a destination (example: taffy ssh user@host)")
         }
         let leadingRemoteOptionArguments = undelimitedRemoteCommandArguments.prefix {
             $0.hasPrefix("-")
@@ -13105,7 +13111,7 @@ struct CMUXCLI {
             if let terminalId = opened.terminalId, let remoteWorkspaceId = opened.remoteWorkspaceId,
                !terminalId.isEmpty, !remoteWorkspaceId.isEmpty {
                 print(String(
-                    format: String(localized: "cli.vm.agent.reattach", defaultValue: "Reattach: cmux vm open %1$@/%2$@/%3$@"),
+                    format: String(localized: "cli.vm.agent.reattach", defaultValue: "Reattach: taffy vm open %1$@/%2$@/%3$@"),
                     id, remoteWorkspaceId, terminalId
                 ))
             }
@@ -13143,7 +13149,7 @@ struct CMUXCLI {
             throw CLIError(message: """
                 vm base open: unexpected argument '\(extra)'.
 
-                Base is a single persistent cloud workspace. Use `cmux vm new`
+                Base is a single persistent cloud workspace. Use `taffy vm new`
                 when you want a brand new VM.
                 """)
         }
@@ -13331,11 +13337,11 @@ struct CMUXCLI {
               let kind = cred["kind"] as? String
         else {
             throw CLIError(message: """
-                cmux could not read the attach information for this Cloud VM.
+                taffy could not read the attach information for this Cloud VM.
 
                 What to do:
-                  Retry `cmux vm ssh <id>`.
-                  If it keeps failing, recreate the VM with `cmux vm new` and share the details below.
+                  Retry `taffy vm ssh <id>`.
+                  If it keeps failing, recreate the VM with `taffy vm new` and share the details below.
 
                 Details:
                   Cloud VM attach details were incomplete.
@@ -13345,10 +13351,10 @@ struct CMUXCLI {
             if kind == "authorizedKey" {
                 throw CLIError(
                     message: """
-                        This Cloud VM does not support interactive SSH attach in this cmux build.
+                        This Cloud VM does not support interactive SSH attach in this taffy build.
 
                         What to do:
-                          Update cmux and retry.
+                          Update taffy and retry.
                           If this keeps happening, contact support with the VM id.
 
                         Details:
@@ -13357,11 +13363,11 @@ struct CMUXCLI {
                 )
             }
             throw CLIError(message: """
-                cmux could not use the attach information for this Cloud VM.
+                taffy could not use the attach information for this Cloud VM.
 
                 What to do:
-                  Retry `cmux vm ssh <id>`.
-                  If it keeps failing, recreate the VM with `cmux vm new`.
+                  Retry `taffy vm ssh <id>`.
+                  If it keeps failing, recreate the VM with `taffy vm new`.
 
                 Details:
                   Interactive SSH attach is unavailable for this VM.
@@ -13370,11 +13376,11 @@ struct CMUXCLI {
         guard let token = cred["value"] as? String,
               !token.isEmpty else {
             throw CLIError(message: """
-                cmux could not open an interactive SSH session for this Cloud VM.
+                taffy could not open an interactive SSH session for this Cloud VM.
 
                 What to do:
-                  Retry `cmux vm ssh <id>`.
-                  If it keeps failing, recreate the VM with `cmux vm new`.
+                  Retry `taffy vm ssh <id>`.
+                  If it keeps failing, recreate the VM with `taffy vm new`.
 
                 Details:
                   Cloud VM attach details were incomplete.
@@ -13440,12 +13446,12 @@ struct CMUXCLI {
             print("  host:      \(host)")
             print("  port:      \(port)")
             print("  username:  \(username)")
-            print("  password:  <redacted; run `cmux \(command) ssh \(vmID)` to connect>")
+            print("  password:  <redacted; run `taffy \(command) ssh \(vmID)` to connect>")
         } else {
-            print("This Cloud VM does not support `cmux \(command) ssh-info` in this cmux build.")
+            print("This Cloud VM does not support `taffy \(command) ssh-info` in this taffy build.")
             print("")
             print("What to do:")
-            print("  Update cmux and retry.")
+            print("  Update taffy and retry.")
             print("  If this keeps happening, contact support with the VM id.")
         }
     }
@@ -13455,14 +13461,14 @@ struct CMUXCLI {
         let usesDefaultFreestyleSSHD = hasFlag(remaining, name: "--default-freestyle-sshd")
         let filteredRemaining = remaining.filter { $0 != "--default-freestyle-sshd" }
         if let unknown = filteredRemaining.first(where: { Self.isFlagToken($0) }) {
-            throw CLIError(message: "vm ssh-attach: unknown flag '\(unknown)'. Use `cmux vm ssh-attach --id <vm-id>`.")
+            throw CLIError(message: "vm ssh-attach: unknown flag '\(unknown)'. Use `taffy vm ssh-attach --id <vm-id>`.")
         }
         guard filteredRemaining.isEmpty else {
-            throw CLIError(message: "Usage: cmux vm ssh-attach --id <vm-id>")
+            throw CLIError(message: "Usage: taffy vm ssh-attach --id <vm-id>")
         }
         guard var vmID = vmIDOpt?.trimmingCharacters(in: .whitespacesAndNewlines),
               !vmID.isEmpty else {
-            throw CLIError(message: "Usage: cmux vm ssh-attach --id <vm-id>")
+            throw CLIError(message: "Usage: taffy vm ssh-attach --id <vm-id>")
         }
 
         let attachInfoStartedAt = Date()
@@ -13490,7 +13496,7 @@ struct CMUXCLI {
             ).text
         )
         guard let launchPath = sshArguments.first else {
-            throw CLIError(message: "vm ssh-attach could not construct an ssh command. Retry `cmux vm ssh <id>` from a normal cmux shell.")
+            throw CLIError(message: "vm ssh-attach could not construct an ssh command. Retry `taffy vm ssh <id>` from a normal taffy shell.")
         }
         client.close()
         if let passwordCredential = options.passwordCredential, !passwordCredential.isEmpty {
@@ -13610,10 +13616,10 @@ struct CMUXCLI {
                         The Cloud VM attached to this workspace no longer exists.
 
                         What to do:
-                          Close this workspace and open a fresh Cloud VM workspace with the cloud button or `cmux vm new`.
+                          Close this workspace and open a fresh Cloud VM workspace with the cloud button or `taffy vm new`.
 
                         Details:
-                          cmux will not recreate the VM from inside an attached terminal because that would leave the workspace's saved Cloud VM id stale.
+                          taffy will not recreate the VM from inside an attached terminal because that would leave the workspace's saved Cloud VM id stale.
                         """)
                 }
                 guard usesDefaultFreestyleSSHD,
@@ -13686,22 +13692,22 @@ struct CMUXCLI {
            let url = Self.firstHTTPURL(in: errorText) {
             let reason = String(
                 localized: "cli.vm.sshInfo.retry.localServerOffline",
-                defaultValue: "Waiting for the local cmux web server"
+                defaultValue: "Waiting for the local Taffy web server"
             )
-            return "[cmux] \(reason) at \(url). \(retryText)"
+            return "[taffy] \(reason) at \(url). \(retryText)"
         }
         if errorText.lowercased().contains("provider control plane") {
             let reason = String(
                 localized: "cli.vm.sshInfo.retry.cloudProviderControlPlaneUnavailable",
                 defaultValue: "Waiting for the Cloud VM control plane"
             )
-            return "[cmux] \(reason). \(retryText)"
+            return "[taffy] \(reason). \(retryText)"
         }
         let reason = String(
             localized: "cli.vm.sshInfo.retry.cloudServiceUnavailable",
             defaultValue: "Waiting for the Cloud VM service"
         )
-        return "[cmux] \(reason). \(retryText)"
+        return "[taffy] \(reason). \(retryText)"
     }
 
     private static func retryAttemptLabel(attempt: Int, retryLimit: Int) -> String {
@@ -13911,11 +13917,11 @@ struct CMUXCLI {
               let token = response["token"] as? String,
               let sessionId = response["session_id"] as? String else {
             throw CLIError(message: """
-                cmux could not read the attach information for this Cloud VM.
+                taffy could not read the attach information for this Cloud VM.
 
                 What to do:
-                  Retry `cmux vm ssh <id>`.
-                  If it keeps failing, recreate the VM with `cmux vm new`.
+                  Retry `taffy vm ssh <id>`.
+                  If it keeps failing, recreate the VM with `taffy vm new`.
 
                 Details:
                   Cloud VM attach details were incomplete.
@@ -14201,7 +14207,7 @@ struct CMUXCLI {
             let reconnectingLine = String(
                 format: String(
                     localized: "cli.vm.reconnecting",
-                    defaultValue: "[cmux] connection lost — reconnecting (attempt %d)…"
+                    defaultValue: "[Taffy] connection lost — reconnecting (attempt %d)…"
                 ),
                 attempt
             )
@@ -14272,7 +14278,7 @@ struct CMUXCLI {
             throw CLIError(message: "vm-pty-connect: unknown flag '\(unknown)'")
         }
         guard let configPath else {
-            throw CLIError(message: "Usage: cmux vm-pty-connect --config <path>")
+            throw CLIError(message: "Usage: taffy vm-pty-connect --config <path>")
         }
         let configURL = URL(fileURLWithPath: (configPath as NSString).expandingTildeInPath)
         let data = try Data(contentsOf: configURL)
@@ -14296,14 +14302,14 @@ struct CMUXCLI {
         let usesDefaultFreestyleSSHD = hasFlag(remaining, name: "--default-freestyle-sshd")
         let filteredRemaining = remaining.filter { $0 != "--default-freestyle-sshd" }
         if let unknown = filteredRemaining.first(where: { Self.isFlagToken($0) }) {
-            throw CLIError(message: "vm-pty-attach: unknown flag '\(unknown)'. Use `cmux vm-pty-attach --id <vm-id> [--session <session-id>]`.")
+            throw CLIError(message: "vm-pty-attach: unknown flag '\(unknown)'. Use `taffy vm-pty-attach --id <vm-id> [--session <session-id>]`.")
         }
         guard filteredRemaining.isEmpty else {
-            throw CLIError(message: "Usage: cmux vm-pty-attach --id <vm-id> [--session <session-id>]")
+            throw CLIError(message: "Usage: taffy vm-pty-attach --id <vm-id> [--session <session-id>]")
         }
         guard let vmID = vmIDOpt?.trimmingCharacters(in: .whitespacesAndNewlines),
               !vmID.isEmpty else {
-            throw CLIError(message: "Usage: cmux vm-pty-attach --id <vm-id> [--session <session-id>]")
+            throw CLIError(message: "Usage: taffy vm-pty-attach --id <vm-id> [--session <session-id>]")
         }
         let sessionID = try Self.validatedVMSessionIdentifier(sessionIDOpt, flag: "--session")
         let attachmentID = try Self.validatedVMSessionIdentifier(attachmentIDOpt, flag: "--attachment")
@@ -14375,7 +14381,7 @@ struct CMUXCLI {
                 if sessionID != nil {
                     guard let endpoint = rawResponse["endpoint"] as? [String: Any] else {
                         throw CLIError(message: """
-                            cmux could not read the session attach information for this Cloud VM.
+                            taffy could not read the session attach information for this Cloud VM.
 
                             What to do:
                               Close and reopen this Base terminal.
@@ -14394,10 +14400,10 @@ struct CMUXCLI {
                         The Cloud VM attached to this workspace no longer exists.
 
                         What to do:
-                          Close this workspace and open a fresh Cloud VM workspace with the cloud button or `cmux vm new`.
+                          Close this workspace and open a fresh Cloud VM workspace with the cloud button or `taffy vm new`.
 
                         Details:
-                          cmux will not recreate the VM from inside an attached terminal because that would leave the workspace's saved Cloud VM id stale.
+                          taffy will not recreate the VM from inside an attached terminal because that would leave the workspace's saved Cloud VM id stale.
                         """)
                 }
                 guard usesDefaultFreestyleSSHD,
@@ -14774,7 +14780,7 @@ struct CMUXCLI {
             throw CLIError(message: "ssh-session-list: unknown flag '\(unknown)'. Known flags: --workspace <workspace>, --all-workspaces")
         }
         guard remaining.isEmpty else {
-            throw CLIError(message: "Usage: cmux ssh-session-list [--workspace <workspace> | --all-workspaces]")
+            throw CLIError(message: "Usage: taffy ssh-session-list [--workspace <workspace> | --all-workspaces]")
         }
         if allWorkspaces, workspaceOpt != nil {
             throw CLIError(message: "ssh-session-list: --all-workspaces cannot be combined with --workspace")
@@ -14845,7 +14851,7 @@ struct CMUXCLI {
             throw CLIError(message: "ssh-session-cleanup: unknown flag '\(unknown)'. Known flags: --workspace <workspace>, --session-id <id>, --all, --all-workspaces")
         }
         guard remaining.isEmpty else {
-            throw CLIError(message: "Usage: cmux ssh-session-cleanup [--workspace <workspace> | --all-workspaces] (--session-id <id> | --all)")
+            throw CLIError(message: "Usage: taffy ssh-session-cleanup [--workspace <workspace> | --all-workspaces] (--session-id <id> | --all)")
         }
         if closeAll == (sessionIDOpt != nil) {
             throw CLIError(message: "ssh-session-cleanup requires exactly one of --session-id <id> or --all")
@@ -15039,7 +15045,7 @@ struct CMUXCLI {
             throw CLIError(message: "ssh-session-attach: unknown flag '\(unknown)'. Known flags: --workspace <workspace>, --session-id <id>, --pane <pane>, --surface <surface>, --split <direction>, --focus <true|false>")
         }
         guard remaining.isEmpty else {
-            throw CLIError(message: "Usage: cmux ssh-session-attach --session-id <id> [--workspace <workspace>] [--pane <pane> | --split <left|right|up|down> [--surface <surface>]]")
+            throw CLIError(message: "Usage: taffy ssh-session-attach --session-id <id> [--workspace <workspace>] [--pane <pane> | --split <left|right|up|down> [--surface <surface>]]")
         }
         guard let sessionID = sessionIDOpt?.trimmingCharacters(in: .whitespacesAndNewlines),
               !sessionID.isEmpty else {
@@ -15125,9 +15131,9 @@ struct CMUXCLI {
             "cmux_ssh_attach_cli=\"${CMUX_BUNDLED_CLI_PATH:-}\"",
             "if [ -z \"$cmux_ssh_attach_cli\" ] || [ ! -x \"$cmux_ssh_attach_cli\" ]; then cmux_ssh_attach_cli=\(currentExecutable); fi",
             "if [ -z \"$cmux_ssh_attach_cli\" ] || [ ! -x \"$cmux_ssh_attach_cli\" ]; then cmux_ssh_attach_cli=\"$(command -v cmux 2>/dev/null || true)\"; fi",
-            "if [ -z \"$cmux_ssh_attach_cli\" ]; then printf '%s\\n' '[cmux] bundled CLI not found for SSH PTY attach.' >&2; exit 127; fi",
-            "if [ -z \"${CMUX_SOCKET_PATH:-}\" ]; then printf '%s\\n' '[cmux] required configuration missing for SSH PTY attach.' >&2; exit 1; fi",
-            "if [ -z \"${CMUX_WORKSPACE_ID:-}\" ]; then printf '%s\\n' '[cmux] required workspace context missing for SSH PTY attach.' >&2; exit 1; fi",
+            "if [ -z \"$cmux_ssh_attach_cli\" ]; then printf '%s\\n' '[taffy] bundled CLI not found for SSH PTY attach.' >&2; exit 127; fi",
+            "if [ -z \"${CMUX_SOCKET_PATH:-}\" ]; then printf '%s\\n' '[taffy] required configuration missing for SSH PTY attach.' >&2; exit 1; fi",
+            "if [ -z \"${CMUX_WORKSPACE_ID:-}\" ]; then printf '%s\\n' '[taffy] required workspace context missing for SSH PTY attach.' >&2; exit 1; fi",
             "cmux_ssh_attach_register_attempt() { cmux_ssh_attach_launch_payload=\"{\\\"workspace_id\\\":\\\"$CMUX_WORKSPACE_ID\\\",\\\"surface_id\\\":\\\"${CMUX_SURFACE_ID:-}\\\",\\\"terminal_lifecycle_id\\\":\\\"${CMUX_TERMINAL_LIFECYCLE_ID:-}\\\",\\\"attempt_id\\\":\\\"$CMUX_SSH_ATTEMPT_ID\\\"}\"; CMUXTERM_CLI_RESPONSE_TIMEOUT_SEC=2 \"$cmux_ssh_attach_cli\" --socket \"$CMUX_SOCKET_PATH\" rpc workspace.remote.terminal_session_launching \"$cmux_ssh_attach_launch_payload\" >/dev/null 2>&1; }",
             "cmux_ssh_attach_begin_attempt() { CMUX_SSH_ATTEMPT_ID=$(/usr/bin/uuidgen | /usr/bin/tr '[:upper:]' '[:lower:]') || return 1; export CMUX_SSH_ATTEMPT_ID; cmux_ssh_attach_attempt_registration_retry=0; while ! cmux_ssh_attach_register_attempt; do cmux_ssh_attach_attempt_registration_retry=$((cmux_ssh_attach_attempt_registration_retry + 1)); if [ \"$cmux_ssh_attach_attempt_registration_retry\" -ge 3 ]; then return 1; fi; /bin/sleep 0.1; done; }",
             "cmux_ssh_attach_attempt() { cmux_ssh_attach_begin_attempt || return 1; \(attachCommand); }",
@@ -15182,7 +15188,7 @@ struct CMUXCLI {
         guard remaining.isEmpty,
               let lifecycleID = lifecycleIDOpt?.trimmingCharacters(in: .whitespacesAndNewlines),
               !lifecycleID.isEmpty else {
-            throw CLIError(message: "Usage: cmux ssh-pty-attach --workspace <workspace> --session-id <id> [--attachment-id <id>] [--command-b64 <base64>] [--require-existing]")
+            throw CLIError(message: "Usage: taffy ssh-pty-attach --workspace <workspace> --session-id <id> [--attachment-id <id>] [--command-b64 <base64>] [--require-existing]")
         }
         let workspaceRaw = workspaceOpt ?? ProcessInfo.processInfo.environment["CMUX_WORKSPACE_ID"]
         guard let workspaceRaw,
@@ -15926,8 +15932,8 @@ struct CMUXCLI {
             "if [ -z \"$cmux_reconnect_cli\" ] && [ -n \"${CMUX_BUNDLED_CLI_PATH:-}\" ]; then cmux_reconnect_cli=\"$CMUX_BUNDLED_CLI_PATH\"; fi;",
             "if [ ! -x \"$cmux_reconnect_cli\" ]; then cmux_reconnect_cli=\"$(command -v cmux 2>/dev/null || true)\"; fi;",
             "if [ -n \"${CMUX_WORKSPACE_ID:-}\" ]; then",
-            "if [ -z \"$cmux_reconnect_socket\" ]; then printf '%s\\n' 'cmux: deferred SSH reconnect skipped, local cmux socket not found' >&2;",
-            "elif [ -z \"$cmux_reconnect_cli\" ] || [ ! -x \"$cmux_reconnect_cli\" ]; then printf '%s\\n' 'cmux: deferred SSH reconnect skipped, local cmux CLI not found' >&2;",
+            "if [ -z \"$cmux_reconnect_socket\" ]; then printf '%s\\n' 'taffy: deferred SSH reconnect skipped, local taffy socket not found' >&2;",
+            "elif [ -z \"$cmux_reconnect_cli\" ] || [ ! -x \"$cmux_reconnect_cli\" ]; then printf '%s\\n' 'taffy: deferred SSH reconnect skipped, local taffy CLI not found' >&2;",
             "else",
             "cmux_reconnect_token=\(quotedForegroundAuthToken);",
             "cmux_reconnect_payload=\"{\\\"workspace_id\\\":\\\"$CMUX_WORKSPACE_ID\\\",\\\"foreground_auth_token\\\":\\\"$cmux_reconnect_token\\\"}\";",
@@ -16173,7 +16179,7 @@ struct CMUXCLI {
                 lines.append("ready_state: \(readyState)")
             }
             if url.isEmpty || url == "about:blank" {
-                lines.append("hint: run 'cmux browser <surface> get url' to verify navigation")
+                lines.append("hint: run 'taffy browser <surface> get url' to verify navigation")
             }
 
             return lines.joined(separator: "\n")
@@ -16455,7 +16461,7 @@ struct CMUXCLI {
             if let first = unsupportedPositionals.first {
                 let normalized = first.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
                 if normalized == "cookie" || normalized == "cookies" {
-                    throw CLIError(message: "browser import no longer takes a data type; use 'cmux browser import'")
+                    throw CLIError(message: "browser import no longer takes a data type; use 'taffy browser import'")
                 }
                 throw CLIError(message: "browser import does not accept positional arguments")
             }
@@ -18050,7 +18056,7 @@ struct CMUXCLI {
             if let id = focused["id"] as? String { return id }
         }
 
-        throw CLIError(message: "Couldn't resolve a surface ID. Pass --surface or run 'cmux list-pane-surfaces' to list surfaces.")
+        throw CLIError(message: "Couldn't resolve a surface ID. Pass --surface or run 'taffy list-pane-surfaces' to list surfaces.")
     }
 
     /// Resolves the target shared by `notify` creation and `notify --clear`.
@@ -18222,7 +18228,7 @@ struct CMUXCLI {
         )
         switch command {
         case "agent":
-            return Self.vmAgentUsage.replacingOccurrences(of: "cmux vm agent", with: "cmux agent")
+            return Self.vmAgentUsage.replacingOccurrences(of: "taffy vm agent", with: "taffy agent")
         case "remotes", "remote":
             return Self.remotesUsage
         case "todo":
@@ -18237,15 +18243,15 @@ struct CMUXCLI {
             return Self.coderouterUsage
         case "ping":
             return """
-            Usage: cmux ping
+            Usage: taffy ping
 
-            Check connectivity to the cmux socket server.
+            Check connectivity to the taffy socket server.
             """
         case "iroh-diag":
             return String(
                 localized: "cli.help.irohDiag",
                 defaultValue: """
-                Usage: cmux iroh-diag
+                Usage: taffy iroh-diag
 
                 Print the host's Iroh Connection Report as a plain-language timeline,
                 the same data as Settings > Networking > Connection Report.
@@ -18253,13 +18259,13 @@ struct CMUXCLI {
             )
         case "capabilities":
             return """
-            Usage: cmux capabilities
+            Usage: taffy capabilities
 
             Print server capabilities as JSON.
             """
         case "canvas":
             return """
-            Usage: cmux canvas <subcommand> [args] [--workspace <id|ref>]
+            Usage: taffy canvas <subcommand> [args] [--workspace <id|ref>]
 
             Control a workspace's freeform canvas layout.
 
@@ -18284,11 +18290,11 @@ struct CMUXCLI {
               select-tab <surface>          Select a surface as its pane's visible tab
 
             Example:
-              cmux canvas mode canvas
-              cmux canvas set-frame surface:1 --x 0 --y 0 --width 800 --height 520
-              cmux canvas set-viewport --x 400 --y 260 --zoom 1.0
-              cmux canvas new-pane --type terminal
-              cmux canvas align tidy
+              taffy canvas mode canvas
+              taffy canvas set-frame surface:1 --x 0 --y 0 --width 800 --height 520
+              taffy canvas set-viewport --x 400 --y 260 --zoom 1.0
+              taffy canvas new-pane --type terminal
+              taffy canvas align tidy
             """
         case "simulator":
             return simulatorSubcommandUsage()
@@ -18304,9 +18310,9 @@ struct CMUXCLI {
                 defaultValue: "Print the subscription snapshot and exit"
             )
             return """
-            Usage: cmux events [options]
+            Usage: taffy events [options]
 
-            Stream cmux events as newline-delimited JSON.
+            Stream taffy events as newline-delimited JSON.
 
             Options:
               --after <seq>          Replay retained events after this sequence
@@ -18321,30 +18327,30 @@ struct CMUXCLI {
               --no-heartbeat         Do not print heartbeat frames
 
             Examples:
-              cmux events --category notification
-              cmux events --cursor-file ~/.cache/cmux/events.seq --reconnect
-              cmux events --after 42 --name feed.item.received
+              taffy events --category notification
+              taffy events --cursor-file ~/.cache/cmux/events.seq --reconnect
+              taffy events --after 42 --name feed.item.received
             """
         case "automation":
             return CMUXCLI.automationUsage()
         case "vpn":
             return """
-            Usage: cmux vpn <up|down|status|revoke>
+            Usage: taffy vpn <up|down|status|revoke>
 
             The WireGuard tunnel between this Mac and your private Cloud VM
-            network. cmux's own terminals, Ports, and Desktop panes use a
+            network. taffy's own terminals, Ports, and Desktop panes use a
             user-space WireGuard tunnel that starts automatically and needs no
-            system approval. `cmux vpn up` adds a system-wide route through the
+            system approval. `taffy vpn up` adds a system-wide route through the
             signed Network Extension so other apps on this Mac (your browser,
             ssh, `.internal` hostnames) can reach VM addresses too.
 
-            Only `cmux vpn up` ever asks macOS to load the extension. The first
+            Only `taffy vpn up` ever asks macOS to load the extension. The first
             time, macOS asks you to allow it in System Settings › General ›
             Login Items & Extensions; the Machines panel shows that wait with a
-            button to the right pane. cmux does not run sudo.
+            button to the right pane. taffy does not run sudo.
 
             up      Start the system-wide tunnel now and keep it up until
-                    `cmux vpn down`.
+                    `taffy vpn down`.
             down    Take the tunnel down. Enrollment is kept.
             status  Show tunnel state, config path, and backend.
             revoke  Stop both tunnel roles and remove this Mac's Cloud access.
@@ -18357,23 +18363,23 @@ struct CMUXCLI {
             """
         case "auth":
             return """
-            Usage: cmux auth <status|login|logout>
+            Usage: taffy auth <status|login|logout>
 
-            status   Print whether the user is signed in (add `cmux --json` for JSON).
-            login    Open the sign-in popup on the cmux web app and wait for it to finish.
+            status   Print whether the user is signed in (add `taffy --json` for JSON).
+            login    Open the sign-in popup on the taffy web app and wait for it to finish.
             logout   Clear the current session.
             """
         case "login":
             return """
-            Usage: cmux login
+            Usage: taffy login
 
-            Alias for `cmux auth login`.
+            Alias for `taffy auth login`.
             """
         case "logout":
             return """
-            Usage: cmux logout
+            Usage: taffy logout
 
-            Alias for `cmux auth logout`.
+            Alias for `taffy auth logout`.
             """
         case "vm", "cloud":
             let domainsDescription = String(
@@ -18382,14 +18388,14 @@ struct CMUXCLI {
             )
             let resizeDescription = String(
                 localized: "cli.vm.resize.helpDescription",
-                defaultValue: "Grow an existing machine's CPU, memory, or disk; see `cmux vm resize --help`."
+                defaultValue: "Grow an existing machine's CPU, memory, or disk; see `taffy vm resize --help`."
             )
             return """
-            Usage: cmux \(command) <base|new|ls|domains|tree|self|status|stats|resize|rename|pause|resume|snapshot|fork|restore|rm|run|route|agent|dev|prompt|exec|push|pull|wait|shell|tui|desktop|open|workspace|terminal|tab|layout|env|ports|tools|handoff|promote-template|attach|ssh|ssh-info> [args...]
+            Usage: taffy \(command) <base|new|ls|domains|tree|self|status|stats|resize|rename|pause|resume|snapshot|fork|restore|rm|run|route|agent|dev|prompt|exec|push|pull|wait|shell|tui|desktop|open|workspace|terminal|tab|layout|env|ports|tools|handoff|promote-template|attach|ssh|ssh-info> [args...]
 
-            `cmux vm <verb> --help` prints that verb's own usage.
+            `taffy vm <verb> --help` prints that verb's own usage.
 
-            Manage cloud VMs. `cloud` is an alias for `vm`. Requires `cmux auth login`.
+            Manage cloud VMs. `cloud` is an alias for `vm`. Requires `taffy auth login`.
             Machines live on your private network with no public ports. Terminal
             and metadata access starts a user-space WireGuard tunnel automatically.
             Opening a private Cloud URL starts the signed Network Extension tunnel
@@ -18432,8 +18438,8 @@ struct CMUXCLI {
                                         --json adds next_offset to read only what is new.
               layout export <machine> [<ws-id|name>] [--raw]
                                         Print a machine workspace's layout as a declarative
-                                        layout document (the same JSON `cmux layout`,
-                                        `new-workspace --layout`, and cmux.json use);
+                                        layout document (the same JSON `taffy layout`,
+                                        `new-workspace --layout`, and taffy.json use);
                                         --raw prints the daemon's own LayoutDocument.
               layout apply <machine> (<file>|-|--from-saved <name>) [--workspace <ws-id>] [--name <n>] [--cwd <dir>] [--open]
                                         Build panes, splits, and tabs on the machine from a
@@ -18441,7 +18447,7 @@ struct CMUXCLI {
                                         --open then shows it here with the same geometry.
               env set <machine> KEY=VALUE… [--from-file <.env>]
                                         Set environment variables for every terminal, agent,
-                                        and command cmux starts on the machine (persisted in
+                                        and command taffy starts on the machine (persisted in
                                         its ~/.config/cmux/env; names only are echoed back).
               env ls <machine> [--show]  List them (names; --show adds values).
               env rm <machine> KEY…      Remove them.
@@ -18458,7 +18464,7 @@ struct CMUXCLI {
                                         address
                                         `vm open` / `surface open` accepts.
               self <machine> [<path>]   Who the machine is, as the platform sees it: the
-                                        reflection `cmux self` prints inside it (name,
+                                        reflection `taffy self` prints inside it (name,
                                         owner, team, plan; paths owner|machine|peers|
                                         integrations) — read through your session, no
                                         shell started.
@@ -18515,8 +18521,8 @@ struct CMUXCLI {
                                         Mint a private HTTPS URL for an HTTP port on the VM
                                         and show it in a browser split. --print only prints.
               ssh <id> [--window <id|ref|index>]
-                                        Drop into a cmux-managed SSH workspace for an existing
-                                        VM, using the same session path as `cmux ssh`.
+                                        Drop into a Taffy-managed SSH workspace for an existing
+                                        VM, using the same session path as `taffy ssh`.
               ssh-info <id>             Print SSH connection details when the Cloud VM
                                         exposes SSH.
               pause <id>                Park the machine: compute stops (and stops billing);
@@ -18553,7 +18559,7 @@ struct CMUXCLI {
               push --secret <id> <local-file> [remote] [--mode <octal>]
                                         A file that must never transit the control plane
                                         (token, deploy key, .npmrc): over the machine's link
-                                        into `cmux file receive`, mode 600 by default.
+                                        into `taffy file receive`, mode 600 by default.
               pull <id> <remote> [local]
                                         Copy a file or directory from the VM to local disk.
                                         Alias: `download`.
@@ -18566,32 +18572,32 @@ struct CMUXCLI {
               promote-template <id>     Snapshot a VM with a template-oriented name.
 
             Env:
-              CMUX_VM_API_BASE_URL       Override the backend origin (default: the cmux website).
+              CMUX_VM_API_BASE_URL       Override the backend origin (default: the taffy website).
                                          `bun run dev` derives this from CMUX_PORT/PORT for
                                          local testing from the web worktree.
 
             Example:
-              cmux vm base open
-              cmux vm base reset
-              cmux vm new
-              cmux vm ls
-              cmux vm fork <id>
-              cmux cloud exec <id> -- echo hello
-              cmux vm rm <id>
+              taffy vm base open
+              taffy vm base reset
+              taffy vm new
+              taffy vm ls
+              taffy vm fork <id>
+              taffy cloud exec <id> -- echo hello
+              taffy vm rm <id>
             """
         case "rpc":
             return """
-            Usage: cmux rpc <method> [json-params]
+            Usage: taffy rpc <method> [json-params]
 
             Call a raw v2 method with an optional JSON object for params.
-            Example: cmux rpc surface.report_tty '{"workspace_id":"...","surface_id":"...","tty_name":"ttys001"}'
+            Example: taffy rpc surface.report_tty '{"workspace_id":"...","surface_id":"...","tty_name":"ttys001"}'
             """
         case "help":
             return """
-            Usage: cmux help
+            Usage: taffy help
 
             Show top-level CLI usage and command list.
-            Also works without a running cmux app or socket.
+            Also works without a running taffy app or socket.
             """
         case "docs":
             return docsUsage()
@@ -18601,71 +18607,71 @@ struct CMUXCLI {
             return configUsage()
         case "welcome":
             return """
-            Usage: cmux welcome
+            Usage: taffy welcome
 
-            Show a welcome screen with the cmux logo and useful shortcuts.
+            Show a welcome screen with the taffy logo and useful shortcuts.
             Auto-runs once on first launch.
             """
         case "shortcuts":
             return """
-            Usage: cmux shortcuts
+            Usage: taffy shortcuts
 
             Open the Settings window to Keyboard Shortcuts.
             """
         case "disable-browser":
             return """
-            Usage: cmux disable-browser [--json]
+            Usage: taffy disable-browser [--json]
 
-            Disable cmux browser creation and link interception. This overrides
-            browser settings from cmux.json until re-enabled.
+            Disable taffy browser creation and link interception. This overrides
+            browser settings from taffy.json until re-enabled.
             """
         case "enable-browser":
             return """
-            Usage: cmux enable-browser [--json]
+            Usage: taffy enable-browser [--json]
 
-            Re-enable cmux browser creation and link interception.
+            Re-enable taffy browser creation and link interception.
             """
         case "browser-status":
             return """
-            Usage: cmux browser-status [--json]
+            Usage: taffy browser-status [--json]
 
-            Print whether cmux browser creation and link interception are enabled.
+            Print whether taffy browser creation and link interception are enabled.
             """
         case "agent-hibernation":
             return """
-            Usage: cmux agent-hibernation <on|off> [--json]
+            Usage: taffy agent-hibernation <on|off> [--json]
 
             Enable or disable routine Agent Hibernation.
-            Configure idle and live-terminal limits from Settings or cmux settings JSON.
+            Configure idle and live-terminal limits from Settings or taffy settings JSON.
             """
         case "restore-session":
             return """
-            Usage: cmux restore-session
+            Usage: taffy restore-session
 
-            Reopen the previous saved cmux session.
+            Reopen the previous saved taffy session.
 
             If the app is already running, this restores the last saved session into the current app.
-            If the app is not running, this launches cmux and lets startup restore reopen the saved session.
+            If the app is not running, this launches taffy and lets startup restore reopen the saved session.
             """
         case "restore":
             return String(localized: "cli.restore.help", defaultValue: """
-            Usage: cmux restore [--surface <id|ref>] <kind> <checkpoint-id>
-                   cmux restore <kind> <checkpoint-id> --surface <id|ref>
-                   cmux restore --surface=<id|ref> <kind> <checkpoint-id>
-                   cmux restore --surface [id|ref]
+            Usage: taffy restore [--surface <id|ref>] <kind> <checkpoint-id>
+                   taffy restore <kind> <checkpoint-id> --surface <id|ref>
+                   taffy restore --surface=<id|ref> <kind> <checkpoint-id>
+                   taffy restore --surface [id|ref]
 
             Replace this CLI process with the persisted surface process. New
             records preserve launch arguments and cwd as structured values;
             command-only records from older builds use a compatibility shell.
-            With no id or ref, --surface uses the calling cmux surface.
+            With no id or ref, --surface uses the calling Taffy surface.
             """)
         case "fork":
             return forkSubcommandUsage()
         case "sessions", "session-debug": return sessionsUsage()
         case "feedback":
             return """
-            Usage: cmux feedback
-                   cmux feedback --email <email> --body <text> [--image <path> ...]
+            Usage: taffy feedback
+                   taffy feedback --email <email> --body <text> [--image <path> ...]
 
             Without args, open the Send Feedback modal in the running app.
 
@@ -18682,8 +18688,8 @@ struct CMUXCLI {
             """
         case "feed":
             return """
-            Usage: cmux feed tui [--opentui|--legacy]
-                   cmux feed clear [--yes|-y]
+            Usage: taffy feed tui [--opentui|--legacy]
+                   taffy feed clear [--yes|-y]
 
             Open the keyboard-first Feed TUI or manage persisted Feed workstream history.
 
@@ -18693,15 +18699,15 @@ struct CMUXCLI {
             """
         case "hooks":
             return """
-            Usage: cmux hooks setup [agent] [--agent <name>] [--yes|-y]
-                   cmux hooks uninstall [agent] [--agent <name>] [--yes|-y]
-                   cmux hooks <agent> install [--yes|-y] (opencode supports --project)
-                   cmux hooks <agent> uninstall [--yes|-y] (opencode supports --project)
-                   cmux hooks <agent> <event> [flags]
-                   cmux hooks feed --source <agent> [--event <event>]
+            Usage: taffy hooks setup [agent] [--agent <name>] [--yes|-y]
+                   taffy hooks uninstall [agent] [--agent <name>] [--yes|-y]
+                   taffy hooks <agent> install [--yes|-y] (opencode supports --project)
+                   taffy hooks <agent> uninstall [--yes|-y] (opencode supports --project)
+                   taffy hooks <agent> <event> [flags]
+                   taffy hooks feed --source <agent> [--event <event>]
 
-            Manage and run cmux agent hooks without adding one top-level command per
-            agent. Claude Code hooks are injected automatically by the cmux Claude wrapper.
+            Manage and run taffy agent hooks without adding one top-level command per
+            agent. Claude Code hooks are injected automatically by the taffy Claude wrapper.
 
             Agents:
               codex, grok, opencode, pi, omp, campfire, amp, cursor, gemini, kiro, antigravity (alias: agy), rovodev (alias: rovo), hermes-agent, copilot, codebuddy, factory, qoder
@@ -18725,23 +18731,23 @@ struct CMUXCLI {
               See docs/agent-hooks.md for the full integration matrix.
 
             Examples:
-              cmux hooks setup
-              cmux hooks setup --agent codex
-              cmux hooks setup rovo
-              cmux hooks setup omp
-              cmux hooks uninstall rovo
-              cmux hooks codex install
-              cmux hooks opencode install --project
-              cmux hooks uninstall
+              taffy hooks setup
+              taffy hooks setup --agent codex
+              taffy hooks setup rovo
+              taffy hooks setup omp
+              taffy hooks uninstall rovo
+              taffy hooks codex install
+              taffy hooks opencode install --project
+              taffy hooks uninstall
             """
         case "themes":
             return """
-            Usage: cmux themes
-                   cmux themes list
-                   cmux themes set <theme>
-                   cmux themes set --light <theme> [--dark <theme>]
-                   cmux themes set --dark <theme> [--light <theme>]
-                   cmux themes clear
+            Usage: taffy themes
+                   taffy themes list
+                   taffy themes set <theme>
+                   taffy themes set --light <theme> [--dark <theme>]
+                   taffy themes set --dark <theme> [--light <theme>]
+                   taffy themes clear
 
             When run in a TTY, `cmux themes` opens an interactive theme picker with
             live app preview. Use `cmux themes list` for a plain listing.
@@ -18757,109 +18763,109 @@ struct CMUXCLI {
               clear                     Remove the cmux theme override and fall back to other config
 
             Examples:
-              cmux themes
-              cmux themes list
-              cmux themes set "Catppuccin Mocha"
-              cmux themes set --light "Catppuccin Latte" --dark "Catppuccin Mocha"
-              cmux themes clear
+              taffy themes
+              taffy themes list
+              taffy themes set "Catppuccin Mocha"
+              taffy themes set --light "Catppuccin Latte" --dark "Catppuccin Mocha"
+              taffy themes clear
             """
         case "claude-teams":
             return String(localized: "cli.claude-teams.usage", defaultValue: """
-            Usage: cmux claude-teams [claude-args...]
+            Usage: taffy claude-teams [claude-args...]
 
             Launch Claude Code with agent teams enabled.
 
             This command:
               - defaults Claude teammate mode to auto
-              - sets a tmux-like environment so Claude auto mode uses cmux splits
+              - sets a tmux-like environment so Claude auto mode uses Taffy splits
               - sets CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
               - prepends a private tmux shim to PATH
               - forwards all remaining arguments to claude
 
-            The tmux shim translates supported tmux window/pane commands into cmux
-            workspace and split operations in the current cmux session.
+            The tmux shim translates supported tmux window/pane commands into Taffy
+            workspace and split operations in the current Taffy session.
 
             Examples:
-              cmux claude-teams
-              cmux claude-teams --continue
-              cmux claude-teams --model sonnet
+              taffy claude-teams
+              taffy claude-teams --continue
+              taffy claude-teams --model sonnet
             """)
         case "codex-teams":
             return String(localized: "cli.codex-teams.usage", defaultValue: """
-            Usage: cmux codex-teams [codex-args...]
+            Usage: taffy codex-teams [codex-args...]
 
-            Launch Codex with cmux-managed subagent panes.
+            Launch Codex with Taffy-managed subagent panes.
 
             This command:
               - starts a private Codex app-server on localhost
               - launches the root Codex TUI against that app-server
               - watches live Codex thread-spawn subagents
-              - opens subagents up to depth 2 as native cmux splits
+              - opens subagents up to depth 2 as native Taffy splits
               - forwards all remaining arguments to codex
 
             Examples:
-              cmux codex-teams
-              cmux codex-teams --model gpt-5.4
-              cmux codex-teams resume --last
+              taffy codex-teams
+              taffy codex-teams --model gpt-5.4
+              taffy codex-teams resume --last
             """)
         case "omo":
             return String(localized: "cli.omo.usage", defaultValue: """
-            Usage: cmux omo [opencode-args...]
+            Usage: taffy omo [opencode-args...]
 
-            Launch OpenCode with oh-my-openagent in a cmux-aware environment.
+            Launch OpenCode with oh-my-openagent in a Taffy-aware environment.
 
             oh-my-openagent orchestrates multiple AI models as specialized agents in
             parallel. This command sets up a tmux shim so agent panes become native
-            cmux splits with sidebar metadata and notifications.
+            taffy splits with sidebar metadata and notifications.
 
             This command:
-              - sets a tmux-like environment so oh-my-openagent uses cmux splits
+              - sets a tmux-like environment so oh-my-openagent uses Taffy splits
               - prepends a private tmux shim to PATH
               - forwards all remaining arguments to opencode
 
-            The tmux shim translates tmux window/pane commands into cmux workspace
-            and split operations in the current cmux session.
+            The tmux shim translates tmux window/pane commands into taffy workspace
+            and split operations in the current Taffy session.
 
             Examples:
-              cmux omo
-              cmux omo --continue
-              cmux omo --model claude-sonnet-4-6
+              taffy omo
+              taffy omo --continue
+              taffy omo --model claude-sonnet-4-6
             """)
         case "omx":
             return String(localized: "cli.omx.usage", defaultValue: """
-            Usage: cmux omx [omx-args...]
+            Usage: taffy omx [omx-args...]
 
-            Launch Oh My Codex (OMX) with native cmux pane integration.
+            Launch Oh My Codex (OMX) with native Taffy pane integration.
 
             OMX is a multi-agent orchestration layer for OpenAI Codex CLI. This
             command sets up a tmux shim so OMX team mode, HUD, and agent panes
-            become native cmux splits.
+            become native Taffy splits.
 
             This command:
-              - sets a tmux-like environment so OMX uses cmux splits
+              - sets a tmux-like environment so OMX uses Taffy splits
               - prepends a private tmux shim to PATH
               - forwards all remaining arguments to omx
 
             Install: npm install -g oh-my-codex
 
             Examples:
-              cmux omx
-              cmux omx --madmax --high
-              cmux omx team
+              taffy omx
+              taffy omx --madmax --high
+              taffy omx team
             """)
         case "omc":
             return String(localized: "cli.omc.usage", defaultValue: """
-            Usage: cmux omc [omc-args...]
+            Usage: taffy omc [omc-args...]
 
-            Launch Oh My Claude Code (OMC) with native cmux pane integration.
+            Launch Oh My Claude Code (OMC) with native Taffy pane integration.
 
             OMC is a multi-agent orchestration system for Claude Code with
             specialized agents, smart model routing, and team pipelines. This
             command sets up a tmux shim so OMC team mode and agent panes become
-            native cmux splits.
+            native Taffy splits.
 
             This command:
-              - sets a tmux-like environment so OMC uses cmux splits
+              - sets a tmux-like environment so OMC uses Taffy splits
               - prepends a private tmux shim to PATH
               - injects NODE_OPTIONS restore module for Claude compatibility
               - forwards all remaining arguments to omc
@@ -18867,13 +18873,13 @@ struct CMUXCLI {
             Install: npm install -g oh-my-claude-sisyphus
 
             Examples:
-              cmux omc
-              cmux omc team 3:claude "implement feature"
-              cmux omc --watch
+              taffy omc
+              taffy omc team 3:claude "implement feature"
+              taffy omc --watch
             """)
         case "identify":
             return """
-            Usage: cmux identify [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--no-caller]
+            Usage: taffy identify [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--no-caller]
 
             Print server identity and caller context details.
 
@@ -18885,28 +18891,28 @@ struct CMUXCLI {
             """
         case "list-windows":
             return """
-            Usage: cmux list-windows
+            Usage: taffy list-windows
 
             List open windows.
             """
         case "current-window":
             return """
-            Usage: cmux current-window
+            Usage: taffy current-window
 
             Print the currently selected window ID.
             """
         case "new-window":
             return """
-            Usage: cmux new-window
+            Usage: taffy new-window
 
             Create a new window.
 
             Example:
-              cmux new-window
+              taffy new-window
             """
         case "focus-window":
             return """
-            Usage: cmux focus-window --window <id|ref|index>
+            Usage: taffy focus-window --window <id|ref|index>
 
             Focus (bring to front) the specified window.
 
@@ -18914,12 +18920,12 @@ struct CMUXCLI {
               --window <id|ref|index>   Window to focus (required)
 
             Example:
-              cmux focus-window --window 0
-              cmux focus-window --window window:1
+              taffy focus-window --window 0
+              taffy focus-window --window window:1
             """
         case "close-window":
             return """
-            Usage: cmux close-window --window <id|ref|index>
+            Usage: taffy close-window --window <id|ref|index>
 
             Close the specified window.
 
@@ -18927,12 +18933,12 @@ struct CMUXCLI {
               --window <id|ref|index>   Window to close (required)
 
             Example:
-              cmux close-window --window 0
-              cmux close-window --window window:1
+              taffy close-window --window 0
+              taffy close-window --window window:1
             """
         case "move-workspace-to-window":
             return """
-            Usage: cmux move-workspace-to-window --workspace <id|ref|index> --window <id|ref|index>
+            Usage: taffy move-workspace-to-window --workspace <id|ref|index> --window <id|ref|index>
 
             Move a workspace to a different window.
 
@@ -18941,11 +18947,11 @@ struct CMUXCLI {
               --window <id|ref|index>      Target window (required)
 
             Example:
-              cmux move-workspace-to-window --workspace workspace:2 --window window:1
+              taffy move-workspace-to-window --workspace workspace:2 --window window:1
             """
         case "move-surface":
             return """
-            Usage: cmux move-surface [--surface <id|ref|index> | <id|ref|index>] [flags]
+            Usage: taffy move-surface [--surface <id|ref|index> | <id|ref|index>] [flags]
 
             Move a surface to a different pane, workspace, or window.
 
@@ -18964,12 +18970,12 @@ struct CMUXCLI {
               --focus <true|false>       Focus the surface after moving
 
             Example:
-              cmux move-surface --surface surface:1 --workspace workspace:2
-              cmux move-surface surface:1 --pane pane:2 --index 0
+              taffy move-surface --surface surface:1 --workspace workspace:2
+              taffy move-surface surface:1 --pane pane:2 --index 0
             """
         case "reorder-surface":
             return """
-            Usage: cmux reorder-surface [--surface <id|ref|index> | <id|ref|index>] [flags]
+            Usage: taffy reorder-surface [--surface <id|ref|index> | <id|ref|index>] [flags]
 
             Reorder a surface within its pane.
 
@@ -18987,12 +18993,12 @@ struct CMUXCLI {
               --focus <true|false>       Focus the surface after reordering
 
             Example:
-              cmux reorder-surface --surface surface:1 --index 0
-              cmux reorder-surface --surface surface:3 --after surface:1
+              taffy reorder-surface --surface surface:1 --index 0
+              taffy reorder-surface --surface surface:3 --after surface:1
             """
         case "reorder-workspace":
             return """
-            Usage: cmux reorder-workspace [--workspace <id|ref|index> | <id|ref|index>] [flags]
+            Usage: taffy reorder-workspace [--workspace <id|ref|index> | <id|ref|index>] [flags]
 
             Reorder a workspace within its window.
 
@@ -19009,13 +19015,13 @@ struct CMUXCLI {
               --dry-run                    Print the resolved final index without applying
 
             Example:
-              cmux reorder-workspace --workspace workspace:2 --index 0
-              cmux reorder-workspace --workspace workspace:3 --after workspace:1
-              cmux reorder-workspace --workspace workspace:2 --index 0 --dry-run
+              taffy reorder-workspace --workspace workspace:2 --index 0
+              taffy reorder-workspace --workspace workspace:3 --after workspace:1
+              taffy reorder-workspace --workspace workspace:2 --index 0 --dry-run
             """
         case "reorder-workspaces":
             return String(localized: "cli.help.reorderWorkspaces", defaultValue: """
-            Usage: cmux reorder-workspaces --order <id|ref|index>,<id|ref|index>,... [flags]
+            Usage: taffy reorder-workspaces --order <id|ref|index>,<id|ref|index>,... [flags]
 
             Reorder workspaces within a window as one atomic batch. The comma-separated
             order is the final leading order inside the pinned and unpinned groups;
@@ -19028,12 +19034,12 @@ struct CMUXCLI {
               --dry-run                     Print the resolved final indexes without applying
 
             Example:
-              cmux reorder-workspaces --order workspace:1,workspace:11,workspace:31
-              cmux reorder-workspaces --order workspace:11,workspace:1 --dry-run
+              taffy reorder-workspaces --order workspace:1,workspace:11,workspace:31
+              taffy reorder-workspaces --order workspace:11,workspace:1 --dry-run
             """)
         case "simulate-sidebar-drag":
             return """
-            Usage: cmux simulate-sidebar-drag --window <id|ref|index> --from <ws> --to <ws> [flags]
+            Usage: taffy simulate-sidebar-drag --window <id|ref|index> --from <ws> --to <ws> [flags]
 
             Drive deterministic sidebar drag-state mutations against a DEBUG build of
             the app, intended for headless profiling under xctrace (see the profile-pr
@@ -19050,12 +19056,12 @@ struct CMUXCLI {
               --steps <n>                  Number of indicator updates (default: row count between from and to)
 
             Example:
-              cmux simulate-sidebar-drag --window window:1 --from workspace:1 --to workspace:25 --duration-ms 2000
-              cmux simulate-sidebar-drag --window window:1 --from workspace:1 --to workspace:25 --steps 120 --duration-ms 2000
+              taffy simulate-sidebar-drag --window window:1 --from workspace:1 --to workspace:25 --duration-ms 2000
+              taffy simulate-sidebar-drag --window window:1 --from workspace:1 --to workspace:25 --steps 120 --duration-ms 2000
             """
         case "workspace-action":
             return """
-            Usage: cmux workspace-action --action <name> [flags]
+            Usage: taffy workspace-action --action <name> [flags]
 
             Perform workspace context-menu actions from CLI/socket.
 
@@ -19081,19 +19087,19 @@ struct CMUXCLI {
               Blue, Navy, Indigo, Purple, Magenta, Rose, Brown, Charcoal
 
             Example:
-              cmux workspace-action --workspace workspace:2 --action pin
-              cmux workspace-action --action rename --title "infra"
-              cmux workspace-action close-others
-              cmux workspace-action --action set-color --color blue
-              cmux workspace-action --action set-color --color "#C0392B"
-              cmux workspace-action set-color Amber
-              cmux workspace-action --action set-description --description "Ship checklist"
-              cmux workspace-action --action set-description $'Ship checklist\n- verify build\n- post notes'
-              cmux workspace-action clear-color
+              taffy workspace-action --workspace workspace:2 --action pin
+              taffy workspace-action --action rename --title "infra"
+              taffy workspace-action close-others
+              taffy workspace-action --action set-color --color blue
+              taffy workspace-action --action set-color --color "#C0392B"
+              taffy workspace-action set-color Amber
+              taffy workspace-action --action set-description --description "Ship checklist"
+              taffy workspace-action --action set-description $'Ship checklist\n- verify build\n- post notes'
+              taffy workspace-action clear-color
             """
         case "tab-action":
             return """
-            Usage: cmux tab-action --action <name> [flags]
+            Usage: taffy tab-action --action <name> [flags]
 
             Perform horizontal tab context-menu actions from CLI/socket.
 
@@ -19116,16 +19122,16 @@ struct CMUXCLI {
               --focus <true|false>         Focus the destination when supported (default: false for move-to-new-workspace)
 
             Example:
-              cmux tab-action --tab tab:3 --action pin
-              cmux tab-action --action close-right
-              cmux tab-action --tab tab:2 --action move-to-new-workspace
-              cmux tab-action --tab tab:2 --action rename --title "build logs"
+              taffy tab-action --tab tab:3 --action pin
+              taffy tab-action --action close-right
+              taffy tab-action --tab tab:2 --action move-to-new-workspace
+              taffy tab-action --tab tab:2 --action rename --title "build logs"
             """
         case "move-tab-to-new-workspace", "detach-tab":
             return Self.moveTabToNewWorkspaceCommandHelp
         case "rename-tab":
             return """
-            Usage: cmux rename-tab [--workspace <id|ref|index>] [--tab <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--] <title>
+            Usage: taffy rename-tab [--workspace <id|ref|index>] [--tab <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--] <title>
 
             Compatibility alias for tab-action rename.
 
@@ -19143,13 +19149,13 @@ struct CMUXCLI {
               --title <text>         Explicit title (or use trailing positional title)
 
             Examples:
-              cmux rename-tab "build logs"
-              cmux rename-tab --tab tab:3 "staging server"
-              cmux rename-tab --workspace workspace:2 --surface surface:5 --title "agent run"
+              taffy rename-tab "build logs"
+              taffy rename-tab --tab tab:3 "staging server"
+              taffy rename-tab --workspace workspace:2 --surface surface:5 --title "agent run"
             """
         case "new-workspace":
             return """
-            Usage: cmux new-workspace [--name <title>] [--description <text>] [--cwd <path>] [--command <text>] [--env KEY=VALUE]... [--env-file <path>]... [--layout <json>] [--window <id|ref|index>] [--focus <true|false>] [--group <id|ref>] [--group-placement afterCurrent|top|end] [--group-reference <workspace>]
+            Usage: taffy new-workspace [--name <title>] [--description <text>] [--cwd <path>] [--command <text>] [--env KEY=VALUE]... [--env-file <path>]... [--layout <json>] [--window <id|ref|index>] [--focus <true|false>] [--group <id|ref>] [--group-placement afterCurrent|top|end] [--group-reference <workspace>]
 
             Create a new workspace in the caller's window.
 
@@ -19170,16 +19176,16 @@ struct CMUXCLI {
               --group-reference <workspace> Reference workspace for afterCurrent placement
 
             Example:
-              cmux new-workspace
-              cmux new-workspace --name "Build Server"
-              cmux new-workspace --name "Launch" --description "Ship checklist"
-              cmux new-workspace --cwd ~/projects/myapp
-              cmux new-workspace --cwd . --command "npm test"
-              cmux new-workspace --name "Dev" --layout '{"direction":"horizontal","split":0.5,"children":[{"pane":{"surfaces":[{"type":"terminal","command":"vim"}]}},{"pane":{"surfaces":[{"type":"terminal","command":"npm run start"}]}}]}'
+              taffy new-workspace
+              taffy new-workspace --name "Build Server"
+              taffy new-workspace --name "Launch" --description "Ship checklist"
+              taffy new-workspace --cwd ~/projects/myapp
+              taffy new-workspace --cwd . --command "npm test"
+              taffy new-workspace --name "Dev" --layout '{"direction":"horizontal","split":0.5,"children":[{"pane":{"surfaces":[{"type":"terminal","command":"vim"}]}},{"pane":{"surfaces":[{"type":"terminal","command":"npm run start"}]}}]}'
             """
         case "list-workspaces":
             return """
-            Usage: cmux list-workspaces [--window <id|ref|index>]
+            Usage: taffy list-workspaces [--window <id|ref|index>]
 
             List workspaces in a window.
 
@@ -19187,7 +19193,7 @@ struct CMUXCLI {
               --window <id|ref|index>   Target window (default: caller/current window)
 
             Example:
-              cmux list-workspaces
+              taffy list-workspaces
             """
         case "workspace":
             return Self.workspaceCommandUsage
@@ -19204,7 +19210,7 @@ struct CMUXCLI {
             )
             let anchorCleanup = String(
                 localized: "cli.workspaceGroup.help.anchorCleanup",
-                defaultValue: "Use --remove-generated-anchor only for an anchor-only group whose anchor was created by cmux."
+                defaultValue: "Use --remove-generated-anchor only for an anchor-only group whose anchor was created by Taffy."
             )
             let deleteSafety = String(
                 localized: "cli.workspaceGroup.help.deleteSafety",
@@ -19219,7 +19225,7 @@ struct CMUXCLI {
                 defaultValue: "Manage collapsible workspace groups in the sidebar. Each group is owned by an \"anchor\" workspace; the group header IS the anchor's sidebar representation. Closing the anchor closes only that workspace and promotes the group's next member to be the new anchor, so the group and its other members stay intact. When the anchor is the group's only workspace, the group is removed."
             )
             return """
-            Usage: cmux workspace-group <subcommand> [flags]
+            Usage: taffy workspace-group <subcommand> [flags]
 
             \(overview)
 
@@ -19246,7 +19252,7 @@ struct CMUXCLI {
               new-workspace <group> [--placement afterCurrent|top|end]
                                         Create a new workspace in the group.
                                         Placement resolves first from per-cwd
-                                        cmux.json `newWorkspacePlacement`, then
+                                        taffy.json `newWorkspacePlacement`, then
                                         from the global default. The default is
                                         afterCurrent; without an active
                                         in-group reference it behaves like top.
@@ -19269,7 +19275,7 @@ struct CMUXCLI {
             return Self.moshTmuxCommandUsage
         case "ssh-tmux":
             let help = String(localized: "cli.help.ssh-tmux", defaultValue: """
-            Usage: cmux ssh-tmux <destination> [--port <n>] [--identity <path>] [--no-focus]
+            Usage: taffy ssh-tmux <destination> [--port <n>] [--identity <path>] [--no-focus]
 
             Mirror a remote host's tmux sessions into the current window's sidebar over
             SSH tmux control mode (tmux -CC). Each session becomes a workspace, each
@@ -19277,7 +19283,7 @@ struct CMUXCLI {
             "Remote tmux" beta setting.
 
             If the host needs interactive authentication (password, host-key confirmation,
-            MFA, or a security-key touch), cmux runs ssh inline in this terminal so you can
+            MFA, or a security-key touch), taffy runs ssh inline in this terminal so you can
             authenticate, then mirrors the sessions over the shared SSH connection. Hosts
             that authenticate non-interactively (ssh-agent / key in ~/.ssh/config) mirror
             with no prompt. ~/.ssh/config aliases and their IdentityFile/ProxyJump/Port settings are honored.
@@ -19288,8 +19294,8 @@ struct CMUXCLI {
               --no-focus          Do not select the mirror workspace or focus its window
 
             Example:
-              cmux ssh-tmux dev@my-host
-              cmux ssh-tmux dev@my-host --port 2222 --identity ~/.ssh/id_ed25519
+              taffy ssh-tmux dev@my-host
+              taffy ssh-tmux dev@my-host --port 2222 --identity ~/.ssh/id_ed25519
             """)
             let newWindowHelp = String(
                 localized: "cli.help.ssh-tmux.newWindow",
@@ -19303,24 +19309,24 @@ struct CMUXCLI {
             return LocalTmuxInvocation.usage
         case "ssh-session-list":
             return """
-            Usage: cmux ssh-session-list [--workspace <id|ref|index> | --all-workspaces]
+            Usage: taffy ssh-session-list [--workspace <id|ref|index> | --all-workspaces]
 
-            List persisted cmux ssh PTY sessions for a remote workspace.
+            List persisted taffy ssh PTY sessions for a remote workspace.
 
             Flags:
               --workspace <id|ref|index>  Target workspace (default: $CMUX_WORKSPACE_ID)
               --all-workspaces            List sessions in every active remote workspace
 
             Example:
-              cmux ssh-session-list
-              cmux ssh-session-list --workspace workspace:2
-              cmux ssh-session-list --all-workspaces
+              taffy ssh-session-list
+              taffy ssh-session-list --workspace workspace:2
+              taffy ssh-session-list --all-workspaces
             """
         case "ssh-session-attach":
             return """
-            Usage: cmux ssh-session-attach --session-id <id> [flags]
+            Usage: taffy ssh-session-attach --session-id <id> [flags]
 
-            Open a terminal surface attached to a persisted cmux ssh PTY session.
+            Open a terminal surface attached to a persisted taffy ssh PTY session.
 
             Flags:
               --workspace <id|ref|index>  Target workspace (default: $CMUX_WORKSPACE_ID/current)
@@ -19331,14 +19337,14 @@ struct CMUXCLI {
               --focus <true|false>        Focus the attached surface (default: true)
 
             Example:
-              cmux ssh-session-attach --session-id ssh-abc
-              cmux ssh-session-attach --workspace workspace:2 --session-id ssh-abc --split right
+              taffy ssh-session-attach --session-id ssh-abc
+              taffy ssh-session-attach --workspace workspace:2 --session-id ssh-abc --split right
             """
         case "ssh-session-cleanup":
             return """
-            Usage: cmux ssh-session-cleanup [--workspace <id|ref|index> | --all-workspaces] (--session-id <id> | --all)
+            Usage: taffy ssh-session-cleanup [--workspace <id|ref|index> | --all-workspaces] (--session-id <id> | --all)
 
-            Close persisted cmux ssh PTY sessions for a remote workspace.
+            Close persisted taffy ssh PTY sessions for a remote workspace.
 
             Flags:
               --workspace <id|ref|index>  Target workspace (default: $CMUX_WORKSPACE_ID)
@@ -19347,24 +19353,24 @@ struct CMUXCLI {
               --all                       Close every persisted PTY session in the target scope
 
             Example:
-              cmux ssh-session-cleanup --session-id ssh-abc
-              cmux ssh-session-cleanup --workspace workspace:2 --all
-              cmux ssh-session-cleanup --all-workspaces --all
+              taffy ssh-session-cleanup --session-id ssh-abc
+              taffy ssh-session-cleanup --workspace workspace:2 --all
+              taffy ssh-session-cleanup --all-workspaces --all
             """
         case "remote-daemon-status":
             return """
-            Usage: cmux remote-daemon-status [--os <darwin|linux>] [--arch <arm64|amd64>]
+            Usage: taffy remote-daemon-status [--os <darwin|linux>] [--arch <arm64|amd64>]
 
             Show the embedded cmuxd-remote release manifest, local cache status, checksum verification state,
             and the GitHub attestation verification command for a target platform.
 
             Example:
-              cmux remote-daemon-status
-              cmux remote-daemon-status --os linux --arch arm64
+              taffy remote-daemon-status
+              taffy remote-daemon-status --os linux --arch arm64
             """
         case "new-split":
             return """
-            Usage: cmux new-split <left|right|up|down> [flags]
+            Usage: taffy new-split <left|right|up|down> [flags]
 
             Split the current pane in the given direction.
 
@@ -19378,12 +19384,12 @@ struct CMUXCLI {
               --focus <true|false>   Focus the new split (default: false)
 
             Example:
-              cmux new-split right
-              cmux new-split down --workspace workspace:1
+              taffy new-split right
+              taffy new-split down --workspace workspace:1
             """
         case "list-panes":
             return """
-            Usage: cmux list-panes [--workspace <id|ref|index>] [--window <id|ref|index>]
+            Usage: taffy list-panes [--workspace <id|ref|index>] [--window <id|ref|index>]
 
             List panes in a workspace.
 
@@ -19392,12 +19398,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux list-panes
-              cmux list-panes --workspace workspace:2
+              taffy list-panes
+              taffy list-panes --workspace workspace:2
             """
         case "list-pane-surfaces":
             return """
-            Usage: cmux list-pane-surfaces [--workspace <id|ref|index>] [--pane <id|ref|index>] [--window <id|ref|index>]
+            Usage: taffy list-pane-surfaces [--workspace <id|ref|index>] [--pane <id|ref|index>] [--window <id|ref|index>]
 
             List surfaces in a pane.
 
@@ -19407,12 +19413,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace/pane refs and indexes
 
             Example:
-              cmux list-pane-surfaces
-              cmux list-pane-surfaces --workspace workspace:2 --pane pane:1
+              taffy list-pane-surfaces
+              taffy list-pane-surfaces --workspace workspace:2 --pane pane:1
             """
         case "tree":
             return """
-            Usage: cmux tree [flags]
+            Usage: taffy tree [flags]
 
             Print the hierarchy of windows, workspaces, panes, and surfaces.
 
@@ -19425,24 +19431,24 @@ struct CMUXCLI {
             Output:
               Text mode prints a box-drawing tree with markers:
               - ◀ active (true focused window/workspace/pane/surface path)
-              - ◀ here (caller surface where `cmux tree` was invoked)
+              - ◀ here (caller surface where `taffy tree` was invoked)
               - workspace [selected]
               - pane [focused]
               - surface [selected]
               Browser surfaces also include their current URL.
 
             Example:
-              cmux tree
-              cmux tree --all
-              cmux tree --window window:2
-              cmux tree --workspace workspace:2
-              cmux --json tree --all
+              taffy tree
+              taffy tree --all
+              taffy tree --window window:2
+              taffy tree --workspace workspace:2
+              taffy --json tree --all
             """
         case "top":
             return """
-            Usage: cmux top [flags]
+            Usage: taffy top [flags]
 
-            Print CPU and RAM usage by cmux window, workspace, pane, surface, status tag, and browser webview.
+            Print CPU and RAM usage by taffy window, workspace, pane, surface, status tag, and browser webview.
 
             Flags:
               --all                         Include all windows (default: current window only)
@@ -19461,19 +19467,19 @@ struct CMUXCLI {
               TSV columns are: cpu_percent, memory_bytes, process_count, kind, ref, parent_ref, title.
 
             Example:
-              cmux top
-              cmux top --all
-              cmux top --window window:2
-              cmux top --sort cpu
-              cmux top --format tsv | sort -t $'\\t' -nrk1,1
-              cmux top --workspace workspace:2 --processes
-              cmux --json top --all
+              taffy top
+              taffy top --all
+              taffy top --window window:2
+              taffy top --sort cpu
+              taffy top --format tsv | sort -t $'\\t' -nrk1,1
+              taffy top --workspace workspace:2 --processes
+              taffy --json top --all
             """
         case "memory":
             return String(localized: "cli.help.memory", defaultValue: """
-            Usage: cmux memory [flags]
+            Usage: taffy memory [flags]
 
-            Diagnose cmux app memory separately from recursive terminal child-process RSS.
+            Diagnose Taffy app memory separately from recursive terminal child-process RSS.
 
             Flags:
               --all                         Include all windows (default: current window only)
@@ -19482,18 +19488,18 @@ struct CMUXCLI {
               --json                        Structured JSON output
 
             Output:
-              App footprint is the direct cmux process physical footprint from macOS process accounting.
-              Child RSS is recursive resident memory for descendants of the cmux app process,
+              App footprint is the direct Taffy process physical footprint from macOS process accounting.
+              Child RSS is recursive resident memory for descendants of the Taffy app process,
               grouped by command name and attributed back to workspace, pane, and surface when known.
 
             Example:
-              cmux memory
-              cmux memory --groups 20
-              cmux --json memory --all
+              taffy memory
+              taffy memory --groups 20
+              taffy --json memory --all
             """)
         case "focus-pane":
             return """
-            Usage: cmux focus-pane [--pane <id|ref|index> | <id|ref|index>] [flags]
+            Usage: taffy focus-pane [--pane <id|ref|index> | <id|ref|index>] [flags]
 
             Focus the specified pane.
 
@@ -19503,13 +19509,13 @@ struct CMUXCLI {
               --window <id|ref|index>     Window context for workspace/pane refs and indexes
 
             Example:
-              cmux focus-pane --pane pane:2
-              cmux focus-pane pane:1
-              cmux focus-pane --pane pane:1 --workspace workspace:2
+              taffy focus-pane --pane pane:2
+              taffy focus-pane pane:1
+              taffy focus-pane --pane pane:1 --workspace workspace:2
             """
         case "new-pane":
             return """
-            Usage: cmux new-pane [flags]
+            Usage: taffy new-pane [flags]
 
             Create a new pane in the workspace.
 
@@ -19526,14 +19532,14 @@ struct CMUXCLI {
               --focus <true|false>                Focus the new pane (default: false)
 
             Example:
-              cmux new-pane
-              cmux new-pane --type browser --direction down --url https://example.com
-              cmux new-pane --type simulator --direction right
-              cmux new-pane --type browser --placement dock --url https://example.com
+              taffy new-pane
+              taffy new-pane --type browser --direction down --url https://example.com
+              taffy new-pane --type simulator --direction right
+              taffy new-pane --type browser --placement dock --url https://example.com
             """
         case "new-surface":
             return """
-            Usage: cmux new-surface [flags]
+            Usage: taffy new-surface [flags]
 
             Create a new surface (tab) in a pane.
 
@@ -19554,15 +19560,15 @@ struct CMUXCLI {
               --focus <true|false>        Focus the new surface (default: false)
 
             Example:
-              cmux new-surface
-              cmux new-surface --type browser --pane pane:1 --url https://example.com
-              cmux new-surface --type simulator --pane pane:1 --focus true
-              cmux new-surface --type agent-session --provider claude --renderer solid --focus true
-              cmux new-surface --type browser --placement dock --url https://example.com
+              taffy new-surface
+              taffy new-surface --type browser --pane pane:1 --url https://example.com
+              taffy new-surface --type simulator --pane pane:1 --focus true
+              taffy new-surface --type agent-session --provider claude --renderer solid --focus true
+              taffy new-surface --type browser --placement dock --url https://example.com
             """
         case "close-surface":
             return """
-            Usage: cmux close-surface [flags]
+            Usage: taffy close-surface [flags]
 
             Close a surface. Defaults to the focused surface if none specified.
 
@@ -19573,12 +19579,12 @@ struct CMUXCLI {
               --window <id|ref|index>     Window context for workspace/surface refs and indexes
 
             Example:
-              cmux close-surface
-              cmux close-surface --surface surface:3
+              taffy close-surface
+              taffy close-surface --surface surface:3
             """
         case "drag-surface-to-split":
             return """
-            Usage: cmux drag-surface-to-split --surface <id|ref|index> <left|right|up|down> [flags]
+            Usage: taffy drag-surface-to-split --surface <id|ref|index> <left|right|up|down> [flags]
 
             Drag a surface into a new split in the given direction.
 
@@ -19590,12 +19596,12 @@ struct CMUXCLI {
               --focus <true|false>         Focus the split-off surface (default: false)
 
             Example:
-              cmux drag-surface-to-split --surface surface:1 right
-              cmux drag-surface-to-split --panel surface:2 down
+              taffy drag-surface-to-split --surface surface:1 right
+              taffy drag-surface-to-split --panel surface:2 down
             """
         case "split-off":
             return """
-            Usage: cmux split-off --surface <id|ref|index> <left|right|up|down> [flags]
+            Usage: taffy split-off --surface <id|ref|index> <left|right|up|down> [flags]
 
             Move an existing surface into a new split without changing focus by default.
 
@@ -19607,28 +19613,28 @@ struct CMUXCLI {
               --focus <true|false>         Focus the split-off surface (default: false)
 
             Example:
-              cmux split-off --surface surface:1 right
-              cmux split-off --workspace workspace:2 --surface surface:4 down
+              taffy split-off --surface surface:1 right
+              taffy split-off --workspace workspace:2 --surface surface:4 down
             """
         case "refresh-surfaces":
             return """
-            Usage: cmux refresh-surfaces
+            Usage: taffy refresh-surfaces
 
             Refresh surface snapshots for the focused workspace.
             """
         case "reload-config":
             return """
-            Usage: cmux reload-config
+            Usage: taffy reload-config
 
             Run the same configuration reload as the Reload Configuration shortcut.
-            This reloads Ghostty config, re-reads ~/.config/cmux/cmux.json, and refreshes terminals.
+            This reloads Ghostty config, re-reads ~/.config/taffy/taffy.json, and refreshes terminals.
 
             Example:
-              cmux reload-config
+              taffy reload-config
             """
         case "surface-health":
             return """
-            Usage: cmux surface-health [--workspace <id|ref|index>] [--window <id|ref|index>]
+            Usage: taffy surface-health [--workspace <id|ref|index>] [--window <id|ref|index>]
 
             List health details for surfaces in a workspace.
 
@@ -19637,21 +19643,21 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux surface-health
-              cmux surface-health --workspace workspace:2
+              taffy surface-health
+              taffy surface-health --workspace workspace:2
             """
         case "surface", "surface-resume":
             return CMUXDiffViewerLocalization.string(
                 "cli.surface.usage",
                 defaultValue: """
-            Usage: cmux surface ls [<machine>|local] [--refresh] [--json]
-                   cmux surface open <resource> [--workspace <id|ref|index>] [--pane <id|ref>] [--left|--right|--up|--down|--tab] [--new] [--focus <true|false>]
-                   cmux surface new-terminal --machine <id|local> [--cwd <dir>] [--name <name>] [--remote-workspace <ws_…>] [--workspace <id|ref|index>] [--no-open] [-- <command...>]
-                   cmux surface resume set [flags] -- <argv...>
-                   cmux surface resume set [flags] --shell <command>
-                   cmux surface resume show [--json] [flags]
-                   cmux surface resume get [--json] [flags]
-                   cmux surface resume clear [flags]
+            Usage: taffy surface ls [<machine>|local] [--refresh] [--json]
+                   taffy surface open <resource> [--workspace <id|ref|index>] [--pane <id|ref>] [--left|--right|--up|--down|--tab] [--new] [--focus <true|false>]
+                   taffy surface new-terminal --machine <id|local> [--cwd <dir>] [--name <name>] [--remote-workspace <ws_…>] [--workspace <id|ref|index>] [--no-open] [-- <command...>]
+                   taffy surface resume set [flags] -- <argv...>
+                   taffy surface resume set [flags] --shell <command>
+                   taffy surface resume show [--json] [flags]
+                   taffy surface resume get [--json] [flags]
+                   taffy surface resume clear [flags]
 
             ls / open / new-terminal: the surface catalog. Terminals, VNC screens and browsers
             on This Mac and on every cloud machine are resources (`<machine>/<kind>/<key>`,
@@ -19660,7 +19666,7 @@ struct CMUXCLI {
             showing a resource unless --new; --pane with a side splits that pane on that side,
             --tab adds a tab to it. A local terminal moves to the destination (it is shown once).
             `new-terminal` creates a terminal on the machine (cloud: in its cmux-tui session).
-            `cmux vm tree` prints the same catalog.
+            `taffy vm tree` prints the same catalog.
 
             resume: attach restart command metadata to a terminal surface.
             Public CLI bindings are stored for inspection and manual restore.
@@ -19677,21 +19683,21 @@ struct CMUXCLI {
               --source <source>        Binding source label
 
             Examples:
-              cmux surface resume set --kind tmux --shell "tmux attach -t work"
-              cmux surface resume set --kind opencode --checkpoint ses_123 -- opencode --session ses_123
-              cmux surface resume show --json
+              taffy surface resume set --kind tmux --shell "tmux attach -t work"
+              taffy surface resume set --kind opencode --checkpoint ses_123 -- opencode --session ses_123
+              taffy surface resume show --json
             """
             )
         case "debug-terminals":
             return """
-            Usage: cmux debug-terminals
+            Usage: taffy debug-terminals
 
             Print live Ghostty terminal runtime metadata across all windows and workspaces.
             Intended for debugging stray or detached terminal views.
             """
         case "trigger-flash":
             return """
-            Usage: cmux trigger-flash [--workspace <id|ref|index>] [--surface <id|ref|index>] [--panel <id|ref|index>] [--window <id|ref|index>]
+            Usage: taffy trigger-flash [--workspace <id|ref|index>] [--surface <id|ref|index>] [--panel <id|ref|index>] [--window <id|ref|index>]
 
             Trigger the unread flash indicator for a surface.
 
@@ -19702,12 +19708,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace/surface refs and indexes
 
             Example:
-              cmux trigger-flash
-              cmux trigger-flash --workspace workspace:2 --surface surface:3
+              taffy trigger-flash
+              taffy trigger-flash --workspace workspace:2 --surface surface:3
             """
         case "list-panels":
             return """
-            Usage: cmux list-panels [--workspace <id|ref|index>] [--window <id|ref|index>]
+            Usage: taffy list-panels [--workspace <id|ref|index>] [--window <id|ref|index>]
 
             List surfaces (panels) in a workspace.
 
@@ -19716,12 +19722,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux list-panels
-              cmux list-panels --workspace workspace:2
+              taffy list-panels
+              taffy list-panels --workspace workspace:2
             """
         case "focus-panel":
             return """
-            Usage: cmux focus-panel --panel <id|ref|index> [--workspace <id|ref|index>] [--window <id|ref|index>]
+            Usage: taffy focus-panel --panel <id|ref|index> [--workspace <id|ref|index>] [--window <id|ref|index>]
 
             Focus a specific panel (surface).
 
@@ -19731,12 +19737,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace/panel refs and indexes
 
             Example:
-              cmux focus-panel --panel surface:2
-              cmux focus-panel --panel surface:5 --workspace workspace:2
+              taffy focus-panel --panel surface:2
+              taffy focus-panel --panel surface:5 --workspace workspace:2
             """
         case "close-workspace":
             return """
-            Usage: cmux close-workspace --workspace <id|ref|index> [--window <id|ref|index>]
+            Usage: taffy close-workspace --workspace <id|ref|index> [--window <id|ref|index>]
 
             Close the specified workspace.
 
@@ -19745,11 +19751,11 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux close-workspace --workspace workspace:2
+              taffy close-workspace --workspace workspace:2
             """
         case "select-workspace":
             return """
-            Usage: cmux select-workspace --workspace <id|ref|index> [--window <id|ref|index>]
+            Usage: taffy select-workspace --workspace <id|ref|index> [--window <id|ref|index>]
 
             Select (switch to) the specified workspace.
 
@@ -19758,12 +19764,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux select-workspace --workspace workspace:2
-              cmux select-workspace --workspace 0
+              taffy select-workspace --workspace workspace:2
+              taffy select-workspace --workspace 0
             """
         case "rename-workspace", "rename-window":
             return """
-            Usage: cmux rename-workspace [--workspace <id|ref|index>] [--window <id|ref|index>] [--] <title>
+            Usage: taffy rename-workspace [--workspace <id|ref|index>] [--window <id|ref|index>] [--] <title>
 
             Rename a workspace. Defaults to the current workspace.
             tmux-compatible alias: rename-window
@@ -19773,18 +19779,18 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux rename-workspace "backend logs"
-              cmux rename-window --workspace workspace:2 "agent run"
+              taffy rename-workspace "backend logs"
+              taffy rename-window --workspace workspace:2 "agent run"
             """
         case "current-workspace":
             return """
-            Usage: cmux current-workspace [--window <id|ref|index>]
+            Usage: taffy current-workspace [--window <id|ref|index>]
 
             Print the selected workspace ID for a window.
             """
         case "capture-pane":
             return """
-            Usage: cmux capture-pane [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--scrollback] [--lines <n>]
+            Usage: taffy capture-pane [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--scrollback] [--lines <n>]
 
             tmux-compatible alias for reading terminal text from a pane.
 
@@ -19796,11 +19802,11 @@ struct CMUXCLI {
               --lines <n>            Return only the last N lines (implies --scrollback)
 
             Example:
-              cmux capture-pane --workspace workspace:2 --surface surface:1 --scrollback --lines 200
+              taffy capture-pane --workspace workspace:2 --surface surface:1 --scrollback --lines 200
             """
         case "resize-pane":
             return """
-            Usage: cmux resize-pane [--pane <id|ref|index>] [--workspace <id|ref|index>] [--window <id|ref|index>] [-L|-R|-U|-D] [--amount <n>]
+            Usage: taffy resize-pane [--pane <id|ref|index>] [--workspace <id|ref|index>] [--window <id|ref|index>] [-L|-R|-U|-D] [--amount <n>]
 
             tmux-compatible pane resize command.
 
@@ -19813,7 +19819,7 @@ struct CMUXCLI {
             """
         case "pipe-pane":
             return """
-            Usage: cmux pipe-pane [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--command <shell-command> | <shell-command>]
+            Usage: taffy pipe-pane [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--command <shell-command> | <shell-command>]
 
             Capture pane text and pipe it to a shell command via stdin.
 
@@ -19825,7 +19831,7 @@ struct CMUXCLI {
             """
         case "wait-for":
             return """
-            Usage: cmux wait-for [-S|--signal] <name> [--timeout <seconds>]
+            Usage: taffy wait-for [-S|--signal] <name> [--timeout <seconds>]
 
             Wait for or signal a named synchronization token.
 
@@ -19835,7 +19841,7 @@ struct CMUXCLI {
             """
         case "swap-pane":
             return """
-            Usage: cmux swap-pane --pane <id|ref|index> --target-pane <id|ref|index> [--workspace <id|ref|index>] [--window <id|ref|index>] [--focus <true|false>]
+            Usage: taffy swap-pane --pane <id|ref|index> --target-pane <id|ref|index> [--workspace <id|ref|index>] [--window <id|ref|index>] [--focus <true|false>]
 
             Swap two panes.
 
@@ -19848,7 +19854,7 @@ struct CMUXCLI {
             """
         case "break-pane":
             return """
-            Usage: cmux break-pane [--workspace <id|ref|index>] [--pane <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--focus <true|false>] [--no-focus]
+            Usage: taffy break-pane [--workspace <id|ref|index>] [--pane <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--focus <true|false>] [--no-focus]
 
             Move a pane/surface out into its own pane context.
 
@@ -19862,7 +19868,7 @@ struct CMUXCLI {
             """
         case "join-pane":
             return """
-            Usage: cmux join-pane --target-pane <id|ref|index> [--workspace <id|ref|index>] [--pane <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--focus <true|false>] [--no-focus]
+            Usage: taffy join-pane --target-pane <id|ref|index> [--workspace <id|ref|index>] [--pane <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--focus <true|false>] [--no-focus]
 
             Join a pane/surface into another pane.
 
@@ -19877,13 +19883,13 @@ struct CMUXCLI {
             """
         case "next-window", "previous-window", "last-window":
             return """
-            Usage: cmux \(command) [--window <id|ref|index>]
+            Usage: taffy \(command) [--window <id|ref|index>]
 
             Switch workspace selection (next/previous/last) in a window.
             """
         case "last-pane":
             return """
-            Usage: cmux last-pane [--workspace <id|ref|index>] [--window <id|ref|index>]
+            Usage: taffy last-pane [--workspace <id|ref|index>] [--window <id|ref|index>]
 
             Focus the previously focused pane in a workspace.
 
@@ -19893,7 +19899,7 @@ struct CMUXCLI {
             """
         case "find-window":
             return """
-            Usage: cmux find-window [--window <id|ref|index>] [--content] [--select] [query]
+            Usage: taffy find-window [--window <id|ref|index>] [--content] [--select] [query]
 
             Find workspaces by title (and optionally terminal content).
 
@@ -19904,7 +19910,7 @@ struct CMUXCLI {
             """
         case "clear-history":
             return """
-            Usage: cmux clear-history [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>]
+            Usage: taffy clear-history [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>]
 
             Clear terminal scrollback history.
 
@@ -19915,7 +19921,7 @@ struct CMUXCLI {
             """
         case "set-hook":
             return """
-            Usage: cmux set-hook [--list] [--unset <event>] | <event> <command>
+            Usage: taffy set-hook [--list] [--unset <event>] | <event> <command>
 
             Manage tmux-compat hook definitions.
 
@@ -19925,19 +19931,19 @@ struct CMUXCLI {
             """
         case "popup":
             return """
-            Usage: cmux popup
+            Usage: taffy popup
 
             tmux compatibility placeholder. This command is currently not supported.
             """
         case "bind-key", "unbind-key", "copy-mode":
             return """
-            Usage: cmux \(command)
+            Usage: taffy \(command)
 
             tmux compatibility placeholder. This command is currently not supported.
             """
         case "set-buffer":
             return """
-            Usage: cmux set-buffer [--name <name>] [--] <text>
+            Usage: taffy set-buffer [--name <name>] [--] <text>
 
             Save text into a named tmux-compat buffer.
 
@@ -19946,7 +19952,7 @@ struct CMUXCLI {
             """
         case "paste-buffer":
             return """
-            Usage: cmux paste-buffer [--name <name>] [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>]
+            Usage: taffy paste-buffer [--name <name>] [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>]
 
             Paste a named tmux-compat buffer into a surface.
 
@@ -19958,13 +19964,13 @@ struct CMUXCLI {
             """
         case "list-buffers":
             return """
-            Usage: cmux list-buffers
+            Usage: taffy list-buffers
 
             List tmux-compat buffers.
             """
         case "respawn-pane":
             return """
-            Usage: cmux respawn-pane [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--command <cmd> | <cmd>]
+            Usage: taffy respawn-pane [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--command <cmd> | <cmd>]
 
             Send a command (or default shell restart command) to a surface.
 
@@ -19976,7 +19982,7 @@ struct CMUXCLI {
             """
         case "display-message":
             return """
-            Usage: cmux display-message [-p|--print] <text>
+            Usage: taffy display-message [-p|--print] <text>
 
             Print text (or show it via notification bridge in parity mode).
 
@@ -19989,7 +19995,7 @@ struct CMUXCLI {
             return Self.readScreenHelp
         case "send":
             return """
-            Usage: cmux send [flags] [--] <text>
+            Usage: taffy send [flags] [--] <text>
 
             Send text to a terminal surface. Escape sequences: \\n and \\r send Enter, \\t sends Tab.
 
@@ -19999,12 +20005,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace/surface refs and indexes
 
             Example:
-              cmux send "echo hello"
-              cmux send --surface surface:2 "ls -la\\n"
+              taffy send "echo hello"
+              taffy send --surface surface:2 "ls -la\\n"
             """
         case "send-key":
             return """
-            Usage: cmux send-key [flags] [--] <key>
+            Usage: taffy send-key [flags] [--] <key>
 
             Send a key event to a terminal surface.
 
@@ -20014,12 +20020,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace/surface refs and indexes
 
             Example:
-              cmux send-key enter
-              cmux send-key --surface surface:2 ctrl+c
+              taffy send-key enter
+              taffy send-key --surface surface:2 ctrl+c
             """
         case "send-panel":
             return """
-            Usage: cmux send-panel --panel <id|ref|index> [flags] [--] <text>
+            Usage: taffy send-panel --panel <id|ref|index> [flags] [--] <text>
 
             Send text to a specific panel (surface). Escape sequences: \\n and \\r send Enter, \\t sends Tab.
 
@@ -20029,11 +20035,11 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace/panel refs and indexes
 
             Example:
-              cmux send-panel --panel surface:2 "echo hello\\n"
+              taffy send-panel --panel surface:2 "echo hello\\n"
             """
         case "send-key-panel":
             return """
-            Usage: cmux send-key-panel --panel <id|ref|index> [flags] [--] <key>
+            Usage: taffy send-key-panel --panel <id|ref|index> [flags] [--] <key>
 
             Send a key event to a specific panel (surface).
 
@@ -20043,12 +20049,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace/panel refs and indexes
 
             Example:
-              cmux send-key-panel --panel surface:2 enter
-              cmux send-key-panel --panel surface:2 ctrl+c
+              taffy send-key-panel --panel surface:2 enter
+              taffy send-key-panel --panel surface:2 ctrl+c
             """
         case "notify":
             return String(localized: "cli.help.notify", defaultValue: """
-                Usage: cmux notify [flags]
+                Usage: taffy notify [flags]
 
                 Send a notification to a workspace/surface, or clear that resolved target with --clear.
 
@@ -20064,23 +20070,23 @@ struct CMUXCLI {
                   --json                 Print the response payload as JSON
                   --id-format <mode>     refs, uuids, or both for human-readable ids
 
-                The response includes the created notification id. Use cmux dismiss-notification --id <uuid|notification:<uuid>>, cmux list-notifications, or cmux clear-notifications to manage notifications.
+                The response includes the created notification id. Use taffy dismiss-notification --id <uuid|notification:<uuid>>, taffy list-notifications, or taffy clear-notifications to manage notifications.
 
                 Example:
-                  cmux notify --title "Build done" --body "All tests passed"
-                  cmux notify --title "Error" --subtitle "test.swift" --body "Line 42: syntax error"
-                  cmux notify --surface <uuid> --title "Build done"
-                  cmux notify --clear
+                  taffy notify --title "Build done" --body "All tests passed"
+                  taffy notify --title "Error" --subtitle "test.swift" --body "Line 42: syntax error"
+                  taffy notify --surface <uuid> --title "Build done"
+                  taffy notify --clear
                 """)
         case "list-notifications":
             return """
-            Usage: cmux list-notifications
+            Usage: taffy list-notifications
 
             List queued notifications.
             """
         case "dismiss-notification":
             return String(localized: "cli.help.dismissNotification", defaultValue: """
-            Usage: cmux dismiss-notification (--id <uuid> | --all-read)
+            Usage: taffy dismiss-notification (--id <uuid> | --all-read)
 
             Remove one notification, or remove every already-read notification.
 
@@ -20092,7 +20098,7 @@ struct CMUXCLI {
             """)
         case "mark-notification-read":
             return String(localized: "cli.help.markNotificationRead", defaultValue: """
-            Usage: cmux mark-notification-read (--id <uuid> | --workspace <id|ref|index> [--surface <id|ref|index>] [--window <id|ref|index>] | --all)
+            Usage: taffy mark-notification-read (--id <uuid> | --workspace <id|ref|index> [--surface <id|ref|index>] [--window <id|ref|index>] | --all)
 
             Mark notifications read without opening them. Exactly one selector is required.
 
@@ -20107,7 +20113,7 @@ struct CMUXCLI {
             """)
         case "open-notification":
             return String(localized: "cli.help.openNotification", defaultValue: """
-            Usage: cmux open-notification --id <uuid>
+            Usage: taffy open-notification --id <uuid>
 
             Focus the notification's workspace and surface, then mark the row read.
 
@@ -20118,7 +20124,7 @@ struct CMUXCLI {
             """)
         case "jump-to-unread":
             return String(localized: "cli.help.jumpToUnread", defaultValue: """
-            Usage: cmux jump-to-unread
+            Usage: taffy jump-to-unread
 
             Focus the latest unread notification, matching the Notifications page action.
 
@@ -20128,7 +20134,7 @@ struct CMUXCLI {
             """)
         case "clear-notifications":
             return String(localized: "cli.help.clearNotifications", defaultValue: """
-            Usage: cmux clear-notifications [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>]
+            Usage: taffy clear-notifications [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>]
 
             Clear all queued notifications, or scope the clear to a workspace and surface.
 
@@ -20139,7 +20145,7 @@ struct CMUXCLI {
             """)
         case "set-status":
             return String(localized: "cli.help.setStatus", defaultValue: """
-            Usage: cmux set-status <key> <value> [flags]
+            Usage: taffy set-status <key> <value> [flags]
 
             Set a sidebar status entry for a workspace. Status entries appear as
             pills in the sidebar tab row. Use a unique key so different tools
@@ -20153,12 +20159,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux set-status build "compiling" --icon hammer --color "#ff9500" --priority 80
-              cmux set-status deploy "v1.2.3" --workspace workspace:2
+              taffy set-status build "compiling" --icon hammer --color "#ff9500" --priority 80
+              taffy set-status deploy "v1.2.3" --workspace workspace:2
             """)
         case "clear-status":
             return """
-            Usage: cmux clear-status <key> [flags]
+            Usage: taffy clear-status <key> [flags]
 
             Remove a sidebar status entry by key.
 
@@ -20167,11 +20173,11 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux clear-status build
+              taffy clear-status build
             """
         case "list-status":
             return """
-            Usage: cmux list-status [flags]
+            Usage: taffy list-status [flags]
 
             List all sidebar status entries for a workspace.
 
@@ -20180,12 +20186,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux list-status
-              cmux list-status --workspace workspace:2
+              taffy list-status
+              taffy list-status --workspace workspace:2
             """
         case "set-progress":
             return """
-            Usage: cmux set-progress <0.0-1.0> [flags]
+            Usage: taffy set-progress <0.0-1.0> [flags]
 
             Set a progress bar in the sidebar for a workspace.
 
@@ -20195,12 +20201,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux set-progress 0.5 --label "Building..."
-              cmux set-progress 1.0 --label "Done"
+              taffy set-progress 0.5 --label "Building..."
+              taffy set-progress 1.0 --label "Done"
             """
         case "clear-progress":
             return """
-            Usage: cmux clear-progress [flags]
+            Usage: taffy clear-progress [flags]
 
             Clear the sidebar progress bar for a workspace.
 
@@ -20209,11 +20215,11 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux clear-progress
+              taffy clear-progress
             """
         case "log":
             return """
-            Usage: cmux log [flags] [--] <message>
+            Usage: taffy log [flags] [--] <message>
 
             Append a log entry to the sidebar for a workspace.
 
@@ -20224,13 +20230,13 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux log "Build started"
-              cmux log --level error --source build "Compilation failed"
-              cmux log --level success -- "All 42 tests passed"
+              taffy log "Build started"
+              taffy log --level error --source build "Compilation failed"
+              taffy log --level success -- "All 42 tests passed"
             """
         case "clear-log":
             return """
-            Usage: cmux clear-log [flags]
+            Usage: taffy clear-log [flags]
 
             Clear all sidebar log entries for a workspace.
 
@@ -20239,11 +20245,11 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux clear-log
+              taffy clear-log
             """
         case "list-log":
             return """
-            Usage: cmux list-log [flags]
+            Usage: taffy list-log [flags]
 
             List sidebar log entries for a workspace.
 
@@ -20253,12 +20259,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux list-log
-              cmux list-log --limit 5
+              taffy list-log
+              taffy list-log --limit 5
             """
         case "sidebar-state":
             return """
-            Usage: cmux sidebar-state [flags]
+            Usage: taffy sidebar-state [flags]
 
             Dump all sidebar metadata for a workspace (cwd, git branch, ports,
             status entries, progress, log entries).
@@ -20268,12 +20274,12 @@ struct CMUXCLI {
               --window <id|ref|index>      Window context for workspace refs and indexes
 
             Example:
-              cmux sidebar-state
-              cmux sidebar-state --workspace workspace:2
+              taffy sidebar-state
+              taffy sidebar-state --workspace workspace:2
             """
         case "right-sidebar":
             return String(localized: "cli.rightSidebar.usage", defaultValue: """
-            Usage: cmux right-sidebar <command> [flags]
+            Usage: taffy right-sidebar <command> [flags]
 
             Control the right sidebar from the CLI.
 
@@ -20297,14 +20303,14 @@ struct CMUXCLI {
               --no-focus                     With set, switch mode without moving focus
 
             Examples:
-              cmux right-sidebar toggle
-              cmux right-sidebar set find
-              cmux right-sidebar set custom panel-info
-              cmux right-sidebar mode
+              taffy right-sidebar toggle
+              taffy right-sidebar set find
+              taffy right-sidebar set custom panel-info
+              taffy right-sidebar mode
             """)
         case "sidebar":
             return String(localized: "cli.sidebar.usage", defaultValue: """
-            Usage: cmux sidebar <validate|reload|select|open> [name|--all] [--json]
+            Usage: taffy sidebar <validate|reload|select|open> [name|--all] [--json]
             Validate, reload, select, or open custom sidebars from ~/.config/cmux/sidebars.
             Commands:
               validate [name]   Validate all custom sidebars, or one named sidebar
@@ -20314,23 +20320,23 @@ struct CMUXCLI {
             """)
         case "set-app-focus":
             return """
-            Usage: cmux set-app-focus <active|inactive|clear>
+            Usage: taffy set-app-focus <active|inactive|clear>
 
             Override app focus state for notification routing tests.
 
             Example:
-              cmux set-app-focus inactive
-              cmux set-app-focus clear
+              taffy set-app-focus inactive
+              taffy set-app-focus clear
             """
         case "simulate-app-active":
             return """
-            Usage: cmux simulate-app-active
+            Usage: taffy simulate-app-active
 
             Trigger the app-active handler used by notification focus tests.
             """
         case "claude-hook":
             return """
-            Usage: cmux claude-hook <session-start|active|stop|idle|notification|notify|prompt-submit> [flags]
+            Usage: taffy claude-hook <session-start|active|stop|idle|notification|notify|prompt-submit> [flags]
 
             Hook for Claude Code integration. Reads JSON from stdin.
 
@@ -20348,22 +20354,22 @@ struct CMUXCLI {
               --surface <id|ref>     Target surface (default: $CMUX_SURFACE_ID)
 
             Example:
-              echo '{"session_id":"abc"}' | cmux claude-hook session-start
-              echo '{}' | cmux claude-hook stop
+              echo '{"session_id":"abc"}' | taffy claude-hook session-start
+              echo '{}' | taffy claude-hook stop
             """
         case "codex":
             return """
-            Usage: cmux codex <install-hooks|uninstall-hooks>
+            Usage: taffy codex <install-hooks|uninstall-hooks>
 
             Manage Codex CLI hooks integration.
 
             Subcommands:
-              install-hooks     Install cmux hooks into ~/.codex/hooks.json
-              uninstall-hooks   Remove cmux hooks from ~/.codex/hooks.json
+              install-hooks     Install taffy hooks into ~/.codex/hooks.json
+              uninstall-hooks   Remove taffy hooks from ~/.codex/hooks.json
             """
         case "browser":
             return """
-            Usage: cmux browser [--surface <id|ref|index> | <surface>] <subcommand> [args]
+            Usage: taffy browser [--surface <id|ref|index> | <surface>] <subcommand> [args]
 
             Browser automation commands. Most subcommands require a surface handle.
             A surface can be passed as `--surface <handle>` or as the first positional token.
@@ -20424,11 +20430,11 @@ struct CMUXCLI {
               identify [--surface <id|ref|index>]
 
             Example:
-              cmux browser open https://example.com
-              cmux browser surface:1 navigate https://google.com
-              cmux browser --surface surface:1 snapshot --interactive
+              taffy browser open https://example.com
+              taffy browser surface:1 navigate https://google.com
+              taffy browser --surface surface:1 snapshot --interactive
             """
-        // Legacy browser aliases — point users to `cmux browser --help`
+        // Legacy browser aliases — point users to `taffy browser --help`
         case "open-browser":
             return "Legacy alias for 'cmux browser open'. Run 'cmux browser --help' for details."
         case "navigate":
@@ -20449,8 +20455,8 @@ struct CMUXCLI {
         case "diff": return diffSubcommandUsage()
         case "markdown":
             return """
-            Usage: cmux markdown open <path> [options]
-                   cmux markdown <path>       (shorthand for 'open')
+            Usage: taffy markdown open <path> [options]
+                   taffy markdown <path>       (shorthand for 'open')
 
             Open a markdown file in a formatted viewer panel with live file watching.
             The file is rendered with rich formatting (headings, code blocks, tables,
@@ -20464,10 +20470,10 @@ struct CMUXCLI {
               --focus <true|false>         Focus the markdown panel (default: false)
 
             Examples:
-              cmux markdown open plan.md
-              cmux markdown ~/project/CHANGELOG.md
-              cmux markdown open ./docs/design.md --workspace 0
-              cmux markdown open plan.md --direction down
+              taffy markdown open plan.md
+              taffy markdown ~/project/CHANGELOG.md
+              taffy markdown open ./docs/design.md --workspace 0
+              taffy markdown open plan.md --direction down
             """
         default:
             return nil
@@ -20477,18 +20483,18 @@ struct CMUXCLI {
     /// Dispatch help for a subcommand. Returns true if help was printed.
     private func dispatchSubcommandHelp(command: String, commandArgs: [String]) -> Bool {
         guard commandArgs.contains("--help") || commandArgs.contains("-h") else { return false }
-        // `cmux vm <verb> --help` answers for that verb; the family text stays for
-        // `cmux vm --help` and verbs without their own usage.
+        // `taffy vm <verb> --help` answers for that verb; the family text stays for
+        // `taffy vm --help` and verbs without their own usage.
         if command == "vm" || command == "cloud",
            let verb = commandArgs.first?.lowercased(), !verb.hasPrefix("-"),
            let verbText = Self.vmSubcommandUsage(commandArgs) ?? Self.vmVerbUsage(verb) {
-            print("cmux \(command) \(verb)")
+            print("taffy \(command) \(verb)")
             print("")
             print(verbText)
             return true
         }
         guard let text = subcommandUsage(command) else { return false }
-        print("cmux \(command)")
+        print("taffy \(command)")
         print("")
         print(text)
         return true
@@ -21476,7 +21482,7 @@ struct CMUXCLI {
         do {
             return try client.sendV2(method: "system.top", params: params, responseTimeout: responseTimeout)
         } catch let error as CLIError where error.message.hasPrefix("method_not_found:") {
-            throw CLIError(message: String(localized: "cli.top.error.processDiagnosticsUnsupported", defaultValue: "cmux top requires a running cmux build that supports process diagnostics"))
+            throw CLIError(message: String(localized: "cli.top.error.processDiagnosticsUnsupported", defaultValue: "Taffy top requires a running Taffy build that supports process diagnostics"))
         }
     }
 
@@ -23916,7 +23922,7 @@ struct CMUXCLI {
                 params: [
                     "clientInfo": [
                         "name": clientName,
-                        "title": "cmux Codex Teams",
+                        "title": "taffy Codex Teams",
                         "version": version
                     ],
                     "capabilities": capabilities
@@ -24145,7 +24151,7 @@ struct CMUXCLI {
                     try backfillLoadedThreads(connection: connection)
                     try listenForNotifications(connection: connection)
                 } catch {
-                    cliWriteStderr("cmux codex-teams watcher connection failed: \(error)\n")
+                    cliWriteStderr("taffy codex-teams watcher connection failed: \(error)\n")
                 }
                 _ = reconcileWaiter.wait(timeout: .now() + CMUXCLI.codexTeamsReconcileInterval)
             }
@@ -24168,7 +24174,7 @@ struct CMUXCLI {
                 do {
                     try subscribeToThreadIfNeeded(threadId, connection: connection)
                 } catch {
-                    cliWriteStderr("cmux codex-teams watcher skipped thread \(threadId): \(error)\n")
+                    cliWriteStderr("taffy codex-teams watcher skipped thread \(threadId): \(error)\n")
                 }
             }
         }
@@ -24203,7 +24209,7 @@ struct CMUXCLI {
                 do {
                     try subscribeToThreadIfNeeded(thread.id, connection: connection)
                 } catch {
-                    cliWriteStderr("cmux codex-teams watcher skipped thread \(thread.id): \(error)\n")
+                    cliWriteStderr("taffy codex-teams watcher skipped thread \(thread.id): \(error)\n")
                 }
             }
         }
@@ -24302,14 +24308,14 @@ struct CMUXCLI {
         ) throws -> Bool {
             guard CMUXCLI.codexTeamsApprovalMethods.contains(method) else { return false }
             guard let params = message["params"] as? [String: Any] else {
-                cliWriteStderr("cmux codex-teams watcher ignoring malformed approval \(method) request \(CMUXCLI.requestIdString(requestId))\n")
+                cliWriteStderr("taffy codex-teams watcher ignoring malformed approval \(method) request \(CMUXCLI.requestIdString(requestId))\n")
                 return true
             }
             let relatedItem = CMUXCLI.stringValue(in: params, keys: ["itemId", "item_id"])
                 .flatMap { cachedApprovalItem(itemId: $0) }
             let suppressionKey = approvalSuppressionKey(method: method, requestId: requestId, params: params)
             if approvalIsSuppressed(suppressionKey) {
-                cliWriteStderr("cmux codex-teams watcher leaving previously unresolved approval \(suppressionKey) to native Codex\n")
+                cliWriteStderr("taffy codex-teams watcher leaving previously unresolved approval \(suppressionKey) to native Codex\n")
                 return true
             }
             let feedEvent = CMUXCLI.codexTeamsFeedEvent(
@@ -24319,18 +24325,18 @@ struct CMUXCLI {
                 workspaceId: workspaceId,
                 relatedItem: relatedItem
             )
-            cliWriteStderr("cmux codex-teams watcher forwarding approval \(method) request \(CMUXCLI.requestIdString(requestId)) to Feed\n")
+            cliWriteStderr("taffy codex-teams watcher forwarding approval \(method) request \(CMUXCLI.requestIdString(requestId)) to Feed\n")
             let response: [String: Any]
             do {
                 response = try pushCodexApprovalToFeed(event: feedEvent)
             } catch {
                 suppressApproval(suppressionKey)
-                cliWriteStderr("cmux codex-teams watcher leaving approval \(suppressionKey) to native Codex after Feed push failed: \(error)\n")
+                cliWriteStderr("taffy codex-teams watcher leaving approval \(suppressionKey) to native Codex after Feed push failed: \(error)\n")
                 return true
             }
             guard let decision = CMUXCLI.codexTeamsPermissionMode(fromFeedPushResponse: response) else {
                 suppressApproval(suppressionKey)
-                cliWriteStderr("cmux codex-teams watcher leaving approval \(suppressionKey) to native Codex because Feed did not resolve it\n")
+                cliWriteStderr("taffy codex-teams watcher leaving approval \(suppressionKey) to native Codex because Feed did not resolve it\n")
                 return true
             }
             guard let result = CMUXCLI.codexTeamsAppServerApprovalResponse(
@@ -24338,7 +24344,7 @@ struct CMUXCLI {
                 params: params,
                 mode: decision
             ) else {
-                cliWriteStderr("cmux codex-teams watcher cannot map Feed decision for \(suppressionKey); leaving it to native Codex\n")
+                cliWriteStderr("taffy codex-teams watcher cannot map Feed decision for \(suppressionKey); leaving it to native Codex\n")
                 return true
             }
             try connection.respond(requestId: requestId, result: result)
@@ -24456,7 +24462,7 @@ struct CMUXCLI {
                     reason: "depth",
                     message: String(
                         localized: "cli.codexTeams.watcher.subagent.depthExceeded",
-                        defaultValue: "cmux codex-teams watcher skipped a Codex subagent: depth \(depth) exceeds the automatic pane limit \(maxAutoDepth)."
+                        defaultValue: "taffy codex-teams watcher skipped a Codex subagent: depth \(depth) exceeds the automatic pane limit \(maxAutoDepth)."
                     ) + "\n"
                 )
                 return
@@ -24472,7 +24478,7 @@ struct CMUXCLI {
                     reason: "status",
                     message: String(
                         localized: "cli.codexTeams.watcher.subagent.statusNotAttachable",
-                        defaultValue: "cmux codex-teams watcher skipped a Codex subagent: thread status \(thread.statusType ?? "missing") is not attachable."
+                        defaultValue: "taffy codex-teams watcher skipped a Codex subagent: thread status \(thread.statusType ?? "missing") is not attachable."
                     ) + "\n"
                 )
                 return
@@ -24532,7 +24538,7 @@ struct CMUXCLI {
                         reason: "readiness",
                         message: String(
                             localized: "cli.codexTeams.watcher.subagent.readinessFailed",
-                            defaultValue: "cmux codex-teams watcher could not attach a Codex subagent because its resumed thread was not ready."
+                            defaultValue: "taffy codex-teams watcher could not attach a Codex subagent because its resumed thread was not ready."
                         ) + "\n"
                     )
                     self.stateLock.unlock()
@@ -24541,7 +24547,7 @@ struct CMUXCLI {
                 do {
                     try self.openAttachableThread(threadId: threadId)
                 } catch {
-                    cliWriteStderr("cmux codex-teams watcher failed to open ready subagent \(threadId): \(error)\n")
+                    cliWriteStderr("taffy codex-teams watcher failed to open ready subagent \(threadId): \(error)\n")
                 }
             }
         }
@@ -24588,12 +24594,12 @@ struct CMUXCLI {
             if let code = (error as? CLIError)?.v2Code {
                 message = String(
                     localized: "cli.codexTeams.watcher.subagent.paneCreationFailedWithCode",
-                    defaultValue: "cmux codex-teams watcher could not create a pane for a resumed Codex subagent (error code: \(code))."
+                    defaultValue: "taffy codex-teams watcher could not create a pane for a resumed Codex subagent (error code: \(code))."
                 )
             } else {
                 message = String(
                     localized: "cli.codexTeams.watcher.subagent.paneCreationFailed",
-                    defaultValue: "cmux codex-teams watcher could not create a pane for a resumed Codex subagent."
+                    defaultValue: "taffy codex-teams watcher could not create a pane for a resumed Codex subagent."
                 )
             }
             reportSubagentDiagnosticOnce(
@@ -24924,10 +24930,10 @@ struct CMUXCLI {
             processEnvironment: launcherEnvironment,
             explicitPassword: explicitPassword
         ) else {
-            throw CLIError(message: "cmux codex-teams must be started from a cmux terminal surface")
+            throw CLIError(message: "taffy codex-teams must be started from a taffy terminal surface")
         }
         guard let rootSurfaceId = launchContext.surfaceId, !rootSurfaceId.isEmpty else {
-            throw CLIError(message: "cmux codex-teams must be started from a cmux terminal surface")
+            throw CLIError(message: "taffy codex-teams must be started from a taffy terminal surface")
         }
         // A surface UUID survives workspace moves, so the validated context may
         // supersede every inherited primary and legacy routing alias. Stamp the
@@ -25421,7 +25427,7 @@ struct CMUXCLI {
             do {
                 try watcher.run()
             } catch {
-                cliWriteStderr("cmux codex-teams watcher stopped: \(error)\n")
+                cliWriteStderr("taffy codex-teams watcher stopped: \(error)\n")
             }
         }
     }
@@ -25967,7 +25973,7 @@ struct CMUXCLI {
         )
         if !omoIsNonLaunchInvocation(commandArgs: commandArgs),
            normalizedTmuxTarget(launchContext?.surfaceId) == nil {
-            throw CLIError(message: managedTerminalRequiredMessage(displayName: "cmux omo"))
+            throw CLIError(message: managedTerminalRequiredMessage(displayName: "taffy omo"))
         }
 
         // Ensure oh-my-openagent plugin is registered and installed only after a
@@ -26107,7 +26113,7 @@ struct CMUXCLI {
         }
 
         guard let omxExecutablePath = resolveOMXExecutable(searchPath: launcherEnvironment["PATH"]) else {
-            throw CLIError(message: "omx is not installed. Install it first:\n  npm install -g oh-my-codex\n\nThen run: cmux omx")
+            throw CLIError(message: "omx is not installed. Install it first:\n  npm install -g oh-my-codex\n\nThen run: taffy omx")
         }
         launcherEnvironment["PATH"] = providerExecutableSearchPath(
             searchPath: launcherEnvironment["PATH"],
@@ -26121,7 +26127,7 @@ struct CMUXCLI {
         )
         if !omxIsNonLaunchInvocation(commandArgs: commandArgs),
            normalizedTmuxTarget(launchContext?.surfaceId) == nil {
-            throw CLIError(message: managedTerminalRequiredMessage(displayName: "cmux omx"))
+            throw CLIError(message: managedTerminalRequiredMessage(displayName: "taffy omx"))
         }
         let shimDirectory = try createOMXShimDirectory()
         configureOMXEnvironment(
@@ -26231,7 +26237,7 @@ struct CMUXCLI {
         }
 
         guard let omcExecutablePath = resolveOMCExecutable(searchPath: launcherEnvironment["PATH"]) else {
-            throw CLIError(message: "omc is not installed. Install it first:\n  npm install -g oh-my-claude-sisyphus\n\nThen run: cmux omc")
+            throw CLIError(message: "omc is not installed. Install it first:\n  npm install -g oh-my-claude-sisyphus\n\nThen run: taffy omc")
         }
         launcherEnvironment["PATH"] = providerExecutableSearchPath(
             searchPath: launcherEnvironment["PATH"],
@@ -26246,7 +26252,7 @@ struct CMUXCLI {
         )
         if !AgentLaunchInvocationClassifier().omcLaunchIsNonLaunch(args: commandArgs),
            normalizedTmuxTarget(launchContext?.surfaceId) == nil {
-            throw CLIError(message: managedTerminalRequiredMessage(displayName: "cmux omc"))
+            throw CLIError(message: managedTerminalRequiredMessage(displayName: "taffy omc"))
         }
         configureOMCEnvironment(
             processEnvironment: launcherEnvironment,
@@ -26295,7 +26301,7 @@ struct CMUXCLI {
                 boolFlags: ["-A", "-d", "-P"]
             )
             if parsed.hasFlag("-A") {
-                throw CLIError(message: "new-session -A is not supported in cmux claude-teams mode")
+                throw CLIError(message: "new-session -A is not supported in taffy claude-teams mode")
             }
             var params: [String: Any] = ["focus": false]
             if let cwd = parsed.value("-c") {
@@ -26332,7 +26338,7 @@ struct CMUXCLI {
                 boolFlags: ["-d", "-P"]
             )
             if parsed.value("-t") != nil {
-                throw CLIError(message: "new-window -t is not supported in cmux claude-teams mode")
+                throw CLIError(message: "new-window -t is not supported in taffy claude-teams mode")
             }
             var params: [String: Any] = ["focus": false]
             if let cwd = parsed.value("-c") {
@@ -26554,7 +26560,7 @@ struct CMUXCLI {
             guard parsed.hasFlag("-k") else {
                 throw CLIError(message: String(
                     localized: "cli.tmuxCompat.respawnPane.requiresForce",
-                    defaultValue: "respawn-pane requires -k in cmux tmux compatibility mode"
+                    defaultValue: "respawn-pane requires -k in Taffy tmux compatibility mode"
                 ))
             }
             let target = try tmuxResolveSurfaceTarget(parsed.value("-t"), client: client)
@@ -27433,10 +27439,10 @@ struct CMUXCLI {
             print("OK")
 
         case "popup":
-            throw CLIError(message: "popup is not supported yet in cmux CLI parity mode")
+            throw CLIError(message: "popup is not supported yet in taffy CLI parity mode")
 
         case "bind-key", "unbind-key", "copy-mode":
-            throw CLIError(message: "\(command) is not supported yet in cmux CLI parity mode")
+            throw CLIError(message: "\(command) is not supported yet in taffy CLI parity mode")
 
         case "set-buffer":
             let (nameArg, rem0) = parseOption(commandArgs, name: "--name")
@@ -27524,7 +27530,7 @@ struct CMUXCLI {
                 print(message)
                 return
             }
-            let payload = try client.sendV2(method: "notification.create", params: ["title": "cmux", "body": message])
+            let payload = try client.sendV2(method: "notification.create", params: ["title": "Taffy", "body": message])
             if jsonOutput {
                 print(jsonString(payload))
             } else {
@@ -28885,7 +28891,7 @@ struct CMUXCLI {
             telemetry.breadcrumb("claude-hook.help")
             print(
                 """
-                cmux claude-hook <session-start|stop|session-end|notification|push-notification|prompt-submit|pre-tool-use> [--workspace <id|index>] [--surface <id|index>]
+                taffy claude-hook <session-start|stop|session-end|notification|push-notification|prompt-submit|pre-tool-use> [--workspace <id|index>] [--surface <id|index>]
                 """
             )
 
@@ -28906,7 +28912,7 @@ struct CMUXCLI {
             "hookSpecificOutput": [
                 "hookEventName": "PreToolUse",
                 "permissionDecision": "deny",
-                "permissionDecisionReason": "cmux does not support durable Claude Code cron jobs. CronCreate durable:true would be silently downgraded to session-only in this environment, so cmux denied the tool call instead. Re-run with durable:false for a session-only job, or use an external scheduler or state-file resume path for persistence."
+                "permissionDecisionReason": "taffy does not support durable Claude Code cron jobs. CronCreate durable:true would be silently downgraded to session-only in this environment, so taffy denied the tool call instead. Re-run with durable:false for a session-only job, or use an external scheduler or state-file resume path for persistence."
             ]
         ])
     }
@@ -28952,7 +28958,7 @@ struct CMUXCLI {
         jsonOutput: Bool
     ) throws {
         guard let subcommand = commandArgs.first?.lowercased() else {
-            throw CLIError(message: "Usage: cmux agent-hibernation <on|off> [--json]")
+            throw CLIError(message: "Usage: taffy agent-hibernation <on|off> [--json]")
         }
         let response: String
         switch subcommand {
@@ -28961,7 +28967,7 @@ struct CMUXCLI {
         case "off", "disable":
             response = try sendV1Command("agent_hibernation off", client: client)
         default:
-            throw CLIError(message: "Usage: cmux agent-hibernation <on|off> [--json]")
+            throw CLIError(message: "Usage: taffy agent-hibernation <on|off> [--json]")
         }
 
         if jsonOutput {
@@ -32889,7 +32895,7 @@ export default CMUXSessionRestore;
         }
         if !existing.isEmpty, !existing.contains(Self.openCodeSessionPluginMarker) { throw CLIError(message: "\(pluginURL.path) exists and is not a cmux plugin; leaving it alone") }
         if !skipConfirm {
-            print("Will write OpenCode cmux plugin to \(pluginURL.path):")
+            print("Will write OpenCode taffy plugin to \(pluginURL.path):")
             print(Self.openCodeSessionPluginSource)
             print("\nProceed? [y/N] ", terminator: "")
             guard readLine()?.lowercased().hasPrefix("y") == true else {
@@ -32906,12 +32912,12 @@ export default CMUXSessionRestore;
         let fm = FileManager.default
         let pluginURL = openCodeSessionPluginURL(for: def)
         guard fm.fileExists(atPath: pluginURL.path) else {
-            print("No OpenCode cmux plugin found at \(pluginURL.path)")
+            print("No OpenCode taffy plugin found at \(pluginURL.path)")
             return
         }
         let existing = (try? String(contentsOf: pluginURL, encoding: .utf8)) ?? ""
         guard existing.contains(Self.openCodeSessionPluginMarker) else {
-            print("Refusing to remove \(pluginURL.path): missing cmux marker")
+            print("Refusing to remove \(pluginURL.path): missing taffy marker")
             return
         }
         try fm.removeItem(at: pluginURL)
@@ -32919,7 +32925,7 @@ export default CMUXSessionRestore;
             configDir: URL(fileURLWithPath: def.resolvedConfigDir(), isDirectory: true),
             shouldInstall: false
         )
-        print("Removed OpenCode cmux plugin from \(pluginURL.path)")
+        print("Removed OpenCode taffy plugin from \(pluginURL.path)")
     }
 
     func readAgentHookConfig(filePath: String, displayName: String) throws -> String {
@@ -32944,7 +32950,7 @@ export default CMUXSessionRestore;
         let configDirectoryFileError = String.localizedStringWithFormat(
             String(
                 localized: "cli.hooks.error.configDirectoryIsFile",
-                defaultValue: "cmux could not create the hooks directory: a file exists at %@. Remove or rename the conflicting file, then run `cmux hooks setup` again."
+                defaultValue: "Taffy could not create the hooks directory: a file exists at %@. Remove or rename the conflicting file, then run `taffy hooks setup` again."
             ),
             configDir
         )
@@ -33070,7 +33076,7 @@ export default CMUXSessionRestore;
                 print(String.localizedStringWithFormat(
                     String(
                         localized: "cli.hooks.antigravity.removedZero",
-                        defaultValue: "Removed 0 cmux hook(s) from %@"
+                        defaultValue: "Removed 0 Taffy hook(s) from %@"
                     ),
                     filePath
                 ))
@@ -33084,7 +33090,7 @@ export default CMUXSessionRestore;
         print(String.localizedStringWithFormat(
             String(
                 localized: "cli.hooks.antigravity.removed",
-                defaultValue: "Removed Antigravity cmux hooks from %@"
+                defaultValue: "Removed Antigravity taffy hooks from %@"
             ),
             filePath
         ))
@@ -33167,7 +33173,7 @@ export default CMUXSessionRestore;
         let configDirectoryFileError = String.localizedStringWithFormat(
             String(
                 localized: "cli.hooks.error.configDirectoryIsFile",
-                defaultValue: "cmux could not create the hooks directory: a file exists at %@. Remove or rename the conflicting file, then run `cmux hooks setup` again."
+                defaultValue: "Taffy could not create the hooks directory: a file exists at %@. Remove or rename the conflicting file, then run `taffy hooks setup` again."
             ),
             configDir
         )
@@ -33177,7 +33183,7 @@ export default CMUXSessionRestore;
             if def.createConfigDirIfMissing {
                 throw CLIError(message: configDirectoryFileError)
             }
-            print("Required agent configuration is missing. Run `cmux hooks setup` after installing your agent CLI.")
+            print("Required agent configuration is missing. Run `taffy hooks setup` after installing your agent CLI.")
             return
         }
         if !configPathExists {
@@ -33188,7 +33194,7 @@ export default CMUXSessionRestore;
                     throw CLIError(message: configDirectoryFileError)
                 }
             } else {
-                print("Required agent configuration is missing. Run `cmux hooks setup` after installing your agent CLI.")
+                print("Required agent configuration is missing. Run `taffy hooks setup` after installing your agent CLI.")
                 return
             }
         }
@@ -33304,7 +33310,7 @@ export default CMUXSessionRestore;
                 existing["name"] = "cmux"
             }
             if existing["description"] == nil {
-                existing["description"] = "CMUX notification and Feed bridge hooks for Kiro CLI."
+                existing["description"] = "Taffy notification and Feed bridge hooks for Kiro CLI."
             }
             if existing["tools"] == nil {
                 // Grant the full tool set so `kiro-cli chat --agent cmux` is
@@ -33403,7 +33409,7 @@ export default CMUXSessionRestore;
                     }
                     try newContent.write(toFile: configPath, atomically: true, encoding: .utf8)
                     if def.name == "codex", !codexHookTrustEntries.isEmpty, trustInstall.installedTrust {
-                        print("Enabled hooks and approved cmux hooks in \(configPath)")
+                        print("Enabled hooks and approved taffy hooks in \(configPath)")
                     } else {
                         print("Enabled hooks in \(configPath)")
                     }
@@ -33509,7 +33515,7 @@ export default CMUXSessionRestore;
         }
         let newData = try JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted, .sortedKeys])
         try newData.write(to: legacyURL, options: .atomic)
-        print("Removed \(removed) legacy \(def.displayName) cmux hook(s) from \(legacyURL.path)")
+        print("Removed \(removed) legacy \(def.displayName) taffy hook(s) from \(legacyURL.path)")
     }
 
     private func uninstallAgentHooks(_ def: AgentHookDef) throws {
@@ -33609,7 +33615,7 @@ export default CMUXSessionRestore;
         json["hooks"] = hooks
         let newData = try JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted, .sortedKeys])
         try newData.write(to: URL(fileURLWithPath: filePath), options: .atomic)
-        print("Removed \(removed) cmux hook(s) from \(filePath)")
+        print("Removed \(removed) taffy hook(s) from \(filePath)")
 
         // Post-uninstall actions
         if let action = def.postInstallAction {
@@ -33746,7 +33752,7 @@ export default CMUXSessionRestore;
             )
             insertHashes(
                 eventLabel: eventLabel,
-                command: "cmux codex-hook \(event.cmuxSubcommand)",
+                command: "taffy codex-hook \(event.cmuxSubcommand)",
                 timeouts: [hookTimeoutMs, 5, 5_000, 600]
             )
         }
@@ -33760,7 +33766,7 @@ export default CMUXSessionRestore;
             )
             insertHashes(
                 eventLabel: eventLabel,
-                command: "cmux feed-hook --source \(def.name) --event \(agentEvent)",
+                command: "taffy feed-hook --source \(def.name) --event \(agentEvent)",
                 timeouts: [120_000, 600]
             )
         }
@@ -38135,7 +38141,7 @@ export default CMUXSessionRestore;
         do {
             try runOpenTUIFeedTUI(socketPath: socketPath, socketPassword: resolvedSocketPassword)
         } catch {
-            cliWriteStderr("cmux feed tui: OpenTUI unavailable (\(error)); falling back to legacy TUI.\n")
+            cliWriteStderr("taffy feed tui: OpenTUI unavailable (\(error)); falling back to legacy TUI.\n")
             try runLegacyFeedTUI(socketPath: socketPath, socketPassword: resolvedSocketPassword)
         }
     }
@@ -38146,19 +38152,19 @@ export default CMUXSessionRestore;
             switch argument {
             case "--opentui":
                 guard implementation != .legacy else {
-                    throw CLIError(message: "cmux feed tui: choose only one TUI implementation")
+                    throw CLIError(message: "taffy feed tui: choose only one TUI implementation")
                 }
                 implementation = .openTUI
             case "--legacy":
                 guard implementation != .openTUI else {
-                    throw CLIError(message: "cmux feed tui: choose only one TUI implementation")
+                    throw CLIError(message: "taffy feed tui: choose only one TUI implementation")
                 }
                 implementation = .legacy
             case "--help", "-h":
-                print("Usage: cmux feed tui [--opentui|--legacy]")
+                print("Usage: taffy feed tui [--opentui|--legacy]")
                 return .help
             default:
-                throw CLIError(message: "cmux feed tui: unknown argument \(argument)")
+                throw CLIError(message: "taffy feed tui: unknown argument \(argument)")
             }
         }
         return implementation
@@ -38166,16 +38172,16 @@ export default CMUXSessionRestore;
 
     private func runOpenTUIFeedTUI(socketPath: String, socketPassword: String?) throws {
         guard isatty(STDIN_FILENO) == 1, isatty(STDOUT_FILENO) == 1 else {
-            throw CLIError(message: "cmux feed tui requires an interactive terminal")
+            throw CLIError(message: "taffy feed tui requires an interactive terminal")
         }
         guard let bunPath = resolveBunExecutable() else {
             throw CLIError(message: "Bun is required for the OpenTUI Feed")
         }
 
-        cliWriteStderr("cmux feed tui: preparing OpenTUI Feed...\n")
+        cliWriteStderr("taffy feed tui: preparing OpenTUI Feed...\n")
         let appDirectory = try prepareOpenTUIFeedApp(bunPath: bunPath)
         let sourceURL = appDirectory.appendingPathComponent("index.ts", isDirectory: false)
-        cliWriteStderr("cmux feed tui: starting OpenTUI Feed.\n")
+        cliWriteStderr("taffy feed tui: starting OpenTUI Feed.\n")
         let process = Process()
         process.executableURL = URL(fileURLWithPath: bunPath)
         process.arguments = [sourceURL.path]
@@ -38221,7 +38227,7 @@ export default CMUXSessionRestore;
         let previousHandler = signal(SIGTTOU, SIG_IGN)
         defer { _ = signal(SIGTTOU, previousHandler) }
         guard tcsetpgrp(STDIN_FILENO, processGroup) == 0 else {
-            throw CLIError(message: "cmux feed tui: failed to foreground OpenTUI process: \(String(cString: strerror(errno)))")
+            throw CLIError(message: "taffy feed tui: failed to foreground OpenTUI process: \(String(cString: strerror(errno)))")
         }
     }
 
@@ -38278,7 +38284,7 @@ export default CMUXSessionRestore;
             .appendingPathComponent("package.json", isDirectory: false)
         if !fileManager.fileExists(atPath: installedPackageURL.path)
             || installedOpenTUIVersion(at: installedPackageURL) != Self.openTUIFeedCoreVersion {
-            cliWriteStderr("cmux feed tui: installing @opentui/core \(Self.openTUIFeedCoreVersion)...\n")
+            cliWriteStderr("taffy feed tui: installing @opentui/core \(Self.openTUIFeedCoreVersion)...\n")
             try installOpenTUIFeedDependencies(bunPath: bunPath, appDirectory: appDirectory)
         }
         return appDirectory
@@ -38364,7 +38370,7 @@ export default CMUXSessionRestore;
 
     private func runLegacyFeedTUI(socketPath: String, socketPassword: String?) throws {
         guard isatty(STDIN_FILENO) == 1, isatty(STDOUT_FILENO) == 1 else {
-            throw CLIError(message: "cmux feed tui requires an interactive terminal")
+            throw CLIError(message: "taffy feed tui requires an interactive terminal")
         }
 
         let client = SocketClient(path: socketPath)
@@ -38568,7 +38574,7 @@ export default CMUXSessionRestore;
 
         print("\u{001B}[2J\u{001B}[H", terminator: "")
         print(feedTUILine(
-            "cmux Dock Feed  latest first  \(pendingCount) pending  \(items.count) total  \(visibleStart)-\(visibleEnd)",
+            "taffy Dock Feed  latest first  \(pendingCount) pending  \(items.count) total  \(visibleStart)-\(visibleEnd)",
             width: width
         ))
         print(feedTUILine(
@@ -39235,7 +39241,7 @@ export default CMUXSessionRestore;
             ? ((try? String(contentsOfFile: path, encoding: .utf8)) ?? "")
             : ""
         if !existing.isEmpty, !existing.contains(Self.openCodePluginMarker) {
-            throw CLIError(message: "\(path) exists and is not a cmux plugin; leaving it alone")
+            throw CLIError(message: "\(path) exists and is not a taffy plugin; leaving it alone")
         }
         let parent = (path as NSString).deletingLastPathComponent
         try fm.createDirectory(
@@ -39272,7 +39278,7 @@ export default CMUXSessionRestore;
             guard let existing = try? String(contentsOfFile: path, encoding: .utf8),
                   existing.contains(Self.openCodePluginMarker)
             else {
-                print("Skipping \(path) (no cmux marker)")
+                print("Skipping \(path) (no taffy marker)")
                 continue
             }
             try fm.removeItem(atPath: path)
@@ -39474,7 +39480,7 @@ export default CMUXSessionRestore;
         _ = telemetry
         let source = optionValue(commandArgs, name: "--source") ?? ""
         guard !source.isEmpty else {
-            throw CLIError(message: "cmux hooks feed requires --source <agent-name>")
+            throw CLIError(message: "taffy hooks feed requires --source <agent-name>")
         }
         let lifecycleProbeDeadline = Date.now.addingTimeInterval(0.75)
         var lifecycleProbeClient: SocketClient?
@@ -40242,9 +40248,9 @@ export default CMUXSessionRestore;
             return true
         }
         if mode == "deny" {
-            cliWriteStderr("User denied permission via cmux Feed.\n")
+            cliWriteStderr("User denied permission via taffy Feed.\n")
         } else {
-            cliWriteStderr("cmux Feed returned an unrecognized Kiro permission decision; denying for safety.\n")
+            cliWriteStderr("taffy Feed returned an unrecognized Kiro permission decision; denying for safety.\n")
         }
         exit(2)
     }
@@ -40280,7 +40286,7 @@ export default CMUXSessionRestore;
         ) -> [String: Any] {
             var inner: [String: Any] = ["behavior": behavior]
             if behavior == "deny" {
-                inner["message"] = message ?? "User denied permission via cmux Feed."
+                inner["message"] = message ?? "User denied permission via taffy Feed."
             }
             if let updatedInput, !updatedInput.isEmpty {
                 inner["updatedInput"] = updatedInput
@@ -40346,7 +40352,7 @@ export default CMUXSessionRestore;
                 if mode == "deny" {
                     return encode(permissionRequestHookDecision(
                         behavior: "deny",
-                        message: "User denied permission via cmux Feed."
+                        message: "User denied permission via taffy Feed."
                     ))
                 }
                 var updatedPermissions: [[String: Any]]?
@@ -40362,26 +40368,26 @@ export default CMUXSessionRestore;
                 if mode == "deny" {
                     return encode(permissionRequestHookDecision(
                         behavior: "deny",
-                        message: "User denied permission via cmux Feed."
+                        message: "User denied permission via taffy Feed."
                     ))
                 }
                 return encode(permissionRequestHookDecision(behavior: "allow"))
             }
             if source == "hermes-agent" {
                 if mode == "deny" {
-                    return hermesAgentBlock("User denied permission via cmux Feed.")
+                    return hermesAgentBlock("User denied permission via taffy Feed.")
                 }
                 return "{}"
             }
             if mode == "deny" {
                 return encode(nonClaudePreToolDecision(
                     permission: "deny",
-                    reason: "User denied permission via cmux Feed."
+                    reason: "User denied permission via taffy Feed."
                 ))
             }
-            var reasonText = "User approved via cmux Feed."
+            var reasonText = "User approved via taffy Feed."
             if mode == "always" || mode == "all" || mode == "bypass" {
-                reasonText = "User granted \(mode) permission via cmux Feed. Reduce subsequent approval prompts for similar calls."
+                reasonText = "User granted \(mode) permission via taffy Feed. Reduce subsequent approval prompts for similar calls."
             }
             return encode(nonClaudePreToolDecision(
                 permission: "allow",
@@ -40396,19 +40402,19 @@ export default CMUXSessionRestore;
                 if let feedback, !feedback.isEmpty {
                     return encode(permissionRequestHookDecision(
                         behavior: "deny",
-                        message: "User rejected the plan via cmux Feed and wants this change: \(feedback)"
+                        message: "User rejected the plan via taffy Feed and wants this change: \(feedback)"
                     ))
                 }
                 if mode == "deny" {
                     return encode(permissionRequestHookDecision(
                         behavior: "deny",
-                        message: "User rejected the plan via cmux Feed."
+                        message: "User rejected the plan via taffy Feed."
                     ))
                 }
                 if mode == "ultraplan" {
                     return encode(permissionRequestHookDecision(
                         behavior: "deny",
-                        message: "User chose Ultraplan via cmux Feed. Refine this plan with Ultraplan on Claude Code on the web."
+                        message: "User chose Ultraplan via taffy Feed. Refine this plan with Ultraplan on Claude Code on the web."
                     ))
                 }
                 var updatedPermissions: [[String: Any]]?
@@ -40427,15 +40433,15 @@ export default CMUXSessionRestore;
             }
             if source == "hermes-agent" {
                 if let feedback, !feedback.isEmpty {
-                    return hermesAgentBlock("User rejected the plan via cmux Feed and wants this change: \(feedback)")
+                    return hermesAgentBlock("User rejected the plan via taffy Feed and wants this change: \(feedback)")
                 }
                 if mode == "deny" {
-                    return hermesAgentBlock("User rejected the plan via cmux Feed.")
+                    return hermesAgentBlock("User rejected the plan via taffy Feed.")
                 }
                 return "{}"
             }
             if let feedback, !feedback.isEmpty {
-                let reason = "User rejected the plan via cmux Feed and wants this change: \(feedback)"
+                let reason = "User rejected the plan via taffy Feed and wants this change: \(feedback)"
                 return encode(nonClaudePreToolDecision(
                     permission: "deny",
                     reason: reason,
@@ -40445,11 +40451,11 @@ export default CMUXSessionRestore;
             if mode == "deny" {
                 return encode(nonClaudePreToolDecision(
                     permission: "deny",
-                    reason: "User rejected the plan via cmux Feed."
+                    reason: "User rejected the plan via taffy Feed."
                 ))
             }
             if mode == "ultraplan" {
-                let reason = "User chose Ultraplan via cmux Feed. Refine this plan with Ultraplan if available."
+                let reason = "User chose Ultraplan via taffy Feed. Refine this plan with Ultraplan if available."
                 return encode(nonClaudePreToolDecision(
                     permission: "deny",
                     reason: reason,
@@ -40465,7 +40471,7 @@ export default CMUXSessionRestore;
             default:
                 modeText = "manual-approval mode (approve each edit)"
             }
-            let ctx = "User accepted this plan via cmux Feed with \(modeText). Exit plan mode now and proceed to implement without re-entering ExitPlanMode. Do not ask again."
+            let ctx = "User accepted this plan via taffy Feed with \(modeText). Exit plan mode now and proceed to implement without re-entering ExitPlanMode. Do not ask again."
             return encode(nonClaudePreToolDecision(
                 permission: "deny",
                 reason: ctx,
@@ -40475,7 +40481,7 @@ export default CMUXSessionRestore;
         case "question":
             let selections = decision["selections"] as? [String] ?? []
             if selections == [Self.skipInterviewAndPlanAnswer] {
-                let message = "User chose Skip interview and plan immediately via cmux Feed. Do not ask more interview questions. Write the plan now."
+                let message = "User chose Skip interview and plan immediately via taffy Feed. Do not ask more interview questions. Write the plan now."
                 if source == "claude" {
                     return encode(permissionRequestHookDecision(
                         behavior: "deny",
@@ -40521,7 +40527,7 @@ export default CMUXSessionRestore;
                     .joined(separator: "\n")
                 body = "The user answered:\n\(lines)"
             }
-            let ctx = "[cmux Feed] \(body). Treat these as the user's response to your AskUserQuestion prompt; do not call AskUserQuestion again for the same question."
+            let ctx = "[taffy Feed] \(body). Treat these as the user's response to your AskUserQuestion prompt; do not call AskUserQuestion again for the same question."
             return encode(nonClaudePreToolDecision(
                 permission: "deny",
                 reason: ctx,
@@ -40585,13 +40591,13 @@ export default CMUXSessionRestore;
 
     private func runHooksNoSocketCommand(commandArgs: [String]) throws -> Bool {
         guard let first = commandArgs.first?.lowercased() else {
-            print(subcommandUsage("hooks") ?? "Usage: cmux hooks <setup|uninstall|agent>")
+            print(subcommandUsage("hooks") ?? "Usage: taffy hooks <setup|uninstall|agent>")
             return true
         }
 
         switch first {
         case "help", "--help", "-h":
-            print(subcommandUsage("hooks") ?? "Usage: cmux hooks <setup|uninstall|agent>")
+            print(subcommandUsage("hooks") ?? "Usage: taffy hooks <setup|uninstall|agent>")
             return true
 
         case "setup":
@@ -40629,7 +40635,7 @@ export default CMUXSessionRestore;
 
             let rest = Array(commandArgs.dropFirst())
             guard let action = rest.first?.lowercased() else {
-                print(subcommandUsage("hooks") ?? "Usage: cmux hooks <setup|uninstall|agent>")
+                print(subcommandUsage("hooks") ?? "Usage: taffy hooks <setup|uninstall|agent>")
                 return true
             }
             if def.name == "pi", action == "session-start" {
@@ -40713,7 +40719,7 @@ export default CMUXSessionRestore;
         hookDeadline: Date? = nil
     ) throws {
         guard let first = commandArgs.first?.lowercased() else {
-            throw CLIError(message: "Usage: cmux hooks <setup|uninstall|feed|claude|agent>")
+            throw CLIError(message: "Usage: taffy hooks <setup|uninstall|feed|claude|agent>")
         }
         let rest = Array(commandArgs.dropFirst())
 
@@ -40826,7 +40832,7 @@ export default CMUXSessionRestore;
         let fm = FileManager.default
         let verb = isUninstall ? "uninstalling" : "installing"
 
-        print("cmux hooks \(isUninstall ? "uninstall" : "setup"): \(verb) agent hooks")
+        print("taffy hooks \(isUninstall ? "uninstall" : "setup"): \(verb) agent hooks")
         if !isUninstall {
             print("  (Claude Code hooks are injected automatically via the claude wrapper)")
         }
@@ -40903,13 +40909,13 @@ export default CMUXSessionRestore;
         let commit = info["CMUXCommit"].flatMap { normalizedCommitHash($0) }
         let baseSummary: String
         if let version = info["CFBundleShortVersionString"], let build = info["CFBundleVersion"] {
-            baseSummary = "cmux \(version) (\(build))"
+            baseSummary = "taffy \(version) (\(build))"
         } else if let version = info["CFBundleShortVersionString"] {
-            baseSummary = "cmux \(version)"
+            baseSummary = "taffy \(version)"
         } else if let build = info["CFBundleVersion"] {
-            baseSummary = "cmux build \(build)"
+            baseSummary = "taffy build \(build)"
         } else {
-            baseSummary = "cmux version unknown"
+            baseSummary = "taffy version unknown"
         }
         guard let commit else { return baseSummary }
         return "\(baseSummary) [\(commit)]"
@@ -40924,13 +40930,11 @@ export default CMUXSessionRestore;
 
         let isDark = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark"
 
-        let c1 = trueColor(0, 212, 255)
-        let c2 = trueColor(24, 181, 250)
-        let c3 = trueColor(48, 150, 245)
-        let c4 = trueColor(72, 119, 241)
-        let c5 = trueColor(96, 88, 239)
-        let c6 = trueColor(110, 73, 238)
-        let c7 = trueColor(124, 58, 237)
+        let c1 = trueColor(250, 250, 250)
+        let c2 = trueColor(230, 230, 230)
+        let c3 = trueColor(210, 210, 210)
+        let c4 = trueColor(190, 190, 190)
+        let c5 = trueColor(170, 170, 170)
 
         let tagline: String
         let subdued: String
@@ -40944,13 +40948,9 @@ export default CMUXSessionRestore;
         }
 
         let logo = """
-        \(c1)  ::\(reset)
-        \(c2)    ::::\(reset)              \(c1)c\(c2)m\(c3)u\(c7)x\(reset)
-        \(c3)      ::::::\(reset)
-        \(c4)        ::::::\(reset)        \(tagline)the open source terminal\(reset)
-        \(c5)      ::::::\(reset)          \(tagline)built for coding agents\(reset)
-        \(c6)    ::::\(reset)
-        \(c7)  ::\(reset)
+          \(c1)t\(c2)a\(c3)f\(c4)f\(c5)y\(reset)
+
+          \(tagline)Immersive multimodal multiplexer\(reset)
         """
 
         let shortcuts = """
@@ -40975,14 +40975,12 @@ export default CMUXSessionRestore;
         print()
         print(shortcuts)
         print()
-        print("  \(bold)Docs\(reset)\(subdued)                https://cmux.com/docs\(reset)")
-        print("  \(bold)Discord\(reset)\(subdued)             https://discord.gg/xsgFEVrWCZ\(reset)")
-        print("  \(bold)GitHub\(reset)\(subdued)              https://github.com/manaflow-ai/cmux (please leave a star ⭐)\(reset)")
-        print("  \(bold)Email\(reset)\(subdued)               founders@manaflow.com\(reset)")
+        print("  \(bold)Docs\(reset)\(subdued)                https://github.com/cs50victor/taffy/blob/main/docs/usage.md\(reset)")
+        print("  \(bold)GitHub\(reset)\(subdued)              https://github.com/cs50victor/taffy\(reset)")
         print()
-        print("  \(subdued)Run \(reset)\(bold)cmux --help\(reset)\(subdued) for all commands.\(reset)")
-        print("  \(subdued)Run \(reset)\(bold)cmux shortcuts\(reset)\(subdued) to edit shortcuts.\(reset)")
-        print("  \(subdued)Run \(reset)\(bold)cmux feedback\(reset)\(subdued) to report a bug.\(reset)")
+        print("  \(subdued)Run \(reset)\(bold)taffy --help\(reset)\(subdued) for all commands.\(reset)")
+        print("  \(subdued)Run \(reset)\(bold)taffy shortcuts\(reset)\(subdued) to edit shortcuts.\(reset)")
+        print("  \(subdued)Run \(reset)\(bold)taffy feedback\(reset)\(subdued) to report a bug.\(reset)")
         print()
     }
 
@@ -41257,11 +41255,11 @@ export default CMUXSessionRestore;
 
     private func usage() -> String {
         return """
-        cmux - control cmux via Unix socket
+        taffy - control taffy via Unix socket
 
         Usage:
-          cmux <path>                Open a directory in a new workspace (launches cmux if needed)
-          cmux [global-options] <command> [options]
+          taffy <path>                Open a directory in a new workspace (launches taffy if needed)
+          taffy [global-options] <command> [options]
 
         Targets:
           Commands that accept a window, workspace, pane, or surface take a UUID, a short ref (window:1/workspace:2/pane:3/surface:4), or an index.
@@ -41272,11 +41270,11 @@ export default CMUXSessionRestore;
           --password takes precedence, then CMUX_SOCKET_PASSWORD, then the password saved in Settings.
 
         Agent Help:
-          Change cmux settings with `cmux docs settings` and `cmux settings path`; add Dock controls with `cmux docs dock`.
-          Before editing, back up any existing cmux.json file to a timestamped .bak copy.
+          Change taffy settings with `taffy docs settings` and `taffy settings path`; add Dock controls with `taffy docs dock`.
+          Before editing, back up any existing taffy.json file to a timestamped .bak copy.
           Use printed curl commands to fetch the latest docs/schema; prefer Ghostty config for terminal behavior Ghostty already supports.
           Ghostty config lives at ~/.config/ghostty/config (terminal transparency, blur, font, theme, keybinds, etc.).
-          `cmux reload-config` reloads BOTH Ghostty config and ~/.config/cmux/cmux.json, then refreshes terminals in place. No app restart needed.
+          `taffy reload-config` reloads BOTH Ghostty config and ~/.config/taffy/taffy.json, then refreshes terminals in place. No app restart needed.
 
         Commands:
           welcome
@@ -41480,10 +41478,10 @@ export default CMUXSessionRestore;
           help
 
         Environment:
-          CMUX_WORKSPACE_ID   Auto-set in cmux terminals. Used as default --workspace for
+          CMUX_WORKSPACE_ID   Auto-set in taffy terminals. Used as default --workspace for
                               ALL commands (send, list-panels, new-split, notify, etc.).
           CMUX_TAB_ID         Optional alias used by `tab-action`/`rename-tab` as default --tab.
-          CMUX_SURFACE_ID     Auto-set in cmux terminals. Used as default --surface.
+          CMUX_SURFACE_ID     Auto-set in taffy terminals. Used as default --surface.
           CMUX_SOCKET_PATH    Override the Unix socket path. Without this, the CLI defaults
                               to ~/.local/state/cmux/cmux.sock and auto-discovers tagged/debug sockets.
         """

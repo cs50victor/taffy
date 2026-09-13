@@ -535,7 +535,7 @@ extension CMUXCLI {
         }
         throw CLIError(message: String(
             localized: "cli.hooks.error.pinnedTargetMissing",
-            defaultValue: "cmux could not connect this hook installation to a running app. Open a cmux workspace and run this command again."
+            defaultValue: "Taffy could not connect this hook installation to a running app. Open a taffy workspace and run this command again."
         ))
     }
 

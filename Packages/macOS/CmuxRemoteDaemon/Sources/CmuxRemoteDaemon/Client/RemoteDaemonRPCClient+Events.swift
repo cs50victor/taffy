@@ -300,7 +300,7 @@ extension RemoteDaemonRPCClient {
             params["data_base64"] = data.base64EncodedString()
         } else {
             params["ok"] = false
-            params["error"] = error ?? "cmux app rejected cloud CLI request"
+            params["error"] = error ?? "Taffy app rejected cloud CLI request"
         }
         do {
             _ = try call(method: "cli.response", params: params, timeout: 4.0)

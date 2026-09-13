@@ -325,7 +325,7 @@ extension RemoteSessionCoordinator {
 
         guard let repoRoot = findRepoRoot() else {
             throw NSError(domain: "cmux.remote.daemon", code: 20, userInfo: [
-                NSLocalizedDescriptionKey: "cannot locate cmux repo root for dev-only cmuxd-remote build fallback",
+                NSLocalizedDescriptionKey: "cannot locate Taffy repo root for dev-only cmuxd-remote build fallback",
             ])
         }
         let daemonRoot = repoRoot.appendingPathComponent("daemon/remote", isDirectory: true)

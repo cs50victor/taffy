@@ -188,7 +188,7 @@ struct AppWebThemeSnapshot: Equatable {
     }
 }
 
-/// Presents the one-time "Welcome to cmux Pro" checklist after a user becomes
+/// Presents the one-time "Welcome to Taffy Pro" checklist after a user becomes
 /// Pro. The checklist is a chromeless in-app web page (`/app-pro-welcome`)
 /// shown in the same dedicated workspace surface as the pricing page, so it
 /// matches how upgrade/pricing already appears. Automatic presentation is
@@ -249,7 +249,7 @@ enum ProWelcomeChecklistPresenter {
 }
 
 extension ProUpgradePresenter {
-    /// Opens the in-app "Welcome to cmux Pro" checklist as a chromeless web page in the
+    /// Opens the in-app "Welcome to Taffy Pro" checklist as a chromeless web page in the
     /// same dedicated workspace surface used for pricing, matching upgrade/pricing.
     @MainActor
     static func presentProWelcomeWeb() {
@@ -276,7 +276,7 @@ extension ProUpgradePresenter {
             ProWelcomeChecklistPresenter.workspaceReuseState.clear()
         }
 
-        let title = String(localized: "proWelcome.workspace.title", defaultValue: "Welcome to cmux Pro")
+        let title = String(localized: "proWelcome.workspace.title", defaultValue: "Welcome to Taffy Pro")
         guard let workspace = appDelegate.performProUpgradeWorkspaceAction(
             title: title,
             url: url,

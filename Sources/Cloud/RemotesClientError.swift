@@ -21,9 +21,9 @@ enum RemotesClientError: Error, CustomStringConvertible, Equatable {
     var description: String {
         switch self {
         case .notSignedIn:
-            return "Not signed in. Run `cmux auth login`, then retry."
+            return "Not signed in. Run `Taffy auth login`, then retry."
         case .sessionRefreshFailed:
-            return "Signed in, but cmux could not refresh your session (network or server issue). Retry in a moment."
+            return "Signed in, but Taffy could not refresh your session (network or server issue). Retry in a moment."
         case let .invalidRoute(value):
             return "Invalid route '\(value)'. Use host:port, e.g. 100.64.1.2:51001 or my-mac.tailnet.ts.net:51001."
         case let .loopbackRoute(host):
@@ -38,17 +38,17 @@ enum RemotesClientError: Error, CustomStringConvertible, Equatable {
                 address. A plain LAN IP or hostname would show in the device list but fail to connect.
                 """
         case .noRoutes:
-            return "At least one --route host:port is required. Example: cmux remotes add my-mac --route 100.64.1.2:51001"
+            return "At least one --route host:port is required. Example: Taffy remotes add my-mac --route 100.64.1.2:51001"
         case .emptyName:
-            return "A non-empty remote name is required. Example: cmux remotes add my-mac --route 100.64.1.2:51001"
+            return "A non-empty remote name is required. Example: Taffy remotes add my-mac --route 100.64.1.2:51001"
         case let .notFound(target):
-            return "No remote matching '\(target)'. Run `cmux remotes list` to see registered remotes."
+            return "No remote matching '\(target)'. Run `Taffy remotes list` to see registered remotes."
         case let .httpStatus(status, body):
             return RemotesClient.formatHTTPError(status: status, body: body)
         case let .malformedResponse(message):
             return "The device registry returned an unexpected response: \(message)"
         case let .backendUnreachable(url, detail):
-            return "Could not reach the cmux backend at \(url): \(detail)"
+            return "Could not reach the Taffy backend at \(url): \(detail)"
         case .tailscaleStatusUnavailable:
             return "Could not read the local Tailscale peer map. Start Tailscale, sign in, and retry."
         case let .tailscalePeerNotFound(host):

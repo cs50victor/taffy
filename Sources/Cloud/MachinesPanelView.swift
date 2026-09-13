@@ -90,7 +90,7 @@ struct MachinesPanelView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(tunnelStatus.status?.state == .up
                             ? String(localized: "cloud.vpn.setup.title", defaultValue: "Cloud VPN")
-                            : String(localized: "machines.menu.setupVPN", defaultValue: "Set Up cmux VPN…"))
+                            : String(localized: "machines.menu.setupVPN", defaultValue: "Set Up Taffy VPN…"))
                             .cmuxFont(size: 12, weight: .medium)
                         Text(String(localized: "cloud.vpn.setup.entry.subtitle", defaultValue: "Optional private IP access for other apps"))
                             .cmuxFont(size: 11)
@@ -242,7 +242,7 @@ struct MachinesPanelView: View {
                 .controlSize(.small)
             Text(String(
                 localized: "machines.auth.checking",
-                defaultValue: "Checking your cmux account…"
+                defaultValue: "Checking your Taffy account…"
             ))
             .cmuxFont(size: 13)
             .foregroundColor(.secondary)
@@ -269,7 +269,7 @@ struct MachinesPanelView: View {
                 .cmuxFont(size: 13, weight: .semibold)
                 Text(String(
                     localized: "machines.auth.subtitle",
-                    defaultValue: "Sign in to see and manage the machines in your cmux account."
+                    defaultValue: "Sign in to see and manage the machines in your Taffy account."
                 ))
                 .cmuxFont(size: 12)
                 .foregroundColor(.secondary)
@@ -305,7 +305,7 @@ struct MachinesPanelView: View {
                 ),
                 idleSubtitle: String(
                     localized: "machines.auth.subtitle",
-                    defaultValue: "Sign in to see and manage the machines in your cmux account."
+                    defaultValue: "Sign in to see and manage the machines in your Taffy account."
                 )
             )
             .frame(maxWidth: 440)
@@ -325,7 +325,7 @@ struct MachinesPanelView: View {
             .foregroundColor(.primary.opacity(0.85))
         Text(String(
             localized: "machines.unavailable.subtitle",
-            defaultValue: "Your machines are still there. cmux couldn\u{2019}t reach the Cloud service just now; it retries on its own."
+            defaultValue: "Your machines are still there. Taffy couldn\u{2019}t reach the Cloud service just now; it retries on its own."
         ))
         .cmuxFont(size: 12)
         .foregroundColor(.secondary)
@@ -377,7 +377,7 @@ struct MachinesPanelView: View {
         Image(systemName: "sparkles")
             .font(.system(size: 26, weight: .light))
             .foregroundColor(.secondary.opacity(0.55))
-        Text(String(localized: "machines.requiresPro.title", defaultValue: "Cloud machines need cmux Pro"))
+        Text(String(localized: "machines.requiresPro.title", defaultValue: "Cloud machines need Taffy Pro"))
             .cmuxFont(size: 13, weight: .semibold)
             .foregroundColor(.primary.opacity(0.85))
         Text(String(
@@ -594,7 +594,7 @@ struct MachinesPanelView: View {
         guard let maxActiveVms = plan.maxActiveVms, maxActiveVms > 0 else {
             return String(
                 localized: "machines.empty.upgrade.none",
-                defaultValue: "Subscribe to cmux Pro to create Cloud machines"
+                defaultValue: "Subscribe to Taffy Pro to create Cloud machines"
             )
         }
         if plan.isSingleMachinePlan {

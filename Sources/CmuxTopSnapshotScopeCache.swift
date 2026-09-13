@@ -9,7 +9,7 @@ struct CmuxTopProcessScopeCacheKey: Hashable {
 }
 
 private struct CmuxTopProcessScopeCacheValue {
-    // nil means "this process was probed and has no cmux scope". A negative entry
+    // nil means "this process was probed and has no Taffy scope". A negative entry
     // is honored as a hit only until `negativeExpiresAtNanos`, so a non-cmux
     // process is re-probed at most once per TTL window instead of on every
     // system.top poll. Positive entries never expire (`negativeExpiresAtNanos` is
@@ -19,7 +19,7 @@ private struct CmuxTopProcessScopeCacheValue {
     let negativeExpiresAtNanos: UInt64
 }
 
-// How long a "no cmux scope" result stays cached before the process is probed
+// How long a "no Taffy scope" result stays cached before the process is probed
 // again. The scope is derived from argv/environment, which an `exec` can change
 // without changing the pid or process start time (the cache key), so a process
 // first sampled in its fork-before-exec window, or one that execs into a
@@ -126,7 +126,7 @@ extension CmuxTopProcessSnapshot {
     // matches the expected start-time key), or permanently, because the process
     // belongs to another user / is protected (the kernel denies procargs for the
     // process's whole life). We must cache the permanent case as a definitive
-    // "no readable cmux scope" — those processes are not cmux-scoped and stay in
+    // "no readable Taffy scope" — those processes are not cmux-scoped and stay in
     // `activeKeys`, so leaving them uncached would re-run this sysctl fan-out on
     // every poll. We must NOT cache the transient case, so a process that is
     // simply mid-exec is retried.

@@ -11,7 +11,7 @@ extension ShortcutAction {
         case .newWindow: return "New Window"
         case .closeWindow: return "Close Window"
         case .toggleFullScreen: return "Toggle Full Screen"
-        case .quit: return "Quit cmux"
+        case .quit: return "Quit Taffy"
         case .toggleSidebar: return "Toggle Left Sidebar"
         case .newTab: return "New Workspace"
         case .newBrowserWorkspace:

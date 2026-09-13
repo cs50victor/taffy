@@ -103,7 +103,7 @@ struct SimulatorStrings {
         "simulator.status.connecting",
         defaultValue: "Connecting",
         bundle: .main,
-        comment: "Status while cmux attaches to a Simulator."
+        comment: "Status while Taffy attaches to a Simulator."
     )
     let streaming = LocalizedStringResource(
         "simulator.status.streaming",

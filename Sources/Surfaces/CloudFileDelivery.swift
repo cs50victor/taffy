@@ -28,7 +28,7 @@ import Foundation
 enum CloudFileDelivery {
     /// Absolute: the daemon's own PATH is not a login shell's.
     static let receiverProgram = "/usr/local/bin/cmux"
-    static let receiverTitle = "cmux file"
+    static let receiverTitle = "Taffy file"
     static let readyMarker = "CMUX-FILE-READY"
     static let endMarker = "CMUX-FILE-END"
     static let resultPattern = "CMUX-FILE-(OK|ERR)"
@@ -71,11 +71,11 @@ enum CloudFileDelivery {
             case .emptyPayload:
                 return "the file is empty; nothing to deliver"
             case .tooLarge(let bytes):
-                return "the file is \(bytes) bytes; secret delivery over the link is limited to \(maxPayloadBytes) bytes (use `cmux vm push` without --secret for large, non-secret files)"
+                return "the file is \(bytes) bytes; secret delivery over the link is limited to \(maxPayloadBytes) bytes (use `taffy vm push` without --secret for large, non-secret files)"
             case .receiverNotReady(let screen):
-                return "the machine's `cmux file receive` did not report ready\(Self.detail(screen))"
+                return "the machine's `Taffy file receive` did not report ready\(Self.detail(screen))"
             case .outdatedShim(let machine):
-                return "\(machine)'s cmux shim predates `cmux file receive` — reconnect it (cmux vm tree \(machine) --refresh) to heal, then retry"
+                return "\(machine)'s Taffy shim predates `Taffy file receive` — reconnect it (taffy vm tree \(machine) --refresh) to heal, then retry"
             case .receiverFailed(let reason):
                 return "the machine refused the file: \(reason)"
             case .noResult:

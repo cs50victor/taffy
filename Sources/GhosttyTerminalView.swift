@@ -1331,7 +1331,7 @@ class GhosttyApp {
             """,
             into: config,
             prefix: "cmux-owned-keybind-overrides",
-            logLabel: "cmux-owned keybind overrides"
+            logLabel: "Taffy-owned keybind overrides"
         )
     }
 
@@ -1691,7 +1691,7 @@ class GhosttyApp {
 
 #if DEBUG
         cmuxDebugLog(
-            "loaded cmux app support ghostty config from: \(urls.map(\.path).joined(separator: ", "))"
+            "loaded Taffy app support ghostty config from: \(urls.map(\.path).joined(separator: ", "))"
         )
         #endif
         #endif

@@ -376,7 +376,7 @@ private struct SidebarAccountPopover: View {
                     accountFlow?.openProUpgrade(source: .sidebarAccountMenu)
                 } label: {
                     Label(
-                        String(localized: "menu.help.upgradeToPro", defaultValue: "Upgrade to cmux Pro…"),
+                        String(localized: "menu.help.upgradeToPro", defaultValue: "Upgrade to Taffy Pro…"),
                         systemImage: "sparkles"
                     )
                     .frame(maxWidth: .infinity, alignment: .leading)

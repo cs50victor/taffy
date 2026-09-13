@@ -69,7 +69,7 @@ extension CMUXCLI {
     func startDiffViewerHTTPServer(rootDirectory: URL, runtime: URL? = nil) throws -> URL {
         guard let cmuxExecutableURL = diffViewerExecutableURL(for: runtime),
               let executableURL = diffViewerServerExecutableURL(for: runtime) else {
-            throw CLIError(message: "Failed to resolve cmux executable for diff viewer server")
+            throw CLIError(message: "Failed to resolve taffy executable for diff viewer server")
         }
 
         let process = Process()

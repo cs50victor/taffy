@@ -48,7 +48,7 @@ struct BrowserURLAllowlistBlockedPage {
                 ? "browser.error.urlAllowlist.nextStep"
                 : "browser.error.urlAllowlist.userNextStep",
             defaultValue: isManaged
-                ? "Ask your administrator to add this site to the cmux browser allowlist. Sites on the allowlist, localhost, and local files stay available."
+                ? "Ask your administrator to add this site to the taffy browser allowlist. Sites on the allowlist, localhost, and local files stay available."
                 : "Add this site in Settings → Browser → Embedded Browser URL Allowlist, or clear the list to allow all web origins."
         )
     }

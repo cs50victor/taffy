@@ -3,7 +3,7 @@ import Foundation
 /// A user-requested support report made only from the structured operation snapshots.
 enum CloudDiagnosticReport {
     static func text(operations: [CloudOperationSnapshot], client: CloudTelemetryClient = .current()) -> String {
-        let identity = "cmux \(client.version) (\(client.build))\nchannel=\(client.channel) revision=\(client.revision)\nmacOS=\(client.osVersion) architecture=\(client.architecture)"
+        let identity = "Taffy \(client.version) (\(client.build))\nchannel=\(client.channel) revision=\(client.revision)\nmacOS=\(client.osVersion) architecture=\(client.architecture)"
         return ([identity] + operations.map(operationText)).joined(separator: "\n\n")
     }
 

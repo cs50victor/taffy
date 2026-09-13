@@ -25,7 +25,7 @@ extension CmuxTopProcessSnapshot {
             "sampled_at": ISO8601DateFormatter().string(from: sampledAt),
             "app": [
                 "pid": appPID,
-                "name": appProcess?.name ?? "cmux",
+                "name": appProcess?.name ?? "Taffy",
                 "path": appProcess?.path as Any? ?? NSNull(),
                 "resources": appResources,
                 "physical_footprint_bytes": appProcess?.memoryBytes ?? 0,

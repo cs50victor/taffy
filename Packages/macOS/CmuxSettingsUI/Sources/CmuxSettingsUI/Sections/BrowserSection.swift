@@ -136,7 +136,7 @@ public struct BrowserSection: View {
             SettingsCardRow(
                 configurationReview: .settingsOnly,
                 searchAnchorID: "setting:browser:enable-browser",
-                String(localized: "settings.browser.enabled", defaultValue: "Enable cmux Browser"),
+                String(localized: "settings.browser.enabled", defaultValue: "Enable Taffy Browser"),
                 subtitle: browserManagedByPolicy
                     ? String(localized: "settings.managedByOrganization", defaultValue: "Managed by your organization")
                     : !disabled.current
@@ -188,7 +188,7 @@ public struct BrowserSection: View {
                 SettingsCardRow(
                     configurationReview: .json("browser.customSearchEngineURLTemplate"),
                     String(localized: "settings.browser.customSearchEngineURLTemplate", defaultValue: "Custom Search URL"),
-                    subtitle: String(localized: "settings.browser.customSearchEngineURLTemplate.subtitle", defaultValue: "Use {query} or %s for the search terms. Without a placeholder, cmux appends q=."),
+                    subtitle: String(localized: "settings.browser.customSearchEngineURLTemplate.subtitle", defaultValue: "Use {query} or %s for the search terms. Without a placeholder, Taffy appends q=."),
                     controlWidth: 330
                 ) {
                     TextField("", text: Binding(get: { customURL.current }, set: { customURL.set($0) }))
@@ -271,7 +271,7 @@ public struct BrowserSection: View {
             SettingsCardRow(
                 configurationReview: .json("browser.hiddenWebViewDiscardDelaySeconds"),
                 String(localized: "settings.browser.hiddenWebViewDiscardDelay", defaultValue: "Memory Saver Delay"),
-                subtitle: String(localized: "settings.browser.hiddenWebViewDiscardDelay.subtitle", defaultValue: "How long a browser tab must stay hidden before cmux frees its page memory. Active downloads, popups, developer tools, fullscreen, and loading pages are skipped."),
+                subtitle: String(localized: "settings.browser.hiddenWebViewDiscardDelay.subtitle", defaultValue: "How long a browser tab must stay hidden before Taffy frees its page memory. Active downloads, popups, developer tools, fullscreen, and loading pages are skipped."),
                 controlWidth: Self.columnWidth
             ) {
                 HStack(spacing: 8) {
@@ -308,7 +308,7 @@ public struct BrowserSection: View {
             // Open Terminal Links
             SettingsCardRow(
                 configurationReview: .json("browser.openTerminalLinksInCmuxBrowser"),
-                String(localized: "settings.browser.openTerminalLinks", defaultValue: "Open Terminal Links in cmux Browser"),
+                String(localized: "settings.browser.openTerminalLinks", defaultValue: "Open Terminal Links in Taffy Browser"),
                 subtitle: String(localized: "settings.browser.openTerminalLinks.subtitle", defaultValue: "When off, links clicked in terminal output open in your default browser.")
             ) {
                 Toggle("", isOn: Binding(get: { openTermLinks.current }, set: { openTermLinks.set($0) }))
@@ -333,7 +333,7 @@ public struct BrowserSection: View {
                 SettingsCardDivider()
                 hostnameEditor(
                     title: String(localized: "settings.browser.hostWhitelist", defaultValue: "Hosts to Open in Embedded Browser"),
-                    subtitle: String(localized: "settings.browser.hostWhitelist.subtitle", defaultValue: "Applies to terminal link clicks and intercepted `open https://...` calls. Only these hosts open in cmux. Others open in your default browser. One host or wildcard per line (for example: example.com, *.internal.example). Leave empty to open all hosts in cmux."),
+                    subtitle: String(localized: "settings.browser.hostWhitelist.subtitle", defaultValue: "Applies to terminal link clicks and intercepted `open https://...` calls. Only these hosts open in Taffy. Others open in your default browser. One host or wildcard per line (for example: example.com, *.internal.example). Leave empty to open all hosts in Taffy."),
                     json: "browser.hostsToOpenInEmbeddedBrowser",
                     model: hosts
                 )
@@ -431,7 +431,7 @@ public struct BrowserSection: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(String(localized: "settings.browser.httpAllowlist", defaultValue: "HTTP Hosts Allowed in Embedded Browser"))
                 .cmuxFont(size: 13, weight: .semibold)
-            Text(String(localized: "settings.browser.httpAllowlist.description", defaultValue: "Controls which HTTP (non-HTTPS) hosts can open in cmux without a warning prompt. Defaults include localhost, *.localhost, 127.0.0.1, ::1, 0.0.0.0, and *.localtest.me. Remove entries to block them; reset to restore defaults."))
+            Text(String(localized: "settings.browser.httpAllowlist.description", defaultValue: "Controls which HTTP (non-HTTPS) hosts can open in Taffy without a warning prompt. Defaults include localhost, *.localhost, 127.0.0.1, ::1, 0.0.0.0, and *.localtest.me. Remove entries to block them; reset to restore defaults."))
                 .cmuxFont(.caption)
                 .foregroundStyle(.secondary)
             TextEditor(text: $httpAllowlistDraft)
@@ -535,7 +535,7 @@ public struct BrowserSection: View {
                         .foregroundStyle(.secondary)
                 }
             }
-            Text(String(localized: "settings.browser.urlAllowlist.description", defaultValue: "Restricts embedded-browser navigation to matching hosts or URL patterns. A suggested localhost list is shown; saving it opts into the restriction. Remove entries to block them, or, when no managed policy applies, clear the list to allow all web origins. Invalid-only values fail closed. Internal cmux documents remain available. Under a managed policy, localhost and local files stay available unless your organization turns them off."))
+            Text(String(localized: "settings.browser.urlAllowlist.description", defaultValue: "Restricts embedded-browser navigation to matching hosts or URL patterns. A suggested localhost list is shown; saving it opts into the restriction. Remove entries to block them, or, when no managed policy applies, clear the list to allow all web origins. Invalid-only values fail closed. Internal Taffy documents remain available. Under a managed policy, localhost and local files stay available unless your organization turns them off."))
                 .cmuxFont(.caption)
                 .foregroundStyle(.secondary)
             if browserURLAllowlistManagedByPolicy {

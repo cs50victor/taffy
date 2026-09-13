@@ -8,7 +8,7 @@ extension CmuxCodexConfigEditor {
     static let legacyCmuxCodexHooksFeatureBegin = "# cmux hooks codex feature begin"
     static let legacyCmuxCodexHooksFeatureEnd = "# cmux hooks codex feature end"
     static let legacyCmuxCodexHooksFeaturePreviousLinePrefix =
-        "# cmux hooks codex feature previous line: "
+        "# Taffy hooks codex feature previous line: "
 
     func installingHooksFeature(in existingContent: String) -> String {
         let lineEnding = CmuxConfigLines().lineEnding(of: existingContent)

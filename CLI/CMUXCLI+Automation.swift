@@ -219,12 +219,12 @@ extension CMUXCLI {
                 if subcommand == "enable" {
                     format = String(
                         localized: "cli.automation.output.enableRequested",
-                        defaultValue: "Enable request queued for %@. Run cmux automation logs to verify completion."
+                        defaultValue: "Enable request queued for %@. Run Taffy automation logs to verify completion."
                     )
                 } else {
                     format = String(
                         localized: "cli.automation.output.disableRequested",
-                        defaultValue: "Disable request queued for %@. Run cmux automation logs to verify completion."
+                        defaultValue: "Disable request queued for %@. Run Taffy automation logs to verify completion."
                     )
                 }
                 print(String.localizedStringWithFormat(format, id))
@@ -243,17 +243,17 @@ extension CMUXCLI {
         String(
             localized: "cli.automation.help",
             defaultValue: """
-        Usage: cmux automation <list|show|test|enable|disable|logs|reload> [args]
+        Usage: taffy automation <list|show|test|enable|disable|logs|reload> [args]
 
         Rules live in ~/.cmuxterm/automations.json.
         Examples:
-          cmux automation list
-          cmux automation show surface-needs-input
-          cmux automation test surface-needs-input --event '{"name":"agent.needs_input"}'
-          cmux automation enable surface-needs-input
-          cmux automation disable surface-needs-input
-          cmux automation logs [--limit <n>]
-          cmux automation reload
+          taffy automation list
+          taffy automation show surface-needs-input
+          taffy automation test surface-needs-input --event '{"name":"agent.needs_input"}'
+          taffy automation enable surface-needs-input
+          taffy automation disable surface-needs-input
+          taffy automation logs [--limit <n>]
+          taffy automation reload
         """
         )
     }

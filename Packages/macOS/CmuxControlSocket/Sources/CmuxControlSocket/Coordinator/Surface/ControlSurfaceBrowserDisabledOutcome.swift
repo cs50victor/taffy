@@ -11,7 +11,7 @@ public enum ControlSurfaceBrowserDisabledOutcome: Sendable, Equatable {
     /// A `url` param was present but did not parse (legacy `invalid_params` /
     /// "Invalid URL", `data: {"url": rawURL}`).
     case invalidURL(rawURL: String)
-    /// No `url` param at all (legacy `browser_disabled` / "cmux browser is
+    /// No `url` param at all (legacy `browser_disabled` / "taffy browser is
     /// disabled", `data: nil`).
     case noURL
     /// `NSWorkspace.open` failed (legacy `external_open_failed` / "Failed to open

@@ -24,9 +24,9 @@ extension CmuxTuiSurfaceProvider {
         var errorDescription: String? {
             switch self {
             case .notSignedIn:
-                return "Cloud VM access requires sign-in. Run `cmux auth login`, then retry."
+                return "Cloud VM access requires sign-in. Run `Taffy auth login`, then retry."
             case .machineAsleep(let id):
-                return "\(id) is asleep; open it (`cmux vm shell \(id)`) to wake it before listing its terminals."
+                return "\(id) is asleep; open it (`taffy vm shell \(id)`) to wake it before listing its terminals."
             case .noWorkspaceOnMachine(let id):
                 return "\(id) has no cmux-tui workspace yet."
             case .terminalNotCreated(let detail):
@@ -74,12 +74,12 @@ extension CmuxTuiSurfaceProvider {
             case .hubUnavailable:
                 return String(
                     localized: "cloudTree.error.hubUnavailable",
-                    defaultValue: "This cmux build has no user-space WireGuard hub, so it cannot reach ports on Cloud machines."
+                    defaultValue: "This Taffy build has no user-space WireGuard hub, so it cannot reach ports on Cloud machines."
                 )
             case .localForwardURLUnavailable:
                 return String(
                     localized: "cloudTree.error.localForwardURLUnavailable",
-                    defaultValue: "cmux could not build a local address for this port forward."
+                    defaultValue: "Taffy could not build a local address for this port forward."
                 )
             }
         }

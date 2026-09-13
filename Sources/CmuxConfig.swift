@@ -625,7 +625,7 @@ enum CmuxButtonIcon: Codable, Sendable, Hashable {
 
     static func projectRoot(forConfigPath configPath: String) -> String {
         let configDir = (configPath as NSString).deletingLastPathComponent
-        if (configDir as NSString).lastPathComponent == ".cmux" {
+        if [".taffy", ".cmux"].contains((configDir as NSString).lastPathComponent) {
             return (configDir as NSString).deletingLastPathComponent
         }
         return configDir
@@ -1371,7 +1371,7 @@ struct CmuxResolvedConfigAction: Identifiable, Sendable, Hashable {
         return CmuxResolvedConfigAction(
             id: builtIn.configID,
             title: metadata.title,
-            subtitle: String(localized: "command.cmuxConfig.builtInSubtitle", defaultValue: "cmux"),
+            subtitle: String(localized: "command.cmuxConfig.builtInSubtitle", defaultValue: "Taffy"),
             keywords: metadata.keywords,
             palette: true,
             shortcut: nil,
@@ -1724,8 +1724,7 @@ final class CmuxConfigStore: ObservableObject {
     private let fileWatchingEnabled: Bool
 
     nonisolated static func defaultGlobalConfigPath() -> String {
-        let home = FileManager.default.homeDirectoryForCurrentUser.path
-        return (home as NSString).appendingPathComponent(".config/cmux/cmux.json")
+        CmuxConfigLocation().userConfigFile.path
     }
 
     private struct ActionEntry {
@@ -1797,7 +1796,7 @@ final class CmuxConfigStore: ObservableObject {
 
     private static func searchDirectoryForLocalConfigPath(_ path: String) -> String {
         let configDirectory = (path as NSString).deletingLastPathComponent
-        if (configDirectory as NSString).lastPathComponent == ".cmux" {
+        if [".taffy", ".cmux"].contains((configDirectory as NSString).lastPathComponent) {
             return (configDirectory as NSString).deletingLastPathComponent
         }
         return configDirectory
@@ -1911,8 +1910,8 @@ final class CmuxConfigStore: ObservableObject {
     }
 
     private func defaultLocalConfigPath(startingFrom directory: String) -> String {
-        (((directory as NSString).appendingPathComponent(".cmux") as NSString)
-            .appendingPathComponent("cmux.json"))
+        (((directory as NSString).appendingPathComponent(".taffy") as NSString)
+            .appendingPathComponent("taffy.json"))
     }
 
     private func findCmuxConfig(startingFrom directory: String) -> String? {
@@ -1920,6 +1919,9 @@ final class CmuxConfigStore: ObservableObject {
         let fs = FileManager.default
         while true {
             let candidates = [
+                ((current as NSString).appendingPathComponent(".taffy") as NSString)
+                    .appendingPathComponent("taffy.json"),
+                (current as NSString).appendingPathComponent("taffy.json"),
                 ((current as NSString).appendingPathComponent(".cmux") as NSString)
                     .appendingPathComponent("cmux.json"),
                 (current as NSString).appendingPathComponent("cmux.json")
@@ -1940,6 +1942,9 @@ final class CmuxConfigStore: ObservableObject {
         var paths: [String] = []
         while true {
             let candidates = [
+                ((current as NSString).appendingPathComponent(".taffy") as NSString)
+                    .appendingPathComponent("taffy.json"),
+                (current as NSString).appendingPathComponent("taffy.json"),
                 ((current as NSString).appendingPathComponent(".cmux") as NSString)
                     .appendingPathComponent("cmux.json"),
                 (current as NSString).appendingPathComponent("cmux.json")
@@ -2302,7 +2307,7 @@ final class CmuxConfigStore: ObservableObject {
                     defaultValue: "Custom: \(sanitizeConfigText(command.name))"
                 ),
                 subtitle: command.description.map { sanitizeConfigText($0) }
-                    ?? String(localized: "command.cmuxConfig.subtitle", defaultValue: "cmux.json"),
+                    ?? String(localized: "command.cmuxConfig.subtitle", defaultValue: "taffy.json"),
                 keywords: command.keywords ?? [],
                 palette: true,
                 shortcut: nil,
@@ -2544,7 +2549,7 @@ final class CmuxConfigStore: ObservableObject {
                 id: command.command.id,
                 title: command.command.name,
                 subtitle: command.command.description
-                    ?? String(localized: "command.cmuxConfig.subtitle", defaultValue: "cmux.json"),
+                    ?? String(localized: "command.cmuxConfig.subtitle", defaultValue: "taffy.json"),
                 keywords: command.command.keywords ?? [],
                 palette: false,
                 shortcut: nil,
@@ -2970,7 +2975,7 @@ final class CmuxConfigStore: ObservableObject {
 
         guard let data = fileManager.contents(atPath: path),
               !data.isEmpty else {
-            let issue = schemaIssue(path: path, message: "cmux.json is empty")
+            let issue = schemaIssue(path: path, message: "\((path as NSString).lastPathComponent) is empty")
             parsedConfigCache[path] = ParsedConfigCacheEntry(
                 fileSize: fileSize,
                 modificationDate: modificationDate,

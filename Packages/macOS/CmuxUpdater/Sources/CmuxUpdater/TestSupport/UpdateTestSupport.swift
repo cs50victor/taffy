@@ -123,7 +123,7 @@ public struct UpdateTestSupport {
             "sparkle:shortVersionString": displayVersion,
         ]
         let dict: [String: Any] = [
-            "title": "cmux \(displayVersion)",
+            "title": "Taffy \(displayVersion)",
             "pubDate": "Wed, 25 Mar 2026 12:00:00 +0000",
             "enclosure": enclosure,
         ]

@@ -1255,7 +1255,7 @@ extension Workspace {
         var totalCharacters = 0
         for panelId in panels.keys.sorted(by: { $0.uuidString < $1.uuidString }) {
             guard panels[panelId] is TerminalPanel else { continue }
-            let header = "cmux perf synthetic scrollback workspace=\(id.uuidString) panel=\(panelId.uuidString)\n"
+            let header = "Taffy perf synthetic scrollback workspace=\(id.uuidString) panel=\(panelId.uuidString)\n"
             let paddingCount = max(0, targetCharacters - header.count)
             let scrollback = String((header + String(repeating: "s", count: paddingCount)).prefix(targetCharacters))
             debugSessionSnapshotSyntheticScrollbackByPanelId[panelId] = scrollback
@@ -3504,7 +3504,7 @@ final class Workspace: Identifiable, ObservableObject, FilePreviewTabMetadataHos
         let informativeText = String(
             format: String(
                 localized: "surfaceResumeApproval.runPrompt.message",
-                defaultValue: "cmux is restoring a terminal with this resume command:\n\nWorking directory: %@\n\n%@"
+                defaultValue: "Taffy is restoring a terminal with this resume command:\n\nWorking directory: %@\n\n%@"
             ),
             binding.cwd ?? String(localized: "surfaceResumeApproval.cwd.none", defaultValue: "None"),
             binding.command
@@ -7604,7 +7604,7 @@ final class Workspace: Identifiable, ObservableObject, FilePreviewTabMetadataHos
         let lines = [
             "cmux_freestyle_cli=\"${CMUX_BUNDLED_CLI_PATH:-}\"",
             "if [ -z \"$cmux_freestyle_cli\" ] || [ ! -x \"$cmux_freestyle_cli\" ]; then cmux_freestyle_cli=\"$(command -v cmux 2>/dev/null || true)\"; fi",
-            "if [ -z \"$cmux_freestyle_cli\" ]; then printf '%s\\n' '[cmux] bundled CLI not found for Cloud VM SSH attach.' >&2; exit 127; fi",
+            "if [ -z \"$cmux_freestyle_cli\" ]; then printf '%s\\n' '[Taffy] bundled CLI not found for Cloud VM SSH attach.' >&2; exit 127; fi",
             "CMUX_SSH_RECONNECT_LIMIT=\"${CMUX_SSH_RECONNECT_LIMIT:-86400}\"",
             "CMUX_SSH_RECONNECT_DELAY_SECONDS=\"${CMUX_SSH_RECONNECT_DELAY_SECONDS:-2}\"",
             "CMUX_DEFAULT_FREESTYLE_ATTACH_RETRY_LIMIT=\"${CMUX_DEFAULT_FREESTYLE_ATTACH_RETRY_LIMIT:-$CMUX_SSH_RECONNECT_LIMIT}\"",
@@ -12689,7 +12689,7 @@ final class Workspace: Identifiable, ObservableObject, FilePreviewTabMetadataHos
         let failure = NSAlert()
         failure.alertStyle = .warning
         failure.messageText = String(localized: "alert.moveTab.failed.title", defaultValue: "Move Failed")
-        failure.informativeText = String(localized: "alert.moveTab.failed.message", defaultValue: "cmux could not move this tab to the selected destination.")
+        failure.informativeText = String(localized: "alert.moveTab.failed.message", defaultValue: "Taffy could not move this tab to the selected destination.")
         failure.addButton(withTitle: String(localized: "alert.ok", defaultValue: "OK"))
         _ = failure.runModal()
     }

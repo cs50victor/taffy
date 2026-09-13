@@ -184,7 +184,7 @@ public struct SentryNoiseFilter: Sendable {
             normalized.hasPrefix("workspace context is unavailable") ||
             normalized.hasPrefix("unavailable: workspace context is unavailable") ||
             normalized == "the app is still starting" ||
-            normalized == "cmux is still opening"
+            normalized == "taffy is still opening" || normalized == "cmux is still opening"
     }
 
     private func containsErrno(_ code: Int, in text: String) -> Bool {

@@ -14,15 +14,15 @@ extension CMUXCLI {
         localized: "cli.cloud.domains.usage",
         defaultValue: """
             Usage:
-              cmux cloud domains [list]
-              cmux cloud domains zones
-              cmux cloud domains verify <domain>
-              cmux cloud domains publish <vm> <port> [--domain <hostname>] [--access personal|team|public] [--team <id>] [--org-slug <slug>] [--yes]
-              cmux cloud domains access <hostname> <personal|team|public> [--team <id>] [--yes]
-              cmux cloud domains grant <hostname> <email> [--expires <ISO-date>]
-              cmux cloud domains ungrant <hostname> <email>
-              cmux cloud domains grants <hostname>
-              cmux cloud domains rm <hostname>
+              taffy cloud domains [list]
+              taffy cloud domains zones
+              taffy cloud domains verify <domain>
+              taffy cloud domains publish <vm> <port> [--domain <hostname>] [--access personal|team|public] [--team <id>] [--org-slug <slug>] [--yes]
+              taffy cloud domains access <hostname> <personal|team|public> [--team <id>] [--yes]
+              taffy cloud domains grant <hostname> <email> [--expires <ISO-date>]
+              taffy cloud domains ungrant <hostname> <email>
+              taffy cloud domains grants <hostname>
+              taffy cloud domains rm <hostname>
 
             Verify a domain you own first: `verify` prints the DNS records to add, then run it
             again to complete. `publish --domain` then accepts that domain or any one-label child.
@@ -72,7 +72,7 @@ extension CMUXCLI {
             guard !domains.isEmpty else {
                 print(String(
                     localized: "cli.cloud.domains.custom.empty",
-                    defaultValue: "No custom Cloud VM domains. Start one with `cmux cloud domains verify <domain>`."
+                    defaultValue: "No custom Cloud VM domains. Start one with `taffy cloud domains verify <domain>`."
                 ))
                 return
             }
@@ -114,7 +114,7 @@ extension CMUXCLI {
                       let publicationID = Self.nonempty(publication["id"] as? String) else {
                     throw CLIError(message: String(
                         localized: "cli.cloud.domains.malformedResponse",
-                        defaultValue: "The cmux app returned a publication response this CLI could not read."
+                        defaultValue: "The Taffy app returned a publication response this CLI could not read."
                     ))
                 }
                 try Self.confirmPublicPublication(publication, confirmed: confirmed)
@@ -136,7 +136,7 @@ extension CMUXCLI {
             guard let domain = response["domain"] as? [String: Any] else {
                 throw CLIError(message: String(
                     localized: "cli.cloud.domains.malformedDomainResponse",
-                    defaultValue: "The cmux app returned a domain response this CLI could not read."
+                    defaultValue: "The Taffy app returned a domain response this CLI could not read."
                 ))
             }
             if jsonOutput {
@@ -271,7 +271,7 @@ extension CMUXCLI {
             ?? (response["id"] == nil ? nil : response) else {
             throw CLIError(message: String(
                 localized: "cli.cloud.domains.malformedResponse",
-                defaultValue: "The cmux app returned a publication response this CLI could not read."
+                defaultValue: "The Taffy app returned a publication response this CLI could not read."
             ))
         }
         let normalized: [String: Any] = ["publication": publication]
@@ -319,7 +319,7 @@ extension CMUXCLI {
             if domainKind == "generated" {
                 print(String(
                     localized: "cli.cloud.domains.verification.generated",
-                    defaultValue: "verification: not required (cmux domain)"
+                    defaultValue: "verification: not required (Taffy domain)"
                 ))
             } else {
                 let verificationFormat = String(
@@ -414,7 +414,7 @@ extension CMUXCLI {
     private static func printPublicationVerifyHint(name: String) {
         let verifyFormat = String(
             localized: "cli.cloud.domains.verifyHint",
-            defaultValue: "After updating DNS: cmux cloud domains verify %@"
+            defaultValue: "After updating DNS: taffy cloud domains verify %@"
         )
         print(String(format: verifyFormat, name))
     }

@@ -146,7 +146,7 @@ extension CMUXCLI {
 
     func tmuxWriteDebugDiagnostic(_ message: String) {
         guard tmuxDebugDiagnosticsEnabled(),
-              let data = "[cmux] \(message)\n".data(using: .utf8) else {
+              let data = "[taffy] \(message)\n".data(using: .utf8) else {
             return
         }
         cliWriteStderr(data)

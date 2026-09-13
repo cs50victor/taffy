@@ -87,7 +87,7 @@ struct ComputerUseRuntimePaths: Sendable {
             .appendingPathComponent("helper", isDirectory: true)
             .appendingPathComponent(scope, isDirectory: true)
         installedHelperAppURL = installedHelperDirectoryURL
-            .appendingPathComponent("cmux Computer Use.app", isDirectory: true)
+            .appendingPathComponent("Taffy Computer Use.app", isDirectory: true)
         installedHelperExecutableURL = installedHelperAppURL
             .appendingPathComponent("Contents/MacOS/cmux-cua")
     }

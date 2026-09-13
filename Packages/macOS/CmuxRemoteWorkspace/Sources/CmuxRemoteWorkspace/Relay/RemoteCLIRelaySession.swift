@@ -436,7 +436,7 @@ extension RemoteCLIRelayServer {
         ) throws -> Data {
             guard shouldContinue() else {
                 throw NSError(domain: "cmux.remote.relay", code: 6, userInfo: [
-                    NSLocalizedDescriptionKey: "failed to read local cmux response",
+                    NSLocalizedDescriptionKey: "failed to read local Taffy response",
                 ])
             }
             var sendTimeout = timeval(
@@ -478,12 +478,12 @@ extension RemoteCLIRelayServer {
             }
             guard connectResult == 0 else {
                 throw NSError(domain: "cmux.remote.relay", code: 3, userInfo: [
-                    NSLocalizedDescriptionKey: "failed to connect to local cmux socket",
+                    NSLocalizedDescriptionKey: "failed to connect to local Taffy socket",
                 ])
             }
             guard shouldContinue() else {
                 throw NSError(domain: "cmux.remote.relay", code: 6, userInfo: [
-                    NSLocalizedDescriptionKey: "failed to read local cmux response",
+                    NSLocalizedDescriptionKey: "failed to read local Taffy response",
                 ])
             }
 
@@ -521,11 +521,11 @@ extension RemoteCLIRelayServer {
                         break
                     }
                     throw NSError(domain: "cmux.remote.relay", code: 5, userInfo: [
-                        NSLocalizedDescriptionKey: "timed out waiting for local cmux response",
+                        NSLocalizedDescriptionKey: "timed out waiting for local Taffy response",
                     ])
                 }
                 throw NSError(domain: "cmux.remote.relay", code: 6, userInfo: [
-                    NSLocalizedDescriptionKey: "failed to read local cmux response",
+                    NSLocalizedDescriptionKey: "failed to read local Taffy response",
                 ])
             }
             return response

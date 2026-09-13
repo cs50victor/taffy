@@ -809,7 +809,7 @@ extension CMUXCLI {
         let parsedArgs = try parseOpenArguments(commandArgs)
 
         guard !parsedArgs.targets.isEmpty else {
-            throw CLIError(message: "open requires at least one path or URL. Usage: cmux open <path-or-url>...")
+            throw CLIError(message: "open requires at least one path or URL. Usage: taffy open <path-or-url>...")
         }
 
         let explicitFocus: Bool?
@@ -910,7 +910,7 @@ extension CMUXCLI {
     ) throws {
         let parsedArgs = try parseDiffArguments(commandArgs)
         guard parsedArgs.inputs.count <= 1 else {
-            throw CLIError(message: "diff accepts at most one patch file. Usage: cmux diff [patch-file|-] [options]")
+            throw CLIError(message: "diff accepts at most one patch file. Usage: taffy diff [patch-file|-] [options]")
         }
         if parsedArgs.source != nil, !parsedArgs.inputs.isEmpty {
             throw CLIError(message: "diff accepts either a patch file or a git source, not both")
@@ -1281,7 +1281,7 @@ extension CMUXCLI {
                     continue
                 default:
                     if arg.hasPrefix("-") {
-                        throw CLIError(message: "open: unknown flag '\(arg)'. Usage: cmux open <path-or-url>... [--workspace <id|ref|index>] [--surface <id|ref|index>] [--pane <id|ref|index>] [--window <id|ref|index>] [--focus true|false] [--no-focus]")
+                        throw CLIError(message: "open: unknown flag '\(arg)'. Usage: taffy open <path-or-url>... [--workspace <id|ref|index>] [--surface <id|ref|index>] [--pane <id|ref|index>] [--window <id|ref|index>] [--focus true|false] [--no-focus]")
                     }
                 }
             }
@@ -1378,7 +1378,7 @@ extension CMUXCLI {
                     continue
                 default:
                     if arg.hasPrefix("-"), arg != "-" {
-                        throw CLIError(message: "diff: unknown flag '\(arg)'. Usage: cmux diff [patch-file|-] [--source <unstaged|staged|branch|last-turn>] [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--session <id>] [--cwd <path>] [--base <ref>] [--focus true|false] [--no-focus] [--title <text>] [--layout split|unified] [--font-size <points>]")
+                        throw CLIError(message: "diff: unknown flag '\(arg)'. Usage: taffy diff [patch-file|-] [--source <unstaged|staged|branch|last-turn>] [--workspace <id|ref|index>] [--surface <id|ref|index>] [--window <id|ref|index>] [--session <id>] [--cwd <path>] [--base <ref>] [--focus true|false] [--no-focus] [--title <text>] [--layout split|unified] [--font-size <points>]")
                     }
                 }
             }
@@ -1497,13 +1497,13 @@ extension CMUXCLI {
 
         guard let rawInput, rawInput != "-" else {
             guard isatty(STDIN_FILENO) == 0 else {
-                throw CLIError(message: "diff requires a patch file, piped stdin, or a git source. Usage: cmux diff <patch-file>|-|--unstaged|--staged|--branch|--last-turn")
+                throw CLIError(message: "diff requires a patch file, piped stdin, or a git source. Usage: taffy diff <patch-file>|-|--unstaged|--staged|--branch|--last-turn")
             }
             let data = FileHandle.standardInput.readDataToEndOfFile()
             return DiffInput(
                 patch: try decodeDiffData(data, sourceDescription: "stdin"),
                 sourceLabel: "stdin",
-                defaultTitle: "cmux diff",
+                defaultTitle: "taffy diff",
                 emptyMessage: nil,
                 externalURL: nil
             )
@@ -1562,7 +1562,7 @@ extension CMUXCLI {
         return DiffInput(
             patch: try decodeDiffData(data, sourceDescription: resolved),
             sourceLabel: resolved,
-            defaultTitle: filename.isEmpty ? "cmux diff" : filename,
+            defaultTitle: filename.isEmpty ? "taffy diff" : filename,
             emptyMessage: nil,
             externalURL: nil
         )
@@ -1587,7 +1587,7 @@ extension CMUXCLI {
         case .lastTurn:
             guard let workspaceId = normalizedDiffSourceValue(context.workspaceId),
                   let surfaceId = normalizedDiffSourceValue(context.surfaceId) else {
-                throw CLIError(message: "cmux diff --last-turn requires a workspace and surface context. Run it from a cmux terminal or pass --workspace and --surface.")
+                throw CLIError(message: "taffy diff --last-turn requires a workspace and surface context. Run it from a taffy terminal or pass --workspace and --surface.")
             }
             let sessionId = normalizedDiffSourceValue(context.sessionId)
             let env = ProcessInfo.processInfo.environment
@@ -1761,7 +1761,7 @@ extension CMUXCLI {
         if !last.isEmpty {
             return last
         }
-        return url.host ?? "cmux diff"
+        return url.host ?? "taffy diff"
     }
 
     private func decodeDiffData(_ data: Data, sourceDescription: String) throws -> String {
@@ -1790,7 +1790,7 @@ extension CMUXCLI {
         do {
             return try standardizedDiffSourcePath(gitSingleLine(["rev-parse", "--show-toplevel"], in: directory))
         } catch {
-            throw CLIError(message: "cmux diff git sources require a git repository")
+            throw CLIError(message: "taffy diff git sources require a git repository")
         }
     }
 
@@ -3233,7 +3233,7 @@ extension CMUXCLI {
     private func agentTurnDiffBaselineCommit(in repoRoot: String) throws -> String {
         let stashResult = CLIProcessRunner.runProcess(
             executablePath: "/usr/bin/env",
-            arguments: ["git", "-C", repoRoot, "stash", "create", "cmux last turn baseline"],
+            arguments: ["git", "-C", repoRoot, "stash", "create", "taffy last turn baseline"],
             timeout: 60
         )
         if stashResult.timedOut {
@@ -7596,7 +7596,7 @@ extension CMUXCLI {
 
         let appAssetPaths = try diffViewerBundledAssetRelativePaths(in: appAssets.sourceDirectory)
         guard appAssetPaths.contains("main.mjs") else {
-            throw CLIError(message: "Bundled cmux diff viewer app entry asset not found")
+            throw CLIError(message: "Bundled taffy diff viewer app entry asset not found")
         }
         let copiedAppAssetURLs = try appAssetPaths.map {
             try copyDiffViewerAsset(relativePath: $0, from: appAssets.sourceDirectory, to: targetAppDirectory)
@@ -7637,7 +7637,7 @@ extension CMUXCLI {
                 return (sourceDirectory: appDirectory, targetDirectoryName: targetName)
             }
         }
-        throw CLIError(message: "Bundled cmux diff viewer app assets not found")
+        throw CLIError(message: "Bundled taffy diff viewer app assets not found")
     }
 
     private func diffViewerAppAssetContentKey(directory: URL) throws -> String {
@@ -7872,9 +7872,9 @@ extension CMUXCLI {
 
     func openSubcommandUsage() -> String {
         """
-        Usage: cmux open <path-or-url>... [options]
+        Usage: taffy open <path-or-url>... [options]
 
-        Open files, directories, or URLs in cmux.
+        Open files, directories, or URLs in Taffy.
         HTML files open in browser splits without focusing by default.
         Markdown files open in markdown preview tabs; other files open in file preview tabs.
         Multiple files open as tabs in the same target pane.
@@ -7888,19 +7888,19 @@ extension CMUXCLI {
           --no-focus                   Do not focus opened file previews
 
         Examples:
-          cmux open report.pdf
-          cmux open image-a.png image-b.jpg
-          cmux open ~/Downloads/movie.mov --pane pane:1
-          cmux open https://example.com
+          taffy open report.pdf
+          taffy open image-a.png image-b.jpg
+          taffy open ~/Downloads/movie.mov --pane pane:1
+          taffy open https://example.com
         """
     }
 
     func diffSubcommandUsage() -> String {
         """
-        Usage: cmux diff [patch-file|-] [options]
+        Usage: taffy diff [patch-file|-] [options]
 
-        Render a unified diff or patch in a cmux browser split.
-        With no patch file or source, cmux diff reads piped stdin.
+        Render a unified diff or patch in a taffy browser split.
+        With no patch file or source, taffy diff reads piped stdin.
 
         Options:
           --source <name>              Diff source: unstaged, staged, branch, last-turn
@@ -7917,18 +7917,18 @@ extension CMUXCLI {
           --focus <true|false>         Focus the diff browser split (default: false)
           --no-focus                   Do not focus the opened diff browser split
           --title <text>               Set the diff viewer title to the provided text
-          --layout <split|unified>     Diff layout (default: unified; configurable via diffViewer.defaultLayout in cmux.json)
+          --layout <split|unified>     Diff layout (default: unified; configurable via diffViewer.defaultLayout in taffy.json)
           --font-size <points>         Set diff font size (default: 10)
 
         Examples:
-          cmux diff changes.patch
-          git diff | cmux diff
-          cmux diff --unstaged
-          cmux diff --staged
-          cmux diff --branch
-          cmux diff --branch --base upstream/main --repo ../repo
-          cmux diff --last-turn
-          cmux diff pr.patch --layout unified --font-size 15 --focus true
+          taffy diff changes.patch
+          git diff | taffy diff
+          taffy diff --unstaged
+          taffy diff --staged
+          taffy diff --branch
+          taffy diff --branch --base upstream/main --repo ../repo
+          taffy diff --last-turn
+          taffy diff pr.patch --layout unified --font-size 15 --focus true
         """
     }
 

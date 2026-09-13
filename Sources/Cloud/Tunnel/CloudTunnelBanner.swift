@@ -51,11 +51,11 @@ struct CloudTunnelBanner: Equatable, Sendable {
             text = status.isPinned
                 ? String(
                     localized: "cloudTree.tunnel.connectedPinned",
-                    defaultValue: "cmux Cloud Tunnel is on: every app on this Mac can reach your Cloud VM network. `cmux vpn down` turns it off."
+                    defaultValue: "Taffy Cloud Tunnel is on: every app on this Mac can reach your Cloud VM network. `Taffy vpn down` turns it off."
                 )
                 : String(
                     localized: "cloudTree.tunnel.connected",
-                    defaultValue: "cmux Cloud Tunnel is on: every app on this Mac can reach your Cloud VM network. It stops on its own when idle."
+                    defaultValue: "Taffy Cloud Tunnel is on: every app on this Mac can reach your Cloud VM network. It stops on its own when idle."
                 )
         }
     }

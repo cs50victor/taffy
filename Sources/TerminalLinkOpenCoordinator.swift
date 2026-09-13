@@ -132,7 +132,7 @@ struct TerminalLinkOpenCoordinator {
         }
         let destinationURL = cloudURL ?? target.url
         guard BrowserLinkOpenSettings.openTerminalLinksInCmuxBrowser(defaults: defaults) else {
-            return openExternally(destinationURL, reason: "cmux browser disabled")
+            return openExternally(destinationURL, reason: "taffy browser disabled")
         }
         switch target {
         case .external:
@@ -168,7 +168,7 @@ struct TerminalLinkOpenCoordinator {
         guard container.deferTerminalFileLinkOpen(
             sourcePanelId: sourcePanelId,
             filePath: fileURL.path,
-            fallback: { [self] in _ = openExternally(fileURL, reason: "cmux file route fallback") }
+            fallback: { [self] in _ = openExternally(fileURL, reason: "Taffy file route fallback") }
         ) else {
             return openExternally(fileURL, reason: unavailableReason)
         }

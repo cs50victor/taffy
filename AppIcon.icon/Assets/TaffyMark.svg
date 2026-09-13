@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <mask id="crossing" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024">
+      <rect width="1024" height="1024" fill="white"/>
+      <path d="M326 704 C512 704 512 320 698 320" fill="none" stroke="black" stroke-width="146" stroke-linecap="round"/>
+    </mask>
+  </defs>
+  <path d="M326 320 C512 320 512 704 698 704" fill="none" stroke="#A0A0A0" stroke-width="108" stroke-linecap="round" mask="url(#crossing)"/>
+  <path d="M326 704 C512 704 512 320 698 320" fill="none" stroke="#FAFAFA" stroke-width="108" stroke-linecap="round"/>
+</svg>

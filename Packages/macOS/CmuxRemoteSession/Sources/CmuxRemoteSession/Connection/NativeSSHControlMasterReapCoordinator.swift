@@ -85,7 +85,7 @@ final class NativeSSHControlMasterReapCoordinator {
                   key: key
               ) else {
             return .ignored(
-                "workspace no longer owns this cmux SSH master"
+                "workspace no longer owns this Taffy SSH master"
             )
         }
         guard !resolvedControlPath.contains("%"),
@@ -94,7 +94,7 @@ final class NativeSSHControlMasterReapCoordinator {
                   "ControlPath=\(resolvedControlPath)",
               ]) == resolvedControlPath else {
             return .ignored(
-                "could not identify the cmux SSH master socket"
+                "could not identify the Taffy SSH master socket"
             )
         }
         if let inFlight = inFlightReaps[resolvedControlPath] {
@@ -108,14 +108,14 @@ final class NativeSSHControlMasterReapCoordinator {
                   lease: lease
               ) else {
             return .deferred(
-                "resolved SSH master ownership is busy in another cmux process"
+                "resolved SSH master ownership is busy in another Taffy process"
             )
         }
         guard let authorization = ownershipRegistry.beginRecovery(
             controlPath: resolvedControlPath
         ) else {
             return .deferred(
-                "resolved SSH master is in use by another cmux process " +
+                "resolved SSH master is in use by another Taffy process " +
                     "or foreground authentication"
             )
         }

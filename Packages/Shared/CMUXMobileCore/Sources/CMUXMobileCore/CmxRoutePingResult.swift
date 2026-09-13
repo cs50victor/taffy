@@ -33,7 +33,7 @@ extension CmxRoutePingResult {
     /// Whether the probe proved the Mac's address is reachable at the TCP layer.
     /// Both ``reachable`` and ``refused`` qualify: a refusal is an RST from a live
     /// host, which proves the address is reachable even though nothing is
-    /// listening on the port. Use ``isListening`` for "the cmux port answered".
+    /// listening on the port. Use ``isListening`` for "the Taffy port answered".
     public var isReachable: Bool {
         switch self {
         case .reachable, .refused:

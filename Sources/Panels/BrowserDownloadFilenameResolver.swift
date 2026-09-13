@@ -323,9 +323,9 @@ extension URL {
     private static func cmuxDownloadQuarantineAgentName() -> String {
         let candidate = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
             ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
-            ?? "cmux"
+            ?? "taffy"
         let trimmed = candidate.trimmingCharacters(in: .whitespacesAndNewlines)
-        return trimmed.isEmpty ? "cmux" : trimmed
+        return trimmed.isEmpty ? "taffy" : trimmed
     }
 
     private static func cmuxSanitizedDownloadSourceURL(_ sourceURL: URL) -> URL? {

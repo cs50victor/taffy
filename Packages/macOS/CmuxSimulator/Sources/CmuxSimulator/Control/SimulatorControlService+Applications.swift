@@ -318,7 +318,7 @@ extension SimulatorControlService {
                 arguments: arguments,
                 message: String(
                     localized: "simulator.control.clipboardStagingFailed",
-                    defaultValue: "cmux could not create a private clipboard staging file."
+                    defaultValue: "Taffy could not create a private clipboard staging file."
                 )
             )
         }

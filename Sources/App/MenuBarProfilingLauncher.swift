@@ -58,10 +58,10 @@ enum MenuBarProfilingLauncher {
 
         do {
             try process.run()
-            menuBarProfilingLogger.notice("Started cmux profiling for pid \(pid)")
+            menuBarProfilingLogger.notice("Started Taffy profiling for pid \(pid)")
             return true
         } catch {
-            menuBarProfilingLogger.error("Failed to start cmux profiling for pid \(pid): \(error.localizedDescription, privacy: .public)")
+            menuBarProfilingLogger.error("Failed to start Taffy profiling for pid \(pid): \(error.localizedDescription, privacy: .public)")
             NSSound.beep()
             return false
         }

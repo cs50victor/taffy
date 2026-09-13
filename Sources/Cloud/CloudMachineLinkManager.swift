@@ -27,7 +27,7 @@ actor CloudMachineLinkManager {
             case .clientMissing:
                 return "No cmux-tui client is bundled with this build (Contents/Resources/bin/cmux-tui) and CMUX_TUI_CLIENT is unset."
             case .wireGuardHubMissing:
-                return "The cmux user-space WireGuard hub is not available in this build."
+                return "The Taffy user-space WireGuard hub is not available in this build."
             case .wireGuardHubUnsupported:
                 return "The bundled cmux-tui client does not support the user-space WireGuard hub."
             case .privateRouteRequired(let route):

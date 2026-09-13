@@ -24,7 +24,7 @@ actor CloudLoopbackPortForward {
                 return String(
                     format: String(
                         localized: "cloudTree.port.forwardListenerFailed",
-                        defaultValue: "cmux could not open a local port for the forward: %@"
+                        defaultValue: "Taffy could not open a local port for the forward: %@"
                     ),
                     detail
                 )

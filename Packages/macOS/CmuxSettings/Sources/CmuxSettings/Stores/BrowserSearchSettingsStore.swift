@@ -88,7 +88,7 @@ public struct BrowserSearchSettingsStore: BrowserSearchSettingsReading {
     }
 
     public func isValidSearchURLTemplate(_ raw: String) -> Bool {
-        searchURL(fromTemplate: raw, query: "cmux search") != nil
+        searchURL(fromTemplate: raw, query: "Taffy search") != nil
     }
 
     public func searchURL(fromTemplate rawTemplate: String, query rawQuery: String) -> URL? {

@@ -37,7 +37,7 @@ extension CMUXCLI {
                     detail: "kind=\(record.kind)",
                     message: String(
                         localized: "cli.restore.error.admissionIdentityMissing",
-                        defaultValue: "restore: this session's live ownership could not be verified. Run 'cmux restore --surface' again."
+                        defaultValue: "restore: this session's live ownership could not be verified. Run 'Taffy restore --surface' again."
                     )
                 )
             }
@@ -50,7 +50,7 @@ extension CMUXCLI {
                 detail: "kind=\(record.kind)",
                 message: String(
                     localized: "cli.restore.error.admissionIdentityMissing",
-                    defaultValue: "restore: this session's live ownership could not be verified. Run 'cmux restore --surface' again."
+                    defaultValue: "restore: this session's live ownership could not be verified. Run 'Taffy restore --surface' again."
                 )
             )
         }
@@ -59,7 +59,7 @@ extension CMUXCLI {
                 guard attempt == 0 else { return }
                 FileHandle.standardError.write(Data((String(
                     localized: "cli.restore.admission.waiting",
-                    defaultValue: "restore: waiting for cmux to verify that this agent session is not already running…"
+                    defaultValue: "restore: waiting for Taffy to verify that this agent session is not already running…"
                 ) + "\n").utf8))
             }
         ) {
@@ -79,7 +79,7 @@ extension CMUXCLI {
                processID > 0 {
                 let format = String(
                     localized: "cli.restore.error.liveOwner",
-                    defaultValue: "restore: this agent session is already running in process %1$lld. cmux did not start another copy. To take it over here, stop process %1$lld, then run 'cmux restore --surface' again."
+                    defaultValue: "restore: this agent session is already running in process %1$lld. Taffy did not start another copy. To take it over here, stop process %1$lld, then run 'Taffy restore --surface' again."
                 )
                 throw loggedRestoreError(
                     stage: "admission.live-owner",
@@ -98,7 +98,7 @@ extension CMUXCLI {
                 detail: "kind=\(record.kind) session=\(sessionID)",
                 message: String(
                     localized: "cli.restore.error.launchPending",
-                    defaultValue: "restore: another launch of this agent session is already starting. Wait for it to appear, or retry 'cmux restore --surface'."
+                    defaultValue: "restore: another launch of this agent session is already starting. Wait for it to appear, or retry 'Taffy restore --surface'."
                 )
             )
         }
@@ -109,7 +109,7 @@ extension CMUXCLI {
                 detail: "kind=\(record.kind) session=\(sessionID)",
                 message: String(
                     localized: "cli.restore.error.admissionIdentityMissing",
-                    defaultValue: "restore: this session's live ownership could not be verified. Run 'cmux restore --surface' again."
+                    defaultValue: "restore: this session's live ownership could not be verified. Run 'Taffy restore --surface' again."
                 )
             )
         }

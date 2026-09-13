@@ -55,7 +55,7 @@ extension CMUXCLI {
     static var vmResizeUsage: String {
         String(localized: "cli.vm.resize.usage", defaultValue: """
         Usage:
-          cmux vm resize <id> [--cpu <vCPUs>] [--memory <GiB>] [--disk <GiB>]
+          taffy vm resize <id> [--cpu <vCPUs>] [--memory <GiB>] [--disk <GiB>]
 
         Grow an existing Cloud VM in place. Specify at least one resource:
         CPU: 1–32 vCPUs. Memory: 4–64 GiB in whole GiB. Disk: 4–256 GiB in 4 GiB steps.
@@ -111,9 +111,9 @@ extension CMUXCLI {
     static var vmPromptUsage: String {
         """
         Usage:
-          cmux vm prompt [--json]          Install the cmux-cloud skill file and print
+          taffy vm prompt [--json]          Install the cmux-cloud skill file and print
                                            the kickoff prompt that points any agent at it.
-          cmux vm prompt --open <agent>    Open a local terminal running <agent> with that
+          taffy vm prompt --open <agent>    Open a local terminal running <agent> with that
                                            prompt (claude|codex|opencode).
         """
     }
@@ -121,8 +121,8 @@ extension CMUXCLI {
     static var vmBaseUsage: String {
         """
         Usage:
-          cmux vm base open [--desktop|--base] [--workspace <workspace-id>] [--window <id|ref|index>] [--focus <true|false>] [--detach|-d]
-          cmux vm base reset [--desktop|--base] [--reason <text>] [--workspace <workspace-id>] [--window <id|ref|index>] [--detach|-d]
+          taffy vm base open [--desktop|--base] [--workspace <workspace-id>] [--window <id|ref|index>] [--focus <true|false>] [--detach|-d]
+          taffy vm base reset [--desktop|--base] [--reason <text>] [--workspace <workspace-id>] [--window <id|ref|index>] [--detach|-d]
 
         Base is your persistent cloud workspace. Opening it reuses the
         same VM. Reset creates a new Base generation and retains the old VM.

@@ -489,7 +489,7 @@ final class RemoteDaemonProxySession: @unchecked Sendable {
     }
 
     private static func httpResponse(status: String, closeAfterResponse: Bool = true) -> Data {
-        var text = "HTTP/1.1 \(status)\r\nProxy-Agent: cmux\r\n"
+        var text = "HTTP/1.1 \(status)\r\nProxy-Agent: Taffy\r\n"
         if closeAfterResponse {
             text += "Connection: close\r\n"
         }

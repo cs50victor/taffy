@@ -1,10 +1,11 @@
 import AppKit
+import CmuxSettings
 import CmuxWorkspaces
 import Foundation
 
 /// Opens workspace-group configuration and documentation surfaces.
 enum SidebarWorkspaceGroupConfigOpener {
-    /// Opens the cmux config file (`~/.config/cmux/cmux.json`) in the user's
+    /// Opens the Taffy config file (`~/.config/taffy/taffy.json`) in the user's
     /// configured editor, materializing an empty config first if none exists.
     @MainActor
     static func openCmuxConfigInEditor() {
@@ -15,7 +16,7 @@ enum SidebarWorkspaceGroupConfigOpener {
         )
     }
 
-    /// Testable seam: resolves the cmux config path under `home`, materializes
+    /// Testable seam: resolves the Taffy config path under `home`, materializes
     /// an empty config if absent, then hands the file to `open`.
     ///
     /// The public ``openCmuxConfigInEditor()`` entry point passes
@@ -26,16 +27,15 @@ enum SidebarWorkspaceGroupConfigOpener {
         open(materializedCmuxConfigURL(home: home))
     }
 
-    /// Resolves `~/.config/cmux/cmux.json` under `home`, materializing an empty
+    /// Resolves `~/.config/taffy/taffy.json` under `home`, materializing an empty
     /// config first if none exists. Shared by the external-editor path above and
     /// in-app openers (e.g. the plus-button menu's "Customize Workspace Layouts…").
     static func materializedCmuxConfigURL(
         home: URL = FileManager.default.homeDirectoryForCurrentUser
     ) -> URL {
-        let configURL = home
-            .appendingPathComponent(".config", isDirectory: true)
-            .appendingPathComponent("cmux", isDirectory: true)
-            .appendingPathComponent("cmux.json", isDirectory: false)
+        let locations = CmuxConfigLocation(home: home)
+        try? locations.migrateLegacyUserConfigIfNeeded()
+        let configURL = locations.userConfigFile
         if !FileManager.default.fileExists(atPath: configURL.path) {
             try? FileManager.default.createDirectory(
                 at: configURL.deletingLastPathComponent(),
@@ -55,7 +55,7 @@ enum SidebarWorkspaceGroupConfigOpener {
 
     static func openWorkspaceGroupsDocs() {
         guard let url = URL(
-            string: "https://github.com/manaflow-ai/cmux/blob/main/docs/workspace-groups.md"
+            string: "https://github.com/cs50victor/taffy/blob/main/docs/workspace-groups.md"
         ) else { return }
         NSWorkspace.shared.open(url)
     }

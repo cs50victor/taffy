@@ -41,6 +41,12 @@ def main():
         with (args.app / 'Contents/Info.plist').open('rb') as stream:
             info = plistlib.load(stream)
         assert info['CFBundleIdentifier'] == 'com.cs50victor.taffy', info
+        assert info['CFBundleName'] == 'Taffy', info
+        helper = args.app / 'Contents/Library/Taffy Computer Use.app/Contents/Info.plist'
+        with helper.open('rb') as stream:
+            helper_info = plistlib.load(stream)
+        assert helper_info['CFBundleDisplayName'] == 'Taffy Computer Use', helper_info
+        assert not (args.app / 'Contents/Library/cmux Computer Use.app').exists()
         for locale in ['en', 'de', 'fr', 'ar', 'es', 'zh-Hant', 'zh-Hans', 'ko', 'ja']:
             path = args.app / f'Contents/Resources/{locale}.lproj/Localizable.strings'
             catalog = json.loads(subprocess.check_output(

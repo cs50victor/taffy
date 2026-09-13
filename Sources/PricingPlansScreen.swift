@@ -11,13 +11,13 @@ import SwiftUI
 enum ProUpgradeSource: String, CaseIterable, Sendable {
     /// "Upgrade" capsule in the sidebar footer.
     case sidebarBadge = "mac_sidebar_badge"
-    /// "Upgrade to cmux Pro…" in the sidebar footer account menu.
+    /// "Upgrade to Taffy Pro…" in the sidebar footer account menu.
     case sidebarAccountMenu = "mac_sidebar_account_menu"
-    /// "Upgrade to cmux Pro…" in the sidebar help (?) menu.
+    /// "Upgrade to Taffy Pro…" in the sidebar help (?) menu.
     case sidebarHelpMenu = "mac_sidebar_help_menu"
-    /// Help > "Upgrade to cmux Pro…" in the main menu bar.
+    /// Help > "Upgrade to Taffy Pro…" in the main menu bar.
     case helpMenu = "mac_help_menu"
-    /// Command palette "Upgrade to cmux Pro".
+    /// Command palette "Upgrade to Taffy Pro".
     case commandPalette = "mac_command_palette"
     /// Settings > Account card "Upgrade" (via `AccountFlow`).
     case settingsAccountCard = "mac_settings_account_card"
@@ -96,7 +96,7 @@ enum CheckoutAttribution {
     }
 }
 
-/// Shared entrypoint for every "Upgrade to cmux Pro" surface (sidebar badge,
+/// Shared entrypoint for every "Upgrade to Taffy Pro" surface (sidebar badge,
 /// titlebar badge, Settings Account card, command palette, Help menu). Opens
 /// the app-specific pricing page in a dedicated browser workspace in the
 /// current window, falling back through the older in-window browser paths if
@@ -175,7 +175,7 @@ enum ProUpgradePresenter {
             workspaceReuseState.clear()
         }
 
-        let title = String(localized: "pricing.pro.workspace.title", defaultValue: "cmux Pro")
+        let title = String(localized: "pricing.pro.workspace.title", defaultValue: "Taffy Pro")
         guard let workspace = appDelegate.performProUpgradeWorkspaceAction(
             title: title,
             url: url,
@@ -250,7 +250,7 @@ private final class NativePricingWindowController: NSWindowController {
             backing: .buffered,
             defer: false
         )
-        window.title = String(localized: "pricing.native.window.title", defaultValue: "cmux Upgrade")
+        window.title = String(localized: "pricing.native.window.title", defaultValue: "Taffy Upgrade")
         window.titlebarAppearsTransparent = true
         window.isMovableByWindowBackground = true
         window.minSize = NSSize(width: 760, height: 520)
@@ -518,7 +518,7 @@ private struct NativePricingPlansView: View {
                     String(localized: "pricing.native.pro.feature.vms", defaultValue: "Cloud agents on isolated Cloud VMs"),
                     String(localized: "pricing.native.pro.feature.hours", defaultValue: "Up to 50 Cloud VMs, with 24 GB RAM and 6 vCPUs shared across all VMs"),
                     String(localized: "pricing.native.pro.feature.gateway", defaultValue: "Unlimited workspaces"),
-                    String(localized: "pricing.native.pro.feature.ios", defaultValue: "cmux iOS app and email support"),
+                    String(localized: "pricing.native.pro.feature.ios", defaultValue: "Taffy iOS app and email support"),
                 ]
             )
             NativePricingPlanCard(

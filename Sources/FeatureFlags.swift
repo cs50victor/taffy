@@ -292,11 +292,11 @@ final class CmuxFeatureFlags {
     }()
 
     var isProUpgradeUIEnabled: Bool {
-        effectiveValue(for: Self.allFlags[0])
+        false
     }
 
     var isMobileConnectButtonEnabled: Bool {
-        effectiveValue(for: Self.allFlags[1])
+        false
     }
 
     var isAgentChatUIEnabled: Bool {
@@ -304,7 +304,7 @@ final class CmuxFeatureFlags {
     }
 
     var isSidebarAccountButtonEnabled: Bool {
-        effectiveValue(for: Self.allFlags[2])
+        false
     }
 
     var isSidebarWorkspaceAgentSpinnerEnabled: Bool {

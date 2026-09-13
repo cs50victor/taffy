@@ -6,21 +6,21 @@ import Foundation
 /// a snapshot can only be removed by naming the machine it belongs to.
 extension CMUXCLI {
     static let vmSnapshotUsage = """
-        Usage: cmux vm snapshot <machine> [--name <name>]        Create a snapshot; prints its id. Alias: `checkpoint`.
-               cmux vm snapshot ls <machine> [--json]             List the machine's snapshots, newest first:
+        Usage: taffy vm snapshot <machine> [--name <name>]        Create a snapshot; prints its id. Alias: `checkpoint`.
+               taffy vm snapshot ls <machine> [--json]             List the machine's snapshots, newest first:
                                                                   <id>  <created ISO-8601>  <name|->
-               cmux vm snapshot rm <machine> <snapshot-id> [--json]
+               taffy vm snapshot rm <machine> <snapshot-id> [--json]
                                                                   Delete one snapshot of the machine. Permanent.
-               cmux vm restore <snapshot-id>                      Start a new machine from a snapshot.
+               taffy vm restore <snapshot-id>                      Start a new machine from a snapshot.
 
         Snapshots are provider checkpoints of the whole machine (files, installed tools,
-        ~/.config/cmux/env — `cmux vm env rm` secrets before you promote one). Forks and
+        ~/.config/cmux/env — `taffy vm env rm` secrets before you promote one). Forks and
         `vm restore` start from them. A provider without list/delete support says so.
 
         Examples:
-          cmux vm snapshot brave-otter --name before-upgrade
-          cmux vm snapshot ls brave-otter
-          cmux vm snapshot rm brave-otter snap_01H…
+          taffy vm snapshot brave-otter --name before-upgrade
+          taffy vm snapshot ls brave-otter
+          taffy vm snapshot rm brave-otter snap_01H…
         """
 
     /// `cmux vm snapshot ls <machine> [--json]`.
@@ -92,7 +92,7 @@ extension CMUXCLI {
     static func vmSnapshotWordedError(_ error: CLIError, machine: String, snapshotID: String?, action: String) -> CLIError {
         if error.vmBackendCode == "vm_operation_unsupported" || error.vmBackendHTTPStatus == 501 {
             return CLIError(
-                message: "\(machine)'s provider cannot \(action). Snapshots there are created with `cmux vm snapshot \(machine)` and used by `cmux vm restore`; nothing else is offered.",
+                message: "\(machine)'s provider cannot \(action). Snapshots there are created with `taffy vm snapshot \(machine)` and used by `taffy vm restore`; nothing else is offered.",
                 exitCode: error.exitCode,
                 v2Code: error.v2Code,
                 isStructuredProtocolResponse: error.isStructuredProtocolResponse,
@@ -102,7 +102,7 @@ extension CMUXCLI {
         }
         if let snapshotID, error.vmBackendCode == "vm_snapshot_not_found" {
             return CLIError(
-                message: "no snapshot \(snapshotID) on \(machine) (it may belong to another machine or be gone already): `cmux vm snapshot ls \(machine)` shows this machine's.",
+                message: "no snapshot \(snapshotID) on \(machine) (it may belong to another machine or be gone already): `taffy vm snapshot ls \(machine)` shows this machine's.",
                 exitCode: error.exitCode,
                 v2Code: error.v2Code,
                 isStructuredProtocolResponse: error.isStructuredProtocolResponse,

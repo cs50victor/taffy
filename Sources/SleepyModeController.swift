@@ -167,7 +167,7 @@ final class SleepyModeController {
     /// In-process equivalent of `caffeinate -d -i`: keep the display awake so the
     /// screensaver stays visible, and stop the system from idle-sleeping.
     private func beginPowerAssertions() {
-        let reason = "cmux Sleepy Mode" as CFString
+        let reason = "Taffy Sleepy Mode" as CFString
         if !hasSystemAssertion {
             var id = IOPMAssertionID(0)
             if IOPMAssertionCreateWithName(kIOPMAssertionTypePreventUserIdleSystemSleep as CFString, IOPMAssertionLevel(kIOPMAssertionLevelOn), reason, &id) == kIOReturnSuccess {

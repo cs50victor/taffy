@@ -23,11 +23,11 @@ struct CloudBrowserConnectionCard: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(String(localized: "cloud.vpn.setup.steps.title", defaultValue: "First-time setup"))
                         .font(.headline)
-                    Text(String(localized: "cloud.vpn.setup.steps.extension", defaultValue: "1. Click Set Up cmux VPN. When macOS asks, allow the cmux network extension in System Settings."))
+                    Text(String(localized: "cloud.vpn.setup.steps.extension", defaultValue: "1. Click Set Up Taffy VPN. When macOS asks, allow the Taffy network extension in System Settings."))
                     Text(ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 15
                         ? String(localized: "cloud.vpn.setup.steps.settings", defaultValue: "Open General > Login Items & Extensions > Network Extensions, then enable cmux.")
                         : String(localized: "cloud.vpn.setup.steps.settingsLegacy", defaultValue: "Open System Settings > Extensions > Network Extensions, then enable cmux."))
-                    Text(String(localized: "cloud.vpn.setup.steps.configuration", defaultValue: "2. Allow cmux to add a VPN configuration named cmux Cloud."))
+                    Text(String(localized: "cloud.vpn.setup.steps.configuration", defaultValue: "2. Allow Taffy to add a VPN configuration named Taffy Cloud."))
                     Text(String(localized: "cloud.vpn.setup.steps.return", defaultValue: "3. Return to this pane. The connection continues automatically after approval."))
                 }
                 .font(.callout)

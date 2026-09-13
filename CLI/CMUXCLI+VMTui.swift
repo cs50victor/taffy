@@ -61,10 +61,10 @@ extension CMUXCLI {
 
     static var vmTuiUsage: String {
         """
-        Usage: cmux vm tui <id> [--window <id|ref|index>]
+        Usage: taffy vm tui <id> [--window <id|ref|index>]
 
         Open the FULL cmux-tui client for a machine (its own workspaces, panes and
-        tabs) in a pane. `cmux vm shell <id>` and every other open give you a plain
+        tabs) in a pane. `taffy vm shell <id>` and every other open give you a plain
         terminal on the machine instead; use this when you want the client itself.
         The pane runs the local cmux-tui client against the machine's daemon over
         the owner's private network; the network is the admission, so no device
@@ -209,7 +209,7 @@ extension CMUXCLI {
         let daemonCommit = (daemon["commit"] as? String).map { String($0.prefix(10)) } ?? "?"
         let clientCommit = client.buildIdentity.map { String($0.prefix(10)) } ?? "?"
         let stale = clientProtocol < daemonProtocol
-            ? CMUXDiffViewerLocalization.string("cli.vm.tui.staleClient", defaultValue: "Update cmux (its bundled cmux-tui client is older than the machine's daemon).")
+            ? CMUXDiffViewerLocalization.string("cli.vm.tui.staleClient", defaultValue: "Update Taffy (its bundled cmux-tui client is older than the machine's daemon).")
             : CMUXDiffViewerLocalization.string("cli.vm.tui.staleDaemon", defaultValue: "The machine's cmux-tui daemon is older than this client; reconnect once the machine has updated.")
         let template = CMUXDiffViewerLocalization.string(
             "cli.vm.tui.protocolMismatch",
@@ -559,7 +559,7 @@ extension CMUXCLI {
     func runVMTuiConnect(commandArgs: [String], client: SocketClient) throws {
         let (configPath, _) = parseOption(commandArgs, name: "--config")
         guard let configPath, !configPath.isEmpty else {
-            throw CLIError(message: "Usage: cmux vm-tui-connect --config <file>")
+            throw CLIError(message: "Usage: taffy vm-tui-connect --config <file>")
         }
         let configURL = URL(fileURLWithPath: configPath)
         let config = try JSONDecoder().decode(VMTuiConnectConfig.self, from: Data(contentsOf: configURL))
@@ -620,12 +620,12 @@ extension CMUXCLI {
             preconditionFailure("resolved terminal placement cannot produce an error")
         case .notFound:
             return CLIError(message: String(
-                format: String(localized: "cli.vm.open.terminalNotFound", defaultValue: "%1$@ has no terminal '%2$@' in workspace '%3$@'. See: cmux vm tree %1$@"),
+                format: String(localized: "cli.vm.open.terminalNotFound", defaultValue: "%1$@ has no terminal '%2$@' in workspace '%3$@'. See: taffy vm tree %1$@"),
                 machine, selector, workspace
             ))
         case .ambiguous:
             return CLIError(message: String(
-                format: String(localized: "cli.vm.open.terminalAmbiguous", defaultValue: "Terminal '%2$@' on %1$@ has no unique tab in workspace '%3$@'. Use cmux vm tree %1$@ and choose an exact placement."),
+                format: String(localized: "cli.vm.open.terminalAmbiguous", defaultValue: "Terminal '%2$@' on %1$@ has no unique tab in workspace '%3$@'. Use taffy vm tree %1$@ and choose an exact placement."),
                 machine, selector, workspace
             ))
         case .unavailable:
@@ -646,12 +646,12 @@ extension CMUXCLI {
             preconditionFailure("resolved workspace cannot produce an error")
         case .notFound:
             return CLIError(message: String(
-                format: String(localized: "cli.vm.open.workspaceNotFound", defaultValue: "%1$@ has no workspace '%2$@'. See: cmux vm tree %1$@"),
+                format: String(localized: "cli.vm.open.workspaceNotFound", defaultValue: "%1$@ has no workspace '%2$@'. See: taffy vm tree %1$@"),
                 machine, selector
             ))
         case .ambiguous:
             return CLIError(message: String(
-                format: String(localized: "cli.vm.open.workspaceAmbiguous", defaultValue: "%1$@ has multiple workspaces named '%2$@'. Use a workspace ID from cmux vm tree %1$@."),
+                format: String(localized: "cli.vm.open.workspaceAmbiguous", defaultValue: "%1$@ has multiple workspaces named '%2$@'. Use a workspace ID from taffy vm tree %1$@."),
                 machine, selector
             ))
         case .unavailable:
@@ -781,14 +781,14 @@ extension CMUXCLI {
         CMUXDiffViewerLocalization.string(
             "cli.vm.tree.usage",
             defaultValue: """
-        Usage: cmux vm tree [<machine>|local] [--refresh] [--json]
-               cmux surface ls [<machine>|local] [--refresh] [--json]
+        Usage: taffy vm tree [<machine>|local] [--refresh] [--json]
+               taffy surface ls [<machine>|local] [--refresh] [--json]
 
         The Finder-style view of every surface: This Mac first (its terminals grouped by
         workspace, and its browsers), then each cloud machine — Workspaces, Ports, VNC
         Displays (one row per screen), and a final Terminals section containing every
-        machine-owned terminal. Every line carries an address `cmux vm open` or
-        `cmux surface open` accepts.
+        machine-owned terminal. Every line carries an address `taffy vm open` or
+        `taffy surface open` accepts.
 
         Options:
           <machine>   Only this machine (`local` for This Mac).
@@ -800,15 +800,15 @@ extension CMUXCLI {
 
     static var surfaceUsage: String {
         """
-        Usage: cmux surface ls [<machine>|local] [--refresh] [--json]
-               cmux surface open <resource> [--workspace <id|ref|index>] [--pane <id|ref>]
+        Usage: taffy surface ls [<machine>|local] [--refresh] [--json]
+               taffy surface open <resource> [--workspace <id|ref|index>] [--pane <id|ref>]
                                  [--left|--right|--up|--down|--tab] [--new] [--focus <true|false>] [--json]
-               cmux surface new-terminal --machine <id|local> [--cwd <dir>] [--name <name>]
+               taffy surface new-terminal --machine <id|local> [--cwd <dir>] [--name <name>]
                                  [--remote-workspace <ws_…>] [--workspace <id|ref|index>] [--no-open] [--json] [-- <command...>]
-               cmux surface resume …   (restart metadata; see `cmux surface resume --help`)
+               taffy surface resume …   (restart metadata; see `taffy surface resume --help`)
 
         Surfaces are terminals, VNC displays and browsers on This Mac or on a cloud machine;
-        panes project them. `surface ls` is the catalog (same as `cmux vm tree`, including
+        panes project them. `surface ls` is the catalog (same as `taffy vm tree`, including
         This Mac). A resource id reads <machine>/<kind>/<key>, e.g. local/terminal/<uuid>,
         vivid-newt/terminal/term_2f9c…, vivid-newt/display/display:1, vivid-newt/browser/port:3000.
 
@@ -823,15 +823,15 @@ extension CMUXCLI {
 
     static var vmOpenUsage: String {
         """
-        Usage: cmux vm open <target> [--workspace <id|ref|index>] [--focus <true|false>] [--print]
-               cmux vm open <id> <port> [--print]
+        Usage: taffy vm open <target> [--workspace <id|ref|index>] [--focus <true|false>] [--print]
+               taffy vm open <id> <port> [--print]
 
-        Targets (copy them from `cmux vm tree`):
-          <machine>                      the machine's shell (same as `cmux vm shell <machine>`)
+        Targets (copy them from `taffy vm tree`):
+          <machine>                      the machine's shell (same as `taffy vm shell <machine>`)
           <machine>/<workspace>          a cmux-tui workspace on it (`ws_…` id or unique name; ambiguous names fail)
           <machine>/<workspace>/<term>   one terminal (`term_…`) — focuses the pane that
                                          already shows it instead of opening a second one
-          <machine>/<workspace>/<term>/<tab>  one tab of that terminal (`tab_…` from `cmux vm tree`)
+          <machine>/<workspace>/<term>/<tab>  one tab of that terminal (`tab_…` from `taffy vm tree`)
           <machine>:desktop              the machine's noVNC screen as a browser pane
           <machine>:port/<n>             a private tokened URL for an HTTP port, as a browser pane
           <machine> <port>               same as <machine>:port/<port>
@@ -843,18 +843,18 @@ extension CMUXCLI {
           --print            Ports only: print the URL, do not open a pane.
 
         Examples:
-          cmux vm open vivid-newt
-          cmux vm open vivid-newt/main
-          cmux vm open vivid-newt/main/term_2f9c…
-          cmux vm open vivid-newt/main/term_2f9c…/tab_a
-          cmux vm open vivid-newt:desktop
-          cmux vm open vivid-newt:port/3000 --print
+          taffy vm open vivid-newt
+          taffy vm open vivid-newt/main
+          taffy vm open vivid-newt/main/term_2f9c…
+          taffy vm open vivid-newt/main/term_2f9c…/tab_a
+          taffy vm open vivid-newt:desktop
+          taffy vm open vivid-newt:port/3000 --print
         """
     }
 
     static let vmWorkspaceUsage = """
         Usage:
-          cmux vm workspace new <machine> [--name <name>] [--reuse] [--no-open]
+          taffy vm workspace new <machine> [--name <name>] [--reuse] [--no-open]
                                                               Create a workspace on the machine (its ⌘N) and open it here.
                                                               --no-open: stage it headlessly (it shows in `vm tree` and the
                                                               sidebar; nothing opens locally) — the seat for
@@ -862,55 +862,55 @@ extension CMUXCLI {
                                                               --reuse: when a workspace with exactly that --name already
                                                               exists, open it instead of creating a second one (get-or-create,
                                                               so a script that runs twice leaves one `tests`, not two).
-          cmux vm workspace open <machine> <workspace-id>     Open a machine workspace as a new local workspace, one pane per terminal.
+          taffy vm workspace open <machine> <workspace-id>     Open a machine workspace as a new local workspace, one pane per terminal.
               [--here] [--tabs] [--workspace <local>] [--pane <id|ref> [--left|--right|--up|--down]]
                                                               --here: into the current (or --workspace) local workspace instead — one pane
                                                               at the destination, the rest as tabs in it ("Open All Here"); --tabs: all as
                                                               tabs of the focused (or --pane) pane ("Open All in New Tabs").
-          cmux vm workspace rename <machine> <workspace-id> <name>
+          taffy vm workspace rename <machine> <workspace-id> <name>
                                                               Rename a machine workspace.
-          cmux vm workspace rm <machine> <workspace-id>       Close a machine workspace AND kill every
+          taffy vm workspace rm <machine> <workspace-id>       Close a machine workspace AND kill every
                                                               terminal in it (the sidebar's "Close
                                                               Workspace…"). Permanent.
-          cmux vm workspace close <machine> <workspace-id>    CLI-only: close the workspace but keep its
+          taffy vm workspace close <machine> <workspace-id>    CLI-only: close the workspace but keep its
                                                               terminals running in the Terminals pool.
 
-        Workspace ids come from `cmux vm tree`. Add --json for the raw result.
+        Workspace ids come from `taffy vm tree`. Add --json for the raw result.
         """
 
     static let vmTerminalUsage = """
         Usage:
-          cmux vm terminal send <machine> <terminal-id> [text] [--keys <k1,k2,…>]
+          taffy vm terminal send <machine> <terminal-id> [text] [--keys <k1,k2,…>]
                                                               Type text into the terminal (as-is, no newline), then press
                                                               named keys: enter, tab, escape, up, down, ctrl+c (chords join with +)… Nothing is
                                                               attached or focused. `--keys enter` alone presses Enter.
                                                               Put `--` before text that contains this command's own flags.
-          cmux vm terminal read <machine> <terminal-id>       Print the terminal's visible screen (--json adds cursor/size).
-          cmux vm terminal wait <machine> <terminal-id> --pattern <regex> [--timeout <seconds>]
+          taffy vm terminal read <machine> <terminal-id>       Print the terminal's visible screen (--json adds cursor/size).
+          taffy vm terminal wait <machine> <terminal-id> --pattern <regex> [--timeout <seconds>]
                                                               Block until the screen matches (default 30 s); exit 1 on timeout.
-          cmux vm terminal wait-exit <machine> <terminal-id> [--timeout <seconds>]
+          taffy vm terminal wait-exit <machine> <terminal-id> [--timeout <seconds>]
                                                               Block until the terminal's PROCESS exits (default 30 s, max 3600):
                                                               prints `exited code=<n>` or `exited signal=<n>`; prints `pending`
                                                               and exits 1 while it is still running. An exit is a fact; a
                                                               prompt regex is a guess — prefer this for "run to completion".
-          cmux vm terminal output <machine> <terminal-id> [--after <offset>] [--max-bytes <n>]
+          taffy vm terminal output <machine> <terminal-id> [--after <offset>] [--max-bytes <n>]
                                                               Print the terminal's retained OUTPUT (the whole log), not just
                                                               the visible screen. --json adds start_offset, next_offset and
                                                               complete; pass next_offset back as --after to read only what
                                                               arrived since (complete=false means call again).
-          cmux vm terminal close <machine> <terminal-id>      End a terminal on the machine (the process and its tab).
-          cmux vm terminal rename <machine> <terminal-id> <name>   Set or clear a terminal label for every client (use "" to clear).
+          taffy vm terminal close <machine> <terminal-id>      End a terminal on the machine (the process and its tab).
+          taffy vm terminal rename <machine> <terminal-id> <name>   Set or clear a terminal label for every client (use "" to clear).
 
-        Terminal ids come from `cmux vm tree`. Add --json for the raw result.
+        Terminal ids come from `taffy vm tree`. Add --json for the raw result.
         Run to completion: `send … 'bun test' --keys enter`, `wait-exit …`, `output …`.
         Interactive programs: `send …`, `wait … --pattern '<prompt>'`, `read …`.
         """
 
     static let vmTabUsage = """
         Usage:
-          cmux vm tab rename <machine> <tab-id> <name>
+          taffy vm tab rename <machine> <tab-id> <name>
                                                               Set or clear exactly one daemon tab placement (use "" to clear).
-                                                              Use the tab id from `cmux vm tree --json`.
+                                                              Use the tab id from `taffy vm tree --json`.
 
         Tab names are local to a placement. Use `vm terminal rename` only when you
         explicitly want the same name on every view of one terminal.
@@ -929,12 +929,12 @@ extension CMUXCLI {
 
     static let vmExecUsage = """
         Usage:
-          cmux vm exec [--timeout <seconds>] <machine> -- <command...>
+          taffy vm exec [--timeout <seconds>] <machine> -- <command...>
                                                               Run one command inside the machine and print its stdout/stderr;
                                                               the remote exit code passes through. --timeout: 1…900 seconds
                                                               (default 30). Longer work belongs in a durable terminal:
-                                                              `cmux surface new-terminal --machine <m> --no-open -- <cmd>`,
-                                                              then `cmux vm terminal wait-exit` / `output`, or `cmux vm agent`.
+                                                              `taffy surface new-terminal --machine <m> --no-open -- <cmd>`,
+                                                              then `taffy vm terminal wait-exit` / `output`, or `taffy vm agent`.
 
         Each argv element is shell-quoted faithfully; wrap shell constructs as `-- sh -c '<script>'`.
         Add --json for {stdout, stderr, exit_code}.
@@ -942,12 +942,12 @@ extension CMUXCLI {
 
     static let vmLifecycleUsage = """
         Usage:
-          cmux vm pause <machine>                             Park the machine: compute stops (and stops billing); the volume,
+          taffy vm pause <machine>                             Park the machine: compute stops (and stops billing); the volume,
                                                               workspaces and terminal history stay. `vm ls` shows it paused.
-          cmux vm resume <machine>                            Wake a paused machine: the daemon, terminals and files come back.
+          taffy vm resume <machine>                            Wake a paused machine: the daemon, terminals and files come back.
                                                               Opening or exec'ing a paused machine also wakes it.
 
-        A provider without pause says so; such machines stay available until `cmux vm rm`. Add --json for the raw result.
+        A provider without pause says so; such machines stay available until `taffy vm rm`. Add --json for the raw result.
         """
 
     /// `--timeout` for `vm exec`, in whole seconds: 1…900 (the control plane's 15-minute
@@ -1122,7 +1122,7 @@ extension CMUXCLI {
             if let local = response["workspace_id"] as? String, !local.isEmpty {
                 print("OK workspace=\(local) remote_workspace=\(remote) machine=\(machine)\(existing)")
             } else {
-                print("OK remote_workspace=\(remote) machine=\(machine)\(existing) (staged; open with: cmux vm workspace open \(machine) \(remote))")
+                print("OK remote_workspace=\(remote) machine=\(machine)\(existing) (staged; open with: taffy vm workspace open \(machine) \(remote))")
             }
         case "open":
             guard positional.count == 2 else { throw CLIError(message: Self.vmWorkspaceUsage) }
@@ -1281,7 +1281,7 @@ extension CMUXCLI {
             // Still running is a failure in every output mode (the JSON still prints), so
             // a script can `wait-exit … && vm terminal output …` without parsing.
             if !exited {
-                throw CLIError(message: "\(terminalID) on \(machine) is still running after \(seconds)s (pass a longer --timeout, or `cmux vm terminal read` to see what it is doing)")
+                throw CLIError(message: "\(terminalID) on \(machine) is still running after \(seconds)s (pass a longer --timeout, or `taffy vm terminal read` to see what it is doing)")
             }
         case "output":
             guard args.count == 2, literal.isEmpty else { throw CLIError(message: Self.vmTerminalUsage) }
@@ -1390,7 +1390,7 @@ extension CMUXCLI {
         let machines = (response["machines"] as? [[String: Any]]) ?? []
         let resources = (response["resources"] as? [[String: Any]]) ?? []
         guard !machines.isEmpty else {
-            print(String(localized: "cli.vm.tree.empty", defaultValue: "No cloud machines. Try: cmux vm new"))
+            print(String(localized: "cli.vm.tree.empty", defaultValue: "No cloud machines. Try: taffy vm new"))
             return
         }
         // Local terminals group by the workspace that shows them; titles come from the
@@ -1465,7 +1465,7 @@ extension CMUXCLI {
             for group in groups {
                 lines.append("    \(group.label)")
                 for terminal in group.items {
-                    lines.append("      " + vmTreeResourceCell(terminal, openHint: "cmux surface open"))
+                    lines.append("      " + vmTreeResourceCell(terminal, openHint: "taffy surface open"))
                 }
             }
             if !browsers.isEmpty {
@@ -1474,7 +1474,7 @@ extension CMUXCLI {
                     let resourceId = (browser["id"] as? String) ?? "?"
                     let title = (browser["title"] as? String).flatMap { $0.isEmpty ? nil : $0 }
                     let url = (browser["url"] as? String).flatMap { $0.isEmpty ? nil : $0 }
-                    lines.append("    " + [title, url].compactMap { $0 }.joined(separator: "  ") + "  (cmux surface open \(resourceId))")
+                    lines.append("    " + [title, url].compactMap { $0 }.joined(separator: "  ") + "  (taffy surface open \(resourceId))")
                 }
             }
             return lines
@@ -1572,7 +1572,7 @@ extension CMUXCLI {
             lines.append("    " + String(localized: "cli.vm.tree.link.connecting", defaultValue: "connecting…"))
         case "asleep":
             lines.append("    " + String(
-                format: String(localized: "cli.vm.tree.link.asleep", defaultValue: "asleep — cmux vm open %@ wakes it"),
+                format: String(localized: "cli.vm.tree.link.asleep", defaultValue: "asleep — taffy vm open %@ wakes it"),
                 id
             ))
         case "error", "unavailable":
@@ -1582,13 +1582,13 @@ extension CMUXCLI {
                 linkError ?? linkState
             ))
             lines.append("    " + String(
-                format: String(localized: "cli.vm.tree.link.retry", defaultValue: "retry: cmux vm tree %@ --refresh"),
+                format: String(localized: "cli.vm.tree.link.retry", defaultValue: "retry: taffy vm tree %@ --refresh"),
                 id
             ))
         default:
             if workspaces.isEmpty {
                 lines.append("    " + String(
-                    format: String(localized: "cli.vm.tree.noWorkspaces", defaultValue: "(none yet — cmux vm open %@ starts one)"),
+                    format: String(localized: "cli.vm.tree.noWorkspaces", defaultValue: "(none yet — taffy vm open %@ starts one)"),
                     id
                 ))
             }
@@ -1596,7 +1596,7 @@ extension CMUXCLI {
         for workspace in workspaces {
             let workspaceId = workspace.id
             let name = workspace.name.isEmpty ? workspaceId : workspace.name
-            lines.append("    \(name)  \(workspaceId)\(workspace.focused ? "  *" : "")  (cmux vm open \(id)/\(workspaceId))")
+            lines.append("    \(name)  \(workspaceId)\(workspace.focused ? "  *" : "")  (taffy vm open \(id)/\(workspaceId))")
             // Rows follow the layout, as in the sidebar, with every tab as a
             // sibling leaf. Pane grouping is retained only for ordering.
             for placement in vmTreeLayoutRows(workspace.placements) {
@@ -1622,7 +1622,7 @@ extension CMUXCLI {
             for (port, _, browser) in ports {
                 let label = (browser["detail"] as? String).flatMap { $0.isEmpty ? nil : $0 }
                 let open = (browser["open"] as? Bool) == true
-                var cell = "    \(port)\(label.map { "  \($0)" } ?? "")  (cmux vm open \(id):port/\(port))"
+                var cell = "    \(port)\(label.map { "  \($0)" } ?? "")  (taffy vm open \(id):port/\(port))"
                 if open { cell += "  " + String(localized: "cli.vm.tree.openMarker", defaultValue: "(open)") }
                 lines.append(cell)
             }
@@ -1635,7 +1635,7 @@ extension CMUXCLI {
             lines.append("    " + String(localized: "cli.vm.tree.noDisplays", defaultValue: "(none available)"))
         } else {
             for display in displays {
-                lines.append("    " + vmTreeResourceCell(display, openHint: "cmux surface open", showFullKey: true))
+                lines.append("    " + vmTreeResourceCell(display, openHint: "taffy surface open", showFullKey: true))
             }
         }
 
@@ -1665,12 +1665,12 @@ extension CMUXCLI {
                 }
             }
             for terminal in attached {
-                lines.append("    " + vmTreeResourceCell(terminal, openHint: "cmux surface open"))
+                lines.append("    " + vmTreeResourceCell(terminal, openHint: "taffy surface open"))
             }
             if !detached.isEmpty {
                 lines.append("    " + String(localized: "cli.vm.tree.detached", defaultValue: "(detached — no tab on the machine shows these)"))
                 for terminal in detached {
-                    lines.append("      " + vmTreeResourceCell(terminal, openHint: "cmux surface open"))
+                    lines.append("      " + vmTreeResourceCell(terminal, openHint: "taffy surface open"))
                 }
             }
         }
@@ -1733,13 +1733,13 @@ extension CMUXCLI {
             let tabID = (placement.view?["tab_id"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
             let command: String
             if let tabID, !tabID.isEmpty {
-                command = "cmux vm open \(machineID)/\(workspaceID)/\(key)/\(tabID)"
+                command = "taffy vm open \(machineID)/\(workspaceID)/\(key)/\(tabID)"
             } else {
-                command = "cmux vm open \(machineID)/\(workspaceID)/\(key)"
+                command = "taffy vm open \(machineID)/\(workspaceID)/\(key)"
             }
             return vmTreeResourceCell(resource, openHint: command, addressKey: "key", command: command)
         }
-        return vmTreeResourceCell(resource, openHint: "cmux surface open", showFullKey: true)
+        return vmTreeResourceCell(resource, openHint: "taffy surface open", showFullKey: true)
     }
 
     private static func vmTreeResourceCell(
@@ -2020,7 +2020,7 @@ extension CMUXCLI {
                 response = try client.sendV2(method: "surface.project", params: params, responseTimeout: 180)
             } catch let error as CLIError where error.message.contains("Unknown surface") {
                 throw CLIError(message: String(
-                    format: String(localized: "cli.surface.open.unknownResource", defaultValue: "Unknown surface '%@'. See: cmux surface ls --json"),
+                    format: String(localized: "cli.surface.open.unknownResource", defaultValue: "Unknown surface '%@'. See: Taffy surface ls --json"),
                     resource
                 ))
             }

@@ -1,7 +1,7 @@
 import AppKit
 import Foundation
 
-/// One shared path for "give me a coding agent that knows cmux Cloud".
+/// One shared path for "give me a coding agent that knows Taffy Cloud".
 ///
 /// The Machines panel menu and the `vm.cloud_agent_open` socket method both
 /// launch a local terminal through `TerminalController.surfaceNewTerminal`
@@ -47,9 +47,9 @@ enum CloudAgentSkillLauncher {
     static func kickoffPrompt(skillPath: String) -> String {
         """
         Read \(skillPath) before doing anything else. It explains how to work \
-        with my cmux Cloud machines through the `cmux` CLI (`cmux vm ...`); when \
-        it disagrees with the CLI, `cmux vm <subcommand> --help` wins. Start by \
-        running `cmux vm ls`, summarize my machines in one line each, and ask \
+        with my Taffy Cloud machines through the `taffy` CLI (`taffy vm ...`); when \
+        it disagrees with the CLI, `taffy vm <subcommand> --help` wins. Start by \
+        running `taffy vm ls`, summarize my machines in one line each, and ask \
         what I want to do.
         """
     }

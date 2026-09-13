@@ -106,7 +106,7 @@ extension CMUXCLI {
         do {
             return try client.sendV2(method: "system.memory", params: params)
         } catch let error as CLIError where error.message.hasPrefix("method_not_found:") {
-            throw CLIError(message: String(localized: "cli.memory.error.diagnosticsUnsupported", defaultValue: "cmux memory requires a running cmux build that supports memory diagnostics"))
+            throw CLIError(message: String(localized: "cli.memory.error.diagnosticsUnsupported", defaultValue: "Taffy memory requires a running Taffy build that supports memory diagnostics"))
         }
     }
 
@@ -134,7 +134,7 @@ extension CMUXCLI {
             lines.append("")
         }
         lines.append(String(localized: "cli.memory.output.appHeader", defaultValue: "APP"))
-        lines.append("  \(appName.isEmpty ? "cmux" : appName) pid=\(appPID)")
+        lines.append("  \(appName.isEmpty ? "Taffy" : appName) pid=\(appPID)")
         lines.append(String.localizedStringWithFormat(
             String(localized: "cli.memory.output.appFootprint", defaultValue: "  footprint %@"),
             formatBytes(appFootprint)

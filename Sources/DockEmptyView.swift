@@ -96,14 +96,14 @@ struct DockEmptyView: View {
         String(
             localized: "dock.empty.agentPrompt",
             defaultValue: """
-            Set up cmux Dock controls for the current context.
+            Set up Taffy Dock controls for the current context.
 
             First, learn the feature before editing:
-            1. Run `cmux docs dock` if the cmux CLI is available. If it is not, read https://cmux.com/docs/dock.
+            1. Run `taffy docs dock` if the Taffy CLI is available. If it is not, read https://cmux.com/docs/dock.
             2. Inspect the repository or current directory to understand the project type, scripts, package manager, dev servers, logs, task runners, test commands, and any existing TUI tools.
             3. If the desired Dock is ambiguous, ask the user what they want monitored or controlled before writing files.
 
-            Dock is cmux's right-sidebar terminal and browser control area. A Dock config is JSON with a top-level `controls` array. Terminal controls run commands in Ghostty-backed sections using the user's login shell; browser controls embed URLs. Controls are useful for project dashboards, git/status views, dev server or build status, test watchers, log tails, queues, local services, or fixed web dashboards.
+            Dock is Taffy's right-sidebar terminal and browser control area. A Dock config is JSON with a top-level `controls` array. Terminal controls run commands in Ghostty-backed sections using the user's login shell; browser controls embed URLs. Controls are useful for project dashboards, git/status views, dev server or build status, test watchers, log tails, queues, local services, or fixed web dashboards.
 
             Choose where to write the config:
             - In a repository or project directory, create or edit `.cmux/dock.json` so teammates can share it.
@@ -136,7 +136,7 @@ struct DockEmptyView: View {
             - Keep ids stable, lowercase, and unique.
             - `type` is optional: `terminal` is the default, or use `browser`.
             - Terminal controls require `command`; browser controls require `url`.
-            - Browser controls default to `chrome: true`. Set `chrome: false` to hide browser chrome, including the address bar and toolbar; Focus Address Bar then does nothing for that pane, while `cmux browser goto` and `cmux browser reload` remain available.
+            - Browser controls default to `chrome: true`. Set `chrome: false` to hide browser chrome, including the address bar and toolbar; Focus Address Bar then does nothing for that pane, while `taffy browser goto` and `taffy browser reload` remain available.
             - Use `cwd` for subdirectories; relative paths resolve from the config base.
             - Use `height` only when a control needs a fixed amount of vertical space.
             - Use `env` only for non-secret values needed by one control.

@@ -429,18 +429,18 @@ actor RemotesClient {
         case "loopback_route_rejected":
             return "The device registry rejected a loopback route. Use the Mac's Tailscale address, not localhost."
         case "non_attachable_route_rejected":
-            return "The device registry rejected a non-Tailscale route. Store a numeric Tailscale IPv4 or IPv6 peer address; MagicDNS must be resolved by `cmux remotes add` first."
+            return "The device registry rejected a non-Tailscale route. Store a numeric Tailscale IPv4 or IPv6 peer address; MagicDNS must be resolved by `Taffy remotes add` first."
         case "device_not_owned":
             return "That remote is owned by another team member and cannot be modified from this account."
         case "too_many_devices":
-            return "This team has reached the maximum number of registered remotes. Remove one with `cmux remotes remove <name>` first."
+            return "This team has reached the maximum number of registered remotes. Remove one with `Taffy remotes remove <name>` first."
         case "team_not_found":
-            return "You are not a member of the requested team. Run `cmux auth status` to check the signed-in account."
+            return "You are not a member of the requested team. Run `Taffy auth status` to check the signed-in account."
         default:
             break
         }
         if status == 401 {
-            return "Not signed in or session expired. Run `cmux auth login`, then retry."
+            return "Not signed in or session expired. Run `Taffy auth login`, then retry."
         }
         return "Device registry request failed (HTTP \(status)): \(trimmed.isEmpty ? "<empty>" : trimmed)"
     }

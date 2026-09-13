@@ -139,7 +139,7 @@ struct ComputerUseOnboardingView: View {
         }
         return String(
             localized: "computerUse.onboarding.hero.detail",
-            defaultValue: "cmux Computer Use needs these permissions to use apps on your Mac.\nThese permissions are used when you ask cmux to perform tasks."
+            defaultValue: "Taffy Computer Use needs these permissions to use apps on your Mac.\nThese permissions are used when you ask Taffy to perform tasks."
         )
     }
 
@@ -151,7 +151,7 @@ struct ComputerUseOnboardingView: View {
 
                 Text(String(
                     localized: "computerUse.onboarding.hero.title",
-                    defaultValue: "Enable cmux Computer Use"
+                    defaultValue: "Enable Taffy Computer Use"
                 ))
                 .font(.system(size: 25, weight: .bold))
                 .padding(.top, 18)
@@ -171,7 +171,7 @@ struct ComputerUseOnboardingView: View {
 
                 Text(String(
                     localized: "computerUse.onboarding.hero.helperNote",
-                    defaultValue: "Permissions belong to a separate Computer Use helper. You can quit or reopen it without closing cmux or your terminal sessions."
+                    defaultValue: "Permissions belong to a separate Computer Use helper. You can quit or reopen it without closing Taffy or your terminal sessions."
                 ))
                 .font(.system(size: 11))
                 .foregroundStyle(Color(nsColor: .tertiaryLabelColor))
@@ -203,14 +203,14 @@ struct ComputerUseOnboardingView: View {
 
             Text(String(
                 localized: "computerUse.onboarding.done.title",
-                defaultValue: "cmux Computer Use Is Ready"
+                defaultValue: "Taffy Computer Use Is Ready"
             ))
             .font(.system(size: 25, weight: .bold))
             .padding(.top, 20)
 
             Text(String(
                 localized: "computerUse.onboarding.done.detailReady",
-                defaultValue: "Setup is complete. You can now ask cmux to use apps on your Mac."
+                defaultValue: "Setup is complete. You can now ask Taffy to use apps on your Mac."
             ))
             .font(.system(size: 13))
             .foregroundStyle(overviewSecondaryText)
@@ -268,7 +268,7 @@ struct ComputerUseOnboardingView: View {
                 ),
                 detail: String(
                     localized: "computerUse.onboarding.accessibility.cardDetail",
-                    defaultValue: "Allows cmux to access app interfaces"
+                    defaultValue: "Allows Taffy to access app interfaces"
                 )
             )
             permissionCard(
@@ -295,7 +295,7 @@ struct ComputerUseOnboardingView: View {
         }
         return String(
             localized: "computerUse.onboarding.screenshots.cardDetail",
-            defaultValue: "cmux uses screenshots to know where to click"
+            defaultValue: "Taffy uses screenshots to know where to click"
         )
     }
 

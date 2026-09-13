@@ -56,7 +56,7 @@ public struct AboutTitlebarDebugView: View {
             VStack(alignment: .leading, spacing: 10) {
                 Toggle("Enable Debug Overrides", isOn: overridesEnabled)
 
-                Text("When disabled, cmux uses normal default titlebar behavior for this window.")
+                Text("When disabled, Taffy uses normal default titlebar behavior for this window.")
                     .cmuxFont(.caption)
                     .foregroundColor(.secondary)
 

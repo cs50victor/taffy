@@ -117,7 +117,7 @@ public struct BrowserCatalogSection: SettingCatalogSection {
     /// Stored under `browserDisabledOverride` — the key the runtime
     /// gate `BrowserAvailabilitySettings.isDisabled()` actually reads.
     /// (The intuitive `browserDisabled` is read by nothing, so the
-    /// "Enable cmux Browser" toggle was a no-op until this was aligned.)
+    /// "Enable Taffy Browser" toggle was a no-op until this was aligned.)
     public let disabled = DefaultsKey<Bool>(
         id: "browser.disabled",
         defaultValue: false,

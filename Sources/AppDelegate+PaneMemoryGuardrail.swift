@@ -82,7 +82,7 @@ extension AppDelegate {
             surfaceId: nil,
             title: String(
                 localized: "memoryPressure.aggregate.title",
-                defaultValue: "cmux is using substantial aggregate memory"
+                defaultValue: "Taffy is using substantial aggregate memory"
             ),
             subtitle: String(
                 localized: "memoryPressure.aggregate.subtitle",
@@ -90,7 +90,7 @@ extension AppDelegate {
             ),
             body: String(
                 localized: "memoryPressure.aggregate.body",
-                defaultValue: "macOS reports memory pressure across cmux and its child processes. Only hidden, idle agent surfaces are considered after a confirmation window; active or visible work is left alone."
+                defaultValue: "macOS reports memory pressure across Taffy and its child processes. Only hidden, idle agent surfaces are considered after a confirmation window; active or visible work is left alone."
             ),
             cooldownKey: "memory-pressure-aggregate",
             cooldownInterval: 300
@@ -110,7 +110,7 @@ extension AppDelegate {
             surfaceId: nil,
             title: String(
                 localized: "memoryPressure.critical.title",
-                defaultValue: "cmux is under critical memory pressure"
+                defaultValue: "Taffy is under critical memory pressure"
             ),
             subtitle: String(
                 localized: "memoryPressure.critical.subtitle",
@@ -118,7 +118,7 @@ extension AppDelegate {
             ),
             body: String(
                 localized: "memoryPressure.critical.body",
-                defaultValue: "macOS is reporting sustained critical memory pressure. cmux has shed hidden resources; close idle workspaces or restart cmux if pressure continues."
+                defaultValue: "macOS is reporting sustained critical memory pressure. Taffy has shed hidden resources; close idle workspaces or restart Taffy if pressure continues."
             ),
             cooldownKey: "memory-pressure-critical",
             cooldownInterval: 300

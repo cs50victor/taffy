@@ -600,7 +600,7 @@ public final class RemoteDaemonProxyTunnel: @unchecked Sendable {
         ]
         guard JSONSerialization.isValidJSONObject(request) else {
             throw NSError(domain: "cmux.remote.cli-bridge", code: 7, userInfo: [
-                NSLocalizedDescriptionKey: "failed to encode local cmux socket auth request",
+                NSLocalizedDescriptionKey: "failed to encode local Taffy socket auth request",
             ])
         }
         return try JSONSerialization.data(withJSONObject: request, options: []) + Data([0x0A])
@@ -619,7 +619,7 @@ public final class RemoteDaemonProxyTunnel: @unchecked Sendable {
         let fd = socket(AF_UNIX, SOCK_STREAM, 0)
         guard fd >= 0 else {
             throw NSError(domain: "cmux.remote.cli-bridge", code: 1, userInfo: [
-                NSLocalizedDescriptionKey: "failed to create local cmux socket",
+                NSLocalizedDescriptionKey: "failed to create local Taffy socket",
             ])
         }
         defer { Darwin.close(fd) }
@@ -635,7 +635,7 @@ public final class RemoteDaemonProxyTunnel: @unchecked Sendable {
         let pathBytes = Array(socketPath.utf8CString)
         guard pathBytes.count <= MemoryLayout.size(ofValue: address.sun_path) else {
             throw NSError(domain: "cmux.remote.cli-bridge", code: 2, userInfo: [
-                NSLocalizedDescriptionKey: "local cmux socket path is too long",
+                NSLocalizedDescriptionKey: "local Taffy socket path is too long",
             ])
         }
         let sunPathOffset = MemoryLayout<sockaddr_un>.offset(of: \.sun_path) ?? 0
@@ -654,7 +654,7 @@ public final class RemoteDaemonProxyTunnel: @unchecked Sendable {
         }
         guard connectResult == 0 else {
             throw NSError(domain: "cmux.remote.cli-bridge", code: 3, userInfo: [
-                NSLocalizedDescriptionKey: "failed to connect to local cmux socket",
+                NSLocalizedDescriptionKey: "failed to connect to local Taffy socket",
             ])
         }
 
@@ -664,7 +664,7 @@ public final class RemoteDaemonProxyTunnel: @unchecked Sendable {
             let authResponse = try readLineFromUnixSocket(fd: fd)
             guard cloudCLIAuthResponseSucceeded(authResponse) else {
                 throw NSError(domain: "cmux.remote.cli-bridge", code: 8, userInfo: [
-                    NSLocalizedDescriptionKey: "local cmux socket auth rejected cloud CLI bridge",
+                    NSLocalizedDescriptionKey: "local Taffy socket auth rejected cloud CLI bridge",
                 ])
             }
         }
@@ -713,11 +713,11 @@ public final class RemoteDaemonProxyTunnel: @unchecked Sendable {
                     return response
                 }
                 throw NSError(domain: "cmux.remote.cli-bridge", code: 5, userInfo: [
-                    NSLocalizedDescriptionKey: "timed out waiting for local cmux response",
+                    NSLocalizedDescriptionKey: "timed out waiting for local Taffy response",
                 ])
             }
             throw NSError(domain: "cmux.remote.cli-bridge", code: 6, userInfo: [
-                NSLocalizedDescriptionKey: "failed to read local cmux response",
+                NSLocalizedDescriptionKey: "failed to read local Taffy response",
             ])
         }
     }
@@ -739,11 +739,11 @@ public final class RemoteDaemonProxyTunnel: @unchecked Sendable {
                     break
                 }
                 throw NSError(domain: "cmux.remote.cli-bridge", code: 5, userInfo: [
-                    NSLocalizedDescriptionKey: "timed out waiting for local cmux response",
+                    NSLocalizedDescriptionKey: "timed out waiting for local Taffy response",
                 ])
             }
             throw NSError(domain: "cmux.remote.cli-bridge", code: 6, userInfo: [
-                NSLocalizedDescriptionKey: "failed to read local cmux response",
+                NSLocalizedDescriptionKey: "failed to read local Taffy response",
             ])
         }
         return response

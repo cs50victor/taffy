@@ -12,15 +12,15 @@ enum CoderouterClientError: Error, CustomStringConvertible {
     var description: String {
         switch self {
         case .notSignedIn:
-            return "Not signed in. Run `cmux auth login`, then retry."
+            return "Not signed in. Run `Taffy auth login`, then retry."
         case .sessionRefreshFailed:
-            return "Signed in, but cmux could not refresh your session (network or server issue). Retry in a moment."
+            return "Signed in, but Taffy could not refresh your session (network or server issue). Retry in a moment."
         case let .httpStatus(status, body):
             return CoderouterClient.formatHTTPError(status: status, body: body)
         case let .malformedResponse(message):
             return "The coderouter service returned an unexpected response: \(message)"
         case let .backendUnreachable(url, detail):
-            return "Could not reach the cmux backend at \(url): \(detail)"
+            return "Could not reach the Taffy backend at \(url): \(detail)"
         }
     }
 }
@@ -193,7 +193,7 @@ actor CoderouterClient {
         let resolvedTeamID = await auth.resolvedTeamID
 
         guard var comps = URLComponents(url: AuthEnvironment.vmAPIBaseURL, resolvingAgainstBaseURL: false) else {
-            throw CoderouterClientError.malformedResponse("the cmux backend URL is misconfigured")
+            throw CoderouterClientError.malformedResponse("the Taffy backend URL is misconfigured")
         }
         comps.path = (comps.path.hasSuffix("/") ? String(comps.path.dropLast()) : comps.path) + path
         guard let url = comps.url else {
@@ -250,13 +250,13 @@ actor CoderouterClient {
 
     static func formatHTTPError(status: Int, body: String) -> String {
         if status == 401 {
-            return "Not signed in or session expired. Run `cmux auth login`, then retry."
+            return "Not signed in or session expired. Run `Taffy auth login`, then retry."
         }
         if status == 403 {
             return "This account cannot manage the team's coderouter settings."
         }
         if status == 404 {
-            return "No Claude upstream account with that id exists on this team. Run `cmux coderouter claude list`."
+            return "No Claude upstream account with that id exists on this team. Run `Taffy coderouter claude list`."
         }
         let trimmed = body.trimmingCharacters(in: .whitespacesAndNewlines)
         var serverError: String?

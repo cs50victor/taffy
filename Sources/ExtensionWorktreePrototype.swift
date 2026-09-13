@@ -652,7 +652,7 @@ enum CmuxExtensionWorktreePrototype {
         guard !alreadyIgnored else { return }
 
         let separator = existing.isEmpty || existing.hasSuffix("\n") ? "" : "\n"
-        let next = existing + separator + "# cmux extension worktrees\n.cmux/\n"
+        let next = existing + separator + "# Taffy extension worktrees\n.cmux/\n"
         try next.write(to: excludeURL, atomically: true, encoding: .utf8)
     }
 
@@ -669,7 +669,7 @@ enum CmuxExtensionWorktreePrototype {
         let html = """
         <!doctype html>
         <html>
-          <head><meta charset="utf-8"><title>cmux worktree</title></head>
+          <head><meta charset="utf-8"><title>Taffy worktree</title></head>
           <body style="font: 15px -apple-system; padding: 32px;">
             <h1>\(escapedProject) worktree</h1>
             <p>This page is served from a git worktree created by CmuxExtensionKit.</p>

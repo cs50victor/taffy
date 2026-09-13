@@ -86,7 +86,7 @@ nonisolated private func v2RemotePTYUserFacingErrorMessage(_ message: String) ->
     if lowered.contains("missing required capability") ||
         lowered.contains("pty.session") ||
         lowered.contains("method_not_found") {
-        return "remote daemon does not support persistent SSH PTY sessions; reconnect the remote workspace to update cmux"
+        return "remote daemon does not support persistent SSH PTY sessions; reconnect the remote workspace to update Taffy"
     }
     if lowered.contains("pty_session_not_found") ||
         (lowered.contains("persistent ssh pty session") && lowered.contains("not running")) ||
@@ -3546,7 +3546,7 @@ class TerminalController {
                 nil,
                 .err(
                     code: "invalid_params",
-                    message: "Invalid window selector. Use --window <id|ref|index> to target one window, or run `cmux list-windows` to see available windows and retry.",
+                    message: "Invalid window selector. Use --window <id|ref|index> to target one window, or run `Taffy list-windows` to see available windows and retry.",
                     data: v2WindowSelectorDetails(params: params)
                 )
             )
@@ -3556,7 +3556,7 @@ class TerminalController {
                 nil,
                 .err(
                     code: "invalid_params",
-                    message: "Choose either --window <id|ref|index> or --all-windows, not both. Run `cmux list-windows` to see available windows and retry.",
+                    message: "Choose either --window <id|ref|index> or --all-windows, not both. Run `Taffy list-windows` to see available windows and retry.",
                     data: v2WindowSelectorDetails(params: params)
                 )
             )
@@ -3588,7 +3588,7 @@ class TerminalController {
     private func v2WindowNotFoundResult(params: [String: Any], windowId: UUID) -> V2CallResult {
         .err(
             code: "not_found",
-            message: "Window not found. Run `cmux list-windows` to see available windows, then retry with --window <id|ref|index>.",
+            message: "Window not found. Run `Taffy list-windows` to see available windows, then retry with --window <id|ref|index>.",
             data: v2WindowSelectorDetails(params: params) ?? ["window_id": windowId.uuidString]
         )
     }
@@ -4251,12 +4251,12 @@ class TerminalController {
                 if case .httpStatus = vmError {
                     message = String(
                         localized: "socket.cloudVM.sessionRejected",
-                        defaultValue: "The cmux Cloud service rejected this session. Run `cmux auth logout`, then `cmux auth login`, and retry."
+                        defaultValue: "The Taffy Cloud service rejected this session. Run `Taffy auth logout`, then `Taffy auth login`, and retry."
                     )
                 } else {
                     message = String(
                         localized: "socket.cloudVM.authRequired",
-                        defaultValue: "Cloud VM access requires sign-in. Run `cmux auth login`, then retry."
+                        defaultValue: "Cloud VM access requires sign-in. Run `Taffy auth login`, then retry."
                     )
                 }
                 return v2Error(
@@ -4275,7 +4275,7 @@ class TerminalController {
                 let alternative = String(
                     format: String(
                         localized: "socket.cloudVM.transportUnsupported.useExec",
-                        defaultValue: "Use `cmux vm exec %1$@ -- <command>`; `cmux vm ssh %1$@` works where the provider offers SSH."
+                        defaultValue: "Use `taffy vm exec %1$@ -- <command>`; `taffy vm ssh %1$@` works where the provider offers SSH."
                     ),
                     machineID,
                     machineID
@@ -4283,7 +4283,7 @@ class TerminalController {
                 let message = String(
                     format: String(
                         localized: "socket.cloudVM.transportUnsupported",
-                        defaultValue: "%1$@ offers no `%2$@` transport (its provider has no cmux-tui daemon route), so cmux cannot attach a terminal to it. %3$@"
+                        defaultValue: "%1$@ offers no `%2$@` transport (its provider has no cmux-tui daemon route), so Taffy cannot attach a terminal to it. %3$@"
                     ),
                     machineID,
                     "cmux-remote",
@@ -4301,7 +4301,7 @@ class TerminalController {
                 code: "vm_error",
                 message: String(
                     localized: "socket.cloudVM.requestFailed",
-                    defaultValue: "The Cloud VM request failed. Retry, or check the machine's status with `cmux vm ls`."
+                    defaultValue: "The Cloud VM request failed. Retry, or check the machine's status with `taffy vm ls`."
                 ),
                 data: Self.cloudVMBackendErrorData(error)
             )
@@ -7507,7 +7507,7 @@ class TerminalController {
             )
         }
         guard let url else {
-            return .err(code: "browser_disabled", message: "cmux browser is disabled", data: nil)
+            return .err(code: "browser_disabled", message: "taffy browser is disabled", data: nil)
         }
 
         var result: V2CallResult = .err(
@@ -7697,7 +7697,7 @@ class TerminalController {
                 )
             }
             if v2IsDiffViewerURL(url) {
-                return .err(code: "browser_disabled", message: "cmux browser is disabled", data: nil)
+                return .err(code: "browser_disabled", message: "taffy browser is disabled", data: nil)
             }
             return v2BrowserDisabledExternalOpenResult(rawURL: urlStr, url: url, tabManager: tabManager)
         }
@@ -8730,7 +8730,7 @@ class TerminalController {
                 data: [
                     "timeout_ms": timeoutMs,
                     "url": v2MainSync { webView.url?.absoluteString ?? "about:blank" },
-                    "hint": "Verify the page loaded with 'cmux browser <surface> get url' before waiting"
+                    "hint": "Verify the page loaded with 'taffy browser <surface> get url' before waiting"
                 ]
             )
         }
@@ -10829,7 +10829,7 @@ class TerminalController {
             } else {
                 return .err(
                     code: "invalid_params",
-                    message: "destination_profile does not match a cmux browser profile",
+                    message: "destination_profile does not match a taffy browser profile",
                     data: ["param": "destination_profile"]
                 )
             }
@@ -12389,7 +12389,7 @@ class TerminalController {
           focus_pane <pane-id|index>      - Focus a pane
           focus_surface_by_panel <panel_id> - Focus surface by panel ID
           close_surface [id|idx]          - Close surface (collapse split)
-          reload_config                   - Reload Ghostty config, cmux settings, and refresh terminals
+          reload_config                   - Reload Ghostty config, taffy settings, and refresh terminals
           refresh_surfaces                - Force refresh all terminals
           surface_health [workspace]      - Check view health of all surfaces
 

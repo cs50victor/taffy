@@ -7,7 +7,7 @@ struct AgentRestoreLiveOwnerNotice: Sendable {
     func startupInput(dialect: TerminalStartupShellDialect) -> String {
         let format = String(
             localized: "agentRestore.liveOwner.notice",
-            defaultValue: "This agent session is already running in process %1$lld. cmux did not start another copy. To take it over here, stop process %1$lld, then run 'cmux restore --surface' again."
+            defaultValue: "This agent session is already running in process %1$lld. Taffy did not start another copy. To take it over here, stop process %1$lld, then run 'Taffy restore --surface' again."
         )
         let message = String(
             format: format,

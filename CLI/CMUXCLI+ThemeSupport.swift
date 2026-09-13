@@ -125,7 +125,7 @@ extension CMUXCLI {
         if availableThemes.isEmpty {
             return trimmed
         }
-        throw CLIError(message: "Unknown theme '\(trimmed)'. Run 'cmux themes' to list available themes.")
+        throw CLIError(message: "Unknown theme '\(trimmed)'. Run 'taffy themes' to list available themes.")
     }
 
     func themeConfigSearchURLs(targetBundleIdentifier: String) -> [URL] {
@@ -347,30 +347,30 @@ extension CMUXCLI {
     private func bundleIdentifierForThemeReloadSocketPath(_ socketPath: String) -> String? {
         let name = URL(fileURLWithPath: socketPath).lastPathComponent
         switch name {
-        case "cmux.sock":
+        case "taffy.sock":
             return Self.cmuxThemeOverrideBundleIdentifier
-        case "cmux-debug.sock":
-            return "com.cmuxterm.app.debug"
-        case "cmux-nightly.sock":
-            return "com.cmuxterm.app.nightly"
-        case "cmux-staging.sock":
-            return "com.cmuxterm.app.staging"
+        case "taffy-debug.sock":
+            return "com.cs50victor.taffy.debug"
+        case "taffy-nightly.sock":
+            return "com.cs50victor.taffy.nightly"
+        case "taffy-staging.sock":
+            return "com.cs50victor.taffy.staging"
         default:
             break
         }
 
-        if name.range(of: #"^cmux-\d+\.sock$"#, options: .regularExpression) != nil {
+        if name.range(of: #"^taffy-\d+\.sock$"#, options: .regularExpression) != nil {
             return Self.cmuxThemeOverrideBundleIdentifier
         }
 
-        if let slug = themeReloadSocketSlug(name, prefix: "cmux-debug-", suffix: ".sock") {
-            return "com.cmuxterm.app.debug.\(slug)"
+        if let slug = themeReloadSocketSlug(name, prefix: "taffy-debug-", suffix: ".sock") {
+            return "com.cs50victor.taffy.debug.\(slug)"
         }
-        if let slug = themeReloadSocketSlug(name, prefix: "cmux-nightly-", suffix: ".sock") {
-            return "com.cmuxterm.app.nightly.\(slug)"
+        if let slug = themeReloadSocketSlug(name, prefix: "taffy-nightly-", suffix: ".sock") {
+            return "com.cs50victor.taffy.nightly.\(slug)"
         }
-        if let slug = themeReloadSocketSlug(name, prefix: "cmux-staging-", suffix: ".sock") {
-            return "com.cmuxterm.app.staging.\(slug)"
+        if let slug = themeReloadSocketSlug(name, prefix: "taffy-staging-", suffix: ".sock") {
+            return "com.cs50victor.taffy.staging.\(slug)"
         }
         return nil
     }

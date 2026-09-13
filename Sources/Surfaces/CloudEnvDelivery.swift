@@ -27,7 +27,7 @@ import Foundation
 enum CloudEnvDelivery {
     /// Absolute: the daemon's own PATH is not a login shell's.
     static let receiverCommand = ["/usr/local/bin/cmux", "env", "receive"]
-    static let receiverTitle = "cmux env"
+    static let receiverTitle = "Taffy env"
     static let readyMarker = "CMUX-ENV-READY"
     static let endMarker = "CMUX-ENV-END"
     static let resultPattern = "CMUX-ENV-(OK|ERR)"
@@ -136,13 +136,13 @@ enum CloudEnvDelivery {
             case .tooLarge(let bytes):
                 return "environment payload is \(bytes) bytes; the limit is \(maxPayloadBytes)"
             case .receiverNotReady(let screen):
-                return "the machine's `cmux env receive` did not report ready\(Self.detail(screen))"
+                return "the machine's `Taffy env receive` did not report ready\(Self.detail(screen))"
             case .outdatedShim(let machine):
-                return "\(machine)'s cmux shim predates `cmux env` — reconnect it (cmux vm tree \(machine) --refresh) to heal, then retry"
+                return "\(machine)'s Taffy shim predates `Taffy env` — reconnect it (taffy vm tree \(machine) --refresh) to heal, then retry"
             case .receiverFailed(let reason):
                 return "the machine refused the environment: \(reason)"
             case .noResult(let screen):
-                return "the machine's `cmux env receive` ended without a result\(Self.detail(screen))"
+                return "the machine's `Taffy env receive` ended without a result\(Self.detail(screen))"
             case .workspaceCleanupFailed(let workspaceID):
                 return String(format: String(localized: "cloudEnv.error.workspaceCleanupFailed", defaultValue: "The temporary environment receiver workspace %@ could not be removed. Inspect the machine before retrying."), workspaceID)
             }

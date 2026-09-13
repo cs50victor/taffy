@@ -45,17 +45,17 @@ private enum AgentRestoreAdmissionUnverifiableReason: String, Sendable {
         case .scanTimedOut:
             return String(
                 localized: "agentRestore.admission.unavailable.timedOut",
-                defaultValue: "cmux could not finish checking whether this agent session is already running before the time limit. Retry 'cmux restore --surface'."
+                defaultValue: "Taffy could not finish checking whether this agent session is already running before the time limit. Retry 'Taffy restore --surface'."
             )
         case .scanCancelled:
             return String(
                 localized: "agentRestore.admission.unavailable",
-                defaultValue: "cmux could not verify whether this agent session is already running. Retry 'cmux restore --surface'."
+                defaultValue: "Taffy could not verify whether this agent session is already running. Retry 'Taffy restore --surface'."
             )
         case .hookStoreUnreadable:
             return String(
                 localized: "agentRestore.admission.unavailable.hookStoreUnreadable",
-                defaultValue: "cmux could not read its saved session records for this agent, so it cannot tell whether the session is already running. Retry 'cmux restore --surface'."
+                defaultValue: "Taffy could not read its saved session records for this agent, so it cannot tell whether the session is already running. Retry 'Taffy restore --surface'."
             )
         }
     }
@@ -332,7 +332,7 @@ extension TerminalController {
                 code: "conflict",
                 message: String(
                     localized: "agentRestore.admission.targetChanged",
-                    defaultValue: "The surface restore record changed. Run 'cmux restore --surface' again."
+                    defaultValue: "The surface restore record changed. Run 'Taffy restore --surface' again."
                 )
             )
         case .unverifiable(let reason):

@@ -72,27 +72,27 @@ extension CMUXCLI {
             sshFallbackCommand: sshFallbackCommand,
             localMoshMissingMessage: String(
                 localized: "cli.ssh.mosh.localMissing",
-                defaultValue: "[cmux] Mosh is not installed locally; continuing over SSH."
+                defaultValue: "[Taffy] Mosh is not installed locally; continuing over SSH."
             ),
             localMoshUnsupportedMessage: String(
                 localized: "cli.ssh.mosh.localUnsupported",
-                defaultValue: "[cmux] The local Mosh client lacks required SSH integration; continuing over SSH."
+                defaultValue: "[Taffy] The local Mosh client lacks required SSH integration; continuing over SSH."
             ),
             remoteMoshMissingMessage: String(
                 localized: "cli.ssh.mosh.remoteMissing",
-                defaultValue: "[cmux] mosh-server is not installed on the remote host; continuing over SSH."
+                defaultValue: "[Taffy] mosh-server is not installed on the remote host; continuing over SSH."
             ),
             remoteMoshProbeFailedMessage: String(
                 localized: "cli.ssh.mosh.probeFailed",
-                defaultValue: "[cmux] Could not verify remote Mosh support; continuing over SSH."
+                defaultValue: "[Taffy] Could not verify remote Mosh support; continuing over SSH."
             ),
             remoteBootstrapInstallFailedMessage: String(
                 localized: "cli.ssh.mosh.bootstrapInstallFailed",
-                defaultValue: "[cmux] Remote bootstrap install failed; continuing over SSH."
+                defaultValue: "[Taffy] Remote bootstrap install failed; continuing over SSH."
             ),
             remoteMoshAddressFallbackMessage: String(
                 localized: "cli.ssh.mosh.addressFallback",
-                defaultValue: "[cmux] Remote SSH advertised an unusable address; resolving the Mosh address through the SSH connection."
+                defaultValue: "[Taffy] Remote SSH advertised an unusable address; resolving the Mosh address through the SSH connection."
             )
         ).command()
     }

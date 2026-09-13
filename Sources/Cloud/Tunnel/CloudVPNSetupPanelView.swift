@@ -47,7 +47,7 @@ struct CloudVPNSetupPanelView: View {
         VStack(alignment: .leading, spacing: 9) {
             Text(String(localized: "cloud.vpn.setup.howItWorks.title", defaultValue: "How it works"))
                 .cmuxFont(size: 14, weight: .semibold)
-            Text(String(localized: "cloud.vpn.setup.howItWorks.body", defaultValue: "Connect Safari, Chrome, and other apps to your Cloud machines. Each machine keeps its private IP address and original ports. Only traffic to your Cloud network uses this encrypted connection. cmux terminals, Ports, and Desktop work without it."))
+            Text(String(localized: "cloud.vpn.setup.howItWorks.body", defaultValue: "Connect Safari, Chrome, and other apps to your Cloud machines. Each machine keeps its private IP address and original ports. Only traffic to your Cloud network uses this encrypted connection. Taffy terminals, Ports, and Desktop work without it."))
                 .cmuxFont(size: 13)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -136,13 +136,13 @@ struct CloudVPNSetupPanelView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(String(localized: "cloud.vpn.setup.steps.title", defaultValue: "First-time setup"))
                 .cmuxFont(size: 14, weight: .semibold)
-            Text(String(localized: "cloud.vpn.setup.steps.extension", defaultValue: "1. Click Connect Cloud VPN. When macOS asks, allow the cmux network extension in System Settings."))
+            Text(String(localized: "cloud.vpn.setup.steps.extension", defaultValue: "1. Click Connect Cloud VPN. When macOS asks, allow the Taffy network extension in System Settings."))
             Text(ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 15
                 ? String(localized: "cloud.vpn.setup.steps.settings", defaultValue: "Open General > Login Items & Extensions > Network Extensions, then enable cmux.")
-                : String(localized: "cloud.vpn.setup.steps.settingsLegacy", defaultValue: "Open Privacy & Security and allow the cmux extension."))
+                : String(localized: "cloud.vpn.setup.steps.settingsLegacy", defaultValue: "Open Privacy & Security and allow the Taffy extension."))
                 .foregroundStyle(.secondary)
-            Text(String(localized: "cloud.vpn.setup.steps.configuration", defaultValue: "2. Allow cmux to add a VPN configuration named cmux Cloud. This is a separate macOS permission."))
-            Text(String(localized: "cloud.vpn.setup.steps.return", defaultValue: "3. Return to this pane. The connection continues automatically after approval. Disconnect here when finished. Quitting cmux or signing out also disconnects it."))
+            Text(String(localized: "cloud.vpn.setup.steps.configuration", defaultValue: "2. Allow Taffy to add a VPN configuration named Taffy Cloud. This is a separate macOS permission."))
+            Text(String(localized: "cloud.vpn.setup.steps.return", defaultValue: "3. Return to this pane. The connection continues automatically after approval. Disconnect here when finished. Quitting Taffy or signing out also disconnects it."))
         }
         .cmuxFont(size: 13)
         .fixedSize(horizontal: false, vertical: true)

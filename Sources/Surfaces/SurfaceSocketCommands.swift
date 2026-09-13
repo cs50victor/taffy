@@ -37,7 +37,7 @@ extension TerminalController {
 
         case "surface.project":
             guard let raw = Self.surfaceString(params["resource"]), let resource = SurfaceResourceID(rawValue: raw) else {
-                return v2Error(id: id, code: "invalid_params", message: "surface.project requires `resource` (an id from `cmux surface ls --json`, e.g. vivid-newt/terminal/term_…).")
+                return v2Error(id: id, code: "invalid_params", message: "surface.project requires `resource` (an id from `Taffy surface ls --json`, e.g. vivid-newt/terminal/term_…).")
             }
             if resource.machine.cloudMachineID != nil, let error = cloudDisabledSocketError(id: id) { return error }
             let focus = Self.surfaceBool(params["focus"]) ?? true
@@ -120,10 +120,10 @@ extension TerminalController {
     /// → `{surface_id, workspace_id, reused}`.
     nonisolated func socketWorkerVMTerminalOpenResponse(id: Any?, params: [String: Any]) -> String {
         guard let vmId = Self.surfaceString(params["id"]), !vmId.isEmpty else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.terminal_open requires `id`. Run `cmux vm tree` to find one.")
+            return v2Error(id: id, code: "invalid_params", message: "vm.terminal_open requires `id`. Run `taffy vm tree` to find one.")
         }
         guard let terminalId = Self.surfaceString(params["terminal_id"]), !terminalId.isEmpty else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.terminal_open requires `terminal_id` (a `term_…` id from `cmux vm tree`).")
+            return v2Error(id: id, code: "invalid_params", message: "vm.terminal_open requires `terminal_id` (a `term_…` id from `taffy vm tree`).")
         }
         let resource = SurfaceResourceID(machine: .cloud(vmId), kind: .terminal, key: terminalId)
         let focus = Self.surfaceBool(params["focus"]) ?? true
@@ -155,7 +155,7 @@ extension TerminalController {
     /// → `{terminal_id, workspace_id (remote ws_…), surface_id?, resource}`.
     nonisolated func socketWorkerVMTerminalNewResponse(id: Any?, params: [String: Any]) -> String {
         guard let vmId = Self.surfaceString(params["id"]), !vmId.isEmpty else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.terminal_new requires `id`. Run `cmux vm ls` to find one.")
+            return v2Error(id: id, code: "invalid_params", message: "vm.terminal_new requires `id`. Run `taffy vm ls` to find one.")
         }
         let remoteWorkspaceID = Self.surfaceString(params["workspace_id"])
         let command = Self.surfaceStringArray(params["command"])
@@ -196,7 +196,7 @@ extension TerminalController {
             return v2Error(id: id, code: "cloud_disabled", message: String(localized: "cloud.managed.disabled", defaultValue: "Cloud Machines are disabled by your administrator."))
         }
         guard let vmId = Self.surfaceString(params["id"]), !vmId.isEmpty else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.desktop_open requires `id`. Run `cmux vm ls` to find one.")
+            return v2Error(id: id, code: "invalid_params", message: "vm.desktop_open requires `id`. Run `taffy vm ls` to find one.")
         }
         let resource = SurfaceResourceID(machine: .cloud(vmId), kind: .display, key: SurfaceResourceID.desktopDisplayKey)
         let focus = Self.surfaceBool(params["focus"]) ?? false
@@ -229,10 +229,10 @@ extension TerminalController {
             return v2Error(id: id, code: "cloud_disabled", message: String(localized: "cloud.managed.disabled", defaultValue: "Cloud Machines are disabled by your administrator."))
         }
         guard let vmId = Self.surfaceString(params["id"]), !vmId.isEmpty else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.port_open requires `id`. Run `cmux vm ls` to find one.")
+            return v2Error(id: id, code: "invalid_params", message: "vm.port_open requires `id`. Run `taffy vm ls` to find one.")
         }
         guard let port = Self.surfaceInt(params["port"]), (1...65535).contains(port) else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.port_open requires `port` between 1 and 65535. From the CLI, use `cmux vm open <id> <port>`.")
+            return v2Error(id: id, code: "invalid_params", message: "vm.port_open requires `port` between 1 and 65535. From the CLI, use `taffy vm open <id> <port>`.")
         }
         let resource = SurfaceResourceID(machine: .cloud(vmId), kind: .browser, key: SurfaceResourceID.portKey(port))
         let focus = Self.surfaceBool(params["focus"]) ?? false
@@ -315,7 +315,7 @@ extension TerminalController {
     /// `vm.link_socket {id}` → `{socket_path, session}`.
     nonisolated func socketWorkerVMLinkSocketResponse(id: Any?, params: [String: Any]) -> String {
         guard let vmId = Self.surfaceString(params["id"]), !vmId.isEmpty else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.link_socket requires `id`. Run `cmux vm ls` to find one.")
+            return v2Error(id: id, code: "invalid_params", message: "vm.link_socket requires `id`. Run `taffy vm ls` to find one.")
         }
         return v2VmCall(id: id, timeoutSeconds: 120) {
             let link = try await CmuxTuiSurfaceProviderRegistry.shared.linkSocketPath(machineID: vmId)
@@ -328,7 +328,7 @@ extension TerminalController {
     /// headless request stages that same workspace without projecting it locally.
     nonisolated func socketWorkerVMWorkspaceNewResponse(id: Any?, params: [String: Any]) -> String {
         guard let vmId = Self.surfaceString(params["id"]), !vmId.isEmpty else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.workspace_new requires `id`. Run `cmux vm ls` to find one.")
+            return v2Error(id: id, code: "invalid_params", message: "vm.workspace_new requires `id`. Run `taffy vm ls` to find one.")
         }
         let name = Self.surfaceString(params["name"])
         // `reuse`: get-or-create by exact name, so a script that runs twice does not leave
@@ -391,7 +391,7 @@ extension TerminalController {
                     ]
                 case .ambiguous(let matches):
                     throw SurfaceCatalogError.destinationNotFound(
-                        "several workspaces on \(vmId) are named '\(name)' (\(matches.map(\.id).joined(separator: ", "))); open one by id with `cmux vm workspace open \(vmId) <ws_…>` or pick a unique --name"
+                        "several workspaces on \(vmId) are named '\(name)' (\(matches.map(\.id).joined(separator: ", "))); open one by id with `taffy vm workspace open \(vmId) <ws_…>` or pick a unique --name"
                     )
                 case .notFound:
                     break
@@ -471,7 +471,7 @@ extension TerminalController {
             return v2Error(id: id, code: "invalid_params", message: "vm.workspace_open requires `id`.")
         }
         guard let remoteWorkspaceID = Self.surfaceString(params["workspace_id"]), !remoteWorkspaceID.isEmpty else {
-            return v2Error(id: id, code: "invalid_params", message: "vm.workspace_open requires `workspace_id` (a cmux-tui workspace id from `cmux vm tree`).")
+            return v2Error(id: id, code: "invalid_params", message: "vm.workspace_open requires `workspace_id` (a cmux-tui workspace id from `taffy vm tree`).")
         }
         let here = Self.surfaceBool(params["here"]) ?? false
         // `workspace_id` is the REMOTE workspace here; the local target rides as `target_workspace_id`.
@@ -760,7 +760,7 @@ extension TerminalController {
     /// command line, or a terminal's visible screen. The result names keys only.
     nonisolated func socketWorkerVMEnvSetResponse(id: Any?, params: [String: Any]) -> String {
         guard let vmId = Self.surfaceString(params["id"]), !vmId.isEmpty else {
-            return v2Error(id: id, code: "invalid_params", message: String(localized: "cli.vm.env.setRequiresIdRunCmuxVmLsTo", defaultValue: "vm.env_set requires `id`. Run `cmux vm ls` to find one."))
+            return v2Error(id: id, code: "invalid_params", message: String(localized: "cli.vm.env.setRequiresIdRunCmuxVmLsTo", defaultValue: "vm.env_set requires `id`. Run `taffy vm ls` to find one."))
         }
         guard let rawEntries = params["entries"] as? [[String: Any]], !rawEntries.isEmpty else {
             return v2Error(id: id, code: "invalid_params", message: String(localized: "cli.vm.env.setRequiresEntriesANonEmptyArrayOf", defaultValue: "vm.env_set requires `entries`: a non-empty array of {key, value}."))
@@ -942,16 +942,16 @@ extension TerminalController {
         case .found(let workspace, let members):
             guard !members.isEmpty else {
                 throw SurfaceCatalogError.nothingToOpen(
-                    "workspace \(workspace.name) (\(workspace.id)) on \(machineID) is empty; `cmux vm open \(machineID)/\(workspace.id)` starts a terminal there"
+                    "workspace \(workspace.name) (\(workspace.id)) on \(machineID) is empty; `taffy vm open \(machineID)/\(workspace.id)` starts a terminal there"
                 )
             }
             return (workspace, members)
         case .ambiguous(let matches):
             throw SurfaceCatalogError.destinationNotFound(
-                "workspace '\(selector)' on \(machineID) is ambiguous (\(matches.map(\.id).joined(separator: ", "))); pass the ws_… id from `cmux vm tree \(machineID)`"
+                "workspace '\(selector)' on \(machineID) is ambiguous (\(matches.map(\.id).joined(separator: ", "))); pass the ws_… id from `taffy vm tree \(machineID)`"
             )
         case .notFound:
-            throw SurfaceCatalogError.destinationNotFound("workspace \(selector) on \(machineID) (see `cmux vm tree \(machineID)`)")
+            throw SurfaceCatalogError.destinationNotFound("workspace \(selector) on \(machineID) (see `taffy vm tree \(machineID)`)")
         }
     }
 

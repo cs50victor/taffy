@@ -2291,7 +2291,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
         )
         alert.informativeText = String(
             localized: "dialog.simulatorCameraCleanupFailed.message",
-            defaultValue: "cmux stayed open because it could not restore a Simulator app’s camera state. Quit again to retry cleanup."
+            defaultValue: "Taffy stayed open because it could not restore a Simulator app’s camera state. Quit again to retry cleanup."
         )
         alert.addButton(withTitle: String(localized: "common.ok", defaultValue: "OK"))
         _ = alert.runCmuxModal()
@@ -2708,7 +2708,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
                 surfaceId: nil,
                 title: String(
                     localized: "crashBreadcrumb.title",
-                    defaultValue: "cmux crashed during your last session"
+                    defaultValue: "Taffy crashed during your last session"
                 ),
                 subtitle: String(
                     localized: "crashBreadcrumb.subtitle",
@@ -9235,12 +9235,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
         case .signOut:
             disconnectedDetail = String(
                 localized: "machines.signOut.disconnectedDetail",
-                defaultValue: "Cloud VM access ended because cmux signed out."
+                defaultValue: "Cloud VM access ended because Taffy signed out."
             )
         case .managedPolicy:
             disconnectedDetail = String(
                 localized: "machines.managedPolicy.disconnectedDetail",
-                defaultValue: "Cloud VM access ended because your organization disabled cmux Cloud."
+                defaultValue: "Cloud VM access ended because your organization disabled Taffy Cloud."
             )
         }
 
@@ -10522,7 +10522,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
     }
 
     func sendWelcomeCommandWhenReady(to workspace: Workspace, markShownOnSend: Bool = false) {
-        sendTextWhenReady("cmux welcome\n", to: workspace, beforeSend: {
+        sendTextWhenReady("taffy welcome\n", to: workspace, beforeSend: {
             if markShownOnSend {
                 UserDefaults.standard.set(true, forKey: AccountCatalogSection().welcomeShown.userDefaultsKey)
             }
@@ -10552,13 +10552,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
                 informativeText += "\n\n" + String(localized: "cli.install.adminRequired", defaultValue: "Administrator privileges were required to write to /usr/local/bin.")
             }
             presentCLIPathAlert(
-                title: String(localized: "cli.installed", defaultValue: "cmux CLI Installed"),
+                title: String(localized: "cli.installed", defaultValue: "Taffy CLI Installed"),
                 informativeText: informativeText,
                 style: .informational
             )
         } catch {
             presentCLIPathAlert(
-                title: String(localized: "cli.installFailed", defaultValue: "Couldn't Install cmux CLI"),
+                title: String(localized: "cli.installFailed", defaultValue: "Couldn't Install Taffy CLI"),
                 informativeText: error.localizedDescription,
                 style: .warning
             )
@@ -10571,19 +10571,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
             let outcome = try installer.uninstall()
             let prefix = outcome.removedExistingEntry
                 ? String(localized: "cli.uninstall.removed", defaultValue: "Removed \(outcome.destinationURL.path).")
-                : String(localized: "cli.uninstall.notFound", defaultValue: "No cmux CLI symlink was found at \(outcome.destinationURL.path).")
+                : String(localized: "cli.uninstall.notFound", defaultValue: "No Taffy CLI symlink was found at \(outcome.destinationURL.path).")
             var informativeText = prefix
             if outcome.usedAdministratorPrivileges {
                 informativeText += "\n\n" + String(localized: "cli.uninstall.adminRequired", defaultValue: "Administrator privileges were required to modify /usr/local/bin.")
             }
             presentCLIPathAlert(
-                title: String(localized: "cli.uninstalled", defaultValue: "cmux CLI Uninstalled"),
+                title: String(localized: "cli.uninstalled", defaultValue: "Taffy CLI Uninstalled"),
                 informativeText: informativeText,
                 style: .informational
             )
         } catch {
             presentCLIPathAlert(
-                title: String(localized: "cli.uninstallFailed", defaultValue: "Couldn't Uninstall cmux CLI"),
+                title: String(localized: "cli.uninstallFailed", defaultValue: "Couldn't Uninstall Taffy CLI"),
                 informativeText: error.localizedDescription,
                 style: .warning
             )
@@ -12346,7 +12346,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCent
                let requestedActionButtonCount = Int(rawActionButtonCount),
                requestedActionButtonCount > 0 {
                 guard let cmuxConfigStore = context.cmuxConfigStore else {
-                    self.writeBonsplitTabDragUITestData(["setupError": "Missing cmux config store"])
+                    self.writeBonsplitTabDragUITestData(["setupError": "Missing taffy config store"])
                     return
                 }
                 let actionButtonCount = min(requestedActionButtonCount, 32)
@@ -19051,13 +19051,13 @@ private extension NSApplication {
                 preferredWindow: event.window ?? keyWindow ?? mainWindow
             ) == true {
 #if DEBUG
-                cmuxDebugLog("app.sendEvent routed file explorer shortcut before stale cmux menu shortcut")
+                cmuxDebugLog("app.sendEvent routed file explorer shortcut before stale Taffy menu shortcut")
 #endif
                 return
             }
             if AppDelegate.shared?.handleConfiguredShortcutKeyEquivalent(event) == true {
 #if DEBUG
-                cmuxDebugLog("app.sendEvent routed configured shortcut before stale cmux menu shortcut")
+                cmuxDebugLog("app.sendEvent routed configured shortcut before stale Taffy menu shortcut")
 #endif
                 return
             }
@@ -19067,11 +19067,11 @@ private extension NSApplication {
             if let ghosttyView = responder.cmuxTerminalKeyEquivalentOwningGhosttyView() {
                 ghosttyView.keyDown(with: event)
 #if DEBUG
-                cmuxDebugLog("app.sendEvent suppressed stale cmux menu shortcut and forwarded to terminal")
+                cmuxDebugLog("app.sendEvent suppressed stale Taffy menu shortcut and forwarded to terminal")
 #endif
             } else {
 #if DEBUG
-                cmuxDebugLog("app.sendEvent suppressed stale cmux menu shortcut")
+                cmuxDebugLog("app.sendEvent suppressed stale Taffy menu shortcut")
 #endif
             }
             return
@@ -19567,13 +19567,13 @@ private extension NSWindow {
         if AppDelegate.shared?.shouldSuppressStaleCmuxMenuShortcut(event: event) == true {
             if AppDelegate.shared?.handleFocusedFileExplorerOpenSelectionShortcut(event, preferredWindow: self) == true {
 #if DEBUG
-                cmuxDebugLog("  → consumed by file explorer shortcut before stale cmux menu shortcut")
+                cmuxDebugLog("  → consumed by file explorer shortcut before stale Taffy menu shortcut")
 #endif
                 return true
             }
             if AppDelegate.shared?.handleConfiguredShortcutKeyEquivalent(event) == true {
 #if DEBUG
-                cmuxDebugLog("  → consumed by configured shortcut before stale cmux menu shortcut")
+                cmuxDebugLog("  → consumed by configured shortcut before stale Taffy menu shortcut")
 #endif
                 return true
             }
@@ -19581,15 +19581,15 @@ private extension NSWindow {
                cmuxForceDispatchKeyDownOnce(
                    event,
                    to: firstResponderGhosttyView,
-                   reason: "stale cmux menu shortcut terminal bypass"
+                   reason: "stale Taffy menu shortcut terminal bypass"
                ) {
 #if DEBUG
-                cmuxDebugLog("  → terminal received command equivalent bypassing stale cmux menu shortcut")
+                cmuxDebugLog("  → terminal received command equivalent bypassing stale Taffy menu shortcut")
 #endif
                 return true
             }
 #if DEBUG
-            cmuxDebugLog("  → suppressed stale cmux menu shortcut")
+            cmuxDebugLog("  → suppressed stale Taffy menu shortcut")
 #endif
             return false
         }

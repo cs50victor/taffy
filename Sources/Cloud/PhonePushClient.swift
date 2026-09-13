@@ -268,7 +268,7 @@ final class PhonePushClient {
             kind: .notify,
             title: String(
                 localized: "push.test.title",
-                defaultValue: "cmux Notification Test"
+                defaultValue: "Taffy Notification Test"
             ),
             subtitle: "",
             body: String(

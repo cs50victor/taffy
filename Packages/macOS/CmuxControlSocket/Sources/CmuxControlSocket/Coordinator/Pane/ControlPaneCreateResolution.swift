@@ -41,7 +41,7 @@ public enum ControlPaneCreateResolution: Sendable, Equatable {
     /// `data: {"url": rawURL}`). Carries the raw URL string.
     case browserDisabledInvalidURL(rawURL: String)
     /// A browser split was requested while the cmux browser is disabled and no
-    /// URL was supplied (legacy `browser_disabled` / "cmux browser is
+    /// URL was supplied (legacy `browser_disabled` / "taffy browser is
     /// disabled", `data: nil`).
     case browserDisabledNoURL
     /// A browser split was requested while the cmux browser is disabled and the

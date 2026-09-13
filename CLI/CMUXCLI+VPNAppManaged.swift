@@ -33,12 +33,12 @@ extension CMUXCLI {
             if enrolled {
                 print(String(
                     localized: "cli.vpn.appManaged.explainReconnect",
-                    defaultValue: "This turns the cmux Cloud Tunnel back on, so every app on this Mac can reach your Cloud VM network. cmux itself does not need it: terminals, Ports, and Desktop use the built-in user-space tunnel."
+                    defaultValue: "This turns the Taffy Cloud Tunnel back on, so every app on this Mac can reach your Cloud VM network. Taffy itself does not need it: terminals, Ports, and Desktop use the built-in user-space tunnel."
                 ))
             } else {
                 print(String(
                     localized: "cli.vpn.appManaged.explain",
-                    defaultValue: "This installs the cmux Cloud Tunnel network extension and a macOS VPN configuration named “cmux Cloud”, so every app on this Mac can reach your Cloud VM network. cmux itself does not need it: terminals, Ports, and Desktop use the built-in user-space tunnel. The first time, macOS asks you to allow the extension in System Settings › General › Login Items & Extensions."
+                    defaultValue: "This installs the Taffy Cloud Tunnel network extension and a macOS VPN configuration named “Taffy Cloud”, so every app on this Mac can reach your Cloud VM network. Taffy itself does not need it: terminals, Ports, and Desktop use the built-in user-space tunnel. The first time, macOS asks you to allow the extension in System Settings › General › Login Items & Extensions."
                 ))
             }
             print(String(
@@ -51,7 +51,7 @@ extension CMUXCLI {
             if !jsonOutput {
                 print(String(
                     localized: "cli.vpn.appManaged.needsApproval",
-                    defaultValue: "macOS needs your approval to load the cmux Cloud Tunnel extension. Open System Settings › General › Login Items & Extensions › Network Extensions, allow cmux, then return here (waiting up to 10 minutes)…"
+                    defaultValue: "macOS needs your approval to load the Taffy Cloud Tunnel extension. Open System Settings › General › Login Items & Extensions › Network Extensions, allow Taffy, then return here (waiting up to 10 minutes)…"
                 ))
             }
             status = try client.sendV2(
@@ -64,10 +64,10 @@ extension CMUXCLI {
         guard state == "up" else {
             let detail = (status["tunnel_error"] as? String) ?? state
             throw CLIError(message: """
-                The cmux app could not bring the tunnel up (\(detail)).
+                The taffy app could not bring the tunnel up (\(detail)).
 
                 What to do:
-                  Check `cmux vpn status`, then retry `cmux vpn up`. If macOS asked to allow a system extension, allow it in System Settings › General › Login Items & Extensions.
+                  Check `taffy vpn status`, then retry `taffy vpn up`. If macOS asked to allow a system extension, allow it in System Settings › General › Login Items & Extensions.
                 """)
         }
         if jsonOutput {
@@ -88,7 +88,7 @@ extension CMUXCLI {
         printVPNAddresses(status)
         print(String(
             localized: "cli.vpn.appManaged.pinned",
-            defaultValue: "Pinned up until `cmux vpn down`. Quitting cmux or signing out also takes it down."
+            defaultValue: "Pinned up until `taffy vpn down`. Quitting Taffy or signing out also takes it down."
         ))
     }
 
@@ -133,19 +133,19 @@ extension CMUXCLI {
             if configPresent {
                 print(String(
                     localized: "cli.vpn.status.downAppManaged",
-                    defaultValue: "Tunnel: down (`cmux vpn up` gives other apps on this Mac a route to your Cloud VM network; cmux itself does not need it)"
+                    defaultValue: "Tunnel: down (`taffy vpn up` gives other apps on this Mac a route to your Cloud VM network; Taffy itself does not need it)"
                 ))
             } else {
                 print(String(
                     localized: "cli.vpn.status.notSetUpAppManaged",
-                    defaultValue: "Tunnel: not set up (`cmux vpn up` enrolls this Mac and asks macOS to allow the cmux Cloud Tunnel extension; cmux itself does not need it)"
+                    defaultValue: "Tunnel: not set up (`taffy vpn up` enrolls this Mac and asks macOS to allow the Taffy Cloud Tunnel extension; Taffy itself does not need it)"
                 ))
             }
         }
         if (response["pinned"] as? Bool) == true {
             print(String(
                 localized: "cli.vpn.status.pinned",
-                defaultValue: "Pinned up by `cmux vpn up`; run `cmux vpn down` to release."
+                defaultValue: "Pinned up by `taffy vpn up`; run `taffy vpn down` to release."
             ))
         }
     }

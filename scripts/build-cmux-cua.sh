@@ -56,7 +56,7 @@ validate_replaceable_helper_bundle() {
   esac
   if [[ ("$existing_id" == "$expected_id" || "$legacy_id" == true) \
         && ("$existing_executable" == "$expected_executable" \
-            || "$existing_executable" == "cmux Computer Use") ]]; then
+            || "$existing_executable" == "Taffy Computer Use") ]]; then
     return 0
   fi
 
@@ -406,7 +406,7 @@ cp "$CUA_LICENSE_SRC" "$(dirname "$OUTPUT")/cmux-cua-LICENSE.md"
 _cua_bin_dir="$(cd "$(dirname "$OUTPUT")" && pwd -P)"
 _cua_contents="$(cd "$_cua_bin_dir/../.." 2>/dev/null && pwd -P || true)"
 if [ -n "${_cua_contents:-}" ] && [ "$(basename "$_cua_contents")" = "Contents" ]; then
-  HELPER_APP="$_cua_contents/Library/cmux Computer Use.app"
+  HELPER_APP="$_cua_contents/Library/Taffy Computer Use.app"
   HELPER_EXECUTABLE="cmux-cua"
   # This build phase runs before Xcode writes the processed host Info.plist.
   # Prefer exported build settings; reading a missing plist makes PlistBuddy
@@ -421,7 +421,7 @@ if [ -n "${_cua_contents:-}" ] && [ "$(basename "$_cua_contents")" = "Contents" 
   # Keep the TCC-facing product name stable across release, tests, and tagged
   # dogfood builds. Runtime isolation comes from the tag-scoped install path,
   # socket, credential, and state directory.
-  HELPER_DISPLAY="${CMUX_CUA_HELPER_DISPLAY_NAME:-cmux Computer Use}"
+  HELPER_DISPLAY="${CMUX_CUA_HELPER_DISPLAY_NAME:-Taffy Computer Use}"
   validate_replaceable_helper_bundle "$HELPER_APP" "$HELPER_ID" "$HELPER_EXECUTABLE"
   /bin/rm -rf -- "$HELPER_APP"
   mkdir -p \

@@ -88,7 +88,7 @@ final class UpdateTestURLProtocol: URLProtocol {
         } else {
             item = """
             <item>
-              <title>cmux \(version)</title>
+              <title>Taffy \(version)</title>
               <sparkle:version>\(version)</sparkle:version>
               <sparkle:shortVersionString>\(version)</sparkle:shortVersionString>
               <enclosure url="\(updateURL)" length="\(updateLength)" type="application/octet-stream" />
@@ -115,7 +115,7 @@ final class UpdateTestURLProtocol: URLProtocol {
     }
 
     private static func updateArchiveData() -> Data {
-        Data("cmux test update".utf8)
+        Data("Taffy test update".utf8)
     }
 }
 #endif

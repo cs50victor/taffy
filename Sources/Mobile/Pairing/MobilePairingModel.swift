@@ -250,27 +250,27 @@ final class MobilePairingModel {
         case "com.cmux.app":
             return String(
                 localized: "mobile.pairing.target.appStore",
-                defaultValue: "cmux"
+                defaultValue: "Taffy"
             )
         case "dev.cmux.app.beta":
             return String(
                 localized: "mobile.pairing.target.beta",
-                defaultValue: "cmux BETA"
+                defaultValue: "Taffy BETA"
             )
         case "dev.cmux.app.internal":
             return String(
                 localized: "mobile.pairing.target.internal",
-                defaultValue: "cmux INTERNAL"
+                defaultValue: "Taffy INTERNAL"
             )
         case "dev.cmux.app.demo":
             return String(
                 localized: "mobile.pairing.target.demo",
-                defaultValue: "cmux DEMO"
+                defaultValue: "Taffy DEMO"
             )
         default:
             let format = String(
                 localized: "mobile.pairing.target.dev",
-                defaultValue: "cmux DEV %@"
+                defaultValue: "Taffy DEV %@"
             )
             let tag = bundleIdentifier.split(separator: ".").last ?? ""
             return String(format: format, locale: .current, String(tag))

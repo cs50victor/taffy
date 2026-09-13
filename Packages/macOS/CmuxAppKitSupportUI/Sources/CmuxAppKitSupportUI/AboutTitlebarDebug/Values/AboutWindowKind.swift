@@ -9,7 +9,7 @@ public import AppKit
 /// the debug store, window controller, and editor view can scale to additional
 /// About-style windows without changing their shapes.
 public enum AboutWindowKind: String, CaseIterable, Identifiable, Sendable {
-    /// The primary "About cmux" window.
+    /// The primary "About Taffy" window.
     case about
 
     /// Stable identity for SwiftUI list iteration.
@@ -36,7 +36,7 @@ public enum AboutWindowKind: String, CaseIterable, Identifiable, Sendable {
     public var fallbackTitle: String {
         switch self {
         case .about:
-            return "About cmux"
+            return "About Taffy"
         }
     }
 

@@ -79,25 +79,17 @@ enum SleepyArt {
         "..OOO.OOO.OOO...",
     ]
 
-    /// Detailed beveled right-pointing cmux chevron (11x15): highlight (H) on the
-    /// leading edge, main (C) body, shadow (c) trailing edge. Doubles as the left
-    /// eye of the logoFace mascot.
+    /// Taffy's crossed ribbons, also used as the logo mascot's left eye.
     static let cmuxLogo: [String] = [
-        "HCCc.......",
-        ".HCCc......",
-        "..HCCc.....",
-        "...HCCc....",
-        "....HCCc...",
-        ".....HCCc..",
-        "......HCCc.",
-        ".......HCCc",
-        "......HCCc.",
-        ".....HCCc..",
-        "....HCCc...",
-        "...HCCc....",
-        "..HCCc.....",
-        ".HCCc......",
-        "HCCc.......",
+        "HHH.....CCC",
+        ".HHH...CCC.",
+        "..HHH.CCC..",
+        "...HHCCC...",
+        "....CCC....",
+        "...CCCHH...",
+        "..CCC.HHH..",
+        ".CCC...HHH.",
+        "CCC.....HHH",
     ]
 
     static let moon: [String] = [

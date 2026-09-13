@@ -105,7 +105,7 @@ struct CLISocketPathResolution: Sendable {
     var failureMessage: String {
         let header = String(
             localized: "cli.socket.error.discoveryFailed",
-            defaultValue: "No live cmux socket found. Tried:"
+            defaultValue: "No live Taffy socket found. Tried:"
         )
         let paths = candidatePaths.map { "  \($0)" }.joined(separator: "\n")
         return paths.isEmpty ? header : "\(header)\n\(paths)"
@@ -116,7 +116,7 @@ struct CLISocketPathResolution: Sendable {
         guard let selectedPath, didReroute else { return nil }
         let template = String(
             localized: "cli.socket.notice.rerouted",
-            defaultValue: "cmux: default socket %@ is unavailable; using %@."
+            defaultValue: "Taffy: default socket %@ is unavailable; using %@."
         )
         return String.localizedStringWithFormat(template, requestedPath, selectedPath)
     }

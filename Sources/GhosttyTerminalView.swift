@@ -1691,7 +1691,7 @@ class GhosttyApp {
 
 #if DEBUG
         cmuxDebugLog(
-            "loaded cmux app support ghostty config from: \(urls.map(\.path).joined(separator: ", "))"
+            "loaded Taffy app support ghostty config from: \(urls.map(\.path).joined(separator: ", "))"
         )
         #endif
         #endif

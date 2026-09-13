@@ -52,7 +52,7 @@ struct ComputerUseHelperLaunchConfiguration: Equatable, Sendable {
             "CMUX_CUA_UPDATE_CHECK": "false",
             "CMUX_CUA_CURSOR_GRADIENT": "#12c7f5,#2d8cff,#6c5cff",
             "CMUX_CUA_CURSOR_BLOOM": "#2d8cff",
-            "CMUX_CUA_CURSOR_LABEL": "cmux",
+            "CMUX_CUA_CURSOR_LABEL": "Taffy",
             "CMUX_CUA_STATE_DIR": paths.stateDirectoryURL.path,
             ComputerUseRuntimePaths.authenticationTokenEnvironmentKey: paths.authenticationToken,
             ComputerUseRuntimePaths.hostAuthenticationTokenEnvironmentKey:

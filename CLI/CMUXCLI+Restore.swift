@@ -74,7 +74,7 @@ extension CMUXCLI {
                 detail: "expected=\(expectedKind) actual=\(record.kind)",
                 message: String(
                     localized: "cli.restore.error.kindMismatch",
-                    defaultValue: "restore: this command no longer matches the session. Run 'cmux restore --surface' to use the current record."
+                    defaultValue: "restore: this command no longer matches the session. Run 'Taffy restore --surface' to use the current record."
                 )
             )
         }
@@ -85,7 +85,7 @@ extension CMUXCLI {
                 detail: "expected=\(expectedCheckpointID) actual=\(record.checkpointID ?? "none")",
                 message: String(
                     localized: "cli.restore.error.checkpointMismatch",
-                    defaultValue: "restore: this command no longer matches the session. Run 'cmux restore --surface' to use the current record."
+                    defaultValue: "restore: this command no longer matches the session. Run 'Taffy restore --surface' to use the current record."
                 )
             )
         }
@@ -438,7 +438,7 @@ extension CMUXCLI {
         CLIError(
             message: String(
                 localized: "cli.restore.error.currentSurfaceUnknown",
-                defaultValue: "restore: the current cmux surface could not be identified. Retry from this terminal or pass --surface <id|ref>."
+                defaultValue: "restore: the current Taffy surface could not be identified. Retry from this terminal or pass --surface <id|ref>."
             )
         )
     }

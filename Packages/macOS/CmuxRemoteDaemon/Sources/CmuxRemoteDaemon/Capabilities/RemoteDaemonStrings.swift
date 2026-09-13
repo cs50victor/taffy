@@ -5,11 +5,11 @@
 public struct RemoteDaemonStrings: Sendable, Equatable {
     /// `remoteDaemon.error.missingPersistentPTYCapability` —
     /// "remote daemon does not support persistent SSH PTY sessions; reconnect
-    /// the remote workspace to update cmux".
+    /// the remote workspace to update Taffy".
     public let missingPersistentPTYCapability: String
     /// `remoteDaemon.error.missingRequiredFunctionality` —
     /// "remote daemon is missing required functionality; reconnect the remote
-    /// workspace to update cmux".
+    /// workspace to update Taffy".
     public let missingRequiredFunctionality: String
     /// Invalid workspace selector in a cloud notification clear request.
     public let cloudNotificationClearWorkspaceInvalid: String

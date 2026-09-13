@@ -210,7 +210,7 @@ extension TerminalSurface {
             return true
         }
         Logger(subsystem: "com.cmuxterm.app", category: "ghostty.initialization")
-            .error("cmux shell-integration dir missing at \(integrationDir, privacy: .private); spawning shell without cmux shell integration so the user's shell config still loads")
+            .error("Taffy shell-integration dir missing at \(integrationDir, privacy: .private); spawning shell without Taffy shell integration so the user's shell config still loads")
         return false
     }
 
@@ -243,7 +243,7 @@ extension TerminalSurface {
             let path = (integrationDir as NSString).appendingPathComponent(relativePath)
             if FileManager.default.isReadableFile(atPath: path) { return true }
             Logger(subsystem: "com.cmuxterm.app", category: "ghostty.initialization")
-                .error("cmux \(shellName, privacy: .public) bootstrap unreadable at \(path, privacy: .private); skipping cmux shell-startup redirection so the user's shell config still loads")
+                .error("Taffy \(shellName, privacy: .public) bootstrap unreadable at \(path, privacy: .private); skipping Taffy shell-startup redirection so the user's shell config still loads")
             return false
         }
         switch shellName {
@@ -275,7 +275,7 @@ extension TerminalSurface {
                 if !bootstrap.isEmpty { setManagedEnvironmentValue("PROMPT_COMMAND", bootstrap) }
             } catch {
                 Logger(subsystem: "com.cmuxterm.app", category: "ghostty.initialization")
-                    .error("cmux bash bootstrap unreadable at \(bashBootstrapPath, privacy: .private): \(error.localizedDescription, privacy: .public); bash shell integration will not load")
+                    .error("Taffy bash bootstrap unreadable at \(bashBootstrapPath, privacy: .private): \(error.localizedDescription, privacy: .public); bash shell integration will not load")
             }
         case "fish":
             guard bundledBootstrapIsReadable("fish/config.fish") else { return nil }
@@ -294,7 +294,7 @@ extension TerminalSurface {
                 return managedNushellShellCommand(shell: shell, startupPayload: payload)
             } catch {
                 Logger(subsystem: "com.cmuxterm.app", category: "ghostty.initialization")
-                    .error("cmux nushell bootstrap unreadable at \(bootstrapPath, privacy: .private): \(error.localizedDescription, privacy: .public); nushell shell integration will not load")
+                    .error("Taffy nushell bootstrap unreadable at \(bootstrapPath, privacy: .private): \(error.localizedDescription, privacy: .public); nushell shell integration will not load")
                 return nil
             }
         default:

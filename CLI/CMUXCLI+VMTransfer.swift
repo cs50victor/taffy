@@ -43,9 +43,9 @@ extension CMUXCLI {
 
     static var vmPushUsage: String {
         """
-        Usage: cmux vm push <id> <local-path> [remote-path] [--exclude <pattern>]... [--no-default-excludes]
-               cmux vm push <id> <local-path> [remote-path] --watch [--interval <seconds>] [--exclude <pattern>]...
-               cmux vm push --secret <id> <local-file> [remote-path] [--mode <octal>]
+        Usage: taffy vm push <id> <local-path> [remote-path] [--exclude <pattern>]... [--no-default-excludes]
+               taffy vm push <id> <local-path> [remote-path] --watch [--interval <seconds>] [--exclude <pattern>]...
+               taffy vm push --secret <id> <local-file> [remote-path] [--mode <octal>]
 
         Copy a local file or directory onto a cloud machine over the exec channel
         (no SSH needed). Directories travel as tarballs; by default \(vmPushDefaultExcludes.joined(separator: ", "))
@@ -58,38 +58,38 @@ extension CMUXCLI {
 
         --secret is for a file that must never transit the control plane (a token
         file, a deploy key, an .npmrc). It travels over the machine's cmux-tui link
-        into the in-VM `cmux file receive`, which turns terminal echo off before it
+        into the in-VM `taffy file receive`, which turns terminal echo off before it
         reads, writes the file with --mode (default 600), and moves it into place
-        atomically — the same path `cmux vm env set` uses. One file up to 256 KiB;
+        atomically — the same path `taffy vm env set` uses. One file up to 256 KiB;
         not combinable with --watch or --exclude.
 
         Examples:
-          cmux vm push brave-otter ./script.sh
-          cmux vm push brave-otter ./myrepo work/myrepo
-          cmux vm push brave-otter ./site --exclude dist
-          cmux vm push brave-otter . work/app --watch
-          cmux vm push --secret brave-otter ~/.npmrc .npmrc
-          cmux vm push --secret brave-otter ./deploy_key .ssh/deploy_key --mode 600
+          taffy vm push brave-otter ./script.sh
+          taffy vm push brave-otter ./myrepo work/myrepo
+          taffy vm push brave-otter ./site --exclude dist
+          taffy vm push brave-otter . work/app --watch
+          taffy vm push --secret brave-otter ~/.npmrc .npmrc
+          taffy vm push --secret brave-otter ./deploy_key .ssh/deploy_key --mode 600
         """
     }
 
     static var vmPullUsage: String {
         """
-        Usage: cmux vm pull <id> <remote-path> [local-path]
+        Usage: taffy vm pull <id> <remote-path> [local-path]
 
         Copy a file or directory from a cloud machine to the local disk over the
         exec channel. The local path defaults to the remote basename in the
         current directory.
 
         Examples:
-          cmux vm pull brave-otter work/report.pdf
-          cmux vm pull brave-otter /var/log/app ./app-logs
+          taffy vm pull brave-otter work/report.pdf
+          taffy vm pull brave-otter /var/log/app ./app-logs
         """
     }
 
     static var vmWaitUsage: String {
         """
-        Usage: cmux vm wait <id> [--timeout <seconds>] [--wake]
+        Usage: taffy vm wait <id> [--timeout <seconds>] [--wake]
 
         Block until the machine reports a ready status (running, ready, standby,
         or paused). --wake additionally runs a trivial exec so a sleeping machine
@@ -348,8 +348,8 @@ extension CMUXCLI {
                 \(localPath) is \(Self.formatByteCount(payloadData.count)) after packing; \
                 vm push caps out at \(Self.formatByteCount(Self.vmTransferMaxBytes)). \
                 For big trees, clone or download inside the machine instead:
-                  cmux vm exec \(vmID) -- git clone <url>
-                  cmux vm exec \(vmID) -- curl -LO <url>
+                  taffy vm exec \(vmID) -- git clone <url>
+                  taffy vm exec \(vmID) -- curl -LO <url>
                 """)
         }
 
@@ -427,7 +427,7 @@ extension CMUXCLI {
             throw CLIError(message: """
                 \(localPath) is \(Self.formatByteCount(data.count)); --secret delivers up to \
                 \(Self.formatByteCount(Self.vmSecretPushMaxBytes)) over the link. Larger files that hold \
-                nothing secret go through `cmux vm push` without --secret.
+                nothing secret go through `taffy vm push` without --secret.
                 """)
         }
         let started = Date()
@@ -787,7 +787,7 @@ extension CMUXCLI {
                 return (status, response, Int(Date().timeIntervalSince(started).rounded()))
             }
             guard pendingStatuses.contains(status) else {
-                throw CLIError(message: "\(vmID) reached status \"\(status)\" — it will not become ready. Try `cmux vm status \(vmID)`.")
+                throw CLIError(message: "\(vmID) reached status \"\(status)\" — it will not become ready. Try `taffy vm status \(vmID)`.")
             }
             guard Date() < deadline else {
                 throw CLIError(message: "Timed out after \(timeoutSeconds)s waiting for \(vmID) (last status: \(status)). Re-run with --timeout <seconds> to wait longer.")
@@ -877,7 +877,7 @@ extension CMUXCLI {
             if totalChunks > 1 {
                 let template = CMUXDiffViewerLocalization.string(
                     "cli.vm.push.progress",
-                    defaultValue: "cmux vm push: %1$d/%2$d chunks"
+                    defaultValue: "taffy vm push: %1$d/%2$d chunks"
                 )
                 progressLineOpen = vmTransferProgress(String(format: template, chunkIndex, totalChunks), final: chunkIndex == totalChunks)
             }
@@ -923,7 +923,7 @@ extension CMUXCLI {
                 \(vmID):\(remotePath) is \(Self.formatByteCount(totalBytes)); \
                 vm pull caps out at \(Self.formatByteCount(Self.vmTransferMaxBytes)). \
                 Push the data somewhere directly from the machine instead, e.g.:
-                  cmux vm exec \(vmID) -- gh release upload ... \(remotePath)
+                  taffy vm exec \(vmID) -- gh release upload ... \(remotePath)
                 """)
         }
         let remoteDigest = precheckLines.count > 1 ? precheckLines[1].split(separator: " ").first.map(String.init) : nil
@@ -949,7 +949,7 @@ extension CMUXCLI {
             if totalChunks > 1 {
                 let template = CMUXDiffViewerLocalization.string(
                     "cli.vm.pull.progress",
-                    defaultValue: "cmux vm pull: %1$d/%2$d chunks"
+                    defaultValue: "taffy vm pull: %1$d/%2$d chunks"
                 )
                 progressLineOpen = vmTransferProgress(String(format: template, chunkIndex + 1, totalChunks), final: chunkIndex + 1 == totalChunks)
             }
@@ -983,11 +983,11 @@ extension CMUXCLI {
 
     static var vmRunUsage: String {
         """
-        Usage: cmux vm run [--sync] [--pull <remote-path>] [--machine <id>] [--new] [--size <20g>] [--timeout <seconds>] -- <command...>
+        Usage: taffy vm run [--sync] [--pull <remote-path>] [--machine <id>] [--new] [--size <20g>] [--timeout <seconds>] -- <command...>
 
         Run a command on a cloud machine without naming one: reuses an idle
         machine the router itself provisioned earlier (shown as "\(vmRunPoolLabel)"
-        in `cmux vm ls`), wakes a sleeping one, or provisions a fresh machine
+        in `taffy vm ls`), wakes a sleeping one, or provisions a fresh machine
         when the pool is empty or busy — then executes the command and passes
         its exit code through. Machines you created by hand are never drafted;
         use --machine <id> to run on one deliberately.
@@ -1005,9 +1005,9 @@ extension CMUXCLI {
                                 blocks on the command and prints its output.
 
         Examples:
-          cmux vm run -- uname -a
-          cmux vm run --sync -- bun test
-          cmux vm run --sync --pull work/app/dist -- sh -c 'cd work/app && bun run build'
+          taffy vm run -- uname -a
+          taffy vm run --sync -- bun test
+          taffy vm run --sync --pull work/app/dist -- sh -c 'cd work/app && bun run build'
         """
     }
 
@@ -1086,7 +1086,7 @@ extension CMUXCLI {
             memoryMb: memoryMb,
             client: client
         )
-        cliWriteStderr("[cmux vm run] \(selection.id) (\(selection.reason))\n")
+        cliWriteStderr("[taffy vm run] \(selection.id) (\(selection.reason))\n")
         Self.saveVMRunBinding(
             workKey: Self.vmRunWorkKey(forDirectory: FileManager.default.currentDirectoryPath),
             machine: selection.id
@@ -1423,7 +1423,7 @@ extension CMUXCLI {
             // and raw OS text, which do not belong in user-facing output.
             let template = CMUXDiffViewerLocalization.string(
                 "cli.vm.run.poolRecordFailed",
-                defaultValue: "vm run: provisioned %1$@ but could not record it in the pool store, so later runs will not reuse it. Use `cmux vm run --machine %1$@` to keep using it or `cmux vm rm %1$@` to remove it."
+                defaultValue: "vm run: provisioned %1$@ but could not record it in the pool store, so later runs will not reuse it. Use `taffy vm run --machine %1$@` to keep using it or `taffy vm rm %1$@` to remove it."
             )
             throw CLIError(message: String(format: template, id))
         }
@@ -1436,7 +1436,7 @@ extension CMUXCLI {
                 responseTimeout: 60
             )
         } catch {
-            cliWriteStderr("[cmux vm run] warning: could not label \(id) as \(Self.vmRunPoolLabel); it stays in the pool but will not show that label in `cmux vm ls`\n")
+            cliWriteStderr("[taffy vm run] warning: could not label \(id) as \(Self.vmRunPoolLabel); it stays in the pool but will not show that label in `taffy vm ls`\n")
         }
         try waitForVMReady(vmID: id, timeoutSeconds: Self.vmRunCreateWaitSeconds, client: client)
         return id
@@ -1502,9 +1502,9 @@ extension CMUXCLI {
 extension CMUXCLI {
     static var vmRouteUsage: String {
         """
-        Usage: cmux vm route [--cwd <dir>] [--new] [--provision] [--size <20g>] [--json]
+        Usage: taffy vm route [--cwd <dir>] [--new] [--provision] [--size <20g>] [--json]
 
-        Print the machine `cmux vm run` / `cmux vm agent` would use for work in a
+        Print the machine `taffy vm run` / `taffy vm agent` would use for work in a
         directory, and why — without running anything. The policy is the router's
         own: the machine already bound to the directory (warm checkout, installed
         deps), else an awake idle pool machine, else a sleeping one. When the pool
@@ -1524,17 +1524,17 @@ extension CMUXCLI {
 
     static var vmAgentUsage: String {
         """
-        Usage: cmux vm agent --agent <claude|codex|opencode|pi> [--machine <id>] [--sync] [--cwd <dir>] [--name <name>] [--no-open] [--remote-workspace <ws>] [--wait [--output] [--timeout <seconds>]] [--new] [--size <s>] [--json] -- <prompt or args...>
+        Usage: taffy vm agent --agent <claude|codex|opencode|pi> [--machine <id>] [--sync] [--cwd <dir>] [--name <name>] [--no-open] [--remote-workspace <ws>] [--wait [--output] [--timeout <seconds>]] [--new] [--size <s>] [--json] -- <prompt or args...>
 
         Short forms:
-          cmux agent <claude|codex|opencode|pi> [vm-agent-options] -- <prompt or args...>
-          cmux coderouter agent <claude|codex|opencode|pi> [vm-agent-options] -- <prompt or args...>
+          taffy agent <claude|codex|opencode|pi> [vm-agent-options] -- <prompt or args...>
+          taffy coderouter agent <claude|codex|opencode|pi> [vm-agent-options] -- <prompt or args...>
 
         Run a coding agent on a cloud machine. The machine is chosen like `vm run`
         (sticky per directory, then idle pool machine, then a fresh one) unless
         --machine pins one. The agent starts as a detached terminal in the
         machine's cmux-tui session, so it keeps running when you close the pane
-        and can be reattached from any device with `cmux vm open <machine>/<ws>/<term>`.
+        and can be reattached from any device with `taffy vm open <machine>/<ws>/<term>`.
 
         A bare prompt runs the agent's one-shot form (claude -p, codex exec,
         opencode run, pi -p). Arguments that start with a flag or a subcommand
@@ -1563,10 +1563,10 @@ extension CMUXCLI {
           --size <s>       Memory preset for a machine this call creates.
 
         Examples:
-          cmux vm agent --agent claude --sync -- "run the test suite and fix failures"
-          cmux vm agent --agent codex --machine vivid-newt -- exec "summarize work/app"
-          cmux vm agent --agent opencode --no-open --json -- "add a README"
-          cmux vm agent --agent claude --machine vivid-newt --no-open --wait --output -- "fix the failing test"
+          taffy vm agent --agent claude --sync -- "run the test suite and fix failures"
+          taffy vm agent --agent codex --machine vivid-newt -- exec "summarize work/app"
+          taffy vm agent --agent opencode --no-open --json -- "add a README"
+          taffy vm agent --agent claude --machine vivid-newt --no-open --wait --output -- "fix the failing test"
         """
     }
 
@@ -1690,7 +1690,7 @@ extension CMUXCLI {
         }
         if selection.wouldProvision {
             print(String(
-                format: String(localized: "cli.vm.route.wouldProvision", defaultValue: "No pool machine is free for %@ \u{2014} `cmux vm run` would provision a fresh one (add --provision to create it now)."),
+                format: String(localized: "cli.vm.route.wouldProvision", defaultValue: "No pool machine is free for %@ \u{2014} `taffy vm run` would provision a fresh one (add --provision to create it now)."),
                 workDirectory
             ))
             return
@@ -1791,7 +1791,7 @@ extension CMUXCLI {
             workDirectory: workDirectory,
             client: client
         )
-        cliWriteStderr("[cmux vm agent] \(selection.id) (\(selection.reason))\n")
+        cliWriteStderr("[taffy vm agent] \(selection.id) (\(selection.reason))\n")
         Self.saveVMRunBinding(workKey: Self.vmRunWorkKey(forDirectory: workDirectory), machine: selection.id)
 
         var syncedRemoteDir: String?
@@ -1830,7 +1830,7 @@ extension CMUXCLI {
         let terminalId = (response["terminal_id"] as? String) ?? "?"
         let workspaceId = (response["remote_workspace_id"] as? String) ?? "?"
         let surfaceId = (response["surface_id"] as? String).flatMap { $0.isEmpty ? nil : $0 }
-        let reattach = "cmux vm open \(selection.id)/\(workspaceId)/\(terminalId)"
+        let reattach = "taffy vm open \(selection.id)/\(workspaceId)/\(terminalId)"
         var payload: [String: Any] = [
             "machine": selection.id,
             "created": selection.created,
@@ -1850,7 +1850,7 @@ extension CMUXCLI {
             agent, selection.id, terminalId, workspaceId
         )
         let reattachLine = String(
-            format: String(localized: "cli.vm.agent.reattach", defaultValue: "Reattach: cmux vm open %1$@/%2$@/%3$@"),
+            format: String(localized: "cli.vm.agent.reattach", defaultValue: "Reattach: taffy vm open %1$@/%2$@/%3$@"),
             selection.id, workspaceId, terminalId
         )
 
@@ -1870,7 +1870,7 @@ extension CMUXCLI {
         // --wait: the launch report moves to stderr so stdout carries only the agent's
         // output (--output) or the exit line; the JSON form is one object at the end.
         guard terminalId != "?" else {
-            throw CLIError(message: "vm agent: the app did not return a terminal id for the agent, so there is nothing to wait on. It may still be running; check `cmux vm tree \(selection.id)`.")
+            throw CLIError(message: "vm agent: the app did not return a terminal id for the agent, so there is nothing to wait on. It may still be running; check `taffy vm tree \(selection.id)`.")
         }
         if !jsonOutput {
             cliWriteStderr(startedLine + "\n")
@@ -1911,7 +1911,7 @@ extension CMUXCLI {
             }
         }
         guard let exit else {
-            throw CLIError(message: "\(agent) on \(selection.id) is still running after \(waited)s (not stopped). Reattach: \(reattach) — or keep waiting: cmux vm terminal wait-exit \(selection.id) \(terminalId) --timeout 3600", exitCode: 1)
+            throw CLIError(message: "\(agent) on \(selection.id) is still running after \(waited)s (not stopped). Reattach: \(reattach) — or keep waiting: taffy vm terminal wait-exit \(selection.id) \(terminalId) --timeout 3600", exitCode: 1)
         }
         let code = Self.vmTerminalExitCode(exit)
         if code != 0 {

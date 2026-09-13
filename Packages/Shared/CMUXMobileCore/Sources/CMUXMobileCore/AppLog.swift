@@ -669,7 +669,7 @@ public actor AppLog {
                 maxBytes: maxFileBytes,
                 maxArchiveCount: maxArchiveCount,
                 maxRetainedBytes: maxRetainedBytes,
-                header: "cmux app log · \(buildStamp) · started \(started)",
+                header: "Taffy app log · \(buildStamp) · started \(started)",
                 now: now
             )
         }
@@ -679,7 +679,7 @@ public actor AppLog {
                 maxBytes: maxFileBytes,
                 maxArchiveCount: maxArchiveCount,
                 maxRetainedBytes: maxRetainedBytes,
-                header: "cmux network diagnostics log · \(buildStamp) · started \(started)",
+                header: "Taffy network diagnostics log · \(buildStamp) · started \(started)",
                 now: now
             )
         }

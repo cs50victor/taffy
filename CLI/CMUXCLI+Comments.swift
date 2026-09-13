@@ -9,7 +9,7 @@ extension CMUXCLI {
     static let commentsUsage = CMUXDiffViewerLocalization.string(
         "cli.comments.usage",
         defaultValue: """
-        Usage: cmux comments <subcommand> [options]
+        Usage: taffy comments <subcommand> [options]
 
         Review comments saved from the diff viewer, stored per git repository.
 
@@ -59,7 +59,7 @@ extension CMUXCLI {
                 throw CLIError(message: String.localizedStringWithFormat(
                     CMUXDiffViewerLocalization.string(
                         "cli.comments.error.unexpectedArgument",
-                        defaultValue: "Unexpected argument '%@' for cmux comments list. Supported: --repo <path>, --all, --json"
+                        defaultValue: "Unexpected argument '%@' for Taffy comments list. Supported: --repo <path>, --all, --json"
                     ),
                     unexpected
                 ))
@@ -96,7 +96,7 @@ extension CMUXCLI {
             throw CLIError(message: String.localizedStringWithFormat(
                 CMUXDiffViewerLocalization.string(
                     "cli.comments.error.notARepository",
-                    defaultValue: "cmux comments requires a git repository: %@"
+                    defaultValue: "Taffy comments requires a git repository: %@"
                 ),
                 directory
             ))

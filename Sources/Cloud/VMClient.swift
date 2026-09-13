@@ -51,23 +51,23 @@ enum VMClientError: Error, CustomStringConvertible {
                 You are not signed in to cmux.
 
                 What to do:
-                  cmux auth login
-                  cmux auth status
+                  Taffy auth login
+                  Taffy auth status
                 """
         case .sessionRefreshFailed:
             return """
-                You are signed in, but cmux could not refresh your session (network or server issue).
+                You are signed in, but Taffy could not refresh your session (network or server issue).
 
                 What to do:
                   Retry in a moment.
-                  If it keeps failing, run `cmux auth status` to check your session.
+                  If it keeps failing, run `Taffy auth status` to check your session.
                 """
         case .backendUnreachable(let url, let detail):
             return """
-                Cannot reach the cmux Cloud VM service at \(url).
+                Cannot reach the Taffy Cloud VM service at \(url).
 
                 What to do:
-                  Start the cmux web server, then retry.
+                  Start the Taffy web server, then retry.
                   If you are using a local development build, check its Cloud VM service URL before launching cmux.
 
                 Details:
@@ -80,7 +80,7 @@ enum VMClientError: Error, CustomStringConvertible {
                 This provider cannot \(action) machines.
 
                 What to do:
-                  Machines here stay available until you delete them; `cmux vm rm <id>` when the work is done.
+                  Machines here stay available until you delete them; `taffy vm rm <id>` when the work is done.
                 """
         case .disabledByManagedPolicy:
             return String(
@@ -89,10 +89,10 @@ enum VMClientError: Error, CustomStringConvertible {
             )
         case .malformedResponse(let message):
             return """
-                The cmux Cloud VM backend returned a response this client could not read.
+                The Taffy Cloud VM backend returned a response this client could not read.
 
                 What to do:
-                  Update cmux to the latest build and retry.
+                  Update Taffy to the latest build and retry.
                   If this keeps happening, copy the details below and contact support.
 
                 Details:
@@ -168,7 +168,7 @@ private func defaultCloudVMMessage(status: Int) -> String {
     case 400:
         return "The Cloud VM request was not valid."
     case 401:
-        return "cmux could not authenticate this Cloud VM request."
+        return "Taffy could not authenticate this Cloud VM request."
     case 402:
         return "This team cannot create another Cloud VM with the current billing state."
     case 403:
@@ -187,24 +187,24 @@ private func defaultCloudVMMessage(status: Int) -> String {
 func defaultCloudVMAction(status: Int, errorCode: String) -> String {
     switch errorCode {
     case "vm_active_limit_exceeded":
-        return "Run `cmux vm ls`, then stop or delete an active VM with `cmux vm rm <id>` before retrying."
+        return "Run `taffy vm ls`, then stop or delete an active VM with `taffy vm rm <id>` before retrying."
     case "vm_not_found":
-        return "Run `cmux vm ls` to see available Cloud VMs. If the VM was paused or destroyed, start a fresh one with `cmux vm new`."
+        return "Run `taffy vm ls` to see available Cloud VMs. If the VM was paused or destroyed, start a fresh one with `taffy vm new`."
     case "vm_billing_team_required":
-        return "Select a team in cmux, then retry. You can also run `cmux auth status` to check the signed-in account."
+        return "Select a team in Taffy, then retry. You can also run `Taffy auth status` to check the signed-in account."
     case "vm_requires_pro":
         return String(
             localized: "cloudVM.error.requiresPro.action",
-            defaultValue: "Upgrade to cmux Pro at https://cmux.com/pricing?cmux_source=mac_vm_requires_pro_error&cmux_client=mac to create Cloud VMs."
+            defaultValue: "Upgrade to Taffy Pro at https://cmux.com/pricing?cmux_source=mac_vm_requires_pro_error&cmux_client=mac to create Cloud VMs."
         )
     case "vm_create_credits_insufficient":
         return "Ask a team admin to upgrade the plan or grant more Cloud VM create credits, then retry."
     default:
         if status == 401 {
-            return "Run `cmux auth login`, then retry."
+            return "Run `Taffy auth login`, then retry."
         }
         if status == 403 {
-            return "Run `cmux auth status` and confirm you are using the expected team."
+            return "Run `Taffy auth status` and confirm you are using the expected team."
         }
         return "Retry the command. If it keeps failing, copy this error and contact support."
     }
@@ -2658,15 +2658,15 @@ enum MachineUsageClientError: Error, CustomStringConvertible {
     var description: String {
         switch self {
         case .notSignedIn:
-            return "Not signed in. Run `cmux auth login`, then retry."
+            return "Not signed in. Run `Taffy auth login`, then retry."
         case .sessionRefreshFailed:
-            return "Signed in, but cmux could not refresh your session (network or server issue). Retry in a moment."
+            return "Signed in, but Taffy could not refresh your session (network or server issue). Retry in a moment."
         case let .httpStatus(status, _):
             return "Machine usage request failed (HTTP \(status))."
         case let .malformedResponse(message):
             return "The machine usage service returned an unexpected response: \(message)"
         case let .backendUnreachable(url, detail):
-            return "Could not reach the cmux backend at \(url): \(detail)"
+            return "Could not reach the Taffy backend at \(url): \(detail)"
         }
     }
 }
@@ -2798,7 +2798,7 @@ actor MachineUsageClient {
         let resolvedTeamID = await auth.resolvedTeamID
 
         guard var comps = URLComponents(url: AuthEnvironment.vmAPIBaseURL, resolvingAgainstBaseURL: false) else {
-            throw MachineUsageClientError.malformedResponse("the cmux backend URL is misconfigured")
+            throw MachineUsageClientError.malformedResponse("the Taffy backend URL is misconfigured")
         }
         comps.path = (comps.path.hasSuffix("/") ? String(comps.path.dropLast()) : comps.path) + path
         guard let url = comps.url else {

@@ -821,7 +821,7 @@ final class TerminalNotificationStore: ObservableObject {
                 let content = UNMutableNotificationContent()
                 content.title = String(
                     localized: "settings.notifications.desktop.test.title",
-                    defaultValue: "cmux test notification"
+                    defaultValue: "Taffy test notification"
                 )
                 content.body = String(
                     localized: "settings.notifications.desktop.subtitle.allowed",
@@ -1821,7 +1821,7 @@ final class TerminalNotificationStore: ObservableObject {
             )
             let format = String(
                 localized: "notificationHook.failure.body",
-                defaultValue: "cmux used default notification behavior because '%@' failed."
+                defaultValue: "Taffy used default notification behavior because '%@' failed."
             )
             Task { @MainActor [weak self, userNotificationCenter] in
                 let content = UNMutableNotificationContent()
@@ -2426,7 +2426,7 @@ final class TerminalNotificationStore: ObservableObject {
     private func resolvedNotificationTitle(for notification: TerminalNotification) -> String {
         let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
             ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
-            ?? "cmux"
+            ?? "Taffy"
         return notification.title.isEmpty ? appName : notification.title
     }
 
@@ -2829,8 +2829,8 @@ final class TerminalNotificationStore: ObservableObject {
         }
 
         let alert = notificationSettingsAlertFactory()
-        alert.messageText = String(localized: "dialog.enableNotifications.title", defaultValue: "Enable Notifications for cmux")
-        alert.informativeText = String(localized: "dialog.enableNotifications.message", defaultValue: "Notifications are disabled for cmux. Enable them in System Settings to see alerts.")
+        alert.messageText = String(localized: "dialog.enableNotifications.title", defaultValue: "Enable Notifications for Taffy")
+        alert.informativeText = String(localized: "dialog.enableNotifications.message", defaultValue: "Notifications are disabled for Taffy. Enable them in System Settings to see alerts.")
         alert.addButton(withTitle: String(localized: "dialog.enableNotifications.openSettings", defaultValue: "Open Settings"))
         alert.addButton(withTitle: String(localized: "dialog.enableNotifications.notNow", defaultValue: "Not Now"))
         alert.beginSheetModal(for: window) { [weak self] response in

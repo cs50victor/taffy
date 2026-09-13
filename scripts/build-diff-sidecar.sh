@@ -5,7 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CRATE_DIR="${ROOT}/Native/DiffSidecar"
 BINARY_NAME="cmux-diff-sidecar"
 BUILD_OUTPUT_DIR="${TARGET_BUILD_DIR:-${CRATE_DIR}/target/cmux-diff-sidecar}"
-BUILD_WORK_DIR="${TARGET_TEMP_DIR:-${CRATE_DIR}/target/cmux-diff-sidecar-build}"
+BUILD_WORK_DIR="${CMUX_DIFF_SIDECAR_BUILD_DIR:-${TARGET_TEMP_DIR:-${CRATE_DIR}/target/cmux-diff-sidecar-build}}"
 CARGO_RUNNER="${ROOT}/scripts/run-diff-sidecar-cargo.sh"
 TOOLCHAIN="$(awk -F '"' '/^[[:space:]]*channel[[:space:]]*=/{print $2; exit}' "${CRATE_DIR}/rust-toolchain.toml")"
 

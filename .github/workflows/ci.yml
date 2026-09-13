@@ -20,6 +20,7 @@ jobs:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
       RUSTUP_TOOLCHAIN: "1.95.0"
       TAFFY_BUILD_DIR: ${{ github.workspace }}/build-ci
+      ZIG_GLOBAL_CACHE_DIR: ${{ github.workspace }}/build-ci/ZigGlobalCache
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
       - name: Install build tools
@@ -30,16 +31,118 @@ jobs:
           if ! xcrun metal --version; then
             xcodebuild -downloadComponent MetalToolchain
           fi
+      - name: Identify cache compatibility
+        id: cache-key
+        run: |
+          git submodule update --init --depth 1 ghostty vendor/bonsplit
+          fingerprint=$({
+            xcodebuild -version
+            xcrun --sdk macosx --show-sdk-version
+            rustc +1.95.0 -Vv
+            rustc +1.88.0 -Vv
+            zig version
+          } | shasum -a 256 | awk '{print $1}')
+          echo "toolchain=$fingerprint" >> "$GITHUB_OUTPUT"
+          echo "ghostty=$(git -C ghostty rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Restore Swift packages
+        id: spm-cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .spm-cache
+          key: taffy-spm-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.cache-key.outputs.toolchain }}-${{ hashFiles('cmux.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: |
+            taffy-spm-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.cache-key.outputs.toolchain }}-
+      - name: Sanitize restored package state
+        run: python3 scripts/ci/sanitize-xcode-source-packages-cache.py .spm-cache
+      - name: Restore native helper caches
+        id: native-cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ~/Library/Caches/cmux/cmux-cua
+            Native/CommandPaletteNucleoFFI/target
+            build-ci/NativeCache
+            build-ci/ZigGlobalCache
+            ghostty/.zig-cache
+          key: taffy-native-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.cache-key.outputs.toolchain }}-${{ steps.cache-key.outputs.ghostty }}-${{ hashFiles('Native/**/Cargo.lock', 'Native/**/Cargo.toml', 'Native/**/rust-toolchain.toml', 'Native/**/*.rs', 'scripts/build-*.sh', 'scripts/run-diff-sidecar-cargo.sh') }}
+          restore-keys: |
+            taffy-native-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.cache-key.outputs.toolchain }}-${{ steps.cache-key.outputs.ghostty }}-
+      - name: Restore Xcode compilation results
+        id: xcode-cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: build-ci/CompilationCache.noindex
+          key: taffy-xcode-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.cache-key.outputs.toolchain }}-${{ github.sha }}
+          restore-keys: |
+            taffy-xcode-v1-${{ runner.os }}-${{ runner.arch }}-${{ steps.cache-key.outputs.toolchain }}-
       - name: Check localization and configuration migration
         run: |
+          python3 tests/test_ci_prune_xcode_compilation_cache.py
+          python3 tests/test_ci_sanitize_xcode_source_packages_cache.py
+          python3 tests/test_cmux_cua_build_cache_safety.py
           python3 scripts/localization_catalog.py check --limit 20
           swift test --package-path Packages/macOS/CmuxSettings --filter CmuxConfigLocationMigrationTests
       - name: Build Release app
         run: |
           set -o pipefail
+          SECONDS=0
           ./scripts/build-taffy.sh 0.1.1 2>&1 | tee "$RUNNER_TEMP/build.log"
+          echo "Release build: ${SECONDS}s" | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Verify shipped app and CLI
         run: |
           python3 tests/test_taffy_branding.py \
             --cli build-ci/Build/Products/Release/Taffy.app/Contents/Resources/bin/taffy \
             --app build-ci/Build/Products/Release/Taffy.app
+      - name: Bound cache uploads
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        id: cache-size
+        run: |
+          python3 scripts/ci/prune-xcode-compilation-cache.py build-ci/CompilationCache.noindex
+          check_size() {
+            local name="$1" limit_kib="$2" total_kib=0 size path
+            shift 2
+            for path in "$@"; do
+              if [ -d "$path" ]; then
+                size=$(du -sk "$path" | awk '{print $1}')
+                total_kib=$((total_kib + size))
+              fi
+            done
+            echo "$name: $total_kib KiB (upload limit $limit_kib KiB)" >> "$GITHUB_STEP_SUMMARY"
+            if [ "$total_kib" -gt 0 ] && [ "$total_kib" -le "$limit_kib" ]; then
+              echo "$name=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "::warning::Skipping $name cache upload: size outside its bound"
+            fi
+          }
+          check_size xcode $((5 * 1024 * 1024)) build-ci/CompilationCache.noindex
+          check_size spm $((4 * 1024 * 1024)) .spm-cache
+          check_size native $((3 * 1024 * 1024)) \
+            "$HOME/.cargo/registry" "$HOME/.cargo/git" "$HOME/Library/Caches/cmux/cmux-cua" \
+            Native/CommandPaletteNucleoFFI/target build-ci/NativeCache build-ci/ZigGlobalCache ghostty/.zig-cache
+      - name: Save Swift packages
+        if: steps.cache-size.outputs.spm == 'true' && steps.spm-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .spm-cache
+          key: ${{ steps.spm-cache.outputs.cache-primary-key }}
+      - name: Save native helper caches
+        if: steps.cache-size.outputs.native == 'true' && steps.native-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ~/Library/Caches/cmux/cmux-cua
+            Native/CommandPaletteNucleoFFI/target
+            build-ci/NativeCache
+            build-ci/ZigGlobalCache
+            ghostty/.zig-cache
+          key: ${{ steps.native-cache.outputs.cache-primary-key }}
+      - name: Save Xcode compilation results
+        if: steps.cache-size.outputs.xcode == 'true' && steps.xcode-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: build-ci/CompilationCache.noindex
+          key: ${{ steps.xcode-cache.outputs.cache-primary-key }}

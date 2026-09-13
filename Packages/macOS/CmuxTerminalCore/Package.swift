@@ -49,7 +49,7 @@ let package = Package(
                 .linkedLibrary("c++"),
             ]
         ),
-        // Test-only stand-in for the @_silgen_name libghostty symbol bound by
+        // Test-only stand-in for the libghostty symbol called by
         // GhosttyRuntimeCInterop: SwiftPM cannot link the GhosttyKit macOS
         // archive (its binary lacks the lib prefix), so the test runner
         // satisfies the link with a stub. The app links the real GhosttyKit.

@@ -16,7 +16,9 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 BUILD_DIR="${TAFFY_BUILD_DIR:-$ROOT/build-taffy}"
 APP="$BUILD_DIR/Build/Products/Release/Taffy.app"
-export PATH="${HOME}/.cargo/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+export PATH="${HOME}/.cargo/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER="$(xcrun --find clang)"
+unset LIBRARY_PATH LDFLAGS
 
 xcrun metal --version
 git submodule update --init --depth 1 ghostty vendor/bonsplit

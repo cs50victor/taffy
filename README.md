@@ -22,7 +22,7 @@ Update with `brew upgrade --cask cs50victor/tap/taffy`. The upstream in-app upda
 
 ## Build
 
-Install Xcode 26.x with its Metal toolchain, Zig 0.15.2, Rust/rustup and Bun. Initialize the pinned source dependencies and build:
+Install Xcode 26.x with its Metal toolchain, Zig 0.16.0, Rust/rustup and Bun. Initialize the pinned source dependencies and build:
 
 ```sh
 git clone https://github.com/cs50victor/taffy.git

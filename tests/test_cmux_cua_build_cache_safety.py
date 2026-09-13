@@ -181,7 +181,7 @@ def test_unmanaged_helper_bundle_is_preserved(sha: str) -> None:
         cache_dir = root / "cache"
         contents_dir = root / "cmux DEV.app" / "Contents"
         output = contents_dir / "Resources" / "bin" / "cmux-cua"
-        helper = contents_dir / "Library" / "cmux Computer Use.app"
+        helper = contents_dir / "Library" / "Taffy Computer Use.app"
         helper.mkdir(parents=True)
         sentinel = helper / "user-data.txt"
         sentinel.write_text("keep me")

@@ -90,7 +90,7 @@ struct FileExternalOpenApplicationResolver: Sendable {
         if Bundle.main.bundleIdentifier?.lowercased() == bundleIdentifier {
             return false
         }
-        return !bundleIdentifier.hasPrefix("dev.Taffy.")
+        return !bundleIdentifier.hasPrefix("dev.cmux.")
             && !bundleIdentifier.hasPrefix("com.cmuxterm.")
     }
 }

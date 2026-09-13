@@ -1,0 +1,37 @@
+name: Taffy CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: taffy-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  branding:
+    runs-on: macos-26
+    timeout-minutes: 45
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - name: Prepare GhosttyKit
+        run: |
+          git submodule update --init --depth 1 ghostty vendor/bonsplit
+          ./scripts/ensure-ghosttykit.sh
+      - name: Build CLI
+        run: |
+          set -o pipefail
+          xcodebuild -project cmux.xcodeproj -scheme taffy-cli -configuration Release \
+            -destination 'generic/platform=macOS' -derivedDataPath build-ci \
+            ARCHS=arm64 ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=NO build > "$RUNNER_TEMP/build.log" 2>&1 || {
+              tail -n 100 "$RUNNER_TEMP/build.log"
+              exit 1
+            }
+      - name: Verify public branding
+        run: python3 tests/test_taffy_branding.py --cli build-ci/Build/Products/Release/cmux

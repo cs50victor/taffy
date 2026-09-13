@@ -127,7 +127,7 @@ import CmuxSettings
             currentUserID: 501,
             probeStableDefaultPathEntry: { _ in .missing }
         )
-        #expect(path.hasPrefix("/tmp/taffy-xctest-"))
+        #expect(path.hasPrefix("/tmp/cmux-xctest-"))
         #expect(path.hasSuffix(".sock"))
         #expect(path != "/tmp/taffy-debug.sock")
         #expect(path == defaultPath)
@@ -157,7 +157,7 @@ import CmuxSettings
             currentUserID: 501,
             probeStableDefaultPathEntry: { _ in .missing }
         )
-        #expect(path.hasPrefix("/tmp/taffy-xctest-"))
+        #expect(path.hasPrefix("/tmp/cmux-xctest-"))
         #expect(path.hasSuffix(".sock"))
         #expect(path != "/tmp/taffy-debug.sock")
     }
@@ -181,8 +181,8 @@ import CmuxSettings
             currentUserID: 501,
             probeStableDefaultPathEntry: { _ in .missing }
         )
-        #expect(first.hasPrefix("/tmp/taffy-xctest-"))
-        #expect(second.hasPrefix("/tmp/taffy-xctest-"))
+        #expect(first.hasPrefix("/tmp/cmux-xctest-"))
+        #expect(second.hasPrefix("/tmp/cmux-xctest-"))
         #expect(first != second)
     }
 

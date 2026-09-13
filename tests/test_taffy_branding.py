@@ -54,7 +54,9 @@ def main():
             ))
             assert catalog['about.appName'] == 'Taffy', (locale, catalog['about.appName'])
             assert 'taffy' in catalog['command.installCLI.title'].lower(), locale
-            assert 'cmux' not in catalog['menu.app.about'].lower(), locale
+            for key in ['menu.app.about', 'settings.app.openSupportedFilesInCmux.subtitle',
+                        'settings.computerUse.enabled.note']:
+                assert 'cmux' not in catalog[key].lower(), (locale, key, catalog[key])
     print(f'PASS: Taffy CLI and branding checks ({version.strip()})')
 
 

@@ -1,0 +1,232 @@
+import Testing
+
+import CmuxSettings
+
+@Suite struct SocketControlSettingsTests {
+    @Test func migrateModeMapsLegacyAndUnknownValues() {
+        #expect(SocketControlSettings.migrateMode("off") == .off)
+        #expect(SocketControlSettings.migrateMode("cmux_only") == .cmuxOnly)
+        #expect(SocketControlSettings.migrateMode("ALLOW-ALL") == .allowAll)
+        // Legacy aliases.
+        #expect(SocketControlSettings.migrateMode("notifications") == .automation)
+        #expect(SocketControlSettings.migrateMode("full") == .allowAll)
+        // Unknown falls back to the default.
+        #expect(SocketControlSettings.migrateMode("bogus") == .cmuxOnly)
+    }
+
+    @Test func effectiveModeHonorsEnableOverride() {
+        #expect(
+            SocketControlSettings.effectiveMode(
+                userMode: .password,
+                environment: ["CMUX_SOCKET_ENABLE": "0"]
+            ) == .off
+        )
+        #expect(
+            SocketControlSettings.effectiveMode(
+                userMode: .off,
+                environment: ["CMUX_SOCKET_ENABLE": "1"]
+            ) == .cmuxOnly
+        )
+    }
+
+    @Test func effectiveModeHonorsModeOverride() {
+        #expect(
+            SocketControlSettings.effectiveMode(
+                userMode: .cmuxOnly,
+                environment: ["CMUX_SOCKET_MODE": "allowall"]
+            ) == .allowAll
+        )
+    }
+
+    @Test func effectiveModeFallsBackToUserMode() {
+        #expect(
+            SocketControlSettings.effectiveMode(userMode: .automation, environment: [:]) == .automation
+        )
+    }
+
+    @Test func truthyParsing() {
+        for value in ["1", "true", "YES", "on"] {
+            #expect(SocketControlSettings.isTruthy(value))
+        }
+        for value in ["0", "false", "", "nope"] {
+            #expect(!SocketControlSettings.isTruthy(value))
+        }
+    }
+
+    @Test func taggedDevBuildDetection() {
+        #expect(SocketControlSettings.isTaggedDevBuild(bundleIdentifier: "com.cs50victor.taffy.debug.my-tag"))
+        #expect(!SocketControlSettings.isTaggedDevBuild(bundleIdentifier: "com.cs50victor.taffy.debug"))
+        #expect(!SocketControlSettings.isTaggedDevBuild(bundleIdentifier: "com.cs50victor.taffy"))
+    }
+
+    @Test func untaggedDebugLaunchIsBlockedOnlyForBareDebugBundle() {
+        // Bare debug bundle, no tag, not under test => blocked.
+        #expect(
+            SocketControlSettings.shouldBlockUntaggedDebugLaunch(
+                environment: [:],
+                bundleIdentifier: "com.cs50victor.taffy.debug",
+                isDebugBuild: true
+            )
+        )
+        // XCUITest launches the app as a separate process without XCTest env vars,
+        // so any CMUX_UI_TEST_ marker must bypass blocking for a bare debug bundle.
+        #expect(
+            !SocketControlSettings.shouldBlockUntaggedDebugLaunch(
+                environment: ["CMUX_UI_TEST_RUN": "1"],
+                bundleIdentifier: "com.cs50victor.taffy.debug",
+                isDebugBuild: true
+            )
+        )
+        // Tagged debug bundle => allowed.
+        #expect(
+            !SocketControlSettings.shouldBlockUntaggedDebugLaunch(
+                environment: [:],
+                bundleIdentifier: "com.cs50victor.taffy.debug.tag",
+                isDebugBuild: true
+            )
+        )
+        // Release build => never blocked.
+        #expect(
+            !SocketControlSettings.shouldBlockUntaggedDebugLaunch(
+                environment: [:],
+                bundleIdentifier: "com.cs50victor.taffy",
+                isDebugBuild: false
+            )
+        )
+    }
+
+    @Test func socketPathHonorsOverrideForTaggedDevWhenAllowed() {
+        let path = SocketControlSettings.socketPath(
+            environment: [
+                "CMUX_SOCKET_PATH": "/tmp/taffy-custom.sock",
+                "CMUX_ALLOW_SOCKET_OVERRIDE": "1",
+            ],
+            bundleIdentifier: "com.cs50victor.taffy.debug.tag",
+            isDebugBuild: true,
+            currentUserID: 501,
+            probeStableDefaultPathEntry: { _ in .missing }
+        )
+        #expect(path == "/tmp/taffy-custom.sock")
+    }
+
+    @Test func bareDebugXCTestLaunchUsesScopedSocketFallback() {
+        let environment = [
+            "XCTestConfigurationFilePath": "/tmp/Test-cmux-unit-2026.06.17.xctestconfiguration",
+        ]
+        let path = SocketControlSettings.socketPath(
+            environment: environment,
+            bundleIdentifier: "com.cs50victor.taffy.debug",
+            isDebugBuild: true,
+            currentUserID: 501,
+            probeStableDefaultPathEntry: { _ in .missing }
+        )
+        let defaultPath = SocketControlSettings.defaultSocketPath(
+            bundleIdentifier: "com.cs50victor.taffy.debug",
+            environment: environment,
+            isDebugBuild: true,
+            currentUserID: 501,
+            probeStableDefaultPathEntry: { _ in .missing }
+        )
+        #expect(path.hasPrefix("/tmp/taffy-xctest-"))
+        #expect(path.hasSuffix(".sock"))
+        #expect(path != "/tmp/taffy-debug.sock")
+        #expect(path == defaultPath)
+    }
+
+    @Test func explicitSocketOverrideStillWinsUnderXCTest() {
+        let path = SocketControlSettings.socketPath(
+            environment: [
+                "CMUX_SOCKET_PATH": "/tmp/taffy-forced.sock",
+                "XCTestConfigurationFilePath": "/tmp/Test-cmux-unit-2026.06.17.xctestconfiguration",
+            ],
+            bundleIdentifier: "com.cs50victor.taffy.debug",
+            isDebugBuild: true,
+            currentUserID: 501,
+            probeStableDefaultPathEntry: { _ in .missing }
+        )
+        #expect(path == "/tmp/taffy-forced.sock")
+    }
+
+    @Test func dyldOnlyXCTestLaunchUsesScopedSocketFallback() {
+        let path = SocketControlSettings.socketPath(
+            environment: [
+                "DYLD_INSERT_LIBRARIES": "/Applications/Xcode.app/Contents/Developer/usr/lib/libXCTestSwiftSupport.dylib",
+            ],
+            bundleIdentifier: "com.cs50victor.taffy.debug",
+            isDebugBuild: true,
+            currentUserID: 501,
+            probeStableDefaultPathEntry: { _ in .missing }
+        )
+        #expect(path.hasPrefix("/tmp/taffy-xctest-"))
+        #expect(path.hasSuffix(".sock"))
+        #expect(path != "/tmp/taffy-debug.sock")
+    }
+
+    @Test func xctestSocketFallbackHashesFullPath() {
+        let first = SocketControlSettings.socketPath(
+            environment: [
+                "XCTestConfigurationFilePath": "/tmp/first/Test-cmux-unit.xctestconfiguration",
+            ],
+            bundleIdentifier: "com.cs50victor.taffy.debug",
+            isDebugBuild: true,
+            currentUserID: 501,
+            probeStableDefaultPathEntry: { _ in .missing }
+        )
+        let second = SocketControlSettings.socketPath(
+            environment: [
+                "XCTestConfigurationFilePath": "/tmp/second/Test-cmux-unit.xctestconfiguration",
+            ],
+            bundleIdentifier: "com.cs50victor.taffy.debug",
+            isDebugBuild: true,
+            currentUserID: 501,
+            probeStableDefaultPathEntry: { _ in .missing }
+        )
+        #expect(first.hasPrefix("/tmp/taffy-xctest-"))
+        #expect(second.hasPrefix("/tmp/taffy-xctest-"))
+        #expect(first != second)
+    }
+
+    @Test func taggedDebugXCTestLaunchStillUsesTaggedSocket() {
+        let path = SocketControlSettings.socketPath(
+            environment: [
+                "CMUX_TAG": "ci-split-theme",
+                "XCTestConfigurationFilePath": "/tmp/Test-cmux-unit-2026.06.17.xctestconfiguration",
+            ],
+            bundleIdentifier: "com.cs50victor.taffy.debug",
+            isDebugBuild: true,
+            currentUserID: 501,
+            probeStableDefaultPathEntry: { _ in .missing }
+        )
+        #expect(path == "/tmp/taffy-debug-ci-split-theme.sock")
+    }
+
+    @Test func initialStableLaunchReclaimsSameUserStaleSocketWhenLockIsFree() {
+        var didProbeReclaimability = false
+        let path = SocketControlSettings.initialSocketPathBeforeListenerStart(
+            preferredPath: SocketControlSettings.stableDefaultSocketPath,
+            bundleIdentifier: "com.cs50victor.taffy",
+            isDebugBuild: false,
+            currentUserID: 501,
+            probeStableDefaultPathEntry: { _ in .socket(ownerUserID: 501) },
+            stableDefaultSocketCanBeReclaimed: { _ in
+                didProbeReclaimability = true
+                return true
+            }
+        )
+
+        #expect(didProbeReclaimability)
+        #expect(path == SocketControlSettings.stableDefaultSocketPath)
+    }
+
+    @Test func initialStableLaunchFailsClosedWithoutReclaimabilityProbe() {
+        let path = SocketControlSettings.initialSocketPathBeforeListenerStart(
+            preferredPath: SocketControlSettings.stableDefaultSocketPath,
+            bundleIdentifier: "com.cs50victor.taffy",
+            isDebugBuild: false,
+            currentUserID: 501,
+            probeStableDefaultPathEntry: { _ in .socket(ownerUserID: 501) }
+        )
+
+        #expect(path == SocketControlSettings.userScopedStableSocketPath(currentUserID: 501))
+    }
+}

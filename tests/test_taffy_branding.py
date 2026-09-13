@@ -27,7 +27,7 @@ def main():
     assert output('version') == version
     help_text = output('--help')
     assert help_text.startswith('taffy - '), help_text[:200]
-    for command in [(), ('workspace',), ('browser',), ('config',), ('settings',), ('theme',)]:
+    for command in [(), ('workspace',), ('browser',), ('config',), ('settings',), ('themes',)]:
         text = output(*command, '--help')
         assert not re.search(r'(?m)^\s*(?:Usage:\s*)?cmux\s', text), text
     welcome = output('welcome')

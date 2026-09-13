@@ -18228,7 +18228,7 @@ struct CMUXCLI {
         )
         switch command {
         case "agent":
-            return Self.vmAgentUsage.replacingOccurrences(of: "cmux vm agent", with: "cmux agent")
+            return Self.vmAgentUsage.replacingOccurrences(of: "taffy vm agent", with: "taffy agent")
         case "remotes", "remote":
             return Self.remotesUsage
         case "todo":
@@ -18742,12 +18742,12 @@ struct CMUXCLI {
             """
         case "themes":
             return """
-            Usage: cmux themes
-                   cmux themes list
-                   cmux themes set <theme>
-                   cmux themes set --light <theme> [--dark <theme>]
-                   cmux themes set --dark <theme> [--light <theme>]
-                   cmux themes clear
+            Usage: taffy themes
+                   taffy themes list
+                   taffy themes set <theme>
+                   taffy themes set --light <theme> [--dark <theme>]
+                   taffy themes set --dark <theme> [--light <theme>]
+                   taffy themes clear
 
             When run in a TTY, `cmux themes` opens an interactive theme picker with
             live app preview. Use `cmux themes list` for a plain listing.
@@ -18763,11 +18763,11 @@ struct CMUXCLI {
               clear                     Remove the cmux theme override and fall back to other config
 
             Examples:
-              cmux themes
-              cmux themes list
-              cmux themes set "Catppuccin Mocha"
-              cmux themes set --light "Catppuccin Latte" --dark "Catppuccin Mocha"
-              cmux themes clear
+              taffy themes
+              taffy themes list
+              taffy themes set "Catppuccin Mocha"
+              taffy themes set --light "Catppuccin Latte" --dark "Catppuccin Mocha"
+              taffy themes clear
             """
         case "claude-teams":
             return String(localized: "cli.claude-teams.usage", defaultValue: """
@@ -20430,9 +20430,9 @@ struct CMUXCLI {
               identify [--surface <id|ref|index>]
 
             Example:
-              cmux browser open https://example.com
-              cmux browser surface:1 navigate https://google.com
-              cmux browser --surface surface:1 snapshot --interactive
+              taffy browser open https://example.com
+              taffy browser surface:1 navigate https://google.com
+              taffy browser --surface surface:1 snapshot --interactive
             """
         // Legacy browser aliases — point users to `taffy browser --help`
         case "open-browser":
@@ -20455,8 +20455,8 @@ struct CMUXCLI {
         case "diff": return diffSubcommandUsage()
         case "markdown":
             return """
-            Usage: cmux markdown open <path> [options]
-                   cmux markdown <path>       (shorthand for 'open')
+            Usage: taffy markdown open <path> [options]
+                   taffy markdown <path>       (shorthand for 'open')
 
             Open a markdown file in a formatted viewer panel with live file watching.
             The file is rendered with rich formatting (headings, code blocks, tables,
@@ -20470,10 +20470,10 @@ struct CMUXCLI {
               --focus <true|false>         Focus the markdown panel (default: false)
 
             Examples:
-              cmux markdown open plan.md
-              cmux markdown ~/project/CHANGELOG.md
-              cmux markdown open ./docs/design.md --workspace 0
-              cmux markdown open plan.md --direction down
+              taffy markdown open plan.md
+              taffy markdown ~/project/CHANGELOG.md
+              taffy markdown open ./docs/design.md --workspace 0
+              taffy markdown open plan.md --direction down
             """
         default:
             return nil
@@ -20488,13 +20488,13 @@ struct CMUXCLI {
         if command == "vm" || command == "cloud",
            let verb = commandArgs.first?.lowercased(), !verb.hasPrefix("-"),
            let verbText = Self.vmSubcommandUsage(commandArgs) ?? Self.vmVerbUsage(verb) {
-            print("cmux \(command) \(verb)")
+            print("taffy \(command) \(verb)")
             print("")
             print(verbText)
             return true
         }
         guard let text = subcommandUsage(command) else { return false }
-        print("cmux \(command)")
+        print("taffy \(command)")
         print("")
         print(text)
         return true

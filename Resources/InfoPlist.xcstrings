@@ -2410,7 +2410,7 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "cmux는 이 Mac이 사설 네트워크의 Cloud 머신에 연결할 수 있도록 네트워크 확장을 설치합니다. 이 확장은 Taffy Cloud를 사용하는 동안에만 실행됩니다."
+            "value": "Taffy는 이 Mac이 사설 네트워크의 Cloud 머신에 연결할 수 있도록 네트워크 확장을 설치합니다. 이 확장은 Taffy Cloud를 사용하는 동안에만 실행됩니다."
           }
         }
       }

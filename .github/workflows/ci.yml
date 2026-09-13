@@ -20,6 +20,8 @@ jobs:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - name: Install Zig
+        run: brew install zig
       - name: Prepare GhosttyKit
         run: |
           git submodule update --init --depth 1 ghostty vendor/bonsplit

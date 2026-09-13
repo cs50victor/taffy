@@ -18521,7 +18521,7 @@ struct CMUXCLI {
                                         Mint a private HTTPS URL for an HTTP port on the VM
                                         and show it in a browser split. --print only prints.
               ssh <id> [--window <id|ref|index>]
-                                        Drop into a cmux-managed SSH workspace for an existing
+                                        Drop into a Taffy-managed SSH workspace for an existing
                                         VM, using the same session path as `taffy ssh`.
               ssh-info <id>             Print SSH connection details when the Cloud VM
                                         exposes SSH.
@@ -18794,7 +18794,7 @@ struct CMUXCLI {
             return String(localized: "cli.codex-teams.usage", defaultValue: """
             Usage: taffy codex-teams [codex-args...]
 
-            Launch Codex with cmux-managed subagent panes.
+            Launch Codex with Taffy-managed subagent panes.
 
             This command:
               - starts a private Codex app-server on localhost
@@ -18812,7 +18812,7 @@ struct CMUXCLI {
             return String(localized: "cli.omo.usage", defaultValue: """
             Usage: taffy omo [opencode-args...]
 
-            Launch OpenCode with oh-my-openagent in a cmux-aware environment.
+            Launch OpenCode with oh-my-openagent in a Taffy-aware environment.
 
             oh-my-openagent orchestrates multiple AI models as specialized agents in
             parallel. This command sets up a tmux shim so agent panes become native
@@ -19210,7 +19210,7 @@ struct CMUXCLI {
             )
             let anchorCleanup = String(
                 localized: "cli.workspaceGroup.help.anchorCleanup",
-                defaultValue: "Use --remove-generated-anchor only for an anchor-only group whose anchor was created by cmux."
+                defaultValue: "Use --remove-generated-anchor only for an anchor-only group whose anchor was created by Taffy."
             )
             let deleteSafety = String(
                 localized: "cli.workspaceGroup.help.deleteSafety",

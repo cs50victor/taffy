@@ -327,7 +327,7 @@ private extension AccountSignInModel.Failure {
         case .timedOut:
             return String(
                 localized: "account.signIn.error.timedOut.recovery",
-                defaultValue: "The sign-in window did not return to cmux. Reopen the browser link or start a new attempt."
+                defaultValue: "The sign-in window did not return to Taffy. Reopen the browser link or start a new attempt."
             )
         case .server:
             return String(

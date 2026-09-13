@@ -26,7 +26,7 @@ struct ConfigSettingsView: View {
         case .cmux:
             return String(
                 localized: "settings.config.banner.cmux",
-                defaultValue: "This is the Taffy Ghostty config selected for this build. Edit it here, then Save to reload cmux."
+                defaultValue: "This is the Taffy Ghostty config selected for this build. Edit it here, then Save to reload Taffy."
             )
         case .synced:
             if currentSnapshot.hasStandaloneGhosttyConfig {

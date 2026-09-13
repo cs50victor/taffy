@@ -73,7 +73,7 @@ public struct ComputerUseSection: View {
                 }
                 SettingsCardDivider()
                 SettingsCardNote(
-                    String(localized: "settings.computerUse.enabled.note", defaultValue: "Computer Use runs locally in the bundled Taffy Computer Use app. Its permissions and restart lifecycle are independent from cmux. Telemetry and update checks are disabled.")
+                    String(localized: "settings.computerUse.enabled.note", defaultValue: "Computer Use runs locally in the bundled Taffy Computer Use app. Its permissions and restart lifecycle are independent from Taffy. Telemetry and update checks are disabled.")
                 )
             }
             .task {

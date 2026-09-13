@@ -273,7 +273,7 @@ final class PhonePushClient {
             subtitle: "",
             body: String(
                 localized: "push.test.body",
-                defaultValue: "Your Mac sent a test alert to cmux."
+                defaultValue: "Your Mac sent a test alert to Taffy."
             ),
             replyShape: "",
             workspaceId: nil,

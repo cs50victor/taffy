@@ -1135,7 +1135,7 @@ class GhosttyApp {
         loadInlineGhosttyConfig(
             contents,
             into: config,
-            prefix: "cmux-managed-terminal-settings",
+            prefix: "Taffy-managed-terminal-settings",
             logLabel: "managed terminal settings"
         )
     }
@@ -1330,8 +1330,8 @@ class GhosttyApp {
             \(Self.numberedWorkspaceGhosttyUnbinds)
             """,
             into: config,
-            prefix: "cmux-owned-keybind-overrides",
-            logLabel: "cmux-owned keybind overrides"
+            prefix: "Taffy-owned-keybind-overrides",
+            logLabel: "Taffy-owned keybind overrides"
         )
     }
 

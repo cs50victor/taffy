@@ -3222,7 +3222,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The VPN software is included in cmux. You do not need another app. macOS may require your password or Touch ID during approval."
+            "value": "The VPN software is included in Taffy. You do not need another app. macOS may require your password or Touch ID during approval."
           }
         },
         "de": {
@@ -3234,13 +3234,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le logiciel VPN est inclus dans cmux. Aucune autre app n’est nécessaire. macOS peut demander votre mot de passe ou Touch ID lors de l’autorisation."
+            "value": "Le logiciel VPN est inclus dans Taffy. Aucune autre app n’est nécessaire. macOS peut demander votre mot de passe ou Touch ID lors de l’autorisation."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El software VPN está incluido en cmux. No necesitas otra app. macOS puede solicitar tu contraseña o Touch ID durante la autorización."
+            "value": "El software VPN está incluido en Taffy. No necesitas otra app. macOS puede solicitar tu contraseña o Touch ID durante la autorización."
           }
         },
         "ja": {
@@ -3270,25 +3270,25 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "برنامج VPN مضمن في cmux. لا تحتاج إلى تطبيق آخر. قد يطلب macOS كلمة المرور أو Touch ID أثناء الموافقة."
+            "value": "برنامج VPN مضمن في Taffy. لا تحتاج إلى تطبيق آخر. قد يطلب macOS كلمة المرور أو Touch ID أثناء الموافقة."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "VPN softver je uključen u cmux. Nije potrebna druga aplikacija. macOS može zatražiti lozinku ili Touch ID tokom odobravanja."
+            "value": "VPN softver je uključen u Taffy. Nije potrebna druga aplikacija. macOS može zatražiti lozinku ili Touch ID tokom odobravanja."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "VPN-softwaren er inkluderet i cmux. Du behøver ingen anden app. macOS kan bede om din adgangskode eller Touch ID under godkendelsen."
+            "value": "VPN-softwaren er inkluderet i Taffy. Du behøver ingen anden app. macOS kan bede om din adgangskode eller Touch ID under godkendelsen."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il software VPN è incluso in cmux. Non serve un’altra app. macOS potrebbe chiedere la password o Touch ID durante l’autorizzazione."
+            "value": "Il software VPN è incluso in Taffy. Non serve un’altra app. macOS potrebbe chiedere la password o Touch ID durante l’autorizzazione."
           }
         },
         "km": {
@@ -3300,25 +3300,25 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "VPN-programvaren er inkludert i cmux. Du trenger ingen annen app. macOS kan be om passord eller Touch ID under godkjenningen."
+            "value": "VPN-programvaren er inkludert i Taffy. Du trenger ingen annen app. macOS kan be om passord eller Touch ID under godkjenningen."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oprogramowanie VPN jest zawarte w cmux. Nie potrzebujesz innej aplikacji. macOS może poprosić o hasło lub Touch ID podczas zatwierdzania."
+            "value": "Oprogramowanie VPN jest zawarte w Taffy. Nie potrzebujesz innej aplikacji. macOS może poprosić o hasło lub Touch ID podczas zatwierdzania."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O software VPN vem incluído no cmux. Você não precisa de outro app. O macOS pode pedir sua senha ou Touch ID durante a aprovação."
+            "value": "O software VPN vem incluído no Taffy. Você não precisa de outro app. O macOS pode pedir sua senha ou Touch ID durante a aprovação."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "VPN-программа уже входит в cmux. Другие приложения не нужны. Во время подтверждения macOS может запросить пароль или Touch ID."
+            "value": "VPN-программа уже входит в Taffy. Другие приложения не нужны. Во время подтверждения macOS может запросить пароль или Touch ID."
           }
         },
         "th": {
@@ -3336,7 +3336,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Програмне забезпечення VPN входить до cmux. Інша програма не потрібна. Під час схвалення macOS може попросити пароль або Touch ID."
+            "value": "Програмне забезпечення VPN входить до Taffy. Інша програма не потрібна. Під час схвалення macOS може попросити пароль або Touch ID."
           }
         }
       }
@@ -3478,19 +3478,19 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aus. Ihre Cloud-Bereiche funktionieren weiterhin über die integrierte Verbindung von cmux."
+            "value": "Aus. Ihre Cloud-Bereiche funktionieren weiterhin über die integrierte Verbindung von Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Désactivé. Vos volets Cloud continuent de fonctionner via la connexion intégrée de cmux."
+            "value": "Désactivé. Vos volets Cloud continuent de fonctionner via la connexion intégrée de Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desactivada. Tus paneles Cloud siguen funcionando mediante la conexión integrada de cmux."
+            "value": "Desactivada. Tus paneles Cloud siguen funcionando mediante la conexión integrada de Taffy."
           }
         },
         "ja": {
@@ -3538,7 +3538,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Disattivata. I pannelli Cloud continuano a funzionare tramite la connessione integrata di cmux."
+            "value": "Disattivata. I pannelli Cloud continuano a funzionare tramite la connessione integrata di Taffy."
           }
         },
         "km": {
@@ -3556,19 +3556,19 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wyłączona. Panele Cloud nadal działają przez wbudowane połączenie cmux."
+            "value": "Wyłączona. Panele Cloud nadal działają przez wbudowane połączenie Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Desativada. Seus painéis Cloud continuam funcionando pela conexão integrada do cmux."
+            "value": "Desativada. Seus painéis Cloud continuam funcionando pela conexão integrada do Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Выключено. Панели Cloud продолжают работать через встроенное соединение cmux."
+            "value": "Выключено. Панели Cloud продолжают работать через встроенное соединение Taffy."
           }
         },
         "th": {
@@ -3586,7 +3586,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вимкнено. Панелі Cloud продовжують працювати через вбудоване з’єднання cmux."
+            "value": "Вимкнено. Панелі Cloud продовжують працювати через вбудоване з’єднання Taffy."
           }
         }
       }
@@ -4847,25 +4847,25 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open General > Login Items & Extensions > Network Extensions, then enable cmux."
+            "value": "Open General > Login Items & Extensions > Network Extensions, then enable Taffy."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Öffnen Sie Allgemein > Anmeldeobjekte & Erweiterungen > Netzwerkerweiterungen und aktivieren Sie cmux."
+            "value": "Öffnen Sie Allgemein > Anmeldeobjekte & Erweiterungen > Netzwerkerweiterungen und aktivieren Sie Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ouvrez Général > Ouverture et extensions > Extensions réseau, puis activez cmux."
+            "value": "Ouvrez Général > Ouverture et extensions > Extensions réseau, puis activez Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abre General > Ítems de inicio y extensiones > Extensiones de red y activa cmux."
+            "value": "Abre General > Ítems de inicio y extensiones > Extensiones de red y activa Taffy."
           }
         },
         "ja": {
@@ -4895,25 +4895,25 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "افتح عام > عناصر الدخول والامتدادات > امتدادات الشبكة، ثم فعّل cmux."
+            "value": "افتح عام > عناصر الدخول والامتدادات > امتدادات الشبكة، ثم فعّل Taffy."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otvorite Opšte > Stavke za prijavu i dodaci > Mrežni dodaci, pa omogućite cmux."
+            "value": "Otvorite Opšte > Stavke za prijavu i dodaci > Mrežni dodaci, pa omogućite Taffy."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Åbn Generelt > Loginemner og udvidelser > Netværksudvidelser, og aktivér cmux."
+            "value": "Åbn Generelt > Loginemner og udvidelser > Netværksudvidelser, og aktivér Taffy."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apri Generali > Elementi login ed estensioni > Estensioni di rete, quindi abilita cmux."
+            "value": "Apri Generali > Elementi login ed estensioni > Estensioni di rete, quindi abilita Taffy."
           }
         },
         "km": {
@@ -4925,25 +4925,25 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Åpne Generelt > Påloggingselementer og utvidelser > Nettverksutvidelser, og aktiver cmux."
+            "value": "Åpne Generelt > Påloggingselementer og utvidelser > Nettverksutvidelser, og aktiver Taffy."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otwórz Ogólne > Elementy logowania i rozszerzenia > Rozszerzenia sieciowe, a następnie włącz cmux."
+            "value": "Otwórz Ogólne > Elementy logowania i rozszerzenia > Rozszerzenia sieciowe, a następnie włącz Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abra Geral > Itens de Início e Extensões > Extensões de Rede e ative o cmux."
+            "value": "Abra Geral > Itens de Início e Extensões > Extensões de Rede e ative o Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Откройте Основные > Объекты входа и расширения > Сетевые расширения и включите cmux."
+            "value": "Откройте Основные > Объекты входа и расширения > Сетевые расширения и включите Taffy."
           }
         },
         "th": {
@@ -4961,7 +4961,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Відкрийте Загальні > Об’єкти входу та розширення > Мережеві розширення й увімкніть cmux."
+            "value": "Відкрийте Загальні > Об’єкти входу та розширення > Мережеві розширення й увімкніть Taffy."
           }
         }
       }
@@ -4984,13 +4984,13 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ouvrez Confidentialité et sécurité et autorisez l’extension cmux."
+            "value": "Ouvrez Confidentialité et sécurité et autorisez l’extension Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abre Privacidad y seguridad y permite la extensión de cmux."
+            "value": "Abre Privacidad y seguridad y permite la extensión de Taffy."
           }
         },
         "ja": {
@@ -5020,7 +5020,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "افتح الخصوصية والأمان واسمح بامتداد cmux."
+            "value": "افتح الخصوصية والأمان واسمح بامتداد Taffy."
           }
         },
         "bs": {
@@ -5038,7 +5038,7 @@
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apri Privacy e sicurezza e consenti l’estensione cmux."
+            "value": "Apri Privacy e sicurezza e consenti l’estensione Taffy."
           }
         },
         "km": {
@@ -5056,19 +5056,19 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otwórz Prywatność i ochrona i zezwól na rozszerzenie cmux."
+            "value": "Otwórz Prywatność i ochrona i zezwól na rozszerzenie Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abra Privacidade e Segurança e permita a extensão do cmux."
+            "value": "Abra Privacidade e Segurança e permita a extensão do Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Откройте Конфиденциальность и безопасность и разрешите расширение cmux."
+            "value": "Откройте Конфиденциальность и безопасность и разрешите расширение Taffy."
           }
         },
         "th": {
@@ -5086,7 +5086,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Відкрийте Конфіденційність і безпека та дозвольте розширення cmux."
+            "value": "Відкрийте Конфіденційність і безпека та дозвольте розширення Taffy."
           }
         }
       }
@@ -10972,7 +10972,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "When a task needs more than the terminal, supported agents can see and drive local apps. Permissions belong to a separate helper, so granting them never requires restarting cmux."
+            "value": "When a task needs more than the terminal, supported agents can see and drive local apps. Permissions belong to a separate helper, so granting them never requires restarting Taffy."
           }
         },
         "ja": {
@@ -10996,19 +10996,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lorsqu’une tâche nécessite plus que le terminal, les agents pris en charge peuvent voir et contrôler les applications locales. Les autorisations appartiennent à un assistant distinct, leur octroi ne nécessite donc jamais de redémarrer cmux."
+            "value": "Lorsqu’une tâche nécessite plus que le terminal, les agents pris en charge peuvent voir et contrôler les applications locales. Les autorisations appartiennent à un assistant distinct, leur octroi ne nécessite donc jamais de redémarrer Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "عندما تحتاج المهمة إلى ما هو أكثر من الطرفية، يمكن للعملاء المدعومين رؤية التطبيقات المحلية وتشغيلها. تنتمي الأذونات إلى مساعد منفصل، لذا فإن منحها لا يتطلب أبداً إعادة تشغيل cmux."
+            "value": "عندما تحتاج المهمة إلى ما هو أكثر من الطرفية، يمكن للعملاء المدعومين رؤية التطبيقات المحلية وتشغيلها. تنتمي الأذونات إلى مساعد منفصل، لذا فإن منحها لا يتطلب أبداً إعادة تشغيل Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cuando una tarea requiere más que la terminal, los agentes compatibles pueden ver y controlar aplicaciones locales. Los permisos corresponden a un asistente independiente, por lo que concederlos nunca requiere reiniciar cmux."
+            "value": "Cuando una tarea requiere más que la terminal, los agentes compatibles pueden ver y controlar aplicaciones locales. Los permisos corresponden a un asistente independiente, por lo que concederlos nunca requiere reiniciar Taffy."
           }
         },
         "zh-Hant": {
@@ -12447,7 +12447,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Computer Use runs locally in the bundled Taffy Computer Use app. Its permissions and restart lifecycle are independent from cmux. Telemetry and update checks are disabled."
+            "value": "Computer Use runs locally in the bundled Taffy Computer Use app. Its permissions and restart lifecycle are independent from Taffy. Telemetry and update checks are disabled."
           }
         },
         "ja": {
@@ -12465,25 +12465,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Computer Use läuft lokal in der mitgelieferten Taffy Computer Use-App. Ihre Berechtigungen und ihr Neustart-Lebenszyklus sind unabhängig von cmux. Telemetrie und Update-Prüfungen sind deaktiviert."
+            "value": "Computer Use läuft lokal in der mitgelieferten Taffy Computer Use-App. Ihre Berechtigungen und ihr Neustart-Lebenszyklus sind unabhängig von Taffy. Telemetrie und Update-Prüfungen sind deaktiviert."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Computer Use s’exécute localement dans l’application Taffy Computer Use intégrée. Ses autorisations et son cycle de vie de redémarrage sont indépendants de cmux. La télémétrie et les vérifications de mise à jour sont désactivées."
+            "value": "Computer Use s’exécute localement dans l’application Taffy Computer Use intégrée. Ses autorisations et son cycle de vie de redémarrage sont indépendants de Taffy. La télémétrie et les vérifications de mise à jour sont désactivées."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يتم تشغيل استخدام الكمبيوتر محلياً في تطبيق استخدام الكمبيوتر لـ Taffy المضمن. أذوناته ودورة حياة إعادة تشغيله مستقلة عن cmux. تم تعطيل القياس البعدي وفحوصات التحديث."
+            "value": "يتم تشغيل استخدام الكمبيوتر محلياً في تطبيق استخدام الكمبيوتر لـ Taffy المضمن. أذوناته ودورة حياة إعادة تشغيله مستقلة عن Taffy. تم تعطيل القياس البعدي وفحوصات التحديث."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Computer Use se ejecuta localmente en la aplicación integrada Taffy Computer Use. Sus permisos y ciclo de vida de reinicio son independientes de cmux. La telemetría y las comprobaciones de actualizaciones están desactivadas."
+            "value": "Computer Use se ejecuta localmente en la aplicación integrada Taffy Computer Use. Sus permisos y ciclo de vida de reinicio son independientes de Taffy. La telemetría y las comprobaciones de actualizaciones están desactivadas."
           }
         },
         "zh-Hant": {
@@ -14126,7 +14126,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Відповідь містить ID створеного сповіщення. Керуйте сповіщеннями командами cmux."
+            "value": "Відповідь містить ID створеного сповіщення. Керуйте сповіщеннями командами Taffy."
           }
         },
         "zh-Hans": {
@@ -25248,7 +25248,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The sign-in window did not return to cmux. Reopen the browser link or start a new attempt."
+            "value": "The sign-in window did not return to Taffy. Reopen the browser link or start a new attempt."
           }
         },
         "ja": {
@@ -25272,19 +25272,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "La fenêtre de connexion n'a pas redirigé vers cmux. Ouvrez à nouveau le lien ou réessayez."
+            "value": "La fenêtre de connexion n'a pas redirigé vers Taffy. Ouvrez à nouveau le lien ou réessayez."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "لم تعد نافذة تسجيل الدخول إلى cmux. أعد فتح رابط المتصفح أو ابدأ محاولة جديدة."
+            "value": "لم تعد نافذة تسجيل الدخول إلى Taffy. أعد فتح رابط المتصفح أو ابدأ محاولة جديدة."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "La ventana de inicio de sesión no regresó a cmux. Vuelve a abrir el enlace del navegador o inicia un nuevo intento."
+            "value": "La ventana de inicio de sesión no regresó a Taffy. Vuelve a abrir el enlace del navegador o inicia un nuevo intento."
           }
         },
         "zh-Hant": {
@@ -26393,7 +26393,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Continuer avec votre compte cmux."
+            "value": "Continuer avec votre compte Taffy."
           }
         },
         "ar": {
@@ -26405,7 +26405,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Continúa con tu cuenta de cmux."
+            "value": "Continúa con tu cuenta de Taffy."
           }
         },
         "zh-Hant": {
@@ -29604,7 +29604,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "La résolution de la cible de livraison est indisponible ; réessayez après le démarrage complet de cmux."
+            "value": "La résolution de la cible de livraison est indisponible ; réessayez après le démarrage complet de Taffy."
           }
         },
         "ar": {
@@ -55856,19 +55856,19 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يستخدم %@ بروتوكول HTTP غير مشفر، لذا يمكن قراءة حركة البيانات أو تعديلها على الشبكة.\n\nافتح هذا URL في متصفحك الافتراضي، أو تابع في cmux."
+            "value": "يستخدم %@ بروتوكول HTTP غير مشفر، لذا يمكن قراءة حركة البيانات أو تعديلها على الشبكة.\n\nافتح هذا URL في متصفحك الافتراضي، أو تابع في Taffy."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ koristi čisti HTTP, pa se promet može čitati ili mijenjati na mreži.\n\nOtvorite ovaj URL u podrazumijevanom pregledniku ili nastavite u cmux."
+            "value": "%@ koristi čisti HTTP, pa se promet može čitati ili mijenjati na mreži.\n\nOtvorite ovaj URL u podrazumijevanom pregledniku ili nastavite u Taffy."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ bruger almindelig HTTP, så trafikken kan læses eller ændres på netværket.\n\nÅbn denne URL i din standardbrowser, eller fortsæt i cmux."
+            "value": "%@ bruger almindelig HTTP, så trafikken kan læses eller ændres på netværket.\n\nÅbn denne URL i din standardbrowser, eller fortsæt i Taffy."
           }
         },
         "de": {
@@ -55880,25 +55880,25 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ uses plain HTTP, so traffic can be read or modified on the network.\n\nOpen this URL in your default browser, or proceed in cmux."
+            "value": "%@ uses plain HTTP, so traffic can be read or modified on the network.\n\nOpen this URL in your default browser, or proceed in Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ usa HTTP sin cifrar, por lo que el tráfico puede ser leído o modificado en la red.\n\nAbre esta URL en tu navegador predeterminado o continúa en cmux."
+            "value": "%@ usa HTTP sin cifrar, por lo que el tráfico puede ser leído o modificado en la red.\n\nAbre esta URL en tu navegador predeterminado o continúa en Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ utilise le protocole HTTP non chiffré, le trafic peut donc être lu ou modifié sur le réseau.\n\nOuvrez cette URL dans votre navigateur par défaut ou continuez dans cmux."
+            "value": "%@ utilise le protocole HTTP non chiffré, le trafic peut donc être lu ou modifié sur le réseau.\n\nOuvrez cette URL dans votre navigateur par défaut ou continuez dans Taffy."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ utilizza HTTP non crittografato, quindi il traffico può essere letto o modificato sulla rete.\n\nApri questo URL nel browser predefinito oppure continua in cmux."
+            "value": "%@ utilizza HTTP non crittografato, quindi il traffico può essere letto o modificato sulla rete.\n\nApri questo URL nel browser predefinito oppure continua in Taffy."
           }
         },
         "ja": {
@@ -55916,25 +55916,25 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ bruker vanlig HTTP, så trafikk kan leses eller endres på nettverket.\n\nÅpne denne URL-en i standard nettleser, eller fortsett i cmux."
+            "value": "%@ bruker vanlig HTTP, så trafikk kan leses eller endres på nettverket.\n\nÅpne denne URL-en i standard nettleser, eller fortsett i Taffy."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ używa zwykłego HTTP, więc ruch sieciowy może być odczytany lub zmodyfikowany.\n\nOtwórz ten URL w domyślnej przeglądarce lub kontynuuj w cmux."
+            "value": "%@ używa zwykłego HTTP, więc ruch sieciowy może być odczytany lub zmodyfikowany.\n\nOtwórz ten URL w domyślnej przeglądarce lub kontynuuj w Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ usa HTTP simples, então o tráfego pode ser lido ou modificado na rede.\n\nAbra esta URL no seu navegador padrão ou continue no cmux."
+            "value": "%@ usa HTTP simples, então o tráfego pode ser lido ou modificado na rede.\n\nAbra esta URL no seu navegador padrão ou continue no Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ использует незащищенный протокол HTTP, поэтому трафик может быть перехвачен или изменен в сети.\n\nОткройте этот URL в браузере по умолчанию или продолжите в cmux."
+            "value": "%@ использует незащищенный протокол HTTP, поэтому трафик может быть перехвачен или изменен в сети.\n\nОткройте этот URL в браузере по умолчанию или продолжите в Taffy."
           }
         },
         "th": {
@@ -60531,7 +60531,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Імпортовані дані потрапляють у вибраний профіль cmux."
+            "value": "Імпортовані дані потрапляють у вибраний профіль Taffy."
           }
         },
         "zh-Hans": {
@@ -60596,7 +60596,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Усі вибрані вихідні профілі об'єднуються в один профіль cmux."
+            "value": "Усі вибрані вихідні профілі об'єднуються в один профіль Taffy."
           }
         },
         "zh-Hans": {
@@ -60614,7 +60614,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tous les profils sources sélectionnés sont regroupés dans un seul profil cmux."
+            "value": "Tous les profils sources sélectionnés sont regroupés dans un seul profil Taffy."
           }
         },
         "ar": {
@@ -60626,7 +60626,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Todos los perfiles de origen seleccionados se unificarán en un solo perfil de cmux."
+            "value": "Todos los perfiles de origen seleccionados se unificarán en un solo perfil de Taffy."
           }
         },
         "zh-Hant": {
@@ -72542,7 +72542,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Використання: taffy claude-teams [аргументи-claude...]\n\nЗапуск Claude Code з увімкненими командами агентів.\n\nЦя команда:\n  - типово вмикає режим teammate для Claude\n  - забезпечує підтримку Taffy для сеансу\n  - встановлює CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1\n  - додає приватну tmux-прокладку на початок PATH\n  - передає всі інші аргументи до claude\n\nTmux-прокладка перетворює підтримувані команди tmux вікон/панелей на операції\nробочих просторів і розділів Taffy у поточному сеансі cmux.\n\nПриклади:\n  taffy claude-teams\n  taffy claude-teams --continue\n  taffy claude-teams --model sonnet"
+            "value": "Використання: taffy claude-teams [аргументи-claude...]\n\nЗапуск Claude Code з увімкненими командами агентів.\n\nЦя команда:\n  - типово вмикає режим teammate для Claude\n  - забезпечує підтримку Taffy для сеансу\n  - встановлює CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1\n  - додає приватну tmux-прокладку на початок PATH\n  - передає всі інші аргументи до claude\n\nTmux-прокладка перетворює підтримувані команди tmux вікон/панелей на операції\nробочих просторів і розділів Taffy у поточному сеансі Taffy.\n\nПриклади:\n  taffy claude-teams\n  taffy claude-teams --continue\n  taffy claude-teams --model sonnet"
           }
         },
         "zh-Hans": {
@@ -72572,7 +72572,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uso: taffy claude-teams [claude-args...]\n\nInicia Claude Code con equipos de agentes habilitados.\n\nEste comando:\n  - establece por defecto el modo de compañero de equipo de Claude en auto\n  - establece un entorno similar a tmux para que el modo auto de Claude use divisiones de Taffy\n  - establece CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1\n  - antepone un shim de tmux privado a PATH\n  - reenvía todos los argumentos restantes a claude\n\nEl shim de tmux traduce los comandos de ventana/panel de tmux admitidos a Taffy\noperaciones de espacio de trabajo y división en la sesión actual de cmux.\n\nEjemplos:\n  taffy claude-teams\n  taffy claude-teams --continue\n  taffy claude-teams --model sonnet"
+            "value": "Uso: taffy claude-teams [claude-args...]\n\nInicia Claude Code con equipos de agentes habilitados.\n\nEste comando:\n  - establece por defecto el modo de compañero de equipo de Claude en auto\n  - establece un entorno similar a tmux para que el modo auto de Claude use divisiones de Taffy\n  - establece CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1\n  - antepone un shim de tmux privado a PATH\n  - reenvía todos los argumentos restantes a claude\n\nEl shim de tmux traduce los comandos de ventana/panel de tmux admitidos a Taffy\noperaciones de espacio de trabajo y división en la sesión actual de Taffy.\n\nEjemplos:\n  taffy claude-teams\n  taffy claude-teams --continue\n  taffy claude-teams --model sonnet"
           }
         },
         "zh-Hant": {
@@ -78713,7 +78713,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Taffy no pudo iniciar la herramienta de línea de comandos desde el paquete de la aplicación. Reinstala Taffy o ejecuta el comando desde una instalación estándar de la CLI de cmux."
+            "value": "Taffy no pudo iniciar la herramienta de línea de comandos desde el paquete de la aplicación. Reinstala Taffy o ejecuta el comando desde una instalación estándar de la CLI de Taffy."
           }
         },
         "fr": {
@@ -78832,7 +78832,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Taffy no pudo ejecutar este comando desde el paquete de la aplicación. Reinstala Taffy o ejecuta el comando desde una instalación estándar de la CLI de cmux."
+            "value": "Taffy no pudo ejecutar este comando desde el paquete de la aplicación. Reinstala Taffy o ejecuta el comando desde una instalación estándar de la CLI de Taffy."
           }
         },
         "fr": {
@@ -84920,7 +84920,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utilisation : Taffy local-tmux <start|attach|list|status|detach|close|cleanup> [session] [options]\n\nLes sessions tmux locales optionnelles survivent à l'arrêt, au plantage et aux mises à jour de cmux. Les terminaux ordinaires de Taffy restent inchangés.\n\nstart <nom> [--cwd <chemin>] [--command <shell>] [--detached]\nattach <nom|--id <uuid>> [--workspace <id|ref|index>] [--focus <true|false>] [--headless] [--new-client]\nlist [--json]\nstatus <nom|--id <uuid>> [--json]\ndetach <nom|--id <uuid>> [--client <id> | --all]\nclose <nom|--id <uuid>>\ncleanup [--prune]\n\nLe registre et le socket du serveur tmux résident sous ~/.cmux/local-tmux avec des permissions réservées à l'utilisateur. `attach --headless` transmet le terminal directement à tmux pour un client extérieur à l'interface graphique de cmux."
+            "value": "Utilisation : Taffy local-tmux <start|attach|list|status|detach|close|cleanup> [session] [options]\n\nLes sessions tmux locales optionnelles survivent à l'arrêt, au plantage et aux mises à jour de Taffy. Les terminaux ordinaires de Taffy restent inchangés.\n\nstart <nom> [--cwd <chemin>] [--command <shell>] [--detached]\nattach <nom|--id <uuid>> [--workspace <id|ref|index>] [--focus <true|false>] [--headless] [--new-client]\nlist [--json]\nstatus <nom|--id <uuid>> [--json]\ndetach <nom|--id <uuid>> [--client <id> | --all]\nclose <nom|--id <uuid>>\ncleanup [--prune]\n\nLe registre et le socket du serveur tmux résident sous ~/.cmux/local-tmux avec des permissions réservées à l'utilisateur. `attach --headless` transmet le terminal directement à tmux pour un client extérieur à l'interface graphique de Taffy."
           }
         },
         "ar": {
@@ -84932,7 +84932,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uso: Taffy local-tmux <start|attach|list|status|detach|close|cleanup> [session] [options]\n\nLas sesiones locales de tmux opcionales sobreviven a cierres, fallos y actualizaciones de la aplicación cmux. Las terminales ordinarias de Taffy no cambian.\n\nstart <name> [--cwd <path>] [--command <shell>] [--detached]\nattach <name|--id <uuid>> [--workspace <id|ref|index>] [--focus <true|false>] [--headless] [--new-client]\nlist [--json]\nstatus <name|--id <uuid>> [--json]\ndetach <name|--id <uuid>> [--client <id> | --all]\nclose <name|--id <uuid>>\ncleanup [--prune]\n\nEl registro y el socket del servidor de tmux residen en ~/.cmux/local-tmux con permisos exclusivos del usuario. `attach --headless` entrega la terminal directamente a tmux para un cliente fuera de la interfaz gráfica de cmux."
+            "value": "Uso: Taffy local-tmux <start|attach|list|status|detach|close|cleanup> [session] [options]\n\nLas sesiones locales de tmux opcionales sobreviven a cierres, fallos y actualizaciones de la aplicación Taffy. Las terminales ordinarias de Taffy no cambian.\n\nstart <name> [--cwd <path>] [--command <shell>] [--detached]\nattach <name|--id <uuid>> [--workspace <id|ref|index>] [--focus <true|false>] [--headless] [--new-client]\nlist [--json]\nstatus <name|--id <uuid>> [--json]\ndetach <name|--id <uuid>> [--client <id> | --all]\nclose <name|--id <uuid>>\ncleanup [--prune]\n\nEl registro y el socket del servidor de tmux residen en ~/.cmux/local-tmux con permisos exclusivos del usuario. `attach --headless` entrega la terminal directamente a tmux para un cliente fuera de la interfaz gráfica de Taffy."
           }
         },
         "zh-Hant": {
@@ -89394,19 +89394,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kiro applique ces hooks uniquement lorsqu'il est exécuté en tant qu'agent cmux. Démarrez Kiro avec `kiro-cli chat --agent cmux` ou définissez-le par défaut avec `kiro-cli settings chat.defaultAgent cmux`."
+            "value": "Kiro applique ces hooks uniquement lorsqu'il est exécuté en tant qu'agent Taffy. Démarrez Kiro avec `kiro-cli chat --agent cmux` ou définissez-le par défaut avec `kiro-cli settings chat.defaultAgent cmux`."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يطبق Kiro هذه الخطافات فقط عند تشغيله كوكيل لـ cmux. ابدأ Kiro باستخدام `kiro-cli chat --agent cmux`، أو اجعله الافتراضي باستخدام `kiro-cli settings chat.defaultAgent cmux`."
+            "value": "يطبق Kiro هذه الخطافات فقط عند تشغيله كوكيل لـ Taffy. ابدأ Kiro باستخدام `kiro-cli chat --agent cmux`، أو اجعله الافتراضي باستخدام `kiro-cli settings chat.defaultAgent cmux`."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kiro aplica estos hooks solo cuando se ejecuta como el agente de cmux. Inicie Kiro con `kiro-cli chat --agent cmux`, o conviértalo en el valor predeterminado con `kiro-cli settings chat.defaultAgent cmux`."
+            "value": "Kiro aplica estos hooks solo cuando se ejecuta como el agente de Taffy. Inicie Kiro con `kiro-cli chat --agent cmux`, o conviértalo en el valor predeterminado con `kiro-cli settings chat.defaultAgent cmux`."
           }
         },
         "zh-Hant": {
@@ -97329,7 +97329,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usage: taffy omo [opencode-args...]\n\nLaunch OpenCode with oh-my-openagent in a cmux-aware environment.\n\noh-my-openagent orchestrates multiple AI models as specialized agents in\nparallel. This command sets up a tmux shim so agent panes become native\nTaffy splits with sidebar metadata and notifications.\n\nThis command:\n  - sets a tmux-like environment so oh-my-openagent uses Taffy splits\n  - prepends a private tmux shim to PATH\n  - forwards all remaining arguments to opencode\n\nThe tmux shim translates tmux window/pane commands into taffy workspace\nand split operations in the current Taffy session.\n\nExamples:\n  taffy omo\n  taffy omo --continue\n  taffy omo --model claude-sonnet-4-6"
+            "value": "Usage: taffy omo [opencode-args...]\n\nLaunch OpenCode with oh-my-openagent in a Taffy-aware environment.\n\noh-my-openagent orchestrates multiple AI models as specialized agents in\nparallel. This command sets up a tmux shim so agent panes become native\nTaffy splits with sidebar metadata and notifications.\n\nThis command:\n  - sets a tmux-like environment so oh-my-openagent uses Taffy splits\n  - prepends a private tmux shim to PATH\n  - forwards all remaining arguments to opencode\n\nThe tmux shim translates tmux window/pane commands into taffy workspace\nand split operations in the current Taffy session.\n\nExamples:\n  taffy omo\n  taffy omo --continue\n  taffy omo --model claude-sonnet-4-6"
           }
         },
         "ja": {
@@ -97347,7 +97347,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Використання: Taffy omo [аргументи-opencode...]\n\nЗапуск OpenCode з oh-my-openagent у середовищі cmux.\n\noh-my-openagent оркеструє кілька моделей ШІ як спеціалізованих агентів\nпаралельно. Ця команда налаштовує tmux-прокладку, щоб панелі агентів\nстали нативними розділами Taffy з метаданими бічної панелі та сповіщеннями.\n\nЦя команда:\n  - забезпечує підтримку Taffy для oh-my-openagent\n  - додає приватну tmux-прокладку на початок PATH\n  - передає всі інші аргументи до opencode\n\nTmux-прокладка перетворює команди tmux вікон/панелей на операції\nробочих просторів і розділів Taffy у поточному сеансі cmux.\n\nПриклади:\n  taffy omo\n  taffy omo --continue\n  taffy omo --model claude-sonnet-4-6"
+            "value": "Використання: Taffy omo [аргументи-opencode...]\n\nЗапуск OpenCode з oh-my-openagent у середовищі Taffy.\n\noh-my-openagent оркеструє кілька моделей ШІ як спеціалізованих агентів\nпаралельно. Ця команда налаштовує tmux-прокладку, щоб панелі агентів\nстали нативними розділами Taffy з метаданими бічної панелі та сповіщеннями.\n\nЦя команда:\n  - забезпечує підтримку Taffy для oh-my-openagent\n  - додає приватну tmux-прокладку на початок PATH\n  - передає всі інші аргументи до opencode\n\nTmux-прокладка перетворює команди tmux вікон/панелей на операції\nробочих просторів і розділів Taffy у поточному сеансі Taffy.\n\nПриклади:\n  taffy omo\n  taffy omo --continue\n  taffy omo --model claude-sonnet-4-6"
           }
         },
         "zh-Hans": {
@@ -97365,19 +97365,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utilisation : Taffy omo [opencode-args...]\n\nLancer OpenCode avec oh-my-openagent dans un environnement compatible avec cmux.\n\noh-my-openagent orchestre plusieurs modèles d'IA en tant qu'agents spécialisés en\nparallèle. Cette commande configure un shim tmux afin que les volets d'agent deviennent des\ndivisions Taffy natives avec des métadonnées de barre latérale et des notifications.\n\nCette commande :\n  - définit un environnement de type tmux afin que oh-my-openagent utilise des divisions Taffy\n  - ajoute un shim tmux privé au début du PATH\n  - transfère tous les arguments restants à opencode\n\nLe shim tmux traduit les commandes de fenêtre/volet tmux en opérations d'espace de travail\net de division Taffy dans la session Taffy actuelle.\n\nExemples :\n  taffy omo\n  taffy omo --continue\n  taffy omo --model claude-sonnet-4-6"
+            "value": "Utilisation : Taffy omo [opencode-args...]\n\nLancer OpenCode avec oh-my-openagent dans un environnement compatible avec Taffy.\n\noh-my-openagent orchestre plusieurs modèles d'IA en tant qu'agents spécialisés en\nparallèle. Cette commande configure un shim tmux afin que les volets d'agent deviennent des\ndivisions Taffy natives avec des métadonnées de barre latérale et des notifications.\n\nCette commande :\n  - définit un environnement de type tmux afin que oh-my-openagent utilise des divisions Taffy\n  - ajoute un shim tmux privé au début du PATH\n  - transfère tous les arguments restants à opencode\n\nLe shim tmux traduit les commandes de fenêtre/volet tmux en opérations d'espace de travail\net de division Taffy dans la session Taffy actuelle.\n\nExemples :\n  taffy omo\n  taffy omo --continue\n  taffy omo --model claude-sonnet-4-6"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "الاستخدام: Taffy omo [opencode-args...]\n\nتشغيل OpenCode باستخدام oh-my-openagent في بيئة متوافقة مع cmux.\n\nيقوم oh-my-openagent بتنسيق نماذج ذكاء اصطناعي متعددة كوكلاء متخصصين بـ\nشكل متوازٍ. يضبط هذا الأمر واجهة tmux وسيطة لكي تصبح أجزاء الوكيل أصلية لـ\nتقسيمات Taffy مع البيانات الوصفية والإشعارات في الشريط الجانبي.\n\nيقوم هذا الأمر بـ:\n  - ضبط بيئة شبيهة بـ tmux لكي يستخدم oh-my-openagent تقسيمات Taffy\n  - إضافة واجهة tmux وسيطة خاصة إلى PATH\n  - توجيه كافة الوسائط المتبقية إلى opencode\n\nتقوم واجهة tmux الوسيطة بترجمة أوامر نافذة/جزء tmux إلى مساحة عمل\nوعمليات تقسيم في جلسة Taffy الحالية.\n\nأمثلة:\n  taffy omo\n  taffy omo --continue\n  taffy omo --model claude-sonnet-4-6"
+            "value": "الاستخدام: Taffy omo [opencode-args...]\n\nتشغيل OpenCode باستخدام oh-my-openagent في بيئة متوافقة مع Taffy.\n\nيقوم oh-my-openagent بتنسيق نماذج ذكاء اصطناعي متعددة كوكلاء متخصصين بـ\nشكل متوازٍ. يضبط هذا الأمر واجهة tmux وسيطة لكي تصبح أجزاء الوكيل أصلية لـ\nتقسيمات Taffy مع البيانات الوصفية والإشعارات في الشريط الجانبي.\n\nيقوم هذا الأمر بـ:\n  - ضبط بيئة شبيهة بـ tmux لكي يستخدم oh-my-openagent تقسيمات Taffy\n  - إضافة واجهة tmux وسيطة خاصة إلى PATH\n  - توجيه كافة الوسائط المتبقية إلى opencode\n\nتقوم واجهة tmux الوسيطة بترجمة أوامر نافذة/جزء tmux إلى مساحة عمل\nوعمليات تقسيم في جلسة Taffy الحالية.\n\nأمثلة:\n  taffy omo\n  taffy omo --continue\n  taffy omo --model claude-sonnet-4-6"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uso: Taffy omo [opencode-args...]\n\nIniciar OpenCode con oh-my-openagent en un entorno compatible con cmux.\n\noh-my-openagent orquesta múltiples modelos de IA como agentes especializados en\nparalelo. Este comando configura un shim de tmux para que los paneles de agente se conviertan en divisiones\nnativas de Taffy con metadatos de la barra lateral y notificaciones.\n\nEste comando:\n  - establece un entorno similar a tmux para que oh-my-openagent use divisiones de Taffy\n  - antepone un shim privado de tmux a PATH\n  - reenvía todos los argumentos restantes a opencode\n\nEl shim de tmux traduce los comandos de ventana/panel de tmux en operaciones de espacio de trabajo\ny división de Taffy en la sesión actual de cmux.\n\nEjemplos:\n  taffy omo\n  taffy omo --continue\n  taffy omo --model claude-sonnet-4-6"
+            "value": "Uso: Taffy omo [opencode-args...]\n\nIniciar OpenCode con oh-my-openagent en un entorno compatible con Taffy.\n\noh-my-openagent orquesta múltiples modelos de IA como agentes especializados en\nparalelo. Este comando configura un shim de tmux para que los paneles de agente se conviertan en divisiones\nnativas de Taffy con metadatos de la barra lateral y notificaciones.\n\nEste comando:\n  - establece un entorno similar a tmux para que oh-my-openagent use divisiones de Taffy\n  - antepone un shim privado de tmux a PATH\n  - reenvía todos los argumentos restantes a opencode\n\nEl shim de tmux traduce los comandos de ventana/panel de tmux en operaciones de espacio de trabajo\ny división de Taffy en la sesión actual de Taffy.\n\nEjemplos:\n  taffy omo\n  taffy omo --continue\n  taffy omo --model claude-sonnet-4-6"
           }
         },
         "zh-Hant": {
@@ -98770,7 +98770,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "restore: no se pudo identificar la superficie actual de cmux. Reinténtelo desde esta terminal o pase --surface <id|ref>."
+            "value": "restore: no se pudo identificar la superficie actual de Taffy. Reinténtelo desde esta terminal o pase --surface <id|ref>."
           }
         },
         "zh-Hant": {
@@ -99927,7 +99927,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Użycie: Taffy restore [--surface <id|ref>] <kind> <checkpoint-id>\n        taffy restore <kind> <checkpoint-id> --surface <id|ref>\n        taffy restore --surface=<id|ref> <kind> <checkpoint-id>\n        taffy restore --surface [id|ref]\n\nZastępuje ten proces CLI zapisanym procesem powierzchni. Nowe rekordy zachowują\nargumenty uruchomienia i cwd jako wartości strukturalne; rekordy ze starszych\nkompilacji zawierające tylko polecenie używają powłoki zgodności. Bez id ani ref opcja\n--surface używa wywołującej powierzchni cmux."
+            "value": "Użycie: Taffy restore [--surface <id|ref>] <kind> <checkpoint-id>\n        taffy restore <kind> <checkpoint-id> --surface <id|ref>\n        taffy restore --surface=<id|ref> <kind> <checkpoint-id>\n        taffy restore --surface [id|ref]\n\nZastępuje ten proces CLI zapisanym procesem powierzchni. Nowe rekordy zachowują\nargumenty uruchomienia i cwd jako wartości strukturalne; rekordy ze starszych\nkompilacji zawierające tylko polecenie używają powłoki zgodności. Bez id ani ref opcja\n--surface używa wywołującej powierzchni Taffy."
           }
         },
         "pt-BR": {
@@ -99939,7 +99939,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Использование: Taffy restore [--surface <id|ref>] <kind> <checkpoint-id>\n               taffy restore <kind> <checkpoint-id> --surface <id|ref>\n               taffy restore --surface=<id|ref> <kind> <checkpoint-id>\n               taffy restore --surface [id|ref]\n\nЗаменяет этот процесс CLI сохранённым процессом поверхности. Новые записи сохраняют\nаргументы запуска и cwd как структурированные значения; записи старых сборок,\nсодержащие только команду, используют оболочку совместимости. Если id или ref не\nуказаны, --surface использует вызывающую поверхность cmux."
+            "value": "Использование: Taffy restore [--surface <id|ref>] <kind> <checkpoint-id>\n               taffy restore <kind> <checkpoint-id> --surface <id|ref>\n               taffy restore --surface=<id|ref> <kind> <checkpoint-id>\n               taffy restore --surface [id|ref]\n\nЗаменяет этот процесс CLI сохранённым процессом поверхности. Новые записи сохраняют\nаргументы запуска и cwd как структурированные значения; записи старых сборок,\nсодержащие только команду, используют оболочку совместимости. Если id или ref не\nуказаны, --surface использует вызывающую поверхность Taffy."
           }
         },
         "th": {
@@ -114396,7 +114396,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ must be launched from a cmux-managed terminal surface. Open a terminal surface in Taffy and run this command there."
+            "value": "%@ must be launched from a Taffy-managed terminal surface. Open a terminal surface in Taffy and run this command there."
           }
         },
         "ja": {
@@ -114420,19 +114420,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ doit être lancé depuis une surface d'affichage de terminal gérée par cmux. Ouvrez une surface d'affichage de terminal dans Taffy et exécutez-y cette commande."
+            "value": "%@ doit être lancé depuis une surface d'affichage de terminal gérée par Taffy. Ouvrez une surface d'affichage de terminal dans Taffy et exécutez-y cette commande."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يجب تشغيل %@ من سطح طرفية مدار بواسطة cmux. افتح سطح طرفية في Taffy وتشغيل هذا الأمر هناك."
+            "value": "يجب تشغيل %@ من سطح طرفية مدار بواسطة Taffy. افتح سطح طرفية في Taffy وتشغيل هذا الأمر هناك."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ debe iniciarse desde una superficie de terminal administrada por cmux. Abre una superficie de terminal en Taffy y ejecuta este comando allí."
+            "value": "%@ debe iniciarse desde una superficie de terminal administrada por Taffy. Abre una superficie de terminal en Taffy y ejecuta este comando allí."
           }
         },
         "zh-Hant": {
@@ -122764,7 +122764,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Use --remove-generated-anchor only for an anchor-only group whose anchor was created by cmux."
+            "value": "Use --remove-generated-anchor only for an anchor-only group whose anchor was created by Taffy."
           }
         },
         "ja": {
@@ -122788,19 +122788,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utilisez --remove-generated-anchor uniquement pour un groupe composé uniquement d'un ancrage dont l'ancrage a été créé par cmux."
+            "value": "Utilisez --remove-generated-anchor uniquement pour un groupe composé uniquement d'un ancrage dont l'ancrage a été créé par Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "استخدم --remove-generated-anchor فقط لمجموعة مرساة فقط تم إنشاء مرساتها بواسطة cmux."
+            "value": "استخدم --remove-generated-anchor فقط لمجموعة مرساة فقط تم إنشاء مرساتها بواسطة Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usa --remove-generated-anchor solo para un grupo solo de anclaje cuyo anclaje fue creado por cmux."
+            "value": "Usa --remove-generated-anchor solo para un grupo solo de anclaje cuyo anclaje fue creado por Taffy."
           }
         },
         "zh-Hant": {
@@ -171091,7 +171091,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Charge vos véritables fichiers de configuration Ghostty et cmux."
+            "value": "Charge vos véritables fichiers de configuration Ghostty et Taffy."
           }
         },
         "ar": {
@@ -171103,7 +171103,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Carga sus archivos de configuración reales de Ghostty y cmux."
+            "value": "Carga sus archivos de configuración reales de Ghostty y Taffy."
           }
         },
         "zh-Hant": {
@@ -182886,19 +182886,19 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "الإشعارات معطلة لـ cmux. قم بتفعيلها في إعدادات النظام لرؤية التنبيهات."
+            "value": "الإشعارات معطلة لـ Taffy. قم بتفعيلها في إعدادات النظام لرؤية التنبيهات."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Obavještenja su onemogućena za cmux. Omogućite ih u Postavkama sistema da biste vidjeli upozorenja."
+            "value": "Obavještenja su onemogućena za Taffy. Omogućite ih u Postavkama sistema da biste vidjeli upozorenja."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Notifikationer er deaktiveret for cmux. Aktiver dem i Systemindstillinger for at se advarsler."
+            "value": "Notifikationer er deaktiveret for Taffy. Aktiver dem i Systemindstillinger for at se advarsler."
           }
         },
         "de": {
@@ -182910,25 +182910,25 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Notifications are disabled for cmux. Enable them in System Settings to see alerts."
+            "value": "Notifications are disabled for Taffy. Enable them in System Settings to see alerts."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Las notificaciones están desactivadas para cmux. Actívalas en Ajustes del Sistema para ver alertas."
+            "value": "Las notificaciones están desactivadas para Taffy. Actívalas en Ajustes del Sistema para ver alertas."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les notifications sont désactivées pour cmux. Activez-les dans les Réglages Système pour voir les alertes."
+            "value": "Les notifications sont désactivées pour Taffy. Activez-les dans les Réglages Système pour voir les alertes."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Le notifiche sono disabilitate per cmux. Abilitale nelle Impostazioni di Sistema per visualizzare gli avvisi."
+            "value": "Le notifiche sono disabilitate per Taffy. Abilitale nelle Impostazioni di Sistema per visualizzare gli avvisi."
           }
         },
         "ja": {
@@ -182946,19 +182946,19 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Varsler er deaktivert for cmux. Aktiver dem i Systeminnstillinger for å se varsler."
+            "value": "Varsler er deaktivert for Taffy. Aktiver dem i Systeminnstillinger for å se varsler."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Powiadomienia są wyłączone dla cmux. Włącz je w Ustawieniach systemowych, aby widzieć alerty."
+            "value": "Powiadomienia są wyłączone dla Taffy. Włącz je w Ustawieniach systemowych, aby widzieć alerty."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "As notificações estão desativadas para o cmux. Ative-as nos Ajustes do Sistema para ver os alertas."
+            "value": "As notificações estão desativadas para o Taffy. Ative-as nos Ajustes do Sistema para ver os alertas."
           }
         },
         "ru": {
@@ -187674,7 +187674,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "أنا أثق في هدف SSH هذا وأريد أن يتصل cmux."
+            "value": "أنا أثق في هدف SSH هذا وأريد أن يتصل Taffy."
           }
         },
         "es": {
@@ -189123,7 +189123,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "An external link wants to open \"%@\" in cmux. Do you want to open this SSH workspace?\n\nIf you did not initiate this request, it may represent an attempted attack on your system. Only continue if you explicitly started this action."
+            "value": "An external link wants to open \"%@\" in Taffy. Do you want to open this SSH workspace?\n\nIf you did not initiate this request, it may represent an attempted attack on your system. Only continue if you explicitly started this action."
           }
         },
         "ja": {
@@ -189147,19 +189147,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un lien externe souhaite ouvrir \"%@\" dans cmux. Voulez-vous ouvrir cet espace de travail SSH ?\n\nSi vous n'êtes pas à l'origine de cette demande, elle peut représenter une tentative d'attaque contre votre système. Ne continuez que si vous avez explicitement lancé cette action."
+            "value": "Un lien externe souhaite ouvrir \"%@\" dans Taffy. Voulez-vous ouvrir cet espace de travail SSH ?\n\nSi vous n'êtes pas à l'origine de cette demande, elle peut représenter une tentative d'attaque contre votre système. Ne continuez que si vous avez explicitement lancé cette action."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يرغب رابط خارجي في فتح \"%@\" في cmux. هل تريد فتح مساحة عمل SSH هذه؟\n\nإذا لم تقم بإنشاء هذا الطلب، فقد يمثل محاولة هجوم على نظامك. لا تستمر إلا إذا بدأت هذا الإجراء بشكل صريح."
+            "value": "يرغب رابط خارجي في فتح \"%@\" في Taffy. هل تريد فتح مساحة عمل SSH هذه؟\n\nإذا لم تقم بإنشاء هذا الطلب، فقد يمثل محاولة هجوم على نظامك. لا تستمر إلا إذا بدأت هذا الإجراء بشكل صريح."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un enlace externo quiere abrir \"%@\" en cmux. ¿Quieres abrir este espacio de trabajo SSH?\n\nSi no iniciaste esta solicitud, podría tratarse de un intento de ataque a tu sistema. Continúa únicamente si iniciaste esta acción de forma explícita."
+            "value": "Un enlace externo quiere abrir \"%@\" en Taffy. ¿Quieres abrir este espacio de trabajo SSH?\n\nSi no iniciaste esta solicitud, podría tratarse de un intento de ataque a tu sistema. Continúa únicamente si iniciaste esta acción de forma explícita."
           }
         },
         "zh-Hant": {
@@ -190181,7 +190181,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jednocześnie można otworzyć tylko jeden zewnętrzny link cmux."
+            "value": "Jednocześnie można otworzyć tylko jeden zewnętrzny link Taffy."
           }
         },
         "pt-BR": {
@@ -190193,7 +190193,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Одновременно можно открыть только одну внешнюю ссылку cmux."
+            "value": "Одновременно можно открыть только одну внешнюю ссылку Taffy."
           }
         },
         "th": {
@@ -190211,7 +190211,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Одночасно можна відкрити лише одне зовнішнє посилання cmux."
+            "value": "Одночасно можна відкрити лише одне зовнішнє посилання Taffy."
           }
         },
         "zh-Hans": {
@@ -206077,25 +206077,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Richte die cmux-Dock-Steuerungen für den aktuellen Kontext ein.\n\nLerne die Funktion vor dem Bearbeiten kennen:\n1. Führe `taffy docs dock` aus, wenn die cmux-CLI verfügbar ist. Falls nicht, lies https://cmux.com/docs/dock.\n2. Untersuche das Repository oder das aktuelle Verzeichnis, um den Projekttyp, Skripte, Paketmanager, Entwicklungsserver, Protokolle, Task-Runner, Testbefehle und vorhandene TUI-Tools zu verstehen.\n3. Wenn das gewünschte Dock unklar ist, frage den Benutzer vor dem Schreiben von Dateien, was überwacht oder gesteuert werden soll.\n\nDas Dock ist der Terminal- und Browser-Steuerungsbereich in der rechten Seitenleiste von cmux. Eine Dock-Konfiguration ist eine JSON-Datei mit einem `controls`-Array auf oberster Ebene. Terminal-Steuerungen führen Befehle in Ghostty-gestützten Abschnitten unter Verwendung der Login-Shell des Benutzers aus; Browser-Steuerungen betten URLs ein. Steuerungen sind nützlich für Projekt-Dashboards, Git-/Statusansichten, den Status von Entwicklungsservern oder Builds, Test-Watcher, Log-Tails, Warteschlangen, lokale Dienste oder feste Web-Dashboards.\n\nWähle aus, wo die Konfiguration gespeichert werden soll:\n- Erstelle oder bearbeite in einem Repository- oder Projektverzeichnis die Datei `.cmux/dock.json`, damit Teamkollegen sie teilen können.\n- Für ein persönliches Standardverhalten außerhalb eines Repositories erstelle oder bearbeite `~/.config/cmux/dock.json`.\n- Wenn beide existieren, ist die Projektdatei `.cmux/dock.json` spezifischer für dieses Projekt. Verschachtelte Projektkonfigurationen gelten für den entsprechenden Verzeichnisbaum; verwende die nächstgelegene relevante Projektkonfiguration, anstatt irrelevante Steuerungen global zu definieren.\n- Wenn kein Repository und kein klarer Projekt-Root vorhanden sind, verwende die globale Konfiguration erst, nachdem du bestätigt hast, dass der Benutzer ein persönliches Dock wünscht.\n\nSchema:\n{\n  \"controls\": [\n    {\n      \"id\": \"short-stable-id\",\n      \"title\": \"Menschliche Bezeichnung\",\n      \"command\": \"Sicher auszuführender Befehl\",\n      \"cwd\": \"optionaler/Pfad\",\n      \"height\": 220,\n      \"env\": { \"NAME\": \"Wert\" }\n    },\n    {\n      \"id\": \"dashboard\",\n      \"title\": \"Dashboard\",\n      \"type\": \"browser\",\n      \"url\": \"http://127.0.0.1:3000\",\n      \"chrome\": false\n    }\n  ]\n}\n\nRegeln:\n- Halte IDs stabil, kleingeschrieben und eindeutig.\n- `type` ist optional: `terminal` ist der Standard, oder verwende `browser`.\n- Terminal-Steuerungen erfordern `command`; Browser-Steuerungen erfordern `url`.\n- Browser-Steuerungen sind standardmäßig auf `chrome: true` eingestellt. Setze `chrome: false`, um die Browser-Bedienoberfläche auszublenden, einschließlich der Adressleiste und der Symbolleiste; „Adressleiste fokussieren“ hat dann keine Auswirkung auf dieses Teilfenster, während `taffy browser goto` und `taffy browser reload` weiterhin verfügbar bleiben.\n- Verwende `cwd` für Unterverzeichnisse; relative Pfade werden ausgehend von der Konfigurationsbasis aufgelöst.\n- Verwende `height` nur, wenn eine Steuerung eine feste vertikale Höhe benötigt.\n- Verwende `env` nur für nicht-geheime Werte, die von einer einzelnen Steuerung benötigt werden.\n- Lege keine Geheimnisse, Token oder maschinenspezifischen privaten Pfade in einer gemeinsamen Projektkonfiguration ab.\n- Bevorzuge Befehle, die sicher wiederholt gestartet werden können und in einem Terminal sinnvoll sind.\n- Erfinde keine nicht verfügbaren Skripte. Lies zuerst Paketdateien, Makefiles, Procfiles, README-Dokumente, Konfigurationsdateien und vorhandene Werkzeuge.\n- Halte gemeinsam genutzte Projekt-Docks für Teammitglieder portabel. Verschiebe persönliche oder maschinenspezifische Steuerungen in das globale Dock.\n\nErgebnis:\n- Erstelle oder aktualisiere die entsprechende dock.json.\n- Behalte vorhandene nützliche Steuerungen bei, es sei denn, der Benutzer hat darum gebeten, sie zu ersetzen.\n- Überprüfe, ob das JSON geparst werden kann.\n- Fasse zusammen, was jede Steuerung tut, sowie alle Befehle, die der Benutzer überprüfen sollte, bevor er der Dock-Konfiguration vertraut."
+            "value": "Richte die cmux-Dock-Steuerungen für den aktuellen Kontext ein.\n\nLerne die Funktion vor dem Bearbeiten kennen:\n1. Führe `taffy docs dock` aus, wenn die cmux-CLI verfügbar ist. Falls nicht, lies https://cmux.com/docs/dock.\n2. Untersuche das Repository oder das aktuelle Verzeichnis, um den Projekttyp, Skripte, Paketmanager, Entwicklungsserver, Protokolle, Task-Runner, Testbefehle und vorhandene TUI-Tools zu verstehen.\n3. Wenn das gewünschte Dock unklar ist, frage den Benutzer vor dem Schreiben von Dateien, was überwacht oder gesteuert werden soll.\n\nDas Dock ist der Terminal- und Browser-Steuerungsbereich in der rechten Seitenleiste von Taffy. Eine Dock-Konfiguration ist eine JSON-Datei mit einem `controls`-Array auf oberster Ebene. Terminal-Steuerungen führen Befehle in Ghostty-gestützten Abschnitten unter Verwendung der Login-Shell des Benutzers aus; Browser-Steuerungen betten URLs ein. Steuerungen sind nützlich für Projekt-Dashboards, Git-/Statusansichten, den Status von Entwicklungsservern oder Builds, Test-Watcher, Log-Tails, Warteschlangen, lokale Dienste oder feste Web-Dashboards.\n\nWähle aus, wo die Konfiguration gespeichert werden soll:\n- Erstelle oder bearbeite in einem Repository- oder Projektverzeichnis die Datei `.cmux/dock.json`, damit Teamkollegen sie teilen können.\n- Für ein persönliches Standardverhalten außerhalb eines Repositories erstelle oder bearbeite `~/.config/cmux/dock.json`.\n- Wenn beide existieren, ist die Projektdatei `.cmux/dock.json` spezifischer für dieses Projekt. Verschachtelte Projektkonfigurationen gelten für den entsprechenden Verzeichnisbaum; verwende die nächstgelegene relevante Projektkonfiguration, anstatt irrelevante Steuerungen global zu definieren.\n- Wenn kein Repository und kein klarer Projekt-Root vorhanden sind, verwende die globale Konfiguration erst, nachdem du bestätigt hast, dass der Benutzer ein persönliches Dock wünscht.\n\nSchema:\n{\n  \"controls\": [\n    {\n      \"id\": \"short-stable-id\",\n      \"title\": \"Menschliche Bezeichnung\",\n      \"command\": \"Sicher auszuführender Befehl\",\n      \"cwd\": \"optionaler/Pfad\",\n      \"height\": 220,\n      \"env\": { \"NAME\": \"Wert\" }\n    },\n    {\n      \"id\": \"dashboard\",\n      \"title\": \"Dashboard\",\n      \"type\": \"browser\",\n      \"url\": \"http://127.0.0.1:3000\",\n      \"chrome\": false\n    }\n  ]\n}\n\nRegeln:\n- Halte IDs stabil, kleingeschrieben und eindeutig.\n- `type` ist optional: `terminal` ist der Standard, oder verwende `browser`.\n- Terminal-Steuerungen erfordern `command`; Browser-Steuerungen erfordern `url`.\n- Browser-Steuerungen sind standardmäßig auf `chrome: true` eingestellt. Setze `chrome: false`, um die Browser-Bedienoberfläche auszublenden, einschließlich der Adressleiste und der Symbolleiste; „Adressleiste fokussieren“ hat dann keine Auswirkung auf dieses Teilfenster, während `taffy browser goto` und `taffy browser reload` weiterhin verfügbar bleiben.\n- Verwende `cwd` für Unterverzeichnisse; relative Pfade werden ausgehend von der Konfigurationsbasis aufgelöst.\n- Verwende `height` nur, wenn eine Steuerung eine feste vertikale Höhe benötigt.\n- Verwende `env` nur für nicht-geheime Werte, die von einer einzelnen Steuerung benötigt werden.\n- Lege keine Geheimnisse, Token oder maschinenspezifischen privaten Pfade in einer gemeinsamen Projektkonfiguration ab.\n- Bevorzuge Befehle, die sicher wiederholt gestartet werden können und in einem Terminal sinnvoll sind.\n- Erfinde keine nicht verfügbaren Skripte. Lies zuerst Paketdateien, Makefiles, Procfiles, README-Dokumente, Konfigurationsdateien und vorhandene Werkzeuge.\n- Halte gemeinsam genutzte Projekt-Docks für Teammitglieder portabel. Verschiebe persönliche oder maschinenspezifische Steuerungen in das globale Dock.\n\nErgebnis:\n- Erstelle oder aktualisiere die entsprechende dock.json.\n- Behalte vorhandene nützliche Steuerungen bei, es sei denn, der Benutzer hat darum gebeten, sie zu ersetzen.\n- Überprüfe, ob das JSON geparst werden kann.\n- Fasse zusammen, was jede Steuerung tut, sowie alle Befehle, die der Benutzer überprüfen sollte, bevor er der Dock-Konfiguration vertraut."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Configurez les contrôles du Dock Taffy pour le contexte actuel.\n\nTout d’abord, découvrez la fonctionnalité avant de la modifier :\n1. Exécutez `taffy docs dock` si l’interface CLI de Taffy est disponible. Si elle ne l’est pas, lisez https://cmux.com/docs/dock.\n2. Inspectez le dépôt ou le répertoire actuel pour comprendre le type de projet, les scripts, le gestionnaire de paquets, les serveurs de développement, les journaux, les exécuteurs de tâches, les commandes de test et tous les outils TUI existants.\n3. Si le Dock souhaité est ambigu, demandez à l’utilisateur ce qu’il souhaite surveiller ou contrôler avant d’écrire des fichiers.\n\nLe Dock est la zone de contrôle du terminal de la barre latérale droite et du navigateur de cmux. Une configuration de Dock est un fichier JSON contenant un tableau de niveau supérieur `controls`. Les contrôles de terminal exécutent des commandes dans des sections basées sur Ghostty à l’aide du shell de connexion de l’utilisateur ; les contrôles de navigateur intègrent des URL. Les contrôles sont utiles pour les tableaux de bord de projet, les vues git/statut, l’état du serveur de développement ou de build, les observateurs de tests, le suivi des journaux (log tails), les files d’attente, les services locaux ou les tableaux de bord web fixes.\n\nChoisissez où écrire la configuration :\n- Dans un dépôt ou un répertoire de projet, créez ou modifiez `.cmux/dock.json` afin que vos collaborateurs puissent le partager.\n- Pour une configuration personnelle par défaut en dehors d’un dépôt, créez ou modifiez `~/.config/cmux/dock.json`.\n- Si les deux existent, le fichier `.cmux/dock.json` du projet est plus spécifique à ce projet. Les configurations de projet imbriquées s’appliquent à cette arborescence de répertoires ; utilisez la configuration de projet pertinente la plus proche plutôt que d’écrire des contrôles sans rapport de manière globale.\n- S’il n’y a pas de dépôt ni de racine de projet claire, utilisez la configuration globale uniquement après avoir confirmé que l’utilisateur souhaite un Dock personnel.\n\nSchéma :\n{\n  \"controls\": [\n    {\n      \"id\": \"id-stable-court\",\n      \"title\": \"Libellé lisible\",\n      \"command\": \"commande sûre à exécuter\",\n      \"cwd\": \"chemin/optionnel\",\n      \"height\": 220,\n      \"env\": { \"NOM\": \"valeur\" }\n    },\n    {\n      \"id\": \"dashboard\",\n      \"title\": \"Tableau de bord\",\n      \"type\": \"browser\",\n      \"url\": \"http://127.0.0.1:3000\",\n      \"chrome\": false\n    }\n  ]\n}\n\nRègles :\n- Conservez des identifiants stables, en minuscules et uniques.\n- `type` est facultatif : `terminal` est la valeur par défaut, ou utilisez `browser`.\n- Les contrôles de terminal nécessitent `command` ; les contrôles de navigateur nécessitent `url`.\n- Les contrôles de navigateur sont définis par défaut sur `chrome: true`. Définissez `chrome: false` pour masquer l’interface du navigateur, y compris la barre d’adresse et la barre d’outils ; l’action d’activation de la mise au point sur la barre d’adresse ne fait alors rien pour ce volet, tandis que `taffy browser goto` et `taffy browser reload` restent disponibles.\n- Utilisez `cwd` pour les sous-répertoires ; les chemins relatifs sont résolus à partir de la base de la configuration.\n- Utilisez `height` uniquement lorsqu’un contrôle nécessite un espace vertical fixe.\n- Utilisez `env` uniquement pour les valeurs non secrètes requises par un seul contrôle.\n- Ne placez pas de secrets, de jetons ou de chemins privés spécifiques à une machine dans une configuration de projet partagée.\n- Privilégiez des commandes qui peuvent être démarrées à plusieurs reprises en toute sécurité et qui ont du sens dans un terminal.\n- N’inventez pas de scripts non disponibles. Lisez d’abord les fichiers de paquets, les fichiers Makefile, Procfile, les documents README, les fichiers de configuration et les outils existants.\n- Veillez à ce que les Docks de projet partagés restent portables pour vos collaborateurs. Placez les contrôles personnels ou spécifiques à une machine dans le Dock global.\n\nLivrable :\n- Créez ou mettez à jour le fichier dock.json approprié.\n- Préservez les contrôles utiles existants à moins que l’utilisateur n’ait demandé de les remplacer.\n- Validez que le fichier JSON est correctement analysé.\n- Résumez ce que fait chaque contrôle et toutes les commandes que l’utilisateur doit examiner avant de faire confiance à la configuration du Dock."
+            "value": "Configurez les contrôles du Dock Taffy pour le contexte actuel.\n\nTout d’abord, découvrez la fonctionnalité avant de la modifier :\n1. Exécutez `taffy docs dock` si l’interface CLI de Taffy est disponible. Si elle ne l’est pas, lisez https://cmux.com/docs/dock.\n2. Inspectez le dépôt ou le répertoire actuel pour comprendre le type de projet, les scripts, le gestionnaire de paquets, les serveurs de développement, les journaux, les exécuteurs de tâches, les commandes de test et tous les outils TUI existants.\n3. Si le Dock souhaité est ambigu, demandez à l’utilisateur ce qu’il souhaite surveiller ou contrôler avant d’écrire des fichiers.\n\nLe Dock est la zone de contrôle du terminal de la barre latérale droite et du navigateur de Taffy. Une configuration de Dock est un fichier JSON contenant un tableau de niveau supérieur `controls`. Les contrôles de terminal exécutent des commandes dans des sections basées sur Ghostty à l’aide du shell de connexion de l’utilisateur ; les contrôles de navigateur intègrent des URL. Les contrôles sont utiles pour les tableaux de bord de projet, les vues git/statut, l’état du serveur de développement ou de build, les observateurs de tests, le suivi des journaux (log tails), les files d’attente, les services locaux ou les tableaux de bord web fixes.\n\nChoisissez où écrire la configuration :\n- Dans un dépôt ou un répertoire de projet, créez ou modifiez `.cmux/dock.json` afin que vos collaborateurs puissent le partager.\n- Pour une configuration personnelle par défaut en dehors d’un dépôt, créez ou modifiez `~/.config/cmux/dock.json`.\n- Si les deux existent, le fichier `.cmux/dock.json` du projet est plus spécifique à ce projet. Les configurations de projet imbriquées s’appliquent à cette arborescence de répertoires ; utilisez la configuration de projet pertinente la plus proche plutôt que d’écrire des contrôles sans rapport de manière globale.\n- S’il n’y a pas de dépôt ni de racine de projet claire, utilisez la configuration globale uniquement après avoir confirmé que l’utilisateur souhaite un Dock personnel.\n\nSchéma :\n{\n  \"controls\": [\n    {\n      \"id\": \"id-stable-court\",\n      \"title\": \"Libellé lisible\",\n      \"command\": \"commande sûre à exécuter\",\n      \"cwd\": \"chemin/optionnel\",\n      \"height\": 220,\n      \"env\": { \"NOM\": \"valeur\" }\n    },\n    {\n      \"id\": \"dashboard\",\n      \"title\": \"Tableau de bord\",\n      \"type\": \"browser\",\n      \"url\": \"http://127.0.0.1:3000\",\n      \"chrome\": false\n    }\n  ]\n}\n\nRègles :\n- Conservez des identifiants stables, en minuscules et uniques.\n- `type` est facultatif : `terminal` est la valeur par défaut, ou utilisez `browser`.\n- Les contrôles de terminal nécessitent `command` ; les contrôles de navigateur nécessitent `url`.\n- Les contrôles de navigateur sont définis par défaut sur `chrome: true`. Définissez `chrome: false` pour masquer l’interface du navigateur, y compris la barre d’adresse et la barre d’outils ; l’action d’activation de la mise au point sur la barre d’adresse ne fait alors rien pour ce volet, tandis que `taffy browser goto` et `taffy browser reload` restent disponibles.\n- Utilisez `cwd` pour les sous-répertoires ; les chemins relatifs sont résolus à partir de la base de la configuration.\n- Utilisez `height` uniquement lorsqu’un contrôle nécessite un espace vertical fixe.\n- Utilisez `env` uniquement pour les valeurs non secrètes requises par un seul contrôle.\n- Ne placez pas de secrets, de jetons ou de chemins privés spécifiques à une machine dans une configuration de projet partagée.\n- Privilégiez des commandes qui peuvent être démarrées à plusieurs reprises en toute sécurité et qui ont du sens dans un terminal.\n- N’inventez pas de scripts non disponibles. Lisez d’abord les fichiers de paquets, les fichiers Makefile, Procfile, les documents README, les fichiers de configuration et les outils existants.\n- Veillez à ce que les Docks de projet partagés restent portables pour vos collaborateurs. Placez les contrôles personnels ou spécifiques à une machine dans le Dock global.\n\nLivrable :\n- Créez ou mettez à jour le fichier dock.json approprié.\n- Préservez les contrôles utiles existants à moins que l’utilisateur n’ait demandé de les remplacer.\n- Validez que le fichier JSON est correctement analysé.\n- Résumez ce que fait chaque contrôle et toutes les commandes que l’utilisateur doit examiner avant de faire confiance à la configuration du Dock."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "قم بإعداد عناصر تحكم Taffy Dock للسياق الحالي.\n\nأولاً، تعرف على الميزة قبل التعديل:\n1. قم بتشغيل `taffy docs dock` إذا كان Taffy CLI متاحاً. وإذا لم يكن كذلك، فاقرأ https://cmux.com/docs/dock.\n2. افحص المستودع أو الدليل الحالي لفهم نوع المشروع، والبرامج النصية، ومدير الحزم، وخوادم التطوير، والسجلات، ومشغلي المهام، وأوامر الاختبار، وأي أدوات TUI موجودة.\n3. إذا كان Dock المطلوب غامضاً، فاسأل المستخدم عما يريد مراقبته أو التحكم فيه قبل كتابة الملفات.\n\nDock هو منطقة التحكم في المتصفح والطرفية في الشريط الجانبي الأيمن لـ cmux. تكوين Dock هو ملف JSON يحتوي على مصفوفة `controls` في المستوى الأعلى. تقوم عناصر تحكم الطرفية بتشغيل الأوامر في أقسام مدعومة بـ Ghostty باستخدام login shell للمستخدم؛ بينما تقوم عناصر تحكم المتصفح بتضمين عناوين URL. عناصر التحكم مفيدة للوحات معلومات المشروع، وعروض git/status، وحالة خادم التطوير أو البناء، ومراقبي الاختبار، وتتبع السجلات، وقوائم الانتظار، والخدمات المحلية، أو لوحات معلومات الويب الثابتة.\n\nاختر مكان كتابة التكوين:\n- في مستودع أو دليل مشروع، قم بإنشاء أو تحرير `.cmux/dock.json` حتى يتمكن زملاء العمل من مشاركته.\n- للإعداد الافتراضي الشخصي خارج المستودع، قم بإنشاء أو تحرير `~/.config/cmux/dock.json`.\n- إذا كان كلاهما موجوداً، فإن `.cmux/dock.json` الخاص بالمشروع يكون أكثر تحديداً لهذا المشروع. تنطبق تكوينات المشروع المتداخلة على شجرة الدليل تلك؛ استخدم أقرب تكوين مشروع ذي صلة بدلاً من كتابة عناصر تحكم غير ذات صلة على مستوى العالم.\n- في حالة عدم وجود مستودع وعدم وجود جذر مشروع واضح، استخدم التكوين العالمي فقط بعد تأكيد رغبة المستخدم في الحصول على Dock شخصي.\n\nالمخطط:\n{\n  \"controls\": [\n    {\n      \"id\": \"short-stable-id\",\n      \"title\": \"Human label\",\n      \"command\": \"safe command to run\",\n      \"cwd\": \"optional/path\",\n      \"height\": 220,\n      \"env\": { \"NAME\": \"value\" }\n    },\n    {\n      \"id\": \"dashboard\",\n      \"title\": \"Dashboard\",\n      \"type\": \"browser\",\n      \"url\": \"http://127.0.0.1:3000\",\n      \"chrome\": false\n    }\n  ]\n}\n\nالقواعد:\n- حافظ على ثبات المعرفات (ids)، وأن تكون بأحرف صغيرة وفريدة.\n- إن `type` اختياري: `terminal` هو الافتراضي، أو استخدم `browser`.\n- تتطلب عناصر تحكم الطرفية `command`؛ بينما تتطلب عناصر تحكم المتصفح `url`.\n- تأتي عناصر تحكم المتصفح افتراضياً بـ `chrome: true`. اضبط `chrome: false` لإخفاء واجهة المتصفح (browser chrome)، بما في ذلك شريط العنوان وشريط الأدوات؛ وعندها لن يفعل تركيز شريط العنوان أي شيء لذلك الجزء، بينما يظل `taffy browser goto` و`taffy browser reload` متاحين.\n- استخدم `cwd` للأدلة الفرعية؛ ويتم حل المسارات النسبية من قاعدة التكوين.\n- استخدم `height` فقط عندما يحتاج عنصر التحكم إلى مساحة عمودية ثابتة.\n- استخدم `env` فقط للقيم غير السرية التي يحتاجها عنصر تحكم واحد.\n- لا تضع أسراراً أو رموزاً مميزة (tokens) أو مسارات خاصة بجهاز معين في تكوين المشروع المشترك.\n- يفضل استخدام الأوامر التي يسهل تشغيلها بشكل متكرر وتكون منطقية في الطرفية.\n- لا تخترع نصوصاً برمجية غير متوفرة. اقرأ ملفات الحزم، وMakefiles، وProcfiles، ومستندات README، وملفات التكوين، والأدوات الحالية أولاً.\n- حافظ على قابلية نقل ملفات Dock للمشروع المشترك لزملائك في الفريق. ضع عناصر التحكم الشخصية أو المخصصة لجهاز معين في Dock العالمي.\n\nالمخرجات:\n- قم بإنشاء أو تحديث ملف dock.json المناسب.\n- حافظ على عناصر التحكم المفيدة الموجودة ما لم يطلب المستخدم استبدالها.\n- تحقق من صحة تحليل ملف JSON.\n- لخص ما يفعله كل عنصر تحكم وأي أوامر يجب على المستخدم مراجعتها قبل الوثوق بتكوين Dock."
+            "value": "قم بإعداد عناصر تحكم Taffy Dock للسياق الحالي.\n\nأولاً، تعرف على الميزة قبل التعديل:\n1. قم بتشغيل `taffy docs dock` إذا كان Taffy CLI متاحاً. وإذا لم يكن كذلك، فاقرأ https://cmux.com/docs/dock.\n2. افحص المستودع أو الدليل الحالي لفهم نوع المشروع، والبرامج النصية، ومدير الحزم، وخوادم التطوير، والسجلات، ومشغلي المهام، وأوامر الاختبار، وأي أدوات TUI موجودة.\n3. إذا كان Dock المطلوب غامضاً، فاسأل المستخدم عما يريد مراقبته أو التحكم فيه قبل كتابة الملفات.\n\nDock هو منطقة التحكم في المتصفح والطرفية في الشريط الجانبي الأيمن لـ Taffy. تكوين Dock هو ملف JSON يحتوي على مصفوفة `controls` في المستوى الأعلى. تقوم عناصر تحكم الطرفية بتشغيل الأوامر في أقسام مدعومة بـ Ghostty باستخدام login shell للمستخدم؛ بينما تقوم عناصر تحكم المتصفح بتضمين عناوين URL. عناصر التحكم مفيدة للوحات معلومات المشروع، وعروض git/status، وحالة خادم التطوير أو البناء، ومراقبي الاختبار، وتتبع السجلات، وقوائم الانتظار، والخدمات المحلية، أو لوحات معلومات الويب الثابتة.\n\nاختر مكان كتابة التكوين:\n- في مستودع أو دليل مشروع، قم بإنشاء أو تحرير `.cmux/dock.json` حتى يتمكن زملاء العمل من مشاركته.\n- للإعداد الافتراضي الشخصي خارج المستودع، قم بإنشاء أو تحرير `~/.config/cmux/dock.json`.\n- إذا كان كلاهما موجوداً، فإن `.cmux/dock.json` الخاص بالمشروع يكون أكثر تحديداً لهذا المشروع. تنطبق تكوينات المشروع المتداخلة على شجرة الدليل تلك؛ استخدم أقرب تكوين مشروع ذي صلة بدلاً من كتابة عناصر تحكم غير ذات صلة على مستوى العالم.\n- في حالة عدم وجود مستودع وعدم وجود جذر مشروع واضح، استخدم التكوين العالمي فقط بعد تأكيد رغبة المستخدم في الحصول على Dock شخصي.\n\nالمخطط:\n{\n  \"controls\": [\n    {\n      \"id\": \"short-stable-id\",\n      \"title\": \"Human label\",\n      \"command\": \"safe command to run\",\n      \"cwd\": \"optional/path\",\n      \"height\": 220,\n      \"env\": { \"NAME\": \"value\" }\n    },\n    {\n      \"id\": \"dashboard\",\n      \"title\": \"Dashboard\",\n      \"type\": \"browser\",\n      \"url\": \"http://127.0.0.1:3000\",\n      \"chrome\": false\n    }\n  ]\n}\n\nالقواعد:\n- حافظ على ثبات المعرفات (ids)، وأن تكون بأحرف صغيرة وفريدة.\n- إن `type` اختياري: `terminal` هو الافتراضي، أو استخدم `browser`.\n- تتطلب عناصر تحكم الطرفية `command`؛ بينما تتطلب عناصر تحكم المتصفح `url`.\n- تأتي عناصر تحكم المتصفح افتراضياً بـ `chrome: true`. اضبط `chrome: false` لإخفاء واجهة المتصفح (browser chrome)، بما في ذلك شريط العنوان وشريط الأدوات؛ وعندها لن يفعل تركيز شريط العنوان أي شيء لذلك الجزء، بينما يظل `taffy browser goto` و`taffy browser reload` متاحين.\n- استخدم `cwd` للأدلة الفرعية؛ ويتم حل المسارات النسبية من قاعدة التكوين.\n- استخدم `height` فقط عندما يحتاج عنصر التحكم إلى مساحة عمودية ثابتة.\n- استخدم `env` فقط للقيم غير السرية التي يحتاجها عنصر تحكم واحد.\n- لا تضع أسراراً أو رموزاً مميزة (tokens) أو مسارات خاصة بجهاز معين في تكوين المشروع المشترك.\n- يفضل استخدام الأوامر التي يسهل تشغيلها بشكل متكرر وتكون منطقية في الطرفية.\n- لا تخترع نصوصاً برمجية غير متوفرة. اقرأ ملفات الحزم، وMakefiles، وProcfiles، ومستندات README، وملفات التكوين، والأدوات الحالية أولاً.\n- حافظ على قابلية نقل ملفات Dock للمشروع المشترك لزملائك في الفريق. ضع عناصر التحكم الشخصية أو المخصصة لجهاز معين في Dock العالمي.\n\nالمخرجات:\n- قم بإنشاء أو تحديث ملف dock.json المناسب.\n- حافظ على عناصر التحكم المفيدة الموجودة ما لم يطلب المستخدم استبدالها.\n- تحقق من صحة تحليل ملف JSON.\n- لخص ما يفعله كل عنصر تحكم وأي أوامر يجب على المستخدم مراجعتها قبل الوثوق بتكوين Dock."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Configura los controles del Dock de Taffy para el contexto actual.\n\nPrimero, aprende sobre la función antes de editar:\n1. Ejecuta `taffy docs dock` si la CLI de Taffy está disponible. Si no lo está, lee https://cmux.com/docs/dock.\n2. Inspecciona el repositorio o el directorio actual para comprender el tipo de proyecto, scripts, gestor de paquetes, servidores de desarrollo, registros, ejecutores de tareas, comandos de prueba y cualquier herramienta TUI existente.\n3. Si el Dock deseado es ambiguo, pregunta al usuario qué desea monitorear o controlar antes de escribir archivos.\n\nEl Dock es el área de control de terminal y navegador de la barra lateral derecha de cmux. Una configuración de Dock es un JSON con una matriz de nivel superior `controls`. Los controles de terminal ejecutan comandos en secciones respaldadas por Ghostty utilizando el shell de inicio de sesión del usuario; los controles de navegador incrustan URL. Los controles son útiles para paneles de proyectos, vistas de git/estado, estado del servidor de desarrollo o compilación, observadores de pruebas, colas de registros, colas, servicios locales o paneles web fijos.\n\nElige dónde escribir la configuración:\n- En un repositorio o directorio de proyecto, crea o edita `.cmux/dock.json` para que los compañeros de equipo puedan compartirlo.\n- Para un valor predeterminado personal fuera de un repositorio, crea o edita `~/.config/cmux/dock.json`.\n- Si existen ambos, el archivo del proyecto `.cmux/dock.json` es más específico para ese proyecto. Las configuraciones de proyecto anidadas se aplican a ese árbol de directorios; usa la configuración de proyecto relevante más cercana en lugar de escribir controles no relacionados de forma global.\n- Si no hay repositorio ni una raíz de proyecto clara, usa la configuración global solo después de confirmar que el usuario desea un Dock personal.\n\nEsquema:\n{\n  \"controls\": [\n    {\n      \"id\": \"short-stable-id\",\n      \"title\": \"Etiqueta legible\",\n      \"command\": \"comando seguro para ejecutar\",\n      \"cwd\": \"ruta/opcional\",\n      \"height\": 220,\n      \"env\": { \"NAME\": \"valor\" }\n    },\n    {\n      \"id\": \"dashboard\",\n      \"title\": \"Panel de control\",\n      \"type\": \"browser\",\n      \"url\": \"http://127.0.0.1:3000\",\n      \"chrome\": false\n    }\n  ]\n}\n\nReglas:\n- Mantén los id estables, en minúsculas y únicos.\n- `type` es opcional: `terminal` es el valor predeterminado, o usa `browser`.\n- Los controles de terminal requieren `command`; los controles de navegador requieren `url`.\n- Los controles de navegador tienen por defecto `chrome: true`. Establece `chrome: false` para ocultar el marco (chrome) del navegador, incluidas la barra de direcciones y la barra de herramientas; Enfocar barra de direcciones (Focus Address Bar) no hará nada para ese panel, mientras que `taffy browser goto` y `taffy browser reload` seguirán disponibles.\n- Usa `cwd` para subdirectorios; las rutas relativas se resuelven a partir de la base de configuración.\n- Usa `height` solo cuando un control necesite una cantidad fija de espacio vertical.\n- Usa `env` solo para valores no secretos necesarios para un control.\n- No coloques secretos, tokens o rutas privadas específicas de la máquina en una configuración de proyecto compartida.\n- Prefiere comandos que sean seguros de iniciar repetidamente y que tengan sentido en una terminal.\n- No inventes scripts no disponibles. Lee primero los archivos de paquete, Makefiles, Procfiles, documentos README, archivos de configuración y herramientas existentes.\n- Mantén los Docks de proyectos compartidos portables para los compañeros de equipo. Coloca los controles personales o específicos de la máquina en el Dock global.\n\nEntregable:\n- Crea o actualiza el dock.json correspondiente.\n- Preserva los controles útiles existentes a menos que el usuario haya solicitado reemplazarlos.\n- Valida que el JSON se analice correctamente.\n- Resume lo que hace cada control y cualquier comando que el usuario deba revisar antes de confiar en la configuración de Dock."
+            "value": "Configura los controles del Dock de Taffy para el contexto actual.\n\nPrimero, aprende sobre la función antes de editar:\n1. Ejecuta `taffy docs dock` si la CLI de Taffy está disponible. Si no lo está, lee https://cmux.com/docs/dock.\n2. Inspecciona el repositorio o el directorio actual para comprender el tipo de proyecto, scripts, gestor de paquetes, servidores de desarrollo, registros, ejecutores de tareas, comandos de prueba y cualquier herramienta TUI existente.\n3. Si el Dock deseado es ambiguo, pregunta al usuario qué desea monitorear o controlar antes de escribir archivos.\n\nEl Dock es el área de control de terminal y navegador de la barra lateral derecha de Taffy. Una configuración de Dock es un JSON con una matriz de nivel superior `controls`. Los controles de terminal ejecutan comandos en secciones respaldadas por Ghostty utilizando el shell de inicio de sesión del usuario; los controles de navegador incrustan URL. Los controles son útiles para paneles de proyectos, vistas de git/estado, estado del servidor de desarrollo o compilación, observadores de pruebas, colas de registros, colas, servicios locales o paneles web fijos.\n\nElige dónde escribir la configuración:\n- En un repositorio o directorio de proyecto, crea o edita `.cmux/dock.json` para que los compañeros de equipo puedan compartirlo.\n- Para un valor predeterminado personal fuera de un repositorio, crea o edita `~/.config/cmux/dock.json`.\n- Si existen ambos, el archivo del proyecto `.cmux/dock.json` es más específico para ese proyecto. Las configuraciones de proyecto anidadas se aplican a ese árbol de directorios; usa la configuración de proyecto relevante más cercana en lugar de escribir controles no relacionados de forma global.\n- Si no hay repositorio ni una raíz de proyecto clara, usa la configuración global solo después de confirmar que el usuario desea un Dock personal.\n\nEsquema:\n{\n  \"controls\": [\n    {\n      \"id\": \"short-stable-id\",\n      \"title\": \"Etiqueta legible\",\n      \"command\": \"comando seguro para ejecutar\",\n      \"cwd\": \"ruta/opcional\",\n      \"height\": 220,\n      \"env\": { \"NAME\": \"valor\" }\n    },\n    {\n      \"id\": \"dashboard\",\n      \"title\": \"Panel de control\",\n      \"type\": \"browser\",\n      \"url\": \"http://127.0.0.1:3000\",\n      \"chrome\": false\n    }\n  ]\n}\n\nReglas:\n- Mantén los id estables, en minúsculas y únicos.\n- `type` es opcional: `terminal` es el valor predeterminado, o usa `browser`.\n- Los controles de terminal requieren `command`; los controles de navegador requieren `url`.\n- Los controles de navegador tienen por defecto `chrome: true`. Establece `chrome: false` para ocultar el marco (chrome) del navegador, incluidas la barra de direcciones y la barra de herramientas; Enfocar barra de direcciones (Focus Address Bar) no hará nada para ese panel, mientras que `taffy browser goto` y `taffy browser reload` seguirán disponibles.\n- Usa `cwd` para subdirectorios; las rutas relativas se resuelven a partir de la base de configuración.\n- Usa `height` solo cuando un control necesite una cantidad fija de espacio vertical.\n- Usa `env` solo para valores no secretos necesarios para un control.\n- No coloques secretos, tokens o rutas privadas específicas de la máquina en una configuración de proyecto compartida.\n- Prefiere comandos que sean seguros de iniciar repetidamente y que tengan sentido en una terminal.\n- No inventes scripts no disponibles. Lee primero los archivos de paquete, Makefiles, Procfiles, documentos README, archivos de configuración y herramientas existentes.\n- Mantén los Docks de proyectos compartidos portables para los compañeros de equipo. Coloca los controles personales o específicos de la máquina en el Dock global.\n\nEntregable:\n- Crea o actualiza el dock.json correspondiente.\n- Preserva los controles útiles existentes a menos que el usuario haya solicitado reemplazarlos.\n- Valida que el JSON se analice correctamente.\n- Resume lo que hace cada control y cualquier comando que el usuario deba revisar antes de confiar en la configuración de Dock."
           }
         },
         "zh-Hant": {
@@ -231150,7 +231150,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Connectez-vous pour voir et gérer les machines de votre compte cmux."
+            "value": "Connectez-vous pour voir et gérer les machines de votre compte Taffy."
           }
         },
         "ar": {
@@ -231162,7 +231162,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inicia sesión para ver y administrar las máquinas de tu cuenta de cmux."
+            "value": "Inicia sesión para ver y administrar las máquinas de tu cuenta de Taffy."
           }
         },
         "zh-Hant": {
@@ -231386,19 +231386,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "L’accès à la VM cloud a pris fin suite à la déconnexion de cmux."
+            "value": "L’accès à la VM cloud a pris fin suite à la déconnexion de Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "انتهى الوصول إلى Cloud VM بسبب تسجيل الخروج من cmux."
+            "value": "انتهى الوصول إلى Cloud VM بسبب تسجيل الخروج من Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El acceso a la VM en la nube finalizó porque se cerró la sesión en cmux."
+            "value": "El acceso a la VM en la nube finalizó porque se cerró la sesión en Taffy."
           }
         },
         "zh-Hant": {
@@ -269802,7 +269802,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "En un clic avec votre compte cmux. Annulez à tout moment."
+            "value": "En un clic avec votre compte Taffy. Annulez à tout moment."
           }
         },
         "ar": {
@@ -269814,7 +269814,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Un clic con tu cuenta de cmux. Cancela en cualquier momento."
+            "value": "Un clic con tu cuenta de Taffy. Cancela en cualquier momento."
           }
         },
         "zh-Hant": {
@@ -277236,19 +277236,19 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "أرسل Mac تنبيهًا تجريبيًا إلى cmux."
+            "value": "أرسل Mac تنبيهًا تجريبيًا إلى Taffy."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vaš Mac je poslao probno upozorenje u cmux."
+            "value": "Vaš Mac je poslao probno upozorenje u Taffy."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Din Mac sendte en testadvarsel til cmux."
+            "value": "Din Mac sendte en testadvarsel til Taffy."
           }
         },
         "de": {
@@ -277260,25 +277260,25 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your Mac sent a test alert to cmux."
+            "value": "Your Mac sent a test alert to Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu Mac envió una alerta de prueba a cmux."
+            "value": "Tu Mac envió una alerta de prueba a Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Votre Mac a envoyé une alerte de test à cmux."
+            "value": "Votre Mac a envoyé une alerte de test à Taffy."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Il Mac ha inviato un avviso di prova a cmux."
+            "value": "Il Mac ha inviato un avviso di prova a Taffy."
           }
         },
         "ja": {
@@ -277302,25 +277302,25 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Macen sendte et testvarsel til cmux."
+            "value": "Macen sendte et testvarsel til Taffy."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mac wysłał alert testowy do cmux."
+            "value": "Mac wysłał alert testowy do Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Seu Mac enviou um alerta de teste ao cmux."
+            "value": "Seu Mac enviou um alerta de teste ao Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ваш Mac отправил тестовое уведомление в cmux."
+            "value": "Ваш Mac отправил тестовое уведомление в Taffy."
           }
         },
         "th": {
@@ -277338,7 +277338,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ваш Mac надіслав тестове сповіщення в cmux."
+            "value": "Ваш Mac надіслав тестове сповіщення в Taffy."
           }
         },
         "zh-Hans": {
@@ -278416,7 +278416,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Taffy] Vuelve a conectar este espacio de trabajo desde la barra lateral o ejecuta de nuevo el comando remoto original de cmux."
+            "value": "[Taffy] Vuelve a conectar este espacio de trabajo desde la barra lateral o ejecuta de nuevo el comando remoto original de Taffy."
           }
         },
         "fr": {
@@ -278458,19 +278458,19 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Taffy] Połącz ponownie ten obszar roboczy z paska bocznego albo ponownie uruchom oryginalne polecenie zdalne cmux."
+            "value": "[Taffy] Połącz ponownie ten obszar roboczy z paska bocznego albo ponownie uruchom oryginalne polecenie zdalne Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Taffy] Reconecte este espaço de trabalho pela barra lateral ou execute novamente o comando remoto original do cmux."
+            "value": "[Taffy] Reconecte este espaço de trabalho pela barra lateral ou execute novamente o comando remoto original do Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Taffy] Повторно подключите это рабочее пространство из боковой панели или снова выполните исходную удаленную команду cmux."
+            "value": "[Taffy] Повторно подключите это рабочее пространство из боковой панели или снова выполните исходную удаленную команду Taffy."
           }
         },
         "th": {
@@ -278488,7 +278488,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Taffy] Повторно підключіть цей робочий простір із бічної панелі або ще раз запустіть початкову віддалену команду cmux."
+            "value": "[Taffy] Повторно підключіть цей робочий простір із бічної панелі або ще раз запустіть початкову віддалену команду Taffy."
           }
         },
         "zh-Hans": {
@@ -282102,7 +282102,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "La connexion SSH est occupée dans un autre processus cmux."
+            "value": "La connexion SSH est occupée dans un autre processus Taffy."
           }
         },
         "ar": {
@@ -282114,7 +282114,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "La conexión SSH está ocupada en otro proceso de cmux."
+            "value": "La conexión SSH está ocupada en otro proceso de Taffy."
           }
         },
         "zh-Hant": {
@@ -291596,7 +291596,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Machines de dev cloud, l’application iOS et l’IA cmux. 50 $/mois, ou 480 $/an."
+            "value": "Machines de dev cloud, l’application iOS et l’IA Taffy. 50 $/mois, ou 480 $/an."
           }
         },
         "ar": {
@@ -299239,7 +299239,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يخفي أيقونة Dock وإدخال Cmd+Tab. استخدم عنصر شريط القائمة لإظهار cmux."
+            "value": "يخفي أيقونة Dock وإدخال Cmd+Tab. استخدم عنصر شريط القائمة لإظهار Taffy."
           }
         },
         "bs": {
@@ -299251,7 +299251,7 @@
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skjul Dock-symbolet og Cmd+Tab-posten. Brug menulinjeelementet til at vise cmux."
+            "value": "Skjul Dock-symbolet og Cmd+Tab-posten. Brug menulinjeelementet til at vise Taffy."
           }
         },
         "de": {
@@ -299263,25 +299263,25 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hide the Dock icon and Cmd+Tab entry. Use the menu bar item to show cmux."
+            "value": "Hide the Dock icon and Cmd+Tab entry. Use the menu bar item to show Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oculta el ícono del Dock y la entrada de Cmd+Tab. Usa el elemento de la barra de menús para mostrar cmux."
+            "value": "Oculta el ícono del Dock y la entrada de Cmd+Tab. Usa el elemento de la barra de menús para mostrar Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Masque l’icône du Dock et l’entrée Cmd+Tab. Utilisez l’élément de barre des menus pour afficher cmux."
+            "value": "Masque l’icône du Dock et l’entrée Cmd+Tab. Utilisez l’élément de barre des menus pour afficher Taffy."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nasconde l'icona del Dock e la voce Cmd+Tab. Usa l'elemento nella barra dei menu per mostrare cmux."
+            "value": "Nasconde l'icona del Dock e la voce Cmd+Tab. Usa l'elemento nella barra dei menu per mostrare Taffy."
           }
         },
         "ja": {
@@ -299299,25 +299299,25 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Skjuler Dock-symbolet og Cmd+Tab-oppføringen. Bruk menylinjeelementet for å vise cmux."
+            "value": "Skjuler Dock-symbolet og Cmd+Tab-oppføringen. Bruk menylinjeelementet for å vise Taffy."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ukrywa ikonę Docka i pozycję Cmd+Tab. Użyj elementu na pasku menu, aby pokazać cmux."
+            "value": "Ukrywa ikonę Docka i pozycję Cmd+Tab. Użyj elementu na pasku menu, aby pokazać Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oculta o ícone no Dock e a entrada Cmd+Tab. Use o item da barra de menus para mostrar o cmux."
+            "value": "Oculta o ícone no Dock e a entrada Cmd+Tab. Use o item da barra de menus para mostrar o Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Скрывает значок Dock и пункт Cmd+Tab. Используйте пункт строки меню, чтобы показать cmux."
+            "value": "Скрывает значок Dock и пункт Cmd+Tab. Используйте пункт строки меню, чтобы показать Taffy."
           }
         },
         "th": {
@@ -299335,7 +299335,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Приховує іконку Dock і пункт Cmd+Tab. Використовуйте пункт рядка меню, щоб показати cmux."
+            "value": "Приховує іконку Dock і пункт Cmd+Tab. Використовуйте пункт рядка меню, щоб показати Taffy."
           }
         },
         "zh-Hans": {
@@ -300514,7 +300514,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "النقرات تفتح داخل متصفح cmux."
+            "value": "النقرات تفتح داخل متصفح Taffy."
           }
         },
         "bs": {
@@ -300544,19 +300544,19 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Los clics abren dentro del navegador de cmux."
+            "value": "Los clics abren dentro del navegador de Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les clics ouvrent dans le navigateur cmux."
+            "value": "Les clics ouvrent dans le navigateur Taffy."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "I clic aprono nel browser cmux."
+            "value": "I clic aprono nel browser Taffy."
           }
         },
         "ja": {
@@ -300580,19 +300580,19 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kliknięcia otwierają w przeglądarce cmux."
+            "value": "Kliknięcia otwierają w przeglądarce Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cliques abrem dentro do navegador do cmux."
+            "value": "Cliques abrem dentro do navegador do Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ссылки открываются во встроенном браузере cmux."
+            "value": "Ссылки открываются во встроенном браузере Taffy."
           }
         },
         "th": {
@@ -300610,7 +300610,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Кліки відкриваються у браузері cmux."
+            "value": "Кліки відкриваються у браузері Taffy."
           }
         },
         "zh-Hans": {
@@ -300871,7 +300871,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "نقرات المنافذ تفتح داخل متصفح cmux."
+            "value": "نقرات المنافذ تفتح داخل متصفح Taffy."
           }
         },
         "bs": {
@@ -300901,19 +300901,19 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Los clics en puertos abren dentro del navegador de cmux."
+            "value": "Los clics en puertos abren dentro del navegador de Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les clics de port ouvrent dans le navigateur cmux."
+            "value": "Les clics de port ouvrent dans le navigateur Taffy."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "I clic sulle porte aprono nel browser cmux."
+            "value": "I clic sulle porte aprono nel browser Taffy."
           }
         },
         "ja": {
@@ -300937,19 +300937,19 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kliknięcia portów otwierają w przeglądarce cmux."
+            "value": "Kliknięcia portów otwierają w przeglądarce Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cliques em portas abrem dentro do navegador do cmux."
+            "value": "Cliques em portas abrem dentro do navegador do Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ссылки портов открываются во встроенном браузере cmux."
+            "value": "Ссылки портов открываются во встроенном браузере Taffy."
           }
         },
         "th": {
@@ -300967,7 +300967,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Кліки по портах відкриваються у браузері cmux."
+            "value": "Кліки по портах відкриваються у браузері Taffy."
           }
         },
         "zh-Hans": {
@@ -301049,7 +301049,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cmd-clicking readable files opens text, code, PDFs, images, audio, video, and Quick Look previews in cmux."
+            "value": "Cmd-clicking readable files opens text, code, PDFs, images, audio, video, and Quick Look previews in Taffy."
           }
         },
         "ja": {
@@ -301067,25 +301067,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cmd-Klick auf lesbare Dateien öffnet Text, Code, PDFs, Bilder, Audio, Video und Quick-Look-Vorschauen in cmux."
+            "value": "Cmd-Klick auf lesbare Dateien öffnet Text, Code, PDFs, Bilder, Audio, Video und Quick-Look-Vorschauen in Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cliquer sur un fichier lisible tout en maintenant la touche Cmd enfoncée ouvre du texte, du code, des PDF, des images, de l’audio, de la vidéo ainsi que des aperçus Coup d’œil dans cmux."
+            "value": "Cliquer sur un fichier lisible tout en maintenant la touche Cmd enfoncée ouvre du texte, du code, des PDF, des images, de l’audio, de la vidéo ainsi que des aperçus Coup d’œil dans Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يؤدي النقر مع الضغط على مفتاح Cmd على الملفات القابلة للقراءة إلى فتح النصوص والتعليمات البرمجية وملفات PDF والصور والملفات الصوتية ومقاطع الفيديو ومعاينات نظرة سريعة (Quick Look) في cmux."
+            "value": "يؤدي النقر مع الضغط على مفتاح Cmd على الملفات القابلة للقراءة إلى فتح النصوص والتعليمات البرمجية وملفات PDF والصور والملفات الصوتية ومقاطع الفيديو ومعاينات نظرة سريعة (Quick Look) في Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hacer Cmd-clic en archivos legibles abre texto, código, archivos PDF, imágenes, audio, video y previsualizaciones de Quick Look en cmux."
+            "value": "Hacer Cmd-clic en archivos legibles abre texto, código, archivos PDF, imágenes, audio, video y previsualizaciones de Quick Look en Taffy."
           }
         },
         "zh-Hant": {
@@ -305630,19 +305630,19 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "مشاركة بيانات الأعطال والاستخدام المجهولة للمساعدة في تحسين cmux."
+            "value": "مشاركة بيانات الأعطال والاستخدام المجهولة للمساعدة في تحسين Taffy."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dijelite anonimizirane podatke o padovima i korištenju kako biste pomogli u poboljšanju cmux."
+            "value": "Dijelite anonimizirane podatke o padovima i korištenju kako biste pomogli u poboljšanju Taffy."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Del anonymiserede nedbrud- og brugsdata for at hjælpe med at forbedre cmux."
+            "value": "Del anonymiserede nedbrud- og brugsdata for at hjælpe med at forbedre Taffy."
           }
         },
         "de": {
@@ -305654,25 +305654,25 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Share anonymized crash and usage data to help improve cmux."
+            "value": "Share anonymized crash and usage data to help improve Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Compartir datos anónimos de fallos y uso para ayudar a mejorar cmux."
+            "value": "Compartir datos anónimos de fallos y uso para ayudar a mejorar Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Partager des données anonymisées de plantage et d'utilisation pour aider à améliorer cmux."
+            "value": "Partager des données anonymisées de plantage et d'utilisation pour aider à améliorer Taffy."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Condividi dati anonimi su arresti anomali e utilizzo per migliorare cmux."
+            "value": "Condividi dati anonimi su arresti anomali e utilizzo per migliorare Taffy."
           }
         },
         "ja": {
@@ -305690,25 +305690,25 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Del anonymiserte krasj- og bruksdata for å bidra til å forbedre cmux."
+            "value": "Del anonymiserte krasj- og bruksdata for å bidra til å forbedre Taffy."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Udostępniaj zanonimizowane dane o awariach i użyciu, aby pomóc ulepszyć cmux."
+            "value": "Udostępniaj zanonimizowane dane o awariach i użyciu, aby pomóc ulepszyć Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Compartilhar dados anonimizados de falhas e uso para ajudar a melhorar o cmux."
+            "value": "Compartilhar dados anonimizados de falhas e uso para ajudar a melhorar o Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Делиться анонимными данными о сбоях и использовании для улучшения cmux."
+            "value": "Делиться анонимными данными о сбоях и использовании для улучшения Taffy."
           }
         },
         "th": {
@@ -305726,7 +305726,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Надсилати анонімні дані про збої та використання для покращення cmux."
+            "value": "Надсилати анонімні дані про збої та використання для покращення Taffy."
           }
         },
         "zh-Hans": {
@@ -308172,7 +308172,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يثبّت Taffy خطافات Amp ويحدّثها تلقائيًا في طرفيات cmux. ولا تنفّذ أي إجراء خارج طرفيات cmux. عند تعطيلها، تظل إضافة Amp المثبّتة غير نشطة دون الحاجة إلى إزالتها."
+            "value": "يثبّت Taffy خطافات Amp ويحدّثها تلقائيًا في طرفيات Taffy. ولا تنفّذ أي إجراء خارج طرفيات Taffy. عند تعطيلها، تظل إضافة Amp المثبّتة غير نشطة دون الحاجة إلى إزالتها."
           }
         },
         "bs": {
@@ -308202,19 +308202,19 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Taffy instala y actualiza automáticamente los hooks de Amp en los terminales de cmux. Fuera de los terminales de Taffy, no hacen nada. Al desactivarlos, el plugin de Amp instalado permanece inactivo sin necesidad de eliminarlo."
+            "value": "Taffy instala y actualiza automáticamente los hooks de Amp en los terminales de Taffy. Fuera de los terminales de Taffy, no hacen nada. Al desactivarlos, el plugin de Amp instalado permanece inactivo sin necesidad de eliminarlo."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Taffy installe et actualise automatiquement les hooks Amp dans les terminaux cmux. Ils restent sans effet en dehors des terminaux cmux. Lorsque cette option est désactivée, le plugin Amp installé reste inactif sans qu’il soit nécessaire de le supprimer."
+            "value": "Taffy installe et actualise automatiquement les hooks Amp dans les terminaux Taffy. Ils restent sans effet en dehors des terminaux Taffy. Lorsque cette option est désactivée, le plugin Amp installé reste inactif sans qu’il soit nécessaire de le supprimer."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Taffy installa e aggiorna automaticamente gli hook di Amp nei terminali cmux. Al di fuori dei terminali Taffy non eseguono alcuna operazione. Quando l’integrazione è disattivata, il plugin Amp installato rimane inattivo senza dover essere rimosso."
+            "value": "Taffy installa e aggiorna automaticamente gli hook di Amp nei terminali Taffy. Al di fuori dei terminali Taffy non eseguono alcuna operazione. Quando l’integrazione è disattivata, il plugin Amp installato rimane inattivo senza dover essere rimosso."
           }
         },
         "ja": {
@@ -308244,19 +308244,19 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Taffy automatycznie instaluje i odświeża hooki Amp w terminalach cmux. Poza terminalami Taffy nie wykonują one żadnych działań. Po wyłączeniu zainstalowana wtyczka Amp pozostaje nieaktywna i nie trzeba jej usuwać."
+            "value": "Taffy automatycznie instaluje i odświeża hooki Amp w terminalach Taffy. Poza terminalami Taffy nie wykonują one żadnych działań. Po wyłączeniu zainstalowana wtyczka Amp pozostaje nieaktywna i nie trzeba jej usuwać."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Taffy instala e atualiza automaticamente os hooks do Amp nos terminais do cmux. Fora dos terminais do Taffy, eles não realizam nenhuma ação. Quando a integração é desativada, o plugin do Amp instalado permanece inativo sem precisar ser removido."
+            "value": "O Taffy instala e atualiza automaticamente os hooks do Amp nos terminais do Taffy. Fora dos terminais do Taffy, eles não realizam nenhuma ação. Quando a integração é desativada, o plugin do Amp instalado permanece inativo sem precisar ser removido."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Taffy автоматически устанавливает и обновляет хуки Amp в терминалах cmux. Вне терминалов Taffy они ничего не делают. Когда интеграция отключена, установленный плагин Amp остаётся неактивным, и удалять его не требуется."
+            "value": "Taffy автоматически устанавливает и обновляет хуки Amp в терминалах Taffy. Вне терминалов Taffy они ничего не делают. Когда интеграция отключена, установленный плагин Amp остаётся неактивным, и удалять его не требуется."
           }
         },
         "th": {
@@ -308274,7 +308274,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Taffy автоматично встановлює та оновлює хуки Amp у терміналах cmux. Поза терміналами Taffy вони не виконують жодних дій. Коли інтеграцію вимкнено, встановлений плагін Amp залишається неактивним, і видаляти його не потрібно."
+            "value": "Taffy автоматично встановлює та оновлює хуки Amp у терміналах Taffy. Поза терміналами Taffy вони не виконують жодних дій. Коли інтеграцію вимкнено, встановлений плагін Amp залишається неактивним, і видаляти його не потрібно."
           }
         },
         "zh-Hans": {
@@ -308327,19 +308327,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Amp s’exécute sans intégration cmux."
+            "value": "Amp s’exécute sans intégration Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يعمل Amp دون تكامل مع cmux."
+            "value": "يعمل Amp دون تكامل مع Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Amp se ejecuta sin la integración de cmux."
+            "value": "Amp se ejecuta sin la integración de Taffy."
           }
         },
         "zh-Hant": {
@@ -309493,7 +309493,7 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يعمل Claude Code بدون تكامل cmux."
+            "value": "يعمل Claude Code بدون تكامل Taffy."
           }
         },
         "bs": {
@@ -309523,19 +309523,19 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code se ejecuta sin integración con cmux."
+            "value": "Claude Code se ejecuta sin integración con Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code s'exécute sans intégration cmux."
+            "value": "Claude Code s'exécute sans intégration Taffy."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code viene eseguito senza integrazione cmux."
+            "value": "Claude Code viene eseguito senza integrazione Taffy."
           }
         },
         "ja": {
@@ -309559,19 +309559,19 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code działa bez integracji z cmux."
+            "value": "Claude Code działa bez integracji z Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Claude Code é executado sem integração com o cmux."
+            "value": "O Claude Code é executado sem integração com o Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code работает без интеграции с cmux."
+            "value": "Claude Code работает без интеграции с Taffy."
           }
         },
         "th": {
@@ -309589,7 +309589,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code працює без інтеграції з cmux."
+            "value": "Claude Code працює без інтеграції з Taffy."
           }
         },
         "zh-Hans": {
@@ -309873,19 +309873,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Codex s’exécute sans intégration cmux."
+            "value": "Codex s’exécute sans intégration Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يعمل Codex دون تكامل مع cmux."
+            "value": "يعمل Codex دون تكامل مع Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Codex se ejecuta sin integración con cmux."
+            "value": "Codex se ejecuta sin integración con Taffy."
           }
         },
         "zh-Hant": {
@@ -310056,19 +310056,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les hooks doivent être installés avec `taffy hooks cursor install`. Ils n’ont aucun effet en dehors des terminaux cmux."
+            "value": "Les hooks doivent être installés avec `taffy hooks cursor install`. Ils n’ont aucun effet en dehors des terminaux Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يجب تثبيت الخطافات باستخدام `taffy hooks cursor install`. وهي لا تؤدي أي وظيفة خارج طرفيات cmux."
+            "value": "يجب تثبيت الخطافات باستخدام `taffy hooks cursor install`. وهي لا تؤدي أي وظيفة خارج طرفيات Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Los ganchos se deben instalar con `taffy hooks cursor install`. No realizan ninguna operación fuera de las terminales de cmux."
+            "value": "Los ganchos se deben instalar con `taffy hooks cursor install`. No realizan ninguna operación fuera de las terminales de Taffy."
           }
         },
         "zh-Hant": {
@@ -310115,19 +310115,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cursor s’exécute sans intégration cmux."
+            "value": "Cursor s’exécute sans intégration Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يعمل Cursor دون تكامل مع cmux."
+            "value": "يعمل Cursor دون تكامل مع Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cursor se ejecuta sin integración con cmux."
+            "value": "Cursor se ejecuta sin integración con Taffy."
           }
         },
         "zh-Hant": {
@@ -310292,19 +310292,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les hooks doivent être installés avec `taffy hooks gemini install`. Ils n’ont aucun effet en dehors des terminaux cmux."
+            "value": "Les hooks doivent être installés avec `taffy hooks gemini install`. Ils n’ont aucun effet en dehors des terminaux Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يجب تثبيت الخطافات باستخدام `taffy hooks gemini install`. وهي لا تؤدي أي وظيفة خارج طرفيات cmux."
+            "value": "يجب تثبيت الخطافات باستخدام `taffy hooks gemini install`. وهي لا تؤدي أي وظيفة خارج طرفيات Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Los ganchos se deben instalar con `taffy hooks gemini install`. No realizan ninguna operación fuera de las terminales de cmux."
+            "value": "Los ganchos se deben instalar con `taffy hooks gemini install`. No realizan ninguna operación fuera de las terminales de Taffy."
           }
         },
         "zh-Hant": {
@@ -310351,19 +310351,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gemini s’exécute sans intégration cmux."
+            "value": "Gemini s’exécute sans intégration Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يعمل Gemini دون تكامل مع cmux."
+            "value": "يعمل Gemini دون تكامل مع Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gemini se ejecuta sin integración con cmux."
+            "value": "Gemini se ejecuta sin integración con Taffy."
           }
         },
         "zh-Hant": {
@@ -310528,19 +310528,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les hooks doivent être installés avec `taffy hooks kiro install`, puis exécutez Kiro avec `kiro-cli chat --agent cmux` (ou définissez-le comme agent par défaut). Ils n’ont aucun effet en dehors des terminaux cmux."
+            "value": "Les hooks doivent être installés avec `taffy hooks kiro install`, puis exécutez Kiro avec `kiro-cli chat --agent cmux` (ou définissez-le comme agent par défaut). Ils n’ont aucun effet en dehors des terminaux Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يجب تثبيت الخطافات باستخدام `taffy hooks kiro install` ثم تشغيل Kiro عبر `kiro-cli chat --agent cmux` (أو تعيينه كعميلك الافتراضي). وهي لا تؤدي أي وظيفة خارج طرفيات cmux."
+            "value": "يجب تثبيت الخطافات باستخدام `taffy hooks kiro install` ثم تشغيل Kiro عبر `kiro-cli chat --agent cmux` (أو تعيينه كعميلك الافتراضي). وهي لا تؤدي أي وظيفة خارج طرفيات Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Los ganchos se deben instalar con `taffy hooks kiro install`, luego ejecute Kiro con `kiro-cli chat --agent cmux` (o establézcalo como su agente predeterminado). No realizan ninguna operación fuera de las terminales de cmux."
+            "value": "Los ganchos se deben instalar con `taffy hooks kiro install`, luego ejecute Kiro con `kiro-cli chat --agent cmux` (o establézcalo como su agente predeterminado). No realizan ninguna operación fuera de las terminales de Taffy."
           }
         },
         "zh-Hant": {
@@ -310882,19 +310882,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kiro s’exécute sans intégration cmux."
+            "value": "Kiro s’exécute sans intégration Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يعمل Kiro دون تكامل مع cmux."
+            "value": "يعمل Kiro دون تكامل مع Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kiro se ejecuta sin integración con cmux."
+            "value": "Kiro se ejecuta sin integración con Taffy."
           }
         },
         "zh-Hant": {
@@ -314866,7 +314866,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Интеграция Claude Code отключена, поэтому сеансы Claude не будут автоматически именоваться. Другие поддерживаемые агенты продолжат именование, если установлены их хуки cmux."
+            "value": "Интеграция Claude Code отключена, поэтому сеансы Claude не будут автоматически именоваться. Другие поддерживаемые агенты продолжат именование, если установлены их хуки Taffy."
           }
         },
         "th": {
@@ -314884,7 +314884,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Інтеграцію Claude Code вимкнено, тому сеанси Claude не будуть автоматично іменуватися. Інші підтримувані агенти й надалі іменують, коли встановлено їхні хуки cmux."
+            "value": "Інтеграцію Claude Code вимкнено, тому сеанси Claude не будуть автоматично іменуватися. Інші підтримувані агенти й надалі іменують, коли встановлено їхні хуки Taffy."
           }
         },
         "zh-Hans": {
@@ -320942,19 +320942,19 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "ينطبق على نقرات الروابط في الطرفية واستدعاءات `open https://...` المعترضة. فقط هؤلاء المضيفون يفتحون في cmux. البقية تفتح في متصفحك الافتراضي. مضيف واحد أو حرف بدل لكل سطر (مثال: example.com, *.internal.example). اتركه فارغًا لفتح جميع المضيفين في cmux."
+            "value": "ينطبق على نقرات الروابط في الطرفية واستدعاءات `open https://...` المعترضة. فقط هؤلاء المضيفون يفتحون في Taffy. البقية تفتح في متصفحك الافتراضي. مضيف واحد أو حرف بدل لكل سطر (مثال: example.com, *.internal.example). اتركه فارغًا لفتح جميع المضيفين في Taffy."
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Primjenjuje se na klikove linkova u terminalu i presretnute `open https://...` pozive. Samo se ovi hostovi otvaraju u cmux. Ostali se otvaraju u podrazumijevanom pregledniku. Jedan host ili zamjenski znak po redu (na primjer: example.com, *.internal.example). Ostavite prazno da otvorite sve hostove u cmux."
+            "value": "Primjenjuje se na klikove linkova u terminalu i presretnute `open https://...` pozive. Samo se ovi hostovi otvaraju u Taffy. Ostali se otvaraju u podrazumijevanom pregledniku. Jedan host ili zamjenski znak po redu (na primjer: example.com, *.internal.example). Ostavite prazno da otvorite sve hostove u Taffy."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gælder for terminallinksklik og opfangede `open https://...`-kald. Kun disse værter åbnes i cmux. Andre åbnes i din standardbrowser. Én vært eller wildcard pr. linje (f.eks.: example.com, *.internal.example). Lad stå tomt for at åbne alle værter i cmux."
+            "value": "Gælder for terminallinksklik og opfangede `open https://...`-kald. Kun disse værter åbnes i Taffy. Andre åbnes i din standardbrowser. Én vært eller wildcard pr. linje (f.eks.: example.com, *.internal.example). Lad stå tomt for at åbne alle værter i Taffy."
           }
         },
         "de": {
@@ -320966,25 +320966,25 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Applies to terminal link clicks and intercepted `open https://...` calls. Only these hosts open in cmux. Others open in your default browser. One host or wildcard per line (for example: example.com, *.internal.example). Leave empty to open all hosts in cmux."
+            "value": "Applies to terminal link clicks and intercepted `open https://...` calls. Only these hosts open in Taffy. Others open in your default browser. One host or wildcard per line (for example: example.com, *.internal.example). Leave empty to open all hosts in Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Se aplica a clics en enlaces del terminal y llamadas interceptadas de `open https://...`. Solo estos hosts se abren en cmux. Los demás se abren en tu navegador predeterminado. Un host o comodín por línea (por ejemplo: example.com, *.internal.example). Déjalo vacío para abrir todos los hosts en cmux."
+            "value": "Se aplica a clics en enlaces del terminal y llamadas interceptadas de `open https://...`. Solo estos hosts se abren en Taffy. Los demás se abren en tu navegador predeterminado. Un host o comodín por línea (por ejemplo: example.com, *.internal.example). Déjalo vacío para abrir todos los hosts en Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "S'applique aux clics sur les liens du terminal et aux appels `open https://...` interceptés. Seuls ces hôtes s'ouvrent dans cmux. Les autres s'ouvrent dans votre navigateur par défaut. Un hôte ou caractère générique par ligne (par exemple : example.com, *.internal.example). Laissez vide pour ouvrir tous les hôtes dans cmux."
+            "value": "S'applique aux clics sur les liens du terminal et aux appels `open https://...` interceptés. Seuls ces hôtes s'ouvrent dans Taffy. Les autres s'ouvrent dans votre navigateur par défaut. Un hôte ou caractère générique par ligne (par exemple : example.com, *.internal.example). Laissez vide pour ouvrir tous les hôtes dans Taffy."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Si applica ai clic sui link nel terminale e alle chiamate intercettate `open https://...`. Solo questi host si aprono in cmux. Gli altri si aprono nel browser predefinito. Un host o wildcard per riga (ad esempio: example.com, *.internal.example). Lascia vuoto per aprire tutti gli host in cmux."
+            "value": "Si applica ai clic sui link nel terminale e alle chiamate intercettate `open https://...`. Solo questi host si aprono in Taffy. Gli altri si aprono nel browser predefinito. Un host o wildcard per riga (ad esempio: example.com, *.internal.example). Lascia vuoto per aprire tutti gli host in Taffy."
           }
         },
         "ja": {
@@ -321002,25 +321002,25 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Gjelder for terminallenkeklikk og avlyttede `open https://...`-kall. Bare disse vertene åpnes i cmux. Andre åpnes i standard nettleser. Én vert eller jokertegn per linje (for eksempel: example.com, *.internal.example). La stå tom for å åpne alle verter i cmux."
+            "value": "Gjelder for terminallenkeklikk og avlyttede `open https://...`-kall. Bare disse vertene åpnes i Taffy. Andre åpnes i standard nettleser. Én vert eller jokertegn per linje (for eksempel: example.com, *.internal.example). La stå tom for å åpne alle verter i Taffy."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dotyczy kliknięć linków w terminalu i przechwyconych wywołań `open https://...`. Tylko te hosty otwierają się w cmux. Pozostałe otwierają się w domyślnej przeglądarce. Jeden host lub wzorzec na wiersz (na przykład: example.com, *.internal.example). Pozostaw puste, aby otwierać wszystkie hosty w cmux."
+            "value": "Dotyczy kliknięć linków w terminalu i przechwyconych wywołań `open https://...`. Tylko te hosty otwierają się w Taffy. Pozostałe otwierają się w domyślnej przeglądarce. Jeden host lub wzorzec na wiersz (na przykład: example.com, *.internal.example). Pozostaw puste, aby otwierać wszystkie hosty w Taffy."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aplica-se a cliques em links do terminal e chamadas interceptadas de `open https://...`. Apenas estes hosts abrem no cmux. Outros abrem no seu navegador padrão. Um host ou curinga por linha (por exemplo: example.com, *.internal.example). Deixe vazio para abrir todos os hosts no cmux."
+            "value": "Aplica-se a cliques em links do terminal e chamadas interceptadas de `open https://...`. Apenas estes hosts abrem no Taffy. Outros abrem no seu navegador padrão. Um host ou curinga por linha (por exemplo: example.com, *.internal.example). Deixe vazio para abrir todos os hosts no Taffy."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Применяется к нажатиям на ссылки в терминале и перехваченным вызовам `open https://...`. Только эти хосты открываются в cmux. Остальные открываются в браузере по умолчанию. Один хост или шаблон на строку (например: example.com, *.internal.example). Оставьте пустым, чтобы открывать все хосты в cmux."
+            "value": "Применяется к нажатиям на ссылки в терминале и перехваченным вызовам `open https://...`. Только эти хосты открываются в Taffy. Остальные открываются в браузере по умолчанию. Один хост или шаблон на строку (например: example.com, *.internal.example). Оставьте пустым, чтобы открывать все хосты в Taffy."
           }
         },
         "th": {
@@ -321038,7 +321038,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Застосовується до кліків на посилання в терміналі та перехоплених викликів `open https://...`. Тільки ці хости відкриваються в cmux. Інші відкриваються у стандартному браузері. Один хост або шаблон на рядок (наприклад: example.com, *.internal.example). Залиште порожнім, щоб відкривати всі хости в cmux."
+            "value": "Застосовується до кліків на посилання в терміналі та перехоплених викликів `open https://...`. Тільки ці хости відкриваються в Taffy. Інші відкриваються у стандартному браузері. Один хост або шаблон на рядок (наприклад: example.com, *.internal.example). Залиште порожнім, щоб відкривати всі хости в Taffy."
           }
         },
         "zh-Hans": {
@@ -327764,7 +327764,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "This is the Taffy Ghostty config selected for this build. Edit it here, then Save to reload cmux."
+            "value": "This is the Taffy Ghostty config selected for this build. Edit it here, then Save to reload Taffy."
           }
         },
         "ja": {
@@ -327788,19 +327788,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ceci est la configuration Ghostty de Taffy sélectionnée pour cette build. Modifiez-la ici, puis enregistrez pour recharger cmux."
+            "value": "Ceci est la configuration Ghostty de Taffy sélectionnée pour cette build. Modifiez-la ici, puis enregistrez pour recharger Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "هذا هو تكوين Taffy Ghostty المحدد لهذا الإصدار. قم بتحريره هنا، ثم احفظ لإعادة تحميل cmux."
+            "value": "هذا هو تكوين Taffy Ghostty المحدد لهذا الإصدار. قم بتحريره هنا، ثم احفظ لإعادة تحميل Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esta es la configuración de Ghostty para Taffy seleccionada para esta compilación. Edítela aquí y luego guarde para volver a cargar cmux."
+            "value": "Esta es la configuración de Ghostty para Taffy seleccionada para esta compilación. Edítela aquí y luego guarde para volver a cargar Taffy."
           }
         },
         "zh-Hant": {
@@ -327853,13 +327853,13 @@
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "هذه معاينة تم إنشاؤها للتكوين الفعال. قم بتحرير علامة تبويب Taffy لتغيير ما يقرأه cmux."
+            "value": "هذه معاينة تم إنشاؤها للتكوين الفعال. قم بتحرير علامة تبويب Taffy لتغيير ما يقرأه Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esta es una vista previa generada de la configuración vigente. Edite la pestaña de Taffy para cambiar lo que lee cmux."
+            "value": "Esta es una vista previa generada de la configuración vigente. Edite la pestaña de Taffy para cambiar lo que lee Taffy."
           }
         },
         "zh-Hant": {
@@ -327918,7 +327918,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esta es una vista previa generada de la configuración vigente. No se encontró ningún archivo de configuración base de Ghostty, por lo que solo se muestran las anulaciones de cmux."
+            "value": "Esta es una vista previa generada de la configuración vigente. No se encontró ningún archivo de configuración base de Ghostty, por lo que solo se muestran las anulaciones de Taffy."
           }
         },
         "zh-Hant": {
@@ -328142,19 +328142,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Impossible d’ouvrir la configuration cmux."
+            "value": "Impossible d’ouvrir la configuration Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تعذر فتح تكوين cmux."
+            "value": "تعذر فتح تكوين Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "No se pudo abrir la configuración de cmux."
+            "value": "No se pudo abrir la configuración de Taffy."
           }
         },
         "zh-Hant": {
@@ -328319,19 +328319,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Impossible d’enregistrer la configuration cmux."
+            "value": "Impossible d’enregistrer la configuration Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تعذر حفظ تكوين cmux."
+            "value": "تعذر حفظ تكوين Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "No se pudo guardar la configuración de cmux."
+            "value": "No se pudo guardar la configuración de Taffy."
           }
         },
         "zh-Hant": {
@@ -329048,19 +329048,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Appuyez sur le raccourci depuis n’importe quelle application pour afficher ou masquer toutes les fenêtres cmux."
+            "value": "Appuyez sur le raccourci depuis n’importe quelle application pour afficher ou masquer toutes les fenêtres Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "اضغط على الاختصار من أي تطبيق لإظهار أو إخفاء جميع نوافذ cmux."
+            "value": "اضغط على الاختصار من أي تطبيق لإظهار أو إخفاء جميع نوافذ Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Presione el acceso directo desde cualquier aplicación para mostrar u ocultar todas las ventanas de cmux."
+            "value": "Presione el acceso directo desde cualquier aplicación para mostrar u ocultar todas las ventanas de Taffy."
           }
         },
         "zh-Hant": {
@@ -332589,25 +332589,25 @@
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Klicken Sie auf „Anwenden“, um den Port zu ändern. Taffy prüft zuerst, ob der Port frei ist: Wenn er belegt ist, läuft der aktuelle Listener unverändert weiter; wenn er frei ist, bindet sich der Kopplungs-Listener jetzt neu und verbundene Geräte verbinden sich wieder. Der Iroh-Endpunkt übernimmt den neuen Port beim nächsten Start von cmux."
+            "value": "Klicken Sie auf „Anwenden“, um den Port zu ändern. Taffy prüft zuerst, ob der Port frei ist: Wenn er belegt ist, läuft der aktuelle Listener unverändert weiter; wenn er frei ist, bindet sich der Kopplungs-Listener jetzt neu und verbundene Geräte verbinden sich wieder. Der Iroh-Endpunkt übernimmt den neuen Port beim nächsten Start von Taffy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cliquez sur Appliquer pour changer le port. Taffy vérifie d’abord que le port est libre : s’il est utilisé, l’écouteur actuel continue de fonctionner sans modification ; s’il est libre, l’écouteur de jumelage se relie immédiatement et les appareils connectés se reconnectent. Le point de terminaison Iroh adoptera le nouveau port au prochain démarrage de cmux."
+            "value": "Cliquez sur Appliquer pour changer le port. Taffy vérifie d’abord que le port est libre : s’il est utilisé, l’écouteur actuel continue de fonctionner sans modification ; s’il est libre, l’écouteur de jumelage se relie immédiatement et les appareils connectés se reconnectent. Le point de terminaison Iroh adoptera le nouveau port au prochain démarrage de Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "انقر على \"تطبيق\" لتغيير المنفذ. يتحقق Taffy أولاً من أن المنفذ فارغ: إذا كان قيد الاستخدام، يستمر المستمع الحالي في العمل دون تغيير؛ وإذا كان فارغًا، يعيد مستمع الاقتران الارتباط الآن وتتصل الأجهزة المتصلة مجددًا. تتبنى نقطة نهاية Iroh المنفذ الجديد في المرة التالية التي يبدأ فيها تشغيل cmux."
+            "value": "انقر على \"تطبيق\" لتغيير المنفذ. يتحقق Taffy أولاً من أن المنفذ فارغ: إذا كان قيد الاستخدام، يستمر المستمع الحالي في العمل دون تغيير؛ وإذا كان فارغًا، يعيد مستمع الاقتران الارتباط الآن وتتصل الأجهزة المتصلة مجددًا. تتبنى نقطة نهاية Iroh المنفذ الجديد في المرة التالية التي يبدأ فيها تشغيل Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Haz clic en Aplicar para cambiar el puerto. Taffy comprueba primero si el puerto está libre: si está en uso, el receptor actual sigue funcionando sin cambios; si está libre, el receptor de vinculación se vuelve a enlazar ahora y los dispositivos conectados se vuelven a conectar. El punto de conexión de Iroh adoptará el nuevo puerto la próxima vez que se inicie cmux."
+            "value": "Haz clic en Aplicar para cambiar el puerto. Taffy comprueba primero si el puerto está libre: si está en uso, el receptor actual sigue funcionando sin cambios; si está libre, el receptor de vinculación se vuelve a enlazar ahora y los dispositivos conectados se vuelven a conectar. El punto de conexión de Iroh adoptará el nuevo puerto la próxima vez que se inicie Taffy."
           }
         },
         "zh-Hant": {
@@ -333609,19 +333609,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Réessayez. Si cela continue, partagez le rapport sécurisé avec le support cmux."
+            "value": "Réessayez. Si cela continue, partagez le rapport sécurisé avec le support Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "أعد المحاولة. إذا استمر هذا الأمر، قم بمشاركة التقرير الآمن مع دعم cmux."
+            "value": "أعد المحاولة. إذا استمر هذا الأمر، قم بمشاركة التقرير الآمن مع دعم Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rever. Si esto continúa, comparta el informe seguro con el soporte de cmux."
+            "value": "Rever. Si esto continúa, comparta el informe seguro con el soporte de Taffy."
           }
         },
         "zh-Hant": {
@@ -335621,19 +335621,19 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Les adresses de relais se synchronisent avec votre compte. Les secrets du fournisseur restent uniquement dans le stockage sécurisé de chaque appareil. Les secrets manquants ne se rabattent jamais sur les relais cmux."
+            "value": "Les adresses de relais se synchronisent avec votre compte. Les secrets du fournisseur restent uniquement dans le stockage sécurisé de chaque appareil. Les secrets manquants ne se rabattent jamais sur les relais Taffy."
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "تتزامن عناوين المرحلات مع حسابك. تبقى أسرار المزود فقط في وحدة التخزين الآمنة لكل جهاز. لن تتراجع الأسرار المفقودة أبدًا إلى مرحلات cmux."
+            "value": "تتزامن عناوين المرحلات مع حسابك. تبقى أسرار المزود فقط في وحدة التخزين الآمنة لكل جهاز. لن تتراجع الأسرار المفقودة أبدًا إلى مرحلات Taffy."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Las direcciones de retransmisión se sincronizan con tu cuenta. Los secretos del proveedor permanecen únicamente en el almacenamiento seguro de cada dispositivo. Los secretos que falten nunca recurrirán a las retransmisiones de cmux."
+            "value": "Las direcciones de retransmisión se sincronizan con tu cuenta. Los secretos del proveedor permanecen únicamente en el almacenamiento seguro de cada dispositivo. Los secretos que falten nunca recurrirán a las retransmisiones de Taffy."
           }
         },
         "zh-Hant": {
@@ -366750,7 +366750,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Edit cmux-owned app settings, shortcuts, automation, sidebar, notifications, and browser behavior."
+            "value": "Edit Taffy-owned app settings, shortcuts, automation, sidebar, notifications, and browser behavior."
           }
         },
         "ja": {
@@ -466271,19 +466271,19 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS no inició a tiempo el proceso auxiliar de actualización de cmux. El software de seguridad puede retrasarlo. Vuelve a intentarlo una vez; si sigue fallando, reinicia el Mac o descarga e instala la versión más reciente a continuación."
+            "value": "macOS no inició a tiempo el proceso auxiliar de actualización de Taffy. El software de seguridad puede retrasarlo. Vuelve a intentarlo una vez; si sigue fallando, reinicia el Mac o descarga e instala la versión más reciente a continuación."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS n’a pas lancé à temps l’utilitaire de mise à jour de cmux. Un logiciel de sécurité peut retarder son lancement. Réessayez une fois ; si l’échec persiste, redémarrez votre Mac ou téléchargez et installez la dernière version ci-dessous."
+            "value": "macOS n’a pas lancé à temps l’utilitaire de mise à jour de Taffy. Un logiciel de sécurité peut retarder son lancement. Réessayez une fois ; si l’échec persiste, redémarrez votre Mac ou téléchargez et installez la dernière version ci-dessous."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS non ha avviato in tempo l’helper di aggiornamento di cmux. Il software di sicurezza può ritardarne l’avvio. Riprova una volta; se il problema persiste, riavvia il Mac oppure scarica e installa l’ultima versione qui sotto."
+            "value": "macOS non ha avviato in tempo l’helper di aggiornamento di Taffy. Il software di sicurezza può ritardarne l’avvio. Riprova una volta; se il problema persiste, riavvia il Mac oppure scarica e installa l’ultima versione qui sotto."
           }
         },
         "ja": {
@@ -466313,7 +466313,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "System macOS nie uruchomił na czas procesu pomocniczego aktualizatora cmux. Oprogramowanie zabezpieczające może opóźnić jego uruchomienie. Spróbuj ponownie raz. Jeśli nadal się nie uda, uruchom ponownie Maca albo pobierz i zainstaluj najnowszą wersję poniżej."
+            "value": "System macOS nie uruchomił na czas procesu pomocniczego aktualizatora Taffy. Oprogramowanie zabezpieczające może opóźnić jego uruchomienie. Spróbuj ponownie raz. Jeśli nadal się nie uda, uruchom ponownie Maca albo pobierz i zainstaluj najnowszą wersję poniżej."
           }
         },
         "pt-BR": {
@@ -466325,7 +466325,7 @@
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS не успела запустить вспомогательный процесс обновления cmux. Защитное ПО может задерживать его запуск. Повторите попытку один раз. Если ошибка повторится, перезагрузите Mac либо скачайте и установите последнюю версию ниже."
+            "value": "macOS не успела запустить вспомогательный процесс обновления Taffy. Защитное ПО может задерживать его запуск. Повторите попытку один раз. Если ошибка повторится, перезагрузите Mac либо скачайте и установите последнюю версию ниже."
           }
         },
         "th": {
@@ -466343,7 +466343,7 @@
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS не встигла запустити допоміжний процес оновлення cmux. Захисне програмне забезпечення може затримувати його запуск. Повторіть спробу один раз. Якщо помилка повториться, перезапустіть Mac або завантажте й інсталюйте останню версію нижче."
+            "value": "macOS не встигла запустити допоміжний процес оновлення Taffy. Захисне програмне забезпечення може затримувати його запуск. Повторіть спробу один раз. Якщо помилка повториться, перезапустіть Mac або завантажте й інсталюйте останню версію нижче."
           }
         },
         "zh-Hans": {
@@ -482481,7 +482481,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "fork: nie można zidentyfikować bieżącej powierzchni cmux. Spróbuj ponownie z tego terminala lub podaj --surface <id|ref>."
+            "value": "fork: nie można zidentyfikować bieżącej powierzchni Taffy. Spróbuj ponownie z tego terminala lub podaj --surface <id|ref>."
           }
         },
         "pt-BR": {
@@ -496401,7 +496401,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS nécessite un redémarrage pour terminer l'installation de l'extension Tunnel Cloud cmux."
+            "value": "macOS nécessite un redémarrage pour terminer l'installation de l'extension Tunnel Cloud Taffy."
           }
         },
         "ar": {
@@ -496413,7 +496413,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS necesita reiniciarse para finalizar la instalación de la extensión Túnel en la nube de cmux."
+            "value": "macOS necesita reiniciarse para finalizar la instalación de la extensión Túnel en la nube de Taffy."
           }
         },
         "zh-Hant": {
@@ -496442,7 +496442,7 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS only loads the Taffy Cloud Tunnel extension from the Applications folder. Move cmux.app to /Applications and retry."
+            "value": "macOS only loads the Taffy Cloud Tunnel extension from the Applications folder. Move Taffy.app to /Applications and retry."
           }
         },
         "ja": {
@@ -496885,7 +496885,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Se canceló la solicitud para cargar la extensión Túnel en la nube de cmux."
+            "value": "Se canceló la solicitud para cargar la extensión Túnel en la nube de Taffy."
           }
         },
         "zh-Hant": {
@@ -496932,7 +496932,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS n'a pas autorisé le chargement de l'extension Tunnel Cloud cmux. Autorisez-la dans Réglages Système › Général › Ouverture et extensions, puis réessayez."
+            "value": "macOS n'a pas autorisé le chargement de l'extension Tunnel Cloud Taffy. Autorisez-la dans Réglages Système › Général › Ouverture et extensions, puis réessayez."
           }
         },
         "ar": {
@@ -496944,7 +496944,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS no permitió cargar la extensión Túnel en la nube de cmux. Permítala en Ajustes del Sistema › General › Ítems de inicio y extensiones, luego vuelva a intentarlo."
+            "value": "macOS no permitió cargar la extensión Túnel en la nube de Taffy. Permítala en Ajustes del Sistema › General › Ítems de inicio y extensiones, luego vuelva a intentarlo."
           }
         },
         "zh-Hant": {
@@ -497109,7 +497109,7 @@
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS a besoin de votre autorisation pour charger l'extension Tunnel Cloud cmux. Ouvrez Réglages Système › Général › Ouverture et extensions › Extensions réseau, autorisez Taffy, puis revenez ici (attente jusqu'à 10 minutes)…"
+            "value": "macOS a besoin de votre autorisation pour charger l'extension Tunnel Cloud Taffy. Ouvrez Réglages Système › Général › Ouverture et extensions › Extensions réseau, autorisez Taffy, puis revenez ici (attente jusqu'à 10 minutes)…"
           }
         },
         "ar": {
@@ -497121,7 +497121,7 @@
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "macOS necesita su aprobación para cargar la extensión Túnel en la nube de cmux. Abra Ajustes del Sistema › General › Ítems de inicio y extensiones › Extensiones de red, permita Taffy, luego regrese aquí (esperando hasta 10 minutos)…"
+            "value": "macOS necesita su aprobación para cargar la extensión Túnel en la nube de Taffy. Abra Ajustes del Sistema › General › Ítems de inicio y extensiones › Extensiones de red, permita Taffy, luego regrese aquí (esperando hasta 10 minutos)…"
           }
         },
         "zh-Hant": {

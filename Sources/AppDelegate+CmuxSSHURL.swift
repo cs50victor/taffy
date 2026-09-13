@@ -675,7 +675,7 @@ extension AppDelegate {
         alert.informativeText = String(
             format: String(
                 localized: "dialog.sshURL.message",
-                defaultValue: "An external link wants to open \"%@\" in cmux. Do you want to open this SSH workspace?\n\nIf you did not initiate this request, it may represent an attempted attack on your system. Only continue if you explicitly started this action."
+                defaultValue: "An external link wants to open \"%@\" in Taffy. Do you want to open this SSH workspace?\n\nIf you did not initiate this request, it may represent an attempted attack on your system. Only continue if you explicitly started this action."
             ),
             request.displayTarget
         )

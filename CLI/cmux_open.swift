@@ -7874,7 +7874,7 @@ extension CMUXCLI {
         """
         Usage: taffy open <path-or-url>... [options]
 
-        Open files, directories, or URLs in cmux.
+        Open files, directories, or URLs in Taffy.
         HTML files open in browser splits without focusing by default.
         Markdown files open in markdown preview tabs; other files open in file preview tabs.
         Multiple files open as tabs in the same target pane.

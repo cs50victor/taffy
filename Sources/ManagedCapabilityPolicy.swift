@@ -76,7 +76,7 @@ enum ManagedFileTransferPolicy {
         let message = disabledMessage
         let detail = String(
             localized: "managedPolicy.fileTransfer.refusalDetail",
-            defaultValue: "Taffy did not upload the file. Your organization's device policy disables file transfer through cmux."
+            defaultValue: "Taffy did not upload the file. Your organization's device policy disables file transfer through Taffy."
         )
         let present: @MainActor () -> Void = {
             let alert = NSAlert()

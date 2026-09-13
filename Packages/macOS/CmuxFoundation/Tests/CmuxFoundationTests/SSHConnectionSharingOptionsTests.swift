@@ -36,7 +36,7 @@ struct SSHConnectionSharingOptionsTests {
         ])
     }
 
-    @Test("Resolved legacy relay-scoped paths remain cmux-owned and migrate")
+    @Test("Resolved legacy relay-scoped paths remain Taffy-owned and migrate")
     func migratesResolvedLegacyRelayPath() {
         let legacyPath = "/tmp/cmux-ssh-501-64001-0123456789abcdef0123456789abcdef01234567"
         let supplied = [
@@ -195,7 +195,7 @@ struct SSHConnectionSharingOptionsTests {
         ]) == nil)
     }
 
-    @Test("Only enabled cmux-owned paths create an authentication lock")
+    @Test("Only enabled Taffy-owned paths create an authentication lock")
     func authenticationLockRequiresOwnedPath() {
         let owned = options.mergingDefaults(into: [])
         let resolvedOwned = [
@@ -258,7 +258,7 @@ struct SSHConnectionSharingOptionsTests {
         ) == nil)
     }
 
-    @Test("Stale-socket preflight is scoped to the cmux-owned path")
+    @Test("Stale-socket preflight is scoped to the Taffy-owned path")
     func preflightRequiresOwnedPath() {
         let owned = options.mergingDefaults(into: [])
         let function = options.controlPathPreflightShellFunction(

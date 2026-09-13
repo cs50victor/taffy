@@ -26,7 +26,7 @@ extension CMUXCLI {
         DocsReference(
             topic: "settings",
             aliases: ["configuration", "config", "cmux-json", "settings-json", "settingsjson", "schema"],
-            summary: "cmux-owned settings, taffy.json locations, schema, and reload flow.",
+            summary: "Taffy-owned settings, taffy.json locations, schema, and reload flow.",
             webURL: settingsDocsURL,
             rawResources: [
                 DocsResource(label: "settings schema", url: settingsSchemaURL),
@@ -54,7 +54,7 @@ extension CMUXCLI {
         DocsReference(
             topic: "shortcuts",
             aliases: ["keyboard", "keybindings", "keys"],
-            summary: "cmux-owned keyboard shortcuts and two-step chord syntax.",
+            summary: "Taffy-owned keyboard shortcuts and two-step chord syntax.",
             webURL: "https://github.com/cs50victor/taffy/blob/main/docs/usage.md",
             rawResources: [
                 DocsResource(label: "shortcut data", url: "https://raw.githubusercontent.com/cs50victor/taffy/main/web/data/cmux-shortcuts.ts"),

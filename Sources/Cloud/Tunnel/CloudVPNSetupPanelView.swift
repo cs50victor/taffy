@@ -51,7 +51,7 @@ struct CloudVPNSetupPanelView: View {
                 .cmuxFont(size: 13)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
-            Text(String(localized: "cloud.vpn.setup.permission.body", defaultValue: "The VPN software is included in cmux. You do not need another app. macOS may require your password or Touch ID during approval."))
+            Text(String(localized: "cloud.vpn.setup.permission.body", defaultValue: "The VPN software is included in Taffy. You do not need another app. macOS may require your password or Touch ID during approval."))
                 .cmuxFont(size: 13)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -138,7 +138,7 @@ struct CloudVPNSetupPanelView: View {
                 .cmuxFont(size: 14, weight: .semibold)
             Text(String(localized: "cloud.vpn.setup.steps.extension", defaultValue: "1. Click Connect Cloud VPN. When macOS asks, allow the Taffy network extension in System Settings."))
             Text(ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 15
-                ? String(localized: "cloud.vpn.setup.steps.settings", defaultValue: "Open General > Login Items & Extensions > Network Extensions, then enable cmux.")
+                ? String(localized: "cloud.vpn.setup.steps.settings", defaultValue: "Open General > Login Items & Extensions > Network Extensions, then enable Taffy.")
                 : String(localized: "cloud.vpn.setup.steps.settingsLegacy", defaultValue: "Open Privacy & Security and allow the Taffy extension."))
                 .foregroundStyle(.secondary)
             Text(String(localized: "cloud.vpn.setup.steps.configuration", defaultValue: "2. Allow Taffy to add a VPN configuration named Taffy Cloud. This is a separate macOS permission."))

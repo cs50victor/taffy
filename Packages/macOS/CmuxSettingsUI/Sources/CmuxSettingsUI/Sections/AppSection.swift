@@ -380,7 +380,7 @@ public struct AppSection: View {
             SettingsCardRow(
                 configurationReview: .json("app.openSupportedFilesInCmux"),
                 String(localized: "settings.app.openSupportedFilesInCmux", defaultValue: "Open Supported Files in Taffy"),
-                subtitle: String(localized: "settings.app.openSupportedFilesInCmux.subtitle", defaultValue: "Cmd-clicking readable files opens text, code, PDFs, images, audio, video, and Quick Look previews in cmux.")
+                subtitle: String(localized: "settings.app.openSupportedFilesInCmux.subtitle", defaultValue: "Cmd-clicking readable files opens text, code, PDFs, images, audio, video, and Quick Look previews in Taffy.")
             ) {
                 Toggle("", isOn: Binding(get: { openSupported.current }, set: { openSupported.set($0) }))
                     .labelsHidden()
@@ -652,7 +652,7 @@ public struct AppSection: View {
             SettingsCardRow(
                 configurationReview: .json("app.menuBarOnly"),
                 String(localized: "settings.app.menuBarOnly", defaultValue: "Menu Bar Only"),
-                subtitle: String(localized: "settings.app.menuBarOnly.subtitle", defaultValue: "Hide the Dock icon and Cmd+Tab entry. Use the menu bar item to show cmux.")
+                subtitle: String(localized: "settings.app.menuBarOnly.subtitle", defaultValue: "Hide the Dock icon and Cmd+Tab entry. Use the menu bar item to show Taffy.")
             ) {
                 Toggle("", isOn: Binding(get: { menuBarOnly.current }, set: { enabled in
                     if hostActions.setMenuBarOnly(enabled) {
@@ -816,7 +816,7 @@ public struct AppSection: View {
                     ? String(localized: "settings.managedByOrganization", defaultValue: "Managed by your organization")
                     : (telemetryAtAppear != nil && telemetry.current != telemetryAtAppear)
                         ? String(localized: "settings.app.telemetry.subtitleChanged", defaultValue: "Change takes effect on next launch.")
-                        : String(localized: "settings.app.telemetry.subtitle", defaultValue: "Share anonymized crash and usage data to help improve cmux.")
+                        : String(localized: "settings.app.telemetry.subtitle", defaultValue: "Share anonymized crash and usage data to help improve Taffy.")
             ) {
                 Toggle("", isOn: Binding(get: { telemetry.current && !telemetryManagedByPolicy }, set: { telemetry.set($0) }))
                     .labelsHidden()

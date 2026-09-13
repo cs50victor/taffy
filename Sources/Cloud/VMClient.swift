@@ -48,7 +48,7 @@ enum VMClientError: Error, CustomStringConvertible {
         switch self {
         case .notSignedIn:
             return """
-                You are not signed in to cmux.
+                You are not signed in to Taffy.
 
                 What to do:
                   Taffy auth login
@@ -68,7 +68,7 @@ enum VMClientError: Error, CustomStringConvertible {
 
                 What to do:
                   Start the Taffy web server, then retry.
-                  If you are using a local development build, check its Cloud VM service URL before launching cmux.
+                  If you are using a local development build, check its Cloud VM service URL before launching Taffy.
 
                 Details:
                   \(detail)

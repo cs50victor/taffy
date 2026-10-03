@@ -35,6 +35,8 @@ rustup toolchain install 1.88.0 --profile minimal --component clippy,rustfmt
 
 The script creates `dist/taffy-0.1.1-macos-arm64.zip`. Set `DEVELOPER_DIR` to select an Xcode installation. Build products use the isolated `build-taffy` directory.
 
+Release builds reuse compatible compiler and dependency caches. CI populates these caches after successful builds on `main`; pull requests can restore them on fresh runners. The first build for a new toolchain or an evicted cache still performs the normal compilation.
+
 Taffy stores JSON settings at `~/.config/taffy/taffy.json` and its control socket at `~/.local/state/taffy/taffy.sock`. Existing Taffy configuration is migrated without deleting the old file. Internal cmux protocol identifiers and environment variables are retained for integration compatibility; the installed `taffy` launcher selects this fork's socket. Set `TAFFY_SOCKET_PATH` or pass `--socket` to select another Taffy instance.
 
 ## Source and license

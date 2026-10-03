@@ -1,92 +1,86 @@
-# Third-Party Licenses
+# Third-party licenses
 
-cmux includes the following third-party software:
+Taffy uses the packages below under their own terms. Its GPL license does not replace these terms.
 
----
+## tldraw SDK and assets
 
-## Ghostty
+# tldraw license
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2024 Mitchell Hashimoto, Ghostty contributors
-- **Source:** https://github.com/ghostty-org/ghostty
+This License from tldraw, Inc. (“tldraw”) governs your use of the accompanying Software. By using the Software, you accept the terms of this License. The tldraw software is copyrighted by tldraw Inc.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Alternative licenses are available from tldraw for commercial and non-commercial use. To get an alternative license or to learn more, visit https://tldraw.dev or contact sales@tldraw.com.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+## Definitions
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+"Production Environment" means any production deployment of the Software that operates on servers, cloud platforms, web applications, or where the software is used to provide functionality to end users, customers, or the public. Production Environment excludes internal development.
 
----
+"Development Environment" means any internal hosting or deployment of the Software for development, testing, or staging purposes, operated by your organization and not accessible to end users, customers, or the public.
 
-## Bonsplit
+"License Key" means the programmatically generated key that controls Software functionality and usage restrictions.
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2026 Alasdair Monk
-- **Source:** https://github.com/almonk/bonsplit
+## Permissions
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Subject to the following conditions, you are permitted to:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+- Use the Software in Development Environments.
+- Modify the Software to suit your needs.
+- Bundle the Software with your own projects.
+- Submit modifications of the Software to tldraw.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+## Conditions
 
----
+In exchange for these permissions, you agree:
 
-## cmux-cua engine
+- Not to use the Software in Production Environments.
+- Not to disable, change, or interfere with the Software's License Key enforcement.
+- Not to remove any copyright or other notices from the Software.
+- Not to make the Software available under a license that supersedes or negates the effect of this License.
+- Not to distribute the Software or modifications of the Software as a standalone product, but only as part of another application.
+- To include a verbatim copy of this License in any distribution of the Software.
+- To comply with tldraw's trademark policy.
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2025 Cua AI, Inc.
-- **Source:** https://github.com/manaflow-ai/cmux-cua
+## Trial license
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+In the case that tldraw makes the Software available to you on a trial basis, you are permitted to use the Software in Production Environments for the specified period beginning from the date of the trial’s License Key issuance. Business units are limited to one trial period unless otherwise approved by tldraw in writing.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+## Commercial license
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+In the case that tldraw makes the Software available to you under the terms of a separate commercial agreement, you are permitted to use the Software in Production Environments for the specified period beginning from the date of the agreement’s License Key issuance.
 
----
+## Termination
 
-## Sparkle
+Your license to use the Software will terminate automatically if you breach any terms of this License or initiate a copyright, trade secret, or patent claim against tldraw, any of its affiliates, or any user of the Software (including as modified by you).
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2006-2013 Andy Matuschak, 2009-2013 Elgato Systems GmbH, 2011-2014 Kornel Lesinski, 2015-2017 Sparkle Project
-- **Source:** https://github.com/sparkle-project/Sparkle
+## Technical enforcement
+
+The Software includes technical measures to verify License Key validity, detect deployment environments, enforce usage restrictions based on license type, and ensure proper watermark display. The Software may collect and transmit usage data to tldraw for license compliance purposes.
+
+## Ownership of intellectual property
+
+tldraw retains all right, title, and interest in the Software, including all intellectual property rights therein. This Agreement grants you only the specific, limited rights expressly set forth herein, and tldraw reserves all rights not expressly granted.
+
+## Disclaimer of warranties
+
+The Software is provided "AS IS," without any warranties. This includes any implied warranties of merchantability, fitness for a particular purpose, or non-infringement. You must pass this disclaimer on whenever you distribute the Software or derivative works.
+
+## Limitation of liability
+
+tldraw is not liable for any damages related to the Software or this License, including direct, indirect, special, or incidental damages, to the fullest extent permitted by law. You must pass this limitation of liability on whenever you distribute the Software or derivative works.
+
+## Governing law
+
+This License is governed by the laws of Delaware, and the parties consent to exclusive jurisdiction in Delaware courts. The parties waive all defenses of lack of personal jurisdiction and forum non-conveniens.
+
+## Entire agreement / assignment
+
+This License is the entire agreement between the parties, and supersedes any and all prior agreements, understandings or communications, written or oral, between the parties relating to the subject matter hereof. This License may be assigned by tldraw without your prior consent.
+
+
+## react
+
+MIT License
+
+Copyright (c) Meta Platforms, Inc. and affiliates.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -106,37 +100,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## PostHog iOS
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2020 PostHog
-- **Source:** https://github.com/PostHog/posthog-ios
+## react-dom
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+MIT License
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
----
-
-## Sentry Cocoa
-
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2015 Sentry
-- **Source:** https://github.com/getsentry/sentry-cocoa
+Copyright (c) Meta Platforms, Inc. and affiliates.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -156,299 +125,163 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
----
 
-## Markdown Viewer Web Assets
+## @codemirror/state
 
-cmux bundles these files under `Resources/markdown-viewer/` so the markdown
-viewer has no runtime CDN dependency.
+MIT License
 
-### marked
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
-- **Version:** 13.0.3
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2011-2024, Christopher Jeffrey
-- **Source:** https://github.com/markedjs/marked/releases/tag/v13.0.3
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-### highlight.js
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-- **Version:** 11.10.0
-- **License:** BSD 3-Clause License
-- **Copyright:** Copyright (c) 2006-2024 Josh Goebel and other contributors
-- **Source:** https://github.com/highlightjs/highlight.js/releases/tag/11.10.0
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
-### github-markdown-css
 
-- **Version:** 5.6.1
-- **License:** MIT License
-- **Copyright:** Copyright (c) Sindre Sorhus
-- **Source:** https://github.com/sindresorhus/github-markdown-css/tree/v5.6.1
+## @codemirror/view
 
-### Mermaid
+MIT License
 
-- **Version:** 11.4.1
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2014-2024 Knut Sveidqvist and Mermaid contributors
-- **Source:** https://github.com/mermaid-js/mermaid/releases/tag/mermaid%4011.4.1
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
-### Vega
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-- **Version:** 5.30.0
-- **License:** BSD 3-Clause License
-- **Copyright:** Copyright (c) 2015-2024 University of Washington Interactive Data Lab and contributors
-- **Source:** https://github.com/vega/vega/releases/tag/v5.30.0
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-### Vega-Lite
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
-- **Version:** 5.21.0
-- **License:** BSD 3-Clause License
-- **Copyright:** Copyright (c) 2015-2024 University of Washington Interactive Data Lab and contributors
-- **Source:** https://github.com/vega/vega-lite/releases/tag/v5.21.0
 
-### Vega-Embed
+## @codemirror/language
 
-- **Version:** 6.26.0
-- **License:** BSD 3-Clause License
-- **Copyright:** Copyright (c) 2015-2024 University of Washington Interactive Data Lab and contributors
-- **Source:** https://github.com/vega/vega-embed/releases/tag/v6.26.0
+MIT License
 
-BSD 3-Clause License:
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
-3. Neither the name of the copyright holder nor the names of its contributors
-   may be used to endorse or promote products derived from this software
-   without specific prior written permission.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
----
 
-## Swift Package Dependencies
+## @codemirror/lang-javascript
 
-The following packages are linked into the cmux app binary.
+MIT License
 
-### MarkdownUI (swift-markdown-ui)
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2020 Guillermo Gonzalez
-- **Source:** https://github.com/gonzalezreal/swift-markdown-ui
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-### NetworkImage
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2020 Guille Gonzalez
-- **Source:** https://github.com/gonzalezreal/NetworkImage
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
-### swift-cmark (cmark / cmark-gfm)
 
-- **License:** BSD 2-Clause License (and MIT-licensed portions; see upstream COPYING)
-- **Copyright:** Copyright (c) 2014, John MacFarlane; cmark-gfm portions Copyright (c) 2017, GitHub, Inc.
-- **Source:** https://github.com/swiftlang/swift-cmark
+## @tldraw/assets
 
-### XcodeProj
+This code is licensed under the [tldraw license](https://github.com/tldraw/tldraw/blob/main/LICENSE.md)
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) from 2018 Pedro Piñera Buendía and contributors
-- **Source:** https://github.com/tuist/XcodeProj
 
-### AEXML
+## @tldraw/editor
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2014-2024 Marko Tadić
-- **Source:** https://github.com/tadija/AEXML
+This code is licensed under the [tldraw license](https://github.com/tldraw/tldraw/blob/main/LICENSE.md)
 
-### PathKit
 
-- **License:** BSD 2-Clause License
-- **Copyright:** Copyright (c) 2014, Kyle Fuller
-- **Source:** https://github.com/kylef/PathKit
+## @tldraw/tlschema
 
-### iroh-ffi
+MIT License
 
-- **License:** MIT License or Apache License 2.0 (dual-licensed; cmux elects MIT)
-- **Copyright:** Copyright 2025 N0, INC.
-- **Source:** https://github.com/manaflow-ai/iroh-ffi (fork of https://github.com/n0-computer/iroh-ffi)
+Copyright (c) 2024 tldraw Inc.
 
-### Swift Crypto and Swift ASN.1
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-- **License:** Apache License 2.0
-- **Copyright:** Copyright (c) Apple Inc. and the SwiftCrypto / SwiftASN1 project authors
-- **Source:** https://github.com/apple/swift-crypto, https://github.com/apple/swift-asn1
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-### Stack Auth Swift SDK
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-- **License:** MIT License (per Stack Auth's published per-package licensing policy,
-  under which client SDKs are MIT-licensed; the vendored prerelease does not yet
-  include its own LICENSE file)
-- **Copyright:** Copyright (c) Stack Auth (HexClave, Inc.)
-- **Source:** https://github.com/stack-auth/stack
 
----
+## @tldraw/utils
 
-## Diff Viewer Highlighting Assets
+MIT License
 
-cmux bundles compiled syntax-highlighting code and grammars under
-`Resources/markdown-viewer/diff-viewer/` so the diff viewer has no runtime CDN
-dependency.
+Copyright (c) 2024 tldraw Inc.
 
-### shiki
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) 2021 Pine Wu; Copyright (c) 2023 Anthony Fu and Shiki contributors
-- **Source:** https://github.com/shikijs/shiki
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-### vscode-textmate
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) Microsoft Corporation
-- **Source:** https://github.com/microsoft/vscode-textmate
 
-### vscode-oniguruma
+## zod
 
-- **License:** MIT License
-- **Copyright:** Copyright (c) Microsoft Corporation
-- **Source:** https://github.com/microsoft/vscode-oniguruma
+MIT License
 
-### Oniguruma
+Copyright (c) 2025 Colin McDonnell
 
-- **License:** BSD 2-Clause License
-- **Copyright:** Copyright (c) 2002-2019 K.Kosako
-- **Source:** https://github.com/kkos/oniguruma (bundled as WebAssembly via vscode-oniguruma)
-
----
-
-## Shared License Texts
-
-MIT-licensed components above are distributed under the MIT License text
-reproduced in the sections earlier in this document. BSD 2-Clause components
-are distributed under the following text:
-
-BSD 2-Clause License:
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-Apache-2.0-licensed components are distributed under the Apache License,
-Version 2.0. A copy of the license is available at
-http://www.apache.org/licenses/LICENSE-2.0 and in each component's source
-repository listed above.
-
----
-
-## WireGuardKit (wireguard-apple)
-
-- **License:** MIT License
-- **Copyright:** Copyright © 2018-2023 WireGuard LLC. All Rights Reserved.
-- **Source:** https://git.zx2c4.com/wireguard-apple (vendored at `vendor/WireGuardKit`)
-- **Used by:** the cmux Cloud tunnel system extension (`Contents/Library/SystemExtensions`)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-"WireGuard" and the "WireGuard" logo are registered trademarks of Jason A. Donenfeld.
-
----
-
-## wireguard-go
-
-- **License:** MIT License
-- **Copyright:** Copyright (C) 2017-2023 WireGuard LLC. All Rights Reserved.
-- **Source:** https://git.zx2c4.com/wireguard-go (module `golang.zx2c4.com/wireguard`, compiled into the tunnel extension via `scripts/build-wireguard-go.sh`)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
----
-
-## Go supplementary libraries (golang.org/x/crypto, golang.org/x/net, golang.org/x/sys)
-
-- **License:** BSD 3-Clause License
-- **Copyright:** Copyright 2009 The Go Authors.
-- **Source:** https://go.googlesource.com/crypto, https://go.googlesource.com/net, https://go.googlesource.com/sys (compiled into the tunnel extension via wireguard-go)
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-   * Redistributions of source code must retain the above copyright
-notice, this list of conditions and the following disclaimer.
-   * Redistributions in binary form must reproduce the above
-copyright notice, this list of conditions and the following disclaimer
-in the documentation and/or other materials provided with the
-distribution.
-   * Neither the name of Google LLC nor the names of its
-contributors may be used to endorse or promote products derived from
-this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -17,7 +17,7 @@ bun run build
 ./dist/taffy /path/to/project
 ```
 
-Open the private link printed by the command. A LAN link works on another device on the same network; a VPN can provide private access beyond it. The command binds port 4177 by default; use `--host 127.0.0.1` for local access or `--port 0` for a free port. Keep the connection link private: it grants access to your project agent. Use a trusted LAN or an HTTPS reverse proxy because the built-in server uses HTTP.
+Open the private link printed by the command. A LAN link works on another device on the same network; a VPN can provide private access beyond it. The command binds port 4177 by default; use `--host 127.0.0.1` for local access or `--port 0` for a free port. Keep the connection link private: it grants access to your project agent. The built-in server uses HTTP; use a trusted LAN or private VPN.
 
 The executable embeds the browser UI and assets. Installed users need Codex and Manim on PATH, but do not need Bun or Node to run Taffy. Use `taffy --help` for options.
 

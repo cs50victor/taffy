@@ -1,48 +1,64 @@
 # Taffy
 
-<img src="Resources/Branding/Taffy.svg" alt="Taffy ribbon icon" width="96">
+A chat-like workspace where the main replies are diagrams, drawings, and short Manim videos. Ask a question, point at code, or draw on a response. Keep the prose short and expand the evidence when you need it.
 
-Immersive multimodal multiplexer for macOS. A personal, independent derivative of [cmux](https://github.com/manaflow-ai/cmux), maintained by [cs50victor](https://github.com/cs50victor).
+This draft replaces the native desktop app with one command and one browser port. It keeps the name Taffy and uses your existing Codex installation, login, configuration, model routing, and tools. There is no new provider protocol.
 
-## Install
+## Run the draft
 
-Apple Silicon, macOS 14 or later:
-
-```sh
-brew install --cask cs50victor/tap/taffy
-```
-
-Launch Taffy from Applications. Its command-line tool is `taffy`.
-
-This build is ad-hoc signed without an Apple Developer ID certificate or notarization. If macOS blocks the downloaded app, remove quarantine from this app only:
+Install Bun, Codex, and Manim, then build this branch:
 
 ```sh
-xattr -dr com.apple.quarantine /Applications/Taffy.app
+brew install bun manim
+brew install --cask codex
+codex login
+bun install --frozen-lockfile
+bun run build
+./dist/taffy /path/to/project
 ```
 
-Update with `brew upgrade --cask cs50victor/tap/taffy`. The upstream in-app updater is disabled. The Cloud tunnel extension and browser passkey entitlement require Apple provisioning and are excluded from this distribution. Upstream hosted Cloud services are not supplied by this project.
+Open the private link printed by the command. A LAN link works on another device on the same network; a VPN can provide private access beyond it. The command binds port 4177 by default; use `--host 127.0.0.1` for local access or `--port 0` for a free port. Keep the connection link private: it grants access to your project agent. The built-in server uses HTTP; use a trusted LAN or private VPN.
 
-## Build
+The executable embeds the browser UI and assets. Installed users need Codex and Manim on PATH, but do not need Bun or Node to run Taffy. Use `taffy --help` for options.
 
-Install Xcode 26.x with its Metal toolchain, Zig 0.16.0, Rust/rustup and Bun. Initialize the pinned source dependencies and build:
+## Homebrew preview
+
+The source-build recipe lives in `Formula/taffy.rb` and follows this draft branch. To try it without replacing an installed desktop launcher:
 
 ```sh
-git clone https://github.com/cs50victor/taffy.git
-cd taffy
-rustup toolchain install 1.88.0 --profile minimal --component clippy,rustfmt
-./scripts/build-taffy.sh 0.1.1
+brew tap cs50victor/taffy-web https://github.com/cs50victor/taffy
+git -C "$(brew --repo cs50victor/taffy-web)" checkout feat/visual-web-cli
+brew install --HEAD --skip-link cs50victor/taffy-web/taffy
+"$(brew --prefix cs50victor/taffy-web/taffy)/bin/taffy" /path/to/project
 ```
 
-The script creates `dist/taffy-0.1.1-macos-arm64.zip`. Set `DEVELOPER_DIR` to select an Xcode installation. Build products use the isolated `build-taffy` directory.
+This is a draft recipe, not a published release or an update to the existing Taffy tap.
 
-Release builds reuse compatible compiler and dependency caches. CI populates these caches after successful builds on `main`; pull requests can restore them on fresh runners. The first build for a new toolchain or an evicted cache still performs the normal compilation.
+## Conversation and visuals
 
-Taffy stores JSON settings at `~/.config/taffy/taffy.json` and its control socket at `~/.local/state/taffy/taffy.sock`. Existing Taffy configuration is migrated without deleting the old file. Internal cmux protocol identifiers and environment variables are retained for integration compatibility; the installed `taffy` launcher selects this fork's socket. Set `TAFFY_SOCKET_PATH` or pass `--socket` to select another Taffy instance.
+- Replies show a connected diagram or a real MP4 rendered by Manim Community Edition; this is the maintained community engine, distinct from 3Blue1Brown's own ManimGL version.
+- Select a source excerpt or relationship, draw on the canvas, and send it to the same conversation; the canvas attachment is an actual PNG and can be switched off.
+- Older replies remain in compact history; supporting evidence expands separately.
+- Drafts and drawings stay in the browser while the agent works, and failures retain the previous response and submitted draft.
+- One agent turn runs at a time, accepted request IDs prevent duplicate execution, and provider errors remain visible.
 
-## Source and license
+Conversation state and video artifacts live under `~/.local/state/taffy/<project-hash>`. Canvas annotations are local to each browser. Use `--state-dir` to change storage. Private links change on restart. If the process was killed without cleanup, verify the PID in `server.lock/pid` before removing that lock directory.
 
-Imported from cmux commit `faae269088287ea357342d69c6be9b55ac977681`. This GitHub repository has no fork parent. The pinned Ghostty and Bonsplit submodules and cmux-cua dependency remain public upstream dependencies.
+Codex retains its configured execution permissions. Taffy tells it to inspect real files, preserve evidence, and change code only when requested; drawing on a reply is not approval to edit, merge, or deploy.
 
-[GPL-3.0-or-later](LICENSE), except where individual files or accompanying notices specify otherwise. Original copyright and third-party notices are retained. See [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md) and [the upstream README](docs/upstream-README.md).
+## Check the branch
 
-See [the usage guide](docs/usage.md) for commands, settings, and updates.
+```sh
+bun run check
+bun test
+bun run build
+bunx playwright install chromium
+bun run test:browser
+bun scripts/smoke.ts
+```
+
+The browser check runs the compiled executable outside this checkout and exercises authentication, code selection, PNG export, draft/focus preservation, failures, video seeking, and mobile layout. The optional smoke script uses your real Codex account in a new scratch directory and renders a Manim video in the same thread. It consumes normal provider usage.
+
+Render the included example directly with `manim -ql examples/morph.py Morph`.
+
+The canvas SDK uses the tldraw license, which permits development and requires separate terms for production use. This draft preserves its enforcement and notices; resolve those terms before publishing a production build. See `THIRD_PARTY_LICENSES.md`.
